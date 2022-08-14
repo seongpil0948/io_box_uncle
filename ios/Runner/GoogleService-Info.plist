@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>812477328372-p45n4dsugka9psbpcrv91peeg2a61fnp.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.812477328372-p45n4dsugka9psbpcrv91peeg2a61fnp</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>812477328372-1fgs4pm2ld93ui1arebbsofpuckprofn.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD0At2yKSoARRq3sB8QBspC327OTOkilZ0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>812477328372</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.IoBox.Uncle</string>
+	<key>PROJECT_ID</key>
+	<string>io-box</string>
+	<key>STORAGE_BUCKET</key>
+	<string>io-box.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:812477328372:ios:8618f9ddfd11921a6827a1</string>
+	<key>DATABASE_URL</key>
+	<string>https://io-box-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
