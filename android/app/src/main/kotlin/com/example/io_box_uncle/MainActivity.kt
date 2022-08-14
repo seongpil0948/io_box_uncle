@@ -1,4 +1,4 @@
-package com.example.io_box_uncle
+package com.io_box.uncle
 
 import io.flutter.embedding.android.FlutterActivity
 

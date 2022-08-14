@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.io_box_uncle">
+    package="com.io_box.uncle">
    <application
         android:label="io_box_uncle"
         android:name="${applicationName}"
