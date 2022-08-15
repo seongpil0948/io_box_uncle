@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "812477328372-muc31njq8gfh8aahemc3mp3kg8etcmiu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.io_box.uncle",
+            "certificate_hash": "d7cd1884da4d2a3755a3dc89b6df200e67a4ae63"
+          }
+        },
+        {
           "client_id": "812477328372-qi5go6pr4q7rn228lj760043dm032k3n.apps.googleusercontent.com",
           "client_type": 3
         }

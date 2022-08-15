@@ -1,4 +1,5 @@
 import 'package:flow_builder/flow_builder.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/module/app/bloc/app_bloc.dart';
@@ -14,6 +15,9 @@ class AppView extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    if (kDebugMode) {
+      print("in AppView currentUser: ${authRepo.currentUser}");
+    }
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -36,6 +40,9 @@ List<Page<dynamic>> onGenerateAppViewPages(
   AppStatus state,
   List<Page<dynamic>> pages,
 ) {
+  if (kDebugMode) {
+    print("in onGenerateAppViewPagesr state: $state \n pages: $pages");
+  }
   switch (state) {
     case AppStatus.authenticated:
       return [HomePage.page()];
