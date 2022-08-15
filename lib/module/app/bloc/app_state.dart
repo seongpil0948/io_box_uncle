@@ -8,7 +8,7 @@ class AppState extends Equatable {
       : status = AppStatus.authenticated,
         user = u;
   const AppState.unauthenticated()
-      : status = AppStatus.authenticated,
+      : status = AppStatus.unauthenticated,
         user = null;
 
   @override

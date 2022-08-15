@@ -17,5 +17,6 @@ Future<void> main() async {
   k.KakaoSdk.init(nativeAppKey: 'ee8b4a5bc6cce53051a8cc3154ab3c86');
   final pref = await SharedPreferences.getInstance();
   final authRepo = AuthRepo(pref: pref);
-  runApp(AppView(authRepo: authRepo));
+  await authRepo.user.first;
+  runApp(App(authRepo: authRepo));
 }

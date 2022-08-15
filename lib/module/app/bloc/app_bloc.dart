@@ -20,11 +20,20 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppUserChanged>(_onUserChanged);
     on<AppLogoutRequested>(_onLogoutRequested);
 
-    _userSubscription = authRepo.user.listen(
-      (user) => user.then((value) => add(AppUserChanged(value))),
-    );
+    _userSubscription = authRepo.user.listen((user) async {
+      print("user: $user");
+      user.then((value) {
+        if (kDebugMode) {
+          print("in authRepo.user.listen: $value");
+        }
+        add(AppUserChanged(value));
+      });
+    });
   }
   void _onUserChanged(AppUserChanged event, Emitter<AppState> emit) {
+    if (kDebugMode) {
+      print("event.user in _onUserChanged: ${event.user}");
+    }
     emit(
       event.user != null
           ? AppState.authenticated(event.user!)

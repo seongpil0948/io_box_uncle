@@ -8,15 +8,15 @@ import 'package:io_box_uncle/module/auth/index.dart';
 part "./home.dart";
 part './login.dart';
 
-class AppView extends StatelessWidget {
+class App extends StatelessWidget {
   final AuthRepo authRepo;
-  const AppView({Key? key, required this.authRepo}) : super(key: key);
+  const App({Key? key, required this.authRepo}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     if (kDebugMode) {
-      print("in AppView currentUser: ${authRepo.currentUser}");
+      print("in App currentUser: ${authRepo.currentUser}");
     }
     return MaterialApp(
       title: 'Flutter Demo',
@@ -27,11 +27,22 @@ class AppView extends StatelessWidget {
           value: authRepo,
           child: BlocProvider(
             create: (context) => AppBloc(authRepo: authRepo),
-            child: FlowBuilder<AppStatus>(
-              state: context.select((AppBloc bloc) => bloc.state.status),
-              onGeneratePages: onGenerateAppViewPages,
-            ),
+            child: const AppView(),
           )),
+    );
+  }
+}
+
+class AppView extends StatelessWidget {
+  const AppView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FlowBuilder<AppStatus>(
+      state: context.select((AppBloc bloc) => bloc.state.status),
+      onGeneratePages: onGenerateAppViewPages,
     );
   }
 }
@@ -41,7 +52,7 @@ List<Page<dynamic>> onGenerateAppViewPages(
   List<Page<dynamic>> pages,
 ) {
   if (kDebugMode) {
-    print("in onGenerateAppViewPagesr state: $state \n pages: $pages");
+    print("in onGenerateAppViewPages state: $state \n pages: $pages");
   }
   switch (state) {
     case AppStatus.authenticated:

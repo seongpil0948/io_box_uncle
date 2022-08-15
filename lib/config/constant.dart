@@ -1,3 +1,3 @@
 part of './index.dart';
 
-const ioApiUrl = "https://campi-f8278.du.r.appspot.com/api";
+const ioApiUrl = "https://io-box.du.r.appspot.com/api";

@@ -7,16 +7,21 @@ class AuthRepo {
   AuthRepo({required this.pref});
 
   Stream<Future<IoUser?>> get user {
+    // FIXME
     return _auth.authStateChanges().map((firebaseUser) async {
+      if (kDebugMode) {
+        print("authStateChanges, firebaseUser: $firebaseUser");
+      }
       final user =
           firebaseUser == null ? null : await getUserById(firebaseUser.uid);
       if (user != null) {
         final j = user.toJsonCache();
         pref.setString(userCacheKey, jsonEncode(j));
+      } else {
+        pref.remove(userCacheKey);
       }
       if (kDebugMode) {
-        print(
-            "authStateChanges, firebaseUser: $firebaseUser \n io user: $user ");
+        print("authStateChanges, io user: $user ");
       }
       return user;
     });
@@ -26,8 +31,17 @@ class AuthRepo {
   /// Defaults to [User.empty] if there is no cached user.
   IoUser? get currentUser {
     final usrStr = pref.getString(userCacheKey);
-    if (usrStr != null) {
-      return IoUser(jsonDecode(usrStr));
+    print("usrStr in currentUser len: ${usrStr?.length}");
+    if (usrStr != null && usrStr.isNotEmpty) {
+      try {
+        return IoUser(jsonDecode(usrStr));
+      } catch (e) {
+        if (kDebugMode) {
+          print("Error in currentUser $e");
+        }
+        pref.remove(userCacheKey);
+        return null;
+      }
     } else {
       return null;
     }
@@ -39,7 +53,7 @@ class AuthRepo {
     return IoUser(doc.data() as Map<String, dynamic>);
   }
 
-  void kakaoLogin() async {
+  Future<void> kakaoLogin() async {
     k.OAuthToken? token;
     // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
     if (await k.isKakaoTalkInstalled()) {
@@ -55,7 +69,6 @@ class AuthRepo {
         // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
         try {
           token = await k.UserApi.instance.loginWithKakaoAccount();
-          debugPrint('카카오계정으로 로그인 성공');
         } catch (error) {
           debugPrint('카카오계정으로 로그인 실패 $error');
         }
@@ -63,22 +76,31 @@ class AuthRepo {
     } else {
       try {
         token = await k.UserApi.instance.loginWithKakaoAccount();
-        debugPrint('카카오계정으로 로그인 성공');
       } catch (error) {
         debugPrint('카카오계정으로 로그인 실패 $error');
       }
     }
     try {
       k.User user = await k.UserApi.instance.me();
-      debugPrint('사용자 정보 요청 성공'
-          '\n회원번호: ${user.id}'
-          '\n닉네임: ${user.kakaoAccount?.profile?.nickname}'
-          '\n이메일: ${user.kakaoAccount?.email}');
+      // debugPrint('사용자 정보 요청 성공'
+      //     '\n회원번호: ${user.id}'
+      //     '\n닉네임: ${user.kakaoAccount?.profile?.nickname}'
+      //     '\n이메일: ${user.kakaoAccount?.email}');
+      if (token != null) {
+        final url = "$ioApiUrl/auth/customToken/${user.id}";
+        final res = await Dio().get(url);
+        final String customToken = res.data['token'];
+        // final String userId = res.data['userId'];
+        await loginWithCustomToken(customToken);
+      }
     } catch (error) {
-      debugPrint('사용자 정보 요청 실패 $error');
-    }
-    if (token != null) {
-      await loginWithCustomToken(token.accessToken);
+      if (error is DioError) {
+        debugPrint(
+            "${error.response?.realUri} ${error.type}, ${error.response?.statusMessage}, ${error.response?.data}, ${error.error}");
+      } else {
+        debugPrint("error runtimeType: ${error.runtimeType}");
+      }
+      debugPrint('사용자 정보 요청 혹은 loginWithCustomToken 실패 $error');
     }
   }
 

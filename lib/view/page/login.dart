@@ -17,8 +17,6 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  void _kakaoLogin() async {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +26,9 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
-                onPressed: _kakaoLogin,
+                onPressed: (() async {
+                  await context.read<AuthRepo>().kakaoLogin();
+                }),
                 child: Image.asset('assets/images/kakao_login_ko.png')),
             const Text(
               'You have pushed the button this many times:',

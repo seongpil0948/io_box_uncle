@@ -15,5 +15,5 @@ class AppUserChanged extends AppEvent {
   final IoUser? user;
 
   @override
-  List<Object> get props => [user != null ? 'null' : user!.userInfo.userId];
+  List<Object> get props => [user == null ? 'null' : user!.userInfo.userId];
 }

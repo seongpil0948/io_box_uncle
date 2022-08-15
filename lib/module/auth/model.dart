@@ -26,8 +26,8 @@ class IoUser extends Equatable {
 
   Map<String, dynamic> toJsonCache() {
     final j = toJson();
-    j['createdAt'] = userInfo.createdAt.toIso8601String();
-    j['updatedAt'] = userInfo.updatedAt.toIso8601String();
+    j['userInfo']['createdAt'] = userInfo.createdAt.toIso8601String();
+    j['userInfo']['updatedAt'] = userInfo.updatedAt.toIso8601String();
     return j;
   }
 
@@ -49,15 +49,19 @@ class IoUserInfo extends Equatable {
   final bool passed;
 
   IoUserInfo.fromJson(Map<String, dynamic> j)
-      : createdAt = j['createdAt'] ?? DateTime.now(),
-        updatedAt = j['updatedAt'] ?? DateTime.now(),
+      : createdAt = j['createdAt'] != null
+            ? toDateTime(j['createdAt'])
+            : DateTime.now(),
+        updatedAt = j['updatedAt'] != null
+            ? toDateTime(j['updatedAt'])
+            : DateTime.now(),
         userId = j['userId'],
         userName = j['userName'],
         displayName = j['displayName'],
         email = j['email'],
         emailVerified = j['emailVerified'],
         profileImg = j['profileImg'],
-        fcmTokens = j['fcmTokens'],
+        fcmTokens = List<String>.from(j['fcmTokens']),
         passed = j['passed'],
         role = roleFromString(j['role']);
 
@@ -70,7 +74,7 @@ class IoUserInfo extends Equatable {
         "email": email,
         "emailVerified": emailVerified,
         "profileImg": profileImg,
-        "role": role,
+        "role": role.toKoString,
         "fcmTokens": fcmTokens,
         "passed": passed,
       };
@@ -167,14 +171,14 @@ class AccountInfo extends Equatable {
   final String accountNumber;
   final IoBank bank;
   AccountInfo.fromJson(Map<String, dynamic> j)
-      : userId = j['userId'],
-        accountNumber = j['accountNumber'],
-        bank = ioBankFromString(j['bank']);
+      : userId = j['userId'] ?? "",
+        accountNumber = j['accountNumber'] ?? "",
+        bank = ioBankFromString(j['bank'] ?? "농협");
 
   Map<String, dynamic> toJson() => {
         "userId": userId,
         "accountNumber": accountNumber,
-        "bank": bank,
+        "bank": bank.toKoString,
       };
   @override
   List<Object?> get props => [userId];
@@ -216,7 +220,7 @@ class Locate {
         "postalCode": postalCode,
         "country": country,
         "city": city,
-        "locateType": locateType,
+        "locateType": locateType.toKoString,
       };
 }
 
