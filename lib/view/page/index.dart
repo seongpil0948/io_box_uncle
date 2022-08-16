@@ -42,12 +42,12 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlowBuilder<AppStatus>(
       state: context.select((AppBloc bloc) => bloc.state.status),
-      onGeneratePages: onGenerateAppViewPages,
+      onGeneratePages: _onGenerateAppViewPages,
     );
   }
 }
 
-List<Page<dynamic>> onGenerateAppViewPages(
+List<Page<dynamic>> _onGenerateAppViewPages(
   AppStatus state,
   List<Page<dynamic>> pages,
 ) {
