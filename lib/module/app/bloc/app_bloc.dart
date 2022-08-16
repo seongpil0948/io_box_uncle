@@ -21,7 +21,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppLogoutRequested>(_onLogoutRequested);
 
     _userSubscription = authRepo.user.listen((user) async {
-      print("user: $user");
+      if (kDebugMode) {
+        print("user: $user");
+      }
       user.then((value) {
         if (kDebugMode) {
           print("in authRepo.user.listen: $value");

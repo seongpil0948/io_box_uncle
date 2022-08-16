@@ -7,7 +7,6 @@ class AuthRepo {
   AuthRepo({required this.pref});
 
   Stream<Future<IoUser?>> get user {
-    // FIXME
     return _auth.authStateChanges().map((firebaseUser) async {
       if (kDebugMode) {
         print("authStateChanges, firebaseUser: $firebaseUser");
@@ -31,7 +30,9 @@ class AuthRepo {
   /// Defaults to [User.empty] if there is no cached user.
   IoUser? get currentUser {
     final usrStr = pref.getString(userCacheKey);
-    print("usrStr in currentUser len: ${usrStr?.length}");
+    if (kDebugMode) {
+      print("usrStr in currentUser len: ${usrStr?.length}");
+    }
     if (usrStr != null && usrStr.isNotEmpty) {
       try {
         return IoUser(jsonDecode(usrStr));

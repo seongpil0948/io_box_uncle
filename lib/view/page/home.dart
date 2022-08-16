@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
     final textTheme = Theme.of(context).textTheme;
     final user = context.select((AppBloc bloc) => bloc.state.user)!;
     final size = MediaQuery.of(context).size;
+    final customColors = Theme.of(context).extension<CustomColors>()!;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
@@ -28,8 +29,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Container(
-            child: Column(
+        child: Column(
           children: [
             GridView.builder(
                 shrinkWrap: true,
@@ -54,8 +54,8 @@ class _HomePageState extends State<HomePage> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: Text('Item $index',
-                              style: textTheme.headline5
-                                  ?.copyWith(color: Colors.amber)),
+                              style: textTheme.headline5?.copyWith(
+                                  color: Theme.of(context).primaryColor)),
                         )
                       ],
                     ),
@@ -75,15 +75,15 @@ class _HomePageState extends State<HomePage> {
                               style: textTheme.headline5
                                   ?.copyWith(color: Colors.grey.shade500)),
                           Text('카카오뱅크 3333-17-170009',
-                              style: textTheme.caption
-                                  ?.copyWith(color: Colors.amber.shade300)),
+                              style: textTheme.caption?.copyWith(
+                                  color: Theme.of(context).primaryColor)),
                         ],
                       ),
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text('999,999원',
-                            style: textTheme.headline5
-                                ?.copyWith(color: Colors.amber)),
+                            style: textTheme.headline5?.copyWith(
+                                color: Theme.of(context).primaryColor)),
                       )
                     ])),
             DashBoardCard(
@@ -100,15 +100,15 @@ class _HomePageState extends State<HomePage> {
                               style: textTheme.headline5
                                   ?.copyWith(color: Colors.grey.shade500)),
                           Text('카카오뱅크 3333-17-170009',
-                              style: textTheme.caption
-                                  ?.copyWith(color: Colors.amber.shade300)),
+                              style: textTheme.caption?.copyWith(
+                                  color: customColors.primaryCloudy)),
                         ],
                       ),
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text('999,999원',
-                            style: textTheme.headline5
-                                ?.copyWith(color: Colors.amber)),
+                            style: textTheme.headline5?.copyWith(
+                                color: Theme.of(context).primaryColor)),
                       )
                     ])),
             DashBoardCard(
@@ -125,15 +125,15 @@ class _HomePageState extends State<HomePage> {
                               style: textTheme.headline5
                                   ?.copyWith(color: Colors.grey.shade500)),
                           Text('카카오뱅크 3333-17-170009',
-                              style: textTheme.caption
-                                  ?.copyWith(color: Colors.amber.shade300)),
+                              style: textTheme.caption?.copyWith(
+                                  color: customColors.primaryCloudy)),
                         ],
                       ),
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text('999,999원',
-                            style: textTheme.headline5
-                                ?.copyWith(color: Colors.amber)),
+                            style: textTheme.headline5?.copyWith(
+                                color: Theme.of(context).primaryColor)),
                       )
                     ])),
             const SizedBox(height: 5),
@@ -162,15 +162,15 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ],
-        )),
+        ),
       ),
     );
   }
 }
 
 class UserProfile extends StatelessWidget {
-  IoUser user;
-  UserProfile({Key? key, required this.user}) : super(key: key);
+  final IoUser user;
+  const UserProfile({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
