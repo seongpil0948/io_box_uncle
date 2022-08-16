@@ -19,7 +19,11 @@ class _HomePageState extends State<HomePage> {
     final customColors = Theme.of(context).extension<CustomColors>()!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Image.asset(
+          "/assets/images/logo/1024x1024.png",
+          fit: BoxFit.contain,
+          width: 30,
+        ),
         actions: <Widget>[
           IconButton(
             key: const Key('homePage_logout_iconButton'),
@@ -41,23 +45,28 @@ class _HomePageState extends State<HomePage> {
                     childAspectRatio: 1.5 / 1),
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
-                  return DashBoardCard(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 24, horizontal: 12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Size: ${size.height}',
-                            style: textTheme.headline5
-                                ?.copyWith(color: Colors.grey.shade500)),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text('Item $index',
-                              style: textTheme.headline5?.copyWith(
-                                  color: Theme.of(context).primaryColor)),
-                        )
-                      ],
+                  return InkWell(
+                    onTap: () => context
+                        .read<AppBloc>()
+                        .add(const SelectModule(ModulePage.pickupList)),
+                    child: DashBoardCard(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 24, horizontal: 12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Size: ${size.height}',
+                              style: textTheme.headline5
+                                  ?.copyWith(color: Colors.grey.shade500)),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Text('Item $index',
+                                style: textTheme.headline5?.copyWith(
+                                    color: Theme.of(context).primaryColor)),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 }),

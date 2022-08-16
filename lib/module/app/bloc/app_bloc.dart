@@ -19,6 +19,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ) {
     on<AppUserChanged>(_onUserChanged);
     on<AppLogoutRequested>(_onLogoutRequested);
+    on<SelectModule>(_onSelectModule);
 
     _userSubscription = authRepo.user.listen((user) async {
       if (kDebugMode) {
@@ -41,6 +42,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           ? AppState.authenticated(event.user!)
           : const AppState.unauthenticated(),
     );
+  }
+
+  void _onSelectModule(SelectModule event, Emitter<AppState> emit) {
+    emit(state.copyWith(module: event.module));
   }
 
   void _onLogoutRequested(AppLogoutRequested event, Emitter<AppState> emit) {

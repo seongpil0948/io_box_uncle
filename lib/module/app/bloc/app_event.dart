@@ -17,3 +17,12 @@ class AppUserChanged extends AppEvent {
   @override
   List<Object> get props => [user == null ? 'null' : user!.userInfo.userId];
 }
+
+class SelectModule extends AppEvent {
+  const SelectModule(this.module);
+
+  final ModulePage? module;
+
+  @override
+  List<Object> get props => [module == null ? 'null' : module.toString()];
+}

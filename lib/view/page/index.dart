@@ -7,6 +7,7 @@ import 'package:io_box_uncle/module/auth/index.dart';
 
 part "./home.dart";
 part './login.dart';
+part './req_pickup_list.dart';
 
 class App extends StatelessWidget {
   final AuthRepo authRepo;
@@ -39,26 +40,36 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlowBuilder<AppStatus>(
-      state: context.select((AppBloc bloc) => bloc.state.status),
+    return FlowBuilder<AppState>(
+      state: context.select((AppBloc bloc) => bloc.state),
       onGeneratePages: _onGenerateAppViewPages,
     );
   }
 }
 
 List<Page<dynamic>> _onGenerateAppViewPages(
-  AppStatus state,
+  AppState state,
   List<Page<dynamic>> pages,
 ) {
   if (kDebugMode) {
     print("in onGenerateAppViewPages state: $state \n pages: $pages");
   }
-  switch (state) {
+  pages = [];
+  switch (state.status) {
     case AppStatus.authenticated:
-      return [HomePage.page()];
+      pages.add(HomePage.page());
+      break;
     case AppStatus.unauthenticated:
-      return [LoginPage.page()];
+      pages.add(LoginPage.page());
+      return pages;
   }
+  switch (state.module) {
+    case ModulePage.pickupList:
+      pages.add(ReqPickupPage.page());
+      break;
+    default:
+  }
+  return pages;
 }
 
 // >>> THEME >>>
