@@ -4,4 +4,4 @@
 
 flutter build ipa  
 
-open -a Xcode /Users/sp/Codes/Camps/campi/build/ios/archive/Runner.xcarchive
+open -a Xcode build/ios/archive/Runner.xcarchive
