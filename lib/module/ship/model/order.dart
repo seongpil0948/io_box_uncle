@@ -81,7 +81,7 @@ enum OrderState {
 }
 
 @freezed //  all of this class's properties are immutable.
-class OrderAmount with _$GarmentOrder {
+class OrderAmount with _$OrderAmount {
   const factory OrderAmount({
     required int shipFeeAmount,
     required int shipFeeDiscountAmount,
