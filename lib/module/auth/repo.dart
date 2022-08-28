@@ -11,6 +11,8 @@ class AuthRepo {
       if (kDebugMode) {
         print("authStateChanges, firebaseUser: $firebaseUser");
       }
+      if (firebaseUser != null) return null;
+
       final user =
           firebaseUser == null ? null : await getUserById(firebaseUser.uid);
       if (user != null) {
@@ -49,7 +51,7 @@ class AuthRepo {
   }
 
   static Future<IoUser> getUserById(String userId) async {
-    final doc = await getCollection(c: Collections.users).doc(userId).get();
+    final doc = await getCollection(c: IoCollection.users).doc(userId).get();
     assert(doc.exists);
     return IoUser(doc.data() as Map<String, dynamic>);
   }

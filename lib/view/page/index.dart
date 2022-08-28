@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/module/app/bloc/app_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
+import 'package:io_box_uncle/module/ship/api/domain.dart';
+
+import '../../module/ship/bloc/shipment_bloc.dart';
+import '../../module/ship/repo.dart';
 
 part "./home.dart";
 part './login.dart';
@@ -19,17 +23,21 @@ class App extends StatelessWidget {
     if (kDebugMode) {
       print("in App currentUser: ${authRepo.currentUser}");
     }
+
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      home: RepositoryProvider.value(
+        title: 'Flutter Demo',
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        home: RepositoryProvider.value(
           value: authRepo,
-          child: BlocProvider(
-            create: (context) => AppBloc(authRepo: authRepo),
-            child: const AppView(),
-          )),
-    );
+          child: MultiBlocProvider(providers: [
+            BlocProvider(create: (context) => AppBloc(authRepo: authRepo)),
+            BlocProvider(
+                create: (context) => ShipmentBloc(
+                    authRepo: authRepo,
+                    orderRepo: const ShipmentRepo(api: ShipmentFB())))
+          ], child: const AppView()),
+        ));
   }
 }
 

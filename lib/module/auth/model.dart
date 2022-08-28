@@ -47,6 +47,10 @@ class IoUserInfo extends Equatable {
   final UserRole role;
   final List<String> fcmTokens;
   final bool passed;
+  final String? phone;
+  final String? managerId;
+  final List<String>? workerIds;
+  final String? uncleId;
 
   IoUserInfo.fromJson(Map<String, dynamic> j)
       : createdAt = j['createdAt'] != null
@@ -63,7 +67,11 @@ class IoUserInfo extends Equatable {
         profileImg = j['profileImg'],
         fcmTokens = List<String>.from(j['fcmTokens']),
         passed = j['passed'],
-        role = roleFromString(j['role']);
+        role = roleFromString(j['role']),
+        phone = j['phone'],
+        managerId = j['managerId'],
+        workerIds = j['workerIds'],
+        uncleId = j['uncleId'];
 
   Map<String, dynamic> toJson() => {
         "createdAt": createdAt,
@@ -77,6 +85,10 @@ class IoUserInfo extends Equatable {
         "role": role.toKoString,
         "fcmTokens": fcmTokens,
         "passed": passed,
+        "phone": phone,
+        "managerId": managerId,
+        "workerIds": workerIds,
+        "uncleId": uncleId,
       };
 
   @override
