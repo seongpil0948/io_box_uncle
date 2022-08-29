@@ -21,8 +21,9 @@ class Shipment with _$Shipment {
     String? sizeUnit,
     int? size,
     int? amountBySize,
-    required int amountBasic,
-    // required LocateType locateType,
+    required Locate returnAddress,
+    required Locate startAddress,
+    required Locate receiveAddress,
   }) = _Shipment;
 
   factory Shipment.fromJson(Map<String, Object?> json) =>
@@ -45,10 +46,15 @@ class Locate with _$Locate {
     String? city,
     String? county,
     String? town,
-    required LocateType locateType,
+    LocateType? locateType,
   }) = _Locate;
 
+  const Locate._();
   factory Locate.fromJson(Map<String, Object?> json) => _$LocateFromJson(json);
+
+  String get adminArea {
+    return "$city $county $town";
+  }
 }
 
 enum LocateType {

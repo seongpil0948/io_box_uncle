@@ -1410,7 +1410,9 @@ mixin _$Shipment {
   String? get sizeUnit => throw _privateConstructorUsedError;
   int? get size => throw _privateConstructorUsedError;
   int? get amountBySize => throw _privateConstructorUsedError;
-  int get amountBasic => throw _privateConstructorUsedError;
+  Locate get returnAddress => throw _privateConstructorUsedError;
+  Locate get startAddress => throw _privateConstructorUsedError;
+  Locate get receiveAddress => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1441,7 +1443,13 @@ abstract class $ShipmentCopyWith<$Res> {
       String? sizeUnit,
       int? size,
       int? amountBySize,
-      int amountBasic});
+      Locate returnAddress,
+      Locate startAddress,
+      Locate receiveAddress});
+
+  $LocateCopyWith<$Res> get returnAddress;
+  $LocateCopyWith<$Res> get startAddress;
+  $LocateCopyWith<$Res> get receiveAddress;
 }
 
 /// @nodoc
@@ -1472,7 +1480,9 @@ class _$ShipmentCopyWithImpl<$Res> implements $ShipmentCopyWith<$Res> {
     Object? sizeUnit = freezed,
     Object? size = freezed,
     Object? amountBySize = freezed,
-    Object? amountBasic = freezed,
+    Object? returnAddress = freezed,
+    Object? startAddress = freezed,
+    Object? receiveAddress = freezed,
   }) {
     return _then(_value.copyWith(
       createdAt: createdAt == freezed
@@ -1547,11 +1557,40 @@ class _$ShipmentCopyWithImpl<$Res> implements $ShipmentCopyWith<$Res> {
           ? _value.amountBySize
           : amountBySize // ignore: cast_nullable_to_non_nullable
               as int?,
-      amountBasic: amountBasic == freezed
-          ? _value.amountBasic
-          : amountBasic // ignore: cast_nullable_to_non_nullable
-              as int,
+      returnAddress: returnAddress == freezed
+          ? _value.returnAddress
+          : returnAddress // ignore: cast_nullable_to_non_nullable
+              as Locate,
+      startAddress: startAddress == freezed
+          ? _value.startAddress
+          : startAddress // ignore: cast_nullable_to_non_nullable
+              as Locate,
+      receiveAddress: receiveAddress == freezed
+          ? _value.receiveAddress
+          : receiveAddress // ignore: cast_nullable_to_non_nullable
+              as Locate,
     ));
+  }
+
+  @override
+  $LocateCopyWith<$Res> get returnAddress {
+    return $LocateCopyWith<$Res>(_value.returnAddress, (value) {
+      return _then(_value.copyWith(returnAddress: value));
+    });
+  }
+
+  @override
+  $LocateCopyWith<$Res> get startAddress {
+    return $LocateCopyWith<$Res>(_value.startAddress, (value) {
+      return _then(_value.copyWith(startAddress: value));
+    });
+  }
+
+  @override
+  $LocateCopyWith<$Res> get receiveAddress {
+    return $LocateCopyWith<$Res>(_value.receiveAddress, (value) {
+      return _then(_value.copyWith(receiveAddress: value));
+    });
   }
 }
 
@@ -1580,7 +1619,16 @@ abstract class _$$_ShipmentCopyWith<$Res> implements $ShipmentCopyWith<$Res> {
       String? sizeUnit,
       int? size,
       int? amountBySize,
-      int amountBasic});
+      Locate returnAddress,
+      Locate startAddress,
+      Locate receiveAddress});
+
+  @override
+  $LocateCopyWith<$Res> get returnAddress;
+  @override
+  $LocateCopyWith<$Res> get startAddress;
+  @override
+  $LocateCopyWith<$Res> get receiveAddress;
 }
 
 /// @nodoc
@@ -1613,7 +1661,9 @@ class __$$_ShipmentCopyWithImpl<$Res> extends _$ShipmentCopyWithImpl<$Res>
     Object? sizeUnit = freezed,
     Object? size = freezed,
     Object? amountBySize = freezed,
-    Object? amountBasic = freezed,
+    Object? returnAddress = freezed,
+    Object? startAddress = freezed,
+    Object? receiveAddress = freezed,
   }) {
     return _then(_$_Shipment(
       createdAt: createdAt == freezed
@@ -1688,10 +1738,18 @@ class __$$_ShipmentCopyWithImpl<$Res> extends _$ShipmentCopyWithImpl<$Res>
           ? _value.amountBySize
           : amountBySize // ignore: cast_nullable_to_non_nullable
               as int?,
-      amountBasic: amountBasic == freezed
-          ? _value.amountBasic
-          : amountBasic // ignore: cast_nullable_to_non_nullable
-              as int,
+      returnAddress: returnAddress == freezed
+          ? _value.returnAddress
+          : returnAddress // ignore: cast_nullable_to_non_nullable
+              as Locate,
+      startAddress: startAddress == freezed
+          ? _value.startAddress
+          : startAddress // ignore: cast_nullable_to_non_nullable
+              as Locate,
+      receiveAddress: receiveAddress == freezed
+          ? _value.receiveAddress
+          : receiveAddress // ignore: cast_nullable_to_non_nullable
+              as Locate,
     ));
   }
 }
@@ -1718,7 +1776,9 @@ class _$_Shipment with DiagnosticableTreeMixin implements _Shipment {
       this.sizeUnit,
       this.size,
       this.amountBySize,
-      required this.amountBasic});
+      required this.returnAddress,
+      required this.startAddress,
+      required this.receiveAddress});
 
   factory _$_Shipment.fromJson(Map<String, dynamic> json) =>
       _$$_ShipmentFromJson(json);
@@ -1760,11 +1820,15 @@ class _$_Shipment with DiagnosticableTreeMixin implements _Shipment {
   @override
   final int? amountBySize;
   @override
-  final int amountBasic;
+  final Locate returnAddress;
+  @override
+  final Locate startAddress;
+  @override
+  final Locate receiveAddress;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Shipment(createdAt: $createdAt, updatedAt: $updatedAt, wishedDeliveryTime: $wishedDeliveryTime, shippingId: $shippingId, orderDbId: $orderDbId, managerId: $managerId, uncleId: $uncleId, trackingNo: $trackingNo, prodOrderId: $prodOrderId, shipMethod: $shipMethod, additionalInfo: $additionalInfo, paid: $paid, weightUnit: $weightUnit, weight: $weight, amountByWeight: $amountByWeight, sizeUnit: $sizeUnit, size: $size, amountBySize: $amountBySize, amountBasic: $amountBasic)';
+    return 'Shipment(createdAt: $createdAt, updatedAt: $updatedAt, wishedDeliveryTime: $wishedDeliveryTime, shippingId: $shippingId, orderDbId: $orderDbId, managerId: $managerId, uncleId: $uncleId, trackingNo: $trackingNo, prodOrderId: $prodOrderId, shipMethod: $shipMethod, additionalInfo: $additionalInfo, paid: $paid, weightUnit: $weightUnit, weight: $weight, amountByWeight: $amountByWeight, sizeUnit: $sizeUnit, size: $size, amountBySize: $amountBySize, returnAddress: $returnAddress, startAddress: $startAddress, receiveAddress: $receiveAddress)';
   }
 
   @override
@@ -1790,7 +1854,9 @@ class _$_Shipment with DiagnosticableTreeMixin implements _Shipment {
       ..add(DiagnosticsProperty('sizeUnit', sizeUnit))
       ..add(DiagnosticsProperty('size', size))
       ..add(DiagnosticsProperty('amountBySize', amountBySize))
-      ..add(DiagnosticsProperty('amountBasic', amountBasic));
+      ..add(DiagnosticsProperty('returnAddress', returnAddress))
+      ..add(DiagnosticsProperty('startAddress', startAddress))
+      ..add(DiagnosticsProperty('receiveAddress', receiveAddress));
   }
 
   @override
@@ -1826,7 +1892,11 @@ class _$_Shipment with DiagnosticableTreeMixin implements _Shipment {
             const DeepCollectionEquality()
                 .equals(other.amountBySize, amountBySize) &&
             const DeepCollectionEquality()
-                .equals(other.amountBasic, amountBasic));
+                .equals(other.returnAddress, returnAddress) &&
+            const DeepCollectionEquality()
+                .equals(other.startAddress, startAddress) &&
+            const DeepCollectionEquality()
+                .equals(other.receiveAddress, receiveAddress));
   }
 
   @JsonKey(ignore: true)
@@ -1851,7 +1921,9 @@ class _$_Shipment with DiagnosticableTreeMixin implements _Shipment {
         const DeepCollectionEquality().hash(sizeUnit),
         const DeepCollectionEquality().hash(size),
         const DeepCollectionEquality().hash(amountBySize),
-        const DeepCollectionEquality().hash(amountBasic)
+        const DeepCollectionEquality().hash(returnAddress),
+        const DeepCollectionEquality().hash(startAddress),
+        const DeepCollectionEquality().hash(receiveAddress)
       ]);
 
   @JsonKey(ignore: true)
@@ -1887,7 +1959,9 @@ abstract class _Shipment implements Shipment {
       final String? sizeUnit,
       final int? size,
       final int? amountBySize,
-      required final int amountBasic}) = _$_Shipment;
+      required final Locate returnAddress,
+      required final Locate startAddress,
+      required final Locate receiveAddress}) = _$_Shipment;
 
   factory _Shipment.fromJson(Map<String, dynamic> json) = _$_Shipment.fromJson;
 
@@ -1928,7 +2002,11 @@ abstract class _Shipment implements Shipment {
   @override
   int? get amountBySize;
   @override
-  int get amountBasic;
+  Locate get returnAddress;
+  @override
+  Locate get startAddress;
+  @override
+  Locate get receiveAddress;
   @override
   @JsonKey(ignore: true)
   _$$_ShipmentCopyWith<_$_Shipment> get copyWith =>
@@ -1954,7 +2032,7 @@ mixin _$Locate {
   String? get city => throw _privateConstructorUsedError;
   String? get county => throw _privateConstructorUsedError;
   String? get town => throw _privateConstructorUsedError;
-  LocateType get locateType => throw _privateConstructorUsedError;
+  LocateType? get locateType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1979,7 +2057,7 @@ abstract class $LocateCopyWith<$Res> {
       String? city,
       String? county,
       String? town,
-      LocateType locateType});
+      LocateType? locateType});
 }
 
 /// @nodoc
@@ -2063,7 +2141,7 @@ class _$LocateCopyWithImpl<$Res> implements $LocateCopyWith<$Res> {
       locateType: locateType == freezed
           ? _value.locateType
           : locateType // ignore: cast_nullable_to_non_nullable
-              as LocateType,
+              as LocateType?,
     ));
   }
 }
@@ -2087,7 +2165,7 @@ abstract class _$$_LocateCopyWith<$Res> implements $LocateCopyWith<$Res> {
       String? city,
       String? county,
       String? town,
-      LocateType locateType});
+      LocateType? locateType});
 }
 
 /// @nodoc
@@ -2172,14 +2250,14 @@ class __$$_LocateCopyWithImpl<$Res> extends _$LocateCopyWithImpl<$Res>
       locateType: locateType == freezed
           ? _value.locateType
           : locateType // ignore: cast_nullable_to_non_nullable
-              as LocateType,
+              as LocateType?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Locate with DiagnosticableTreeMixin implements _Locate {
+class _$_Locate extends _Locate with DiagnosticableTreeMixin {
   const _$_Locate(
       {this.code,
       required this.alias,
@@ -2194,7 +2272,8 @@ class _$_Locate with DiagnosticableTreeMixin implements _Locate {
       this.city,
       this.county,
       this.town,
-      required this.locateType});
+      this.locateType})
+      : super._();
 
   factory _$_Locate.fromJson(Map<String, dynamic> json) =>
       _$$_LocateFromJson(json);
@@ -2226,7 +2305,7 @@ class _$_Locate with DiagnosticableTreeMixin implements _Locate {
   @override
   final String? town;
   @override
-  final LocateType locateType;
+  final LocateType? locateType;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -2310,7 +2389,7 @@ class _$_Locate with DiagnosticableTreeMixin implements _Locate {
   }
 }
 
-abstract class _Locate implements Locate {
+abstract class _Locate extends Locate {
   const factory _Locate(
       {final String? code,
       required final String alias,
@@ -2325,7 +2404,8 @@ abstract class _Locate implements Locate {
       final String? city,
       final String? county,
       final String? town,
-      required final LocateType locateType}) = _$_Locate;
+      final LocateType? locateType}) = _$_Locate;
+  const _Locate._() : super._();
 
   factory _Locate.fromJson(Map<String, dynamic> json) = _$_Locate.fromJson;
 
@@ -2356,7 +2436,7 @@ abstract class _Locate implements Locate {
   @override
   String? get town;
   @override
-  LocateType get locateType;
+  LocateType? get locateType;
   @override
   @JsonKey(ignore: true)
   _$$_LocateCopyWith<_$_Locate> get copyWith =>

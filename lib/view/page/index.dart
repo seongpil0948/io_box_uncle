@@ -5,8 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/module/app/bloc/app_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
 import 'package:io_box_uncle/module/ship/api/domain.dart';
+import 'package:badges/badges.dart';
 
 import '../../module/ship/bloc/shipment_bloc.dart';
+import '../../module/ship/model/index.dart';
 import '../../module/ship/repo.dart';
 
 part "./home.dart";
@@ -81,14 +83,25 @@ List<Page<dynamic>> _onGenerateAppViewPages(
 }
 
 // >>> THEME >>>
-// #f0c755
+
+final cardTheme = CardTheme(
+    shape: RoundedRectangleBorder(
+  //<-- 1. SEE HERE
+  side: const BorderSide(
+    color: Color(0xFFFBC02D),
+    width: 1.5,
+  ),
+  borderRadius: BorderRadius.circular(20.0),
+));
 final lightTheme = ThemeData(
     extensions: const [CustomColors.light],
     brightness: Brightness.light,
-    primarySwatch: createMaterialColor(const Color(0xFFFBC02D)));
+    primarySwatch: createMaterialColor(const Color(0xFFFBC02D)),
+    cardTheme: cardTheme);
 final darkTheme = ThemeData(
     extensions: const [CustomColors.dark],
     brightness: Brightness.dark,
+    cardTheme: cardTheme,
     primarySwatch: createMaterialColor(const Color(0xFFFBC02D)));
 
 MaterialColor createMaterialColor(Color color) {

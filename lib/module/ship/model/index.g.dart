@@ -72,6 +72,9 @@ const _$OrderStateEnumMap = {
   OrderState.beforePickupReq: 'BEFORE_PICKUP_REQ',
   OrderState.beforeApprovePickup: 'BEFORE_APPROVE_PICKUP',
   OrderState.beforeAssignPickup: 'BEFORE_ASSIGN_PICKUP',
+  OrderState.beforePickup: 'BEFORE_PICKUP',
+  OrderState.ongoingPickup: 'ONGOING_PICKUP',
+  OrderState.pickupComplete: 'PICKUP_COMPLETE',
   OrderState.beforeShip: 'BEFORE_SHIP',
   OrderState.shipping: 'SHIPPING',
   OrderState.shippingComplete: 'SHIPPING_COMPLETE',
@@ -175,7 +178,12 @@ _$_Shipment _$$_ShipmentFromJson(Map<String, dynamic> json) => _$_Shipment(
       sizeUnit: json['sizeUnit'] as String?,
       size: json['size'] as int?,
       amountBySize: json['amountBySize'] as int?,
-      amountBasic: json['amountBasic'] as int,
+      returnAddress:
+          Locate.fromJson(json['returnAddress'] as Map<String, dynamic>),
+      startAddress:
+          Locate.fromJson(json['startAddress'] as Map<String, dynamic>),
+      receiveAddress:
+          Locate.fromJson(json['receiveAddress'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ShipmentToJson(_$_Shipment instance) =>
@@ -198,7 +206,9 @@ Map<String, dynamic> _$$_ShipmentToJson(_$_Shipment instance) =>
       'sizeUnit': instance.sizeUnit,
       'size': instance.size,
       'amountBySize': instance.amountBySize,
-      'amountBasic': instance.amountBasic,
+      'returnAddress': instance.returnAddress,
+      'startAddress': instance.startAddress,
+      'receiveAddress': instance.receiveAddress,
     };
 
 const _$ShipMethodEnumMap = {
@@ -220,7 +230,7 @@ _$_Locate _$$_LocateFromJson(Map<String, dynamic> json) => _$_Locate(
       city: json['city'] as String?,
       county: json['county'] as String?,
       town: json['town'] as String?,
-      locateType: $enumDecode(_$LocateTypeEnumMap, json['locateType']),
+      locateType: $enumDecodeNullable(_$LocateTypeEnumMap, json['locateType']),
     );
 
 Map<String, dynamic> _$$_LocateToJson(_$_Locate instance) => <String, dynamic>{
@@ -237,7 +247,7 @@ Map<String, dynamic> _$$_LocateToJson(_$_Locate instance) => <String, dynamic>{
       'city': instance.city,
       'county': instance.county,
       'town': instance.town,
-      'locateType': _$LocateTypeEnumMap[instance.locateType]!,
+      'locateType': _$LocateTypeEnumMap[instance.locateType],
     };
 
 const _$LocateTypeEnumMap = {

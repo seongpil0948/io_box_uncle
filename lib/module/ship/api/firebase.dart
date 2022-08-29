@@ -20,7 +20,14 @@ class ShipmentFB extends ShipmentApi {
 
   @override
   Stream<QuerySnapshot> getOrderStream(String userId, shipManagerId) {
-    const targetState = ["BEFORE_SHIP", "SHIPPING", "SHIPPING_COMPLETE"];
+    const targetState = [
+      "BEFORE_PICKUP",
+      "ONGOING_PICKUP",
+      "PICKUP_COMPLETE",
+      "BEFORE_SHIP",
+      "SHIPPING",
+      "SHIPPING_COMPLETE"
+    ];
     return getCollectionGroup(c: IoCollectionGroup.order)
         .where("shipManagerId", isEqualTo: shipManagerId)
         .where("states", arrayContainsAny: targetState)

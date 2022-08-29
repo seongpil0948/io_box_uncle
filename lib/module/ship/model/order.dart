@@ -54,6 +54,12 @@ enum OrderState {
   beforeApprovePickup,
   @JsonValue('BEFORE_ASSIGN_PICKUP')
   beforeAssignPickup,
+  @JsonValue('BEFORE_PICKUP')
+  beforePickup,
+  @JsonValue('ONGOING_PICKUP')
+  ongoingPickup,
+  @JsonValue('PICKUP_COMPLETE')
+  pickupComplete,
   @JsonValue('BEFORE_SHIP')
   beforeShip,
   @JsonValue('SHIPPING')
