@@ -13,7 +13,7 @@ class ShipmentRepo {
     List<ShipOrder> data = [];
     List<Shipment> shipments = [];
     List<ProdOrder> prodOrders = [];
-    final shipStream = api.getShipmentStream(userId);
+    final shipStream = api.getShipmentStream(shipManagerId);
     final orderStream = api.getOrderStream(userId, shipManagerId);
 
     void trigger() {
@@ -41,7 +41,9 @@ class ShipmentRepo {
           }
         }
       }
-      trigger();
+      if (prodOrders.isNotEmpty) {
+        trigger();
+      }
     });
 
     final orderSubscribe = orderStream.listen((event) {
@@ -56,7 +58,9 @@ class ShipmentRepo {
           }
         }
       }
-      trigger();
+      if (shipments.isNotEmpty) {
+        trigger();
+      }
     });
 
     void dispose() {

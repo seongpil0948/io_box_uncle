@@ -22,7 +22,7 @@ class Shipment with _$Shipment {
     int? size,
     int? amountBySize,
     required int amountBasic,
-    required LocateType locateType,
+    // required LocateType locateType,
   }) = _Shipment;
 
   factory Shipment.fromJson(Map<String, Object?> json) =>
@@ -45,7 +45,7 @@ class Locate with _$Locate {
     String? city,
     String? county,
     String? town,
-    required String? locateType,
+    required LocateType locateType,
   }) = _Locate;
 
   factory Locate.fromJson(Map<String, Object?> json) => _$LocateFromJson(json);
@@ -53,12 +53,9 @@ class Locate with _$Locate {
 
 enum LocateType {
   @JsonValue('SHOP')
-  @JsonValue('매장')
   shop,
   @JsonValue('STORAGE')
-  @JsonValue('창고')
   storage,
-  @JsonValue('기타')
   @JsonValue('ETC')
   etc,
 }

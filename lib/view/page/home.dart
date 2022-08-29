@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
-          "/assets/images/logo/1024x1024.png",
+          "assets/images/logo/1024x1024.png",
           fit: BoxFit.contain,
           width: 30,
         ),
@@ -198,12 +198,8 @@ class UserProfile extends StatelessWidget {
         ],
       ),
       const SizedBox(height: 4),
-      if (user.companyInfo != null)
-        Text(
-            user.companyInfo?.companyPhone ??
-                user.companyInfo?.managerPhone ??
-                "",
-            style: textTheme.titleLarge),
+      if (user.userInfo.phone != null)
+        Text(user.userInfo.phone ?? "", style: textTheme.titleLarge),
       const SizedBox(height: 4),
       Text(user.userInfo.email ?? '', style: textTheme.caption),
       const SizedBox(height: 4),

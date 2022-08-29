@@ -4,7 +4,7 @@ part of "./index.dart";
 class GarmentOrder with _$GarmentOrder {
   const factory GarmentOrder(
       {required DateTime orderDate,
-      required DateTime doneDate,
+      DateTime? doneDate,
       required String dbId,
       required String shopId,
       required String shipManagerId,
@@ -22,11 +22,11 @@ class GarmentOrder with _$GarmentOrder {
 }
 
 enum BoolM {
-  @JsonValue('t')
+  @JsonValue('T')
   t,
-  @JsonValue('f')
+  @JsonValue('F')
   f,
-  @JsonValue('m')
+  @JsonValue('M')
   m
 }
 
@@ -91,7 +91,7 @@ class OrderAmount with _$OrderAmount {
     required int pureAmount,
     required int orderAmount,
     required bool paymentConfirm,
-    required PayMethod paymentMethod,
+    PayMethod? paymentMethod,
   }) = _OrderAmount;
 
   factory OrderAmount.fromJson(Map<String, Object?> json) =>

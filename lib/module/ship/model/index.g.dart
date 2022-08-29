@@ -20,7 +20,9 @@ Map<String, dynamic> _$$_ShipOrderToJson(_$_ShipOrder instance) =>
 _$_GarmentOrder _$$_GarmentOrderFromJson(Map<String, dynamic> json) =>
     _$_GarmentOrder(
       orderDate: DateTime.parse(json['orderDate'] as String),
-      doneDate: DateTime.parse(json['doneDate'] as String),
+      doneDate: json['doneDate'] == null
+          ? null
+          : DateTime.parse(json['doneDate'] as String),
       dbId: json['dbId'] as String,
       shopId: json['shopId'] as String,
       shipManagerId: json['shipManagerId'] as String,
@@ -48,7 +50,7 @@ _$_GarmentOrder _$$_GarmentOrderFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_GarmentOrderToJson(_$_GarmentOrder instance) =>
     <String, dynamic>{
       'orderDate': instance.orderDate.toIso8601String(),
-      'doneDate': instance.doneDate.toIso8601String(),
+      'doneDate': instance.doneDate?.toIso8601String(),
       'dbId': instance.dbId,
       'shopId': instance.shopId,
       'shipManagerId': instance.shipManagerId,
@@ -94,7 +96,8 @@ _$_OrderAmount _$$_OrderAmountFromJson(Map<String, dynamic> json) =>
       pureAmount: json['pureAmount'] as int,
       orderAmount: json['orderAmount'] as int,
       paymentConfirm: json['paymentConfirm'] as bool,
-      paymentMethod: $enumDecode(_$PayMethodEnumMap, json['paymentMethod']),
+      paymentMethod:
+          $enumDecodeNullable(_$PayMethodEnumMap, json['paymentMethod']),
     );
 
 Map<String, dynamic> _$$_OrderAmountToJson(_$_OrderAmount instance) =>
@@ -107,13 +110,13 @@ Map<String, dynamic> _$$_OrderAmountToJson(_$_OrderAmount instance) =>
       'pureAmount': instance.pureAmount,
       'orderAmount': instance.orderAmount,
       'paymentConfirm': instance.paymentConfirm,
-      'paymentMethod': _$PayMethodEnumMap[instance.paymentMethod]!,
+      'paymentMethod': _$PayMethodEnumMap[instance.paymentMethod],
     };
 
 const _$BoolMEnumMap = {
-  BoolM.t: 't',
-  BoolM.f: 'f',
-  BoolM.m: 'm',
+  BoolM.t: 'T',
+  BoolM.f: 'F',
+  BoolM.m: 'M',
 };
 
 const _$PayMethodEnumMap = {
@@ -173,7 +176,6 @@ _$_Shipment _$$_ShipmentFromJson(Map<String, dynamic> json) => _$_Shipment(
       size: json['size'] as int?,
       amountBySize: json['amountBySize'] as int?,
       amountBasic: json['amountBasic'] as int,
-      locateType: $enumDecode(_$LocateTypeEnumMap, json['locateType']),
     );
 
 Map<String, dynamic> _$$_ShipmentToJson(_$_Shipment instance) =>
@@ -197,18 +199,11 @@ Map<String, dynamic> _$$_ShipmentToJson(_$_Shipment instance) =>
       'size': instance.size,
       'amountBySize': instance.amountBySize,
       'amountBasic': instance.amountBasic,
-      'locateType': _$LocateTypeEnumMap[instance.locateType]!,
     };
 
 const _$ShipMethodEnumMap = {
-  ShipMethod.uncle: 'uncle',
-  ShipMethod.ship: 'ship',
-};
-
-const _$LocateTypeEnumMap = {
-  LocateType.shop: 'SHOP',
-  LocateType.storage: 'STORAGE',
-  LocateType.etc: '기타',
+  ShipMethod.uncle: 'UNCLE',
+  ShipMethod.ship: 'SHIP',
 };
 
 _$_Locate _$$_LocateFromJson(Map<String, dynamic> json) => _$_Locate(
@@ -225,7 +220,7 @@ _$_Locate _$$_LocateFromJson(Map<String, dynamic> json) => _$_Locate(
       city: json['city'] as String?,
       county: json['county'] as String?,
       town: json['town'] as String?,
-      locateType: json['locateType'] as String?,
+      locateType: $enumDecode(_$LocateTypeEnumMap, json['locateType']),
     );
 
 Map<String, dynamic> _$$_LocateToJson(_$_Locate instance) => <String, dynamic>{
@@ -242,5 +237,11 @@ Map<String, dynamic> _$$_LocateToJson(_$_Locate instance) => <String, dynamic>{
       'city': instance.city,
       'county': instance.county,
       'town': instance.town,
-      'locateType': instance.locateType,
+      'locateType': _$LocateTypeEnumMap[instance.locateType]!,
     };
+
+const _$LocateTypeEnumMap = {
+  LocateType.shop: 'SHOP',
+  LocateType.storage: 'STORAGE',
+  LocateType.etc: 'ETC',
+};

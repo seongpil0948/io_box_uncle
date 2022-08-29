@@ -9,5 +9,3 @@ class ShipUserChange extends ShipmentEvent {
   final IoUser? user;
   ShipUserChange({required this.user});
 }
-
-class ShipDispose extends ShipmentEvent {}
