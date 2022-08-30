@@ -26,3 +26,11 @@ class SelectModule extends AppEvent {
   @override
   List<Object> get props => [module == null ? 'null' : module.toString()];
 }
+
+class SelectPickup extends AppEvent {
+  final ShipOrder pickup;
+  const SelectPickup({required this.pickup});
+
+  @override
+  List<Object> get props => [pickup.shipment.shippingId, pickup.order.id];
+}

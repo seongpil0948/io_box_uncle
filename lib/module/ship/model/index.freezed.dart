@@ -123,8 +123,8 @@ class __$$_ShipOrderCopyWithImpl<$Res> extends _$ShipOrderCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ShipOrder with DiagnosticableTreeMixin implements _ShipOrder {
-  const _$_ShipOrder({required this.shipment, required this.order});
+class _$_ShipOrder extends _ShipOrder {
+  const _$_ShipOrder({required this.shipment, required this.order}) : super._();
 
   factory _$_ShipOrder.fromJson(Map<String, dynamic> json) =>
       _$$_ShipOrderFromJson(json);
@@ -133,36 +133,6 @@ class _$_ShipOrder with DiagnosticableTreeMixin implements _ShipOrder {
   final Shipment shipment;
   @override
   final ProdOrder order;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ShipOrder(shipment: $shipment, order: $order)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ShipOrder'))
-      ..add(DiagnosticsProperty('shipment', shipment))
-      ..add(DiagnosticsProperty('order', order));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ShipOrder &&
-            const DeepCollectionEquality().equals(other.shipment, shipment) &&
-            const DeepCollectionEquality().equals(other.order, order));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(shipment),
-      const DeepCollectionEquality().hash(order));
 
   @JsonKey(ignore: true)
   @override
@@ -177,10 +147,11 @@ class _$_ShipOrder with DiagnosticableTreeMixin implements _ShipOrder {
   }
 }
 
-abstract class _ShipOrder implements ShipOrder {
+abstract class _ShipOrder extends ShipOrder {
   const factory _ShipOrder(
       {required final Shipment shipment,
       required final ProdOrder order}) = _$_ShipOrder;
+  const _ShipOrder._() : super._();
 
   factory _ShipOrder.fromJson(Map<String, dynamic> json) =
       _$_ShipOrder.fromJson;

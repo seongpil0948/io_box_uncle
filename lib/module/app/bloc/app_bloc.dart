@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
+import 'package:io_box_uncle/module/ship/model/index.dart';
 
 part 'app_event.dart';
 part 'app_state.dart';
@@ -20,6 +21,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppUserChanged>(_onUserChanged);
     on<AppLogoutRequested>(_onLogoutRequested);
     on<SelectModule>(_onSelectModule);
+    on<SelectPickup>(_onSelectPickup);
 
     _userSubscription = authRepo.user.listen((user) async {
       if (kDebugMode) {
@@ -33,6 +35,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       });
     });
   }
+
   void _onUserChanged(AppUserChanged event, Emitter<AppState> emit) {
     if (kDebugMode) {
       print("event.user in _onUserChanged: ${event.user}");
@@ -46,6 +49,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   void _onSelectModule(SelectModule event, Emitter<AppState> emit) {
     emit(state.copyWith(module: event.module));
+  }
+
+  void _onSelectPickup(SelectPickup event, Emitter<AppState> emit) {
+    emit(state.copyWith(selectedPickup: event.pickup));
   }
 
   void _onLogoutRequested(AppLogoutRequested event, Emitter<AppState> emit) {
