@@ -12,39 +12,42 @@ class PickupDetailPage extends StatelessWidget {
     final customColors = Theme.of(context).extension<CustomColors>()!;
     return SafeArea(
         child: Scaffold(
-      body: IoCard(
-        height: size.height / 2.5,
-        content: Column(
-          children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              const Text("행정구역"),
-              Text(p.shipment.startAddress.adminArea)
-            ]),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [const Text("픽업수량"), Text("${p.order.orderCnt} 벌")]),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              const Text("주문상태"),
-              Text(
-                p.order.state.toString(),
-                style: TextStyle(
-                    fontStyle: FontStyle.italic, color: customColors.success),
-              )
-            ]),
+      body: Center(
+        child: IoCard(
+          height: size.height / 2.5,
+          content: Column(
+            children: [
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                const Text("행정구역"),
+                Text(p.shipment.startAddress.adminArea)
+              ]),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                const Text("픽업수량"),
+                Text("${p.order.orderCnt} 벌")
+              ]),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                const Text("주문상태"),
+                Text(
+                  p.order.state.toString(),
+                  style: TextStyle(
+                      fontStyle: FontStyle.italic, color: customColors.success),
+                )
+              ]),
+            ],
+          ),
+          footer: [
+            OutlinedButton(
+                onPressed: () {
+                  debugPrint("토스요청");
+                },
+                child: const Text("토스요청")),
+            OutlinedButton(
+                onPressed: () {
+                  debugPrint("픽업완료");
+                },
+                child: const Text("픽업완료")),
           ],
         ),
-        footer: [
-          OutlinedButton(
-              onPressed: () {
-                debugPrint("토스요청");
-              },
-              child: const Text("토스요청")),
-          OutlinedButton(
-              onPressed: () {
-                debugPrint("픽업완료");
-              },
-              child: const Text("픽업완료")),
-        ],
       ),
     ));
   }
@@ -70,10 +73,6 @@ class IoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final customColors = Theme.of(context).extension<CustomColors>()!;
-    final T = Theme.of(context).textTheme;
-    final size = MediaQuery.of(context).size;
-
     return Card(
         child: Padding(
       padding: const EdgeInsets.all(16.0),

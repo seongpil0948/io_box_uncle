@@ -16,7 +16,6 @@ class AuthRepo {
         pref.remove(userCacheKey);
         return null;
       }
-      ;
 
       final user = await getUserById(firebaseUser.uid);
       // final j = user.toJsonCache();
