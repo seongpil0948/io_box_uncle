@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'index.dart';
 
 // **************************************************************************
@@ -10,12 +8,15 @@ part of 'index.dart';
 
 _$_ShipOrder _$$_ShipOrderFromJson(Map<String, dynamic> json) => _$_ShipOrder(
       shipment: Shipment.fromJson(json['shipment'] as Map<String, dynamic>),
+      garmentOrder:
+          GarmentOrder.fromJson(json['garmentOrder'] as Map<String, dynamic>),
       order: ProdOrder.fromJson(json['order'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ShipOrderToJson(_$_ShipOrder instance) =>
     <String, dynamic>{
       'shipment': instance.shipment,
+      'garmentOrder': instance.garmentOrder,
       'order': instance.order,
     };
 
@@ -134,6 +135,8 @@ _$_ProdOrder _$$_ProdOrderFromJson(Map<String, dynamic> json) => _$_ProdOrder(
       id: json['id'] as String,
       vendorId: json['vendorId'] as String,
       vendorProdId: json['vendorProdId'] as String,
+      shopId: json['shopId'] as String,
+      orderDbId: json['orderDbId'] as String,
       shopProdId: json['shopProdId'] as String,
       shipmentId: json['shipmentId'] as String,
       orderCnt: json['orderCnt'] as int,
@@ -151,6 +154,8 @@ Map<String, dynamic> _$$_ProdOrderToJson(_$_ProdOrder instance) =>
       'id': instance.id,
       'vendorId': instance.vendorId,
       'vendorProdId': instance.vendorProdId,
+      'shopId': instance.shopId,
+      'orderDbId': instance.orderDbId,
       'shopProdId': instance.shopProdId,
       'shipmentId': instance.shipmentId,
       'orderCnt': instance.orderCnt,

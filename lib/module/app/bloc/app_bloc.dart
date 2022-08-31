@@ -21,7 +21,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppUserChanged>(_onUserChanged);
     on<AppLogoutRequested>(_onLogoutRequested);
     on<SelectModule>(_onSelectModule);
+    on<DisSelectModule>(_onDisSelectModule);
     on<SelectPickup>(_onSelectPickup);
+    on<DisSelectPickup>(_onDisSelectPickup);
 
     _userSubscription = authRepo.user.listen((user) async {
       if (kDebugMode) {
@@ -51,8 +53,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     emit(state.copyWith(module: event.module));
   }
 
+  void _onDisSelectModule(DisSelectModule event, Emitter<AppState> emit) {
+    emit(state.copyWith(module: null));
+  }
+
   void _onSelectPickup(SelectPickup event, Emitter<AppState> emit) {
     emit(state.copyWith(selectedPickup: event.pickup));
+  }
+
+  void _onDisSelectPickup(DisSelectPickup event, Emitter<AppState> emit) {
+    emit(state.copyWith(selectedPickup: null));
   }
 
   void _onLogoutRequested(AppLogoutRequested event, Emitter<AppState> emit) {

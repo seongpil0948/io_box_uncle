@@ -16,16 +16,18 @@ abstract class ShipmentApi {
   Stream<QuerySnapshot> getShipmentStream(String userId);
   Stream<QuerySnapshot> getOrderStream(String userId, shipManagerId);
 
+  Future<void> updateOrder(GarmentOrder o);
+  Future<void> updateShipment(Shipment s);
+  Future<void> reqToss(ShipOrder s, String targetUncleId);
+  Future<void> startPickup(ShipOrder s);
+  Future<void> donePickup(ShipOrder s);
+  Future<void> toBeforeShip(ShipOrder s);
+  Future<void> startShip(ShipOrder s);
+  Future<void> doneShip(ShipOrder s);
+
   Future<void> saveShipment(ShipOrder todo);
 
   Future<void> deleteShipment(String id);
-
-  /// Deletes all completed shipments.
-  ///
-  /// Returns the number of deleted shipments.
-  Future<int> clearCompleted();
-
-  Future<int> completeAll({required bool isCompleted});
 }
 
 /// Error thrown when a [Shipment] with a given id is not found.

@@ -7,6 +7,7 @@ import 'package:io_box_uncle/module/app/bloc/app_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
 import 'package:io_box_uncle/module/ship/api/domain.dart';
 import 'package:badges/badges.dart';
+import 'package:io_box_uncle/view/component/card/common.dart';
 
 import '../../module/ship/bloc/shipment_bloc.dart';
 import '../../module/ship/model/index.dart';

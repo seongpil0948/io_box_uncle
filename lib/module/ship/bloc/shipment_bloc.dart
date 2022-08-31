@@ -17,6 +17,12 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
       : super(const ShipmentInitial()) {
     on<ShipmentEvent>(_listenAll);
     on<ShipUserChange>(_userChange);
+    on<StartPickup>(startPickup);
+    on<DonePickup>(_donePickup);
+    on<ToBeforeShip>(_toBeforeShip);
+    on<StartShip>(_startShip);
+    on<DoneShip>(_doneShip);
+    on<RequestTossOrder>(_reqTossOrd);
 
     authRepo.user.listen(
       (user) async {
@@ -27,7 +33,41 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
   }
 
   void _listenAll(ShipmentEvent event, Emitter<ShipmentState> emit) {
-    debugPrint("ship event: $event, emit: $emit");
+    debugPrint("ship event in _listenAll: $event, emit: $emit");
+  }
+
+  Future<void> startPickup(
+      StartPickup event, Emitter<ShipmentState> emit) async {
+    debugPrint("on DonePickup: $event, emit: $emit");
+    await orderRepo.startPickup(event.shipOrder);
+  }
+
+  Future<void> _donePickup(
+      DonePickup event, Emitter<ShipmentState> emit) async {
+    debugPrint("on DonePickup: $event, emit: $emit");
+    await orderRepo.donePickup(event.shipOrder);
+  }
+
+  Future<void> _toBeforeShip(
+      ToBeforeShip event, Emitter<ShipmentState> emit) async {
+    debugPrint("on DonePickup: $event, emit: $emit");
+    await orderRepo.toBeforeShip(event.shipOrder);
+  }
+
+  Future<void> _startShip(StartShip event, Emitter<ShipmentState> emit) async {
+    debugPrint("on DonePickup: $event, emit: $emit");
+    await orderRepo.startShip(event.shipOrder);
+  }
+
+  Future<void> _doneShip(DoneShip event, Emitter<ShipmentState> emit) async {
+    debugPrint("on DonePickup: $event, emit: $emit");
+    await orderRepo.doneShip(event.shipOrder);
+  }
+
+  Future<void> _reqTossOrd(
+      RequestTossOrder event, Emitter<ShipmentState> emit) async {
+    debugPrint("on RequestTossOrder: $event, emit: $emit");
+    await orderRepo.reqToss(event.s, event.targetUncleId);
   }
 
   void _userChange(ShipUserChange event, Emitter<ShipmentState> emit) async {

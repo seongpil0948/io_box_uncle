@@ -13,6 +13,7 @@ part "./shipment.dart";
 class ShipOrder extends Equatable with _$ShipOrder {
   const factory ShipOrder({
     required Shipment shipment,
+    required GarmentOrder garmentOrder,
     required ProdOrder order,
   }) = _ShipOrder;
 

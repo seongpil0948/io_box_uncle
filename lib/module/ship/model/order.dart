@@ -1,7 +1,7 @@
 part of "./index.dart";
 
 @freezed //  all of this class's properties are immutable.
-class GarmentOrder with _$GarmentOrder {
+class GarmentOrder extends Equatable with _$GarmentOrder {
   const factory GarmentOrder(
       {required DateTime orderDate,
       DateTime? doneDate,
@@ -17,8 +17,23 @@ class GarmentOrder with _$GarmentOrder {
       required OrderAmount initialAmount,
       required List<ProdOrder> items}) = _GarmentOrder;
 
+  const GarmentOrder._();
+
+  GarmentOrder setState(
+      String prodOrderId, OrderState before, OrderState after) {
+    var item = items.firstWhere((element) => element.id == prodOrderId);
+    assert(item.state == before && states.contains(before));
+    final newItem = item.copyWith(state: after);
+    return copyWith(
+        states: [after, ...states.where((element) => element != before)],
+        items: [newItem, ...items.where((e) => e != newItem)]);
+  }
+
   factory GarmentOrder.fromJson(Map<String, Object?> json) =>
       _$GarmentOrderFromJson(json);
+
+  @override
+  List<Object?> get props => [dbId];
 }
 
 enum BoolM {
@@ -105,11 +120,13 @@ class OrderAmount with _$OrderAmount {
 }
 
 @freezed //  all of this class's properties are immutable.
-class ProdOrder with _$ProdOrder {
+class ProdOrder extends Equatable with _$ProdOrder {
   const factory ProdOrder({
     required String id,
     required String vendorId,
     required String vendorProdId,
+    required String shopId,
+    required String orderDbId,
     required String shopProdId,
     required String shipmentId,
     required int orderCnt,
@@ -122,4 +139,8 @@ class ProdOrder with _$ProdOrder {
 
   factory ProdOrder.fromJson(Map<String, Object?> json) =>
       _$ProdOrderFromJson(json);
+  const ProdOrder._();
+
+  @override
+  List<Object?> get props => [id];
 }

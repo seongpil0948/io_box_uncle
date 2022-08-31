@@ -21,6 +21,7 @@ ShipOrder _$ShipOrderFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ShipOrder {
   Shipment get shipment => throw _privateConstructorUsedError;
+  GarmentOrder get garmentOrder => throw _privateConstructorUsedError;
   ProdOrder get order => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,9 +34,10 @@ mixin _$ShipOrder {
 abstract class $ShipOrderCopyWith<$Res> {
   factory $ShipOrderCopyWith(ShipOrder value, $Res Function(ShipOrder) then) =
       _$ShipOrderCopyWithImpl<$Res>;
-  $Res call({Shipment shipment, ProdOrder order});
+  $Res call({Shipment shipment, GarmentOrder garmentOrder, ProdOrder order});
 
   $ShipmentCopyWith<$Res> get shipment;
+  $GarmentOrderCopyWith<$Res> get garmentOrder;
   $ProdOrderCopyWith<$Res> get order;
 }
 
@@ -50,6 +52,7 @@ class _$ShipOrderCopyWithImpl<$Res> implements $ShipOrderCopyWith<$Res> {
   @override
   $Res call({
     Object? shipment = freezed,
+    Object? garmentOrder = freezed,
     Object? order = freezed,
   }) {
     return _then(_value.copyWith(
@@ -57,6 +60,10 @@ class _$ShipOrderCopyWithImpl<$Res> implements $ShipOrderCopyWith<$Res> {
           ? _value.shipment
           : shipment // ignore: cast_nullable_to_non_nullable
               as Shipment,
+      garmentOrder: garmentOrder == freezed
+          ? _value.garmentOrder
+          : garmentOrder // ignore: cast_nullable_to_non_nullable
+              as GarmentOrder,
       order: order == freezed
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
@@ -68,6 +75,13 @@ class _$ShipOrderCopyWithImpl<$Res> implements $ShipOrderCopyWith<$Res> {
   $ShipmentCopyWith<$Res> get shipment {
     return $ShipmentCopyWith<$Res>(_value.shipment, (value) {
       return _then(_value.copyWith(shipment: value));
+    });
+  }
+
+  @override
+  $GarmentOrderCopyWith<$Res> get garmentOrder {
+    return $GarmentOrderCopyWith<$Res>(_value.garmentOrder, (value) {
+      return _then(_value.copyWith(garmentOrder: value));
     });
   }
 
@@ -85,10 +99,12 @@ abstract class _$$_ShipOrderCopyWith<$Res> implements $ShipOrderCopyWith<$Res> {
           _$_ShipOrder value, $Res Function(_$_ShipOrder) then) =
       __$$_ShipOrderCopyWithImpl<$Res>;
   @override
-  $Res call({Shipment shipment, ProdOrder order});
+  $Res call({Shipment shipment, GarmentOrder garmentOrder, ProdOrder order});
 
   @override
   $ShipmentCopyWith<$Res> get shipment;
+  @override
+  $GarmentOrderCopyWith<$Res> get garmentOrder;
   @override
   $ProdOrderCopyWith<$Res> get order;
 }
@@ -106,6 +122,7 @@ class __$$_ShipOrderCopyWithImpl<$Res> extends _$ShipOrderCopyWithImpl<$Res>
   @override
   $Res call({
     Object? shipment = freezed,
+    Object? garmentOrder = freezed,
     Object? order = freezed,
   }) {
     return _then(_$_ShipOrder(
@@ -113,6 +130,10 @@ class __$$_ShipOrderCopyWithImpl<$Res> extends _$ShipOrderCopyWithImpl<$Res>
           ? _value.shipment
           : shipment // ignore: cast_nullable_to_non_nullable
               as Shipment,
+      garmentOrder: garmentOrder == freezed
+          ? _value.garmentOrder
+          : garmentOrder // ignore: cast_nullable_to_non_nullable
+              as GarmentOrder,
       order: order == freezed
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
@@ -124,13 +145,17 @@ class __$$_ShipOrderCopyWithImpl<$Res> extends _$ShipOrderCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ShipOrder extends _ShipOrder {
-  const _$_ShipOrder({required this.shipment, required this.order}) : super._();
+  const _$_ShipOrder(
+      {required this.shipment, required this.garmentOrder, required this.order})
+      : super._();
 
   factory _$_ShipOrder.fromJson(Map<String, dynamic> json) =>
       _$$_ShipOrderFromJson(json);
 
   @override
   final Shipment shipment;
+  @override
+  final GarmentOrder garmentOrder;
   @override
   final ProdOrder order;
 
@@ -150,6 +175,7 @@ class _$_ShipOrder extends _ShipOrder {
 abstract class _ShipOrder extends ShipOrder {
   const factory _ShipOrder(
       {required final Shipment shipment,
+      required final GarmentOrder garmentOrder,
       required final ProdOrder order}) = _$_ShipOrder;
   const _ShipOrder._() : super._();
 
@@ -158,6 +184,8 @@ abstract class _ShipOrder extends ShipOrder {
 
   @override
   Shipment get shipment;
+  @override
+  GarmentOrder get garmentOrder;
   @override
   ProdOrder get order;
   @override
@@ -425,7 +453,7 @@ class __$$_GarmentOrderCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GarmentOrder with DiagnosticableTreeMixin implements _GarmentOrder {
+class _$_GarmentOrder extends _GarmentOrder {
   const _$_GarmentOrder(
       {required this.orderDate,
       this.doneDate,
@@ -445,7 +473,8 @@ class _$_GarmentOrder with DiagnosticableTreeMixin implements _GarmentOrder {
         _subOrderIds = subOrderIds,
         _vendorIds = vendorIds,
         _states = states,
-        _items = items;
+        _items = items,
+        super._();
 
   factory _$_GarmentOrder.fromJson(Map<String, dynamic> json) =>
       _$$_GarmentOrderFromJson(json);
@@ -506,74 +535,6 @@ class _$_GarmentOrder with DiagnosticableTreeMixin implements _GarmentOrder {
     return EqualUnmodifiableListView(_items);
   }
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GarmentOrder(orderDate: $orderDate, doneDate: $doneDate, dbId: $dbId, shopId: $shopId, shipManagerId: $shipManagerId, orderIds: $orderIds, itemIds: $itemIds, subOrderIds: $subOrderIds, vendorIds: $vendorIds, states: $states, actualAmount: $actualAmount, initialAmount: $initialAmount, items: $items)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'GarmentOrder'))
-      ..add(DiagnosticsProperty('orderDate', orderDate))
-      ..add(DiagnosticsProperty('doneDate', doneDate))
-      ..add(DiagnosticsProperty('dbId', dbId))
-      ..add(DiagnosticsProperty('shopId', shopId))
-      ..add(DiagnosticsProperty('shipManagerId', shipManagerId))
-      ..add(DiagnosticsProperty('orderIds', orderIds))
-      ..add(DiagnosticsProperty('itemIds', itemIds))
-      ..add(DiagnosticsProperty('subOrderIds', subOrderIds))
-      ..add(DiagnosticsProperty('vendorIds', vendorIds))
-      ..add(DiagnosticsProperty('states', states))
-      ..add(DiagnosticsProperty('actualAmount', actualAmount))
-      ..add(DiagnosticsProperty('initialAmount', initialAmount))
-      ..add(DiagnosticsProperty('items', items));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_GarmentOrder &&
-            const DeepCollectionEquality().equals(other.orderDate, orderDate) &&
-            const DeepCollectionEquality().equals(other.doneDate, doneDate) &&
-            const DeepCollectionEquality().equals(other.dbId, dbId) &&
-            const DeepCollectionEquality().equals(other.shopId, shopId) &&
-            const DeepCollectionEquality()
-                .equals(other.shipManagerId, shipManagerId) &&
-            const DeepCollectionEquality().equals(other._orderIds, _orderIds) &&
-            const DeepCollectionEquality().equals(other._itemIds, _itemIds) &&
-            const DeepCollectionEquality()
-                .equals(other._subOrderIds, _subOrderIds) &&
-            const DeepCollectionEquality()
-                .equals(other._vendorIds, _vendorIds) &&
-            const DeepCollectionEquality().equals(other._states, _states) &&
-            const DeepCollectionEquality()
-                .equals(other.actualAmount, actualAmount) &&
-            const DeepCollectionEquality()
-                .equals(other.initialAmount, initialAmount) &&
-            const DeepCollectionEquality().equals(other._items, _items));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(orderDate),
-      const DeepCollectionEquality().hash(doneDate),
-      const DeepCollectionEquality().hash(dbId),
-      const DeepCollectionEquality().hash(shopId),
-      const DeepCollectionEquality().hash(shipManagerId),
-      const DeepCollectionEquality().hash(_orderIds),
-      const DeepCollectionEquality().hash(_itemIds),
-      const DeepCollectionEquality().hash(_subOrderIds),
-      const DeepCollectionEquality().hash(_vendorIds),
-      const DeepCollectionEquality().hash(_states),
-      const DeepCollectionEquality().hash(actualAmount),
-      const DeepCollectionEquality().hash(initialAmount),
-      const DeepCollectionEquality().hash(_items));
-
   @JsonKey(ignore: true)
   @override
   _$$_GarmentOrderCopyWith<_$_GarmentOrder> get copyWith =>
@@ -587,7 +548,7 @@ class _$_GarmentOrder with DiagnosticableTreeMixin implements _GarmentOrder {
   }
 }
 
-abstract class _GarmentOrder implements GarmentOrder {
+abstract class _GarmentOrder extends GarmentOrder {
   const factory _GarmentOrder(
       {required final DateTime orderDate,
       final DateTime? doneDate,
@@ -602,6 +563,7 @@ abstract class _GarmentOrder implements GarmentOrder {
       required final OrderAmount actualAmount,
       required final OrderAmount initialAmount,
       required final List<ProdOrder> items}) = _$_GarmentOrder;
+  const _GarmentOrder._() : super._();
 
   factory _GarmentOrder.fromJson(Map<String, dynamic> json) =
       _$_GarmentOrder.fromJson;
@@ -822,7 +784,7 @@ class __$$_OrderAmountCopyWithImpl<$Res> extends _$OrderAmountCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OrderAmount with DiagnosticableTreeMixin implements _OrderAmount {
+class _$_OrderAmount implements _OrderAmount {
   const _$_OrderAmount(
       {required this.shipFeeAmount,
       required this.shipFeeDiscountAmount,
@@ -857,24 +819,8 @@ class _$_OrderAmount with DiagnosticableTreeMixin implements _OrderAmount {
   final PayMethod? paymentMethod;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'OrderAmount(shipFeeAmount: $shipFeeAmount, shipFeeDiscountAmount: $shipFeeDiscountAmount, tax: $tax, paidAmount: $paidAmount, paid: $paid, pureAmount: $pureAmount, orderAmount: $orderAmount, paymentConfirm: $paymentConfirm, paymentMethod: $paymentMethod)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'OrderAmount'))
-      ..add(DiagnosticsProperty('shipFeeAmount', shipFeeAmount))
-      ..add(DiagnosticsProperty('shipFeeDiscountAmount', shipFeeDiscountAmount))
-      ..add(DiagnosticsProperty('tax', tax))
-      ..add(DiagnosticsProperty('paidAmount', paidAmount))
-      ..add(DiagnosticsProperty('paid', paid))
-      ..add(DiagnosticsProperty('pureAmount', pureAmount))
-      ..add(DiagnosticsProperty('orderAmount', orderAmount))
-      ..add(DiagnosticsProperty('paymentConfirm', paymentConfirm))
-      ..add(DiagnosticsProperty('paymentMethod', paymentMethod));
   }
 
   @override
@@ -975,6 +921,8 @@ mixin _$ProdOrder {
   String get id => throw _privateConstructorUsedError;
   String get vendorId => throw _privateConstructorUsedError;
   String get vendorProdId => throw _privateConstructorUsedError;
+  String get shopId => throw _privateConstructorUsedError;
+  String get orderDbId => throw _privateConstructorUsedError;
   String get shopProdId => throw _privateConstructorUsedError;
   String get shipmentId => throw _privateConstructorUsedError;
   int get orderCnt => throw _privateConstructorUsedError;
@@ -998,6 +946,8 @@ abstract class $ProdOrderCopyWith<$Res> {
       {String id,
       String vendorId,
       String vendorProdId,
+      String shopId,
+      String orderDbId,
       String shopProdId,
       String shipmentId,
       int orderCnt,
@@ -1024,6 +974,8 @@ class _$ProdOrderCopyWithImpl<$Res> implements $ProdOrderCopyWith<$Res> {
     Object? id = freezed,
     Object? vendorId = freezed,
     Object? vendorProdId = freezed,
+    Object? shopId = freezed,
+    Object? orderDbId = freezed,
     Object? shopProdId = freezed,
     Object? shipmentId = freezed,
     Object? orderCnt = freezed,
@@ -1045,6 +997,14 @@ class _$ProdOrderCopyWithImpl<$Res> implements $ProdOrderCopyWith<$Res> {
       vendorProdId: vendorProdId == freezed
           ? _value.vendorProdId
           : vendorProdId // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopId: shopId == freezed
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderDbId: orderDbId == freezed
+          ? _value.orderDbId
+          : orderDbId // ignore: cast_nullable_to_non_nullable
               as String,
       shopProdId: shopProdId == freezed
           ? _value.shopProdId
@@ -1106,6 +1066,8 @@ abstract class _$$_ProdOrderCopyWith<$Res> implements $ProdOrderCopyWith<$Res> {
       {String id,
       String vendorId,
       String vendorProdId,
+      String shopId,
+      String orderDbId,
       String shopProdId,
       String shipmentId,
       int orderCnt,
@@ -1136,6 +1098,8 @@ class __$$_ProdOrderCopyWithImpl<$Res> extends _$ProdOrderCopyWithImpl<$Res>
     Object? id = freezed,
     Object? vendorId = freezed,
     Object? vendorProdId = freezed,
+    Object? shopId = freezed,
+    Object? orderDbId = freezed,
     Object? shopProdId = freezed,
     Object? shipmentId = freezed,
     Object? orderCnt = freezed,
@@ -1157,6 +1121,14 @@ class __$$_ProdOrderCopyWithImpl<$Res> extends _$ProdOrderCopyWithImpl<$Res>
       vendorProdId: vendorProdId == freezed
           ? _value.vendorProdId
           : vendorProdId // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopId: shopId == freezed
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderDbId: orderDbId == freezed
+          ? _value.orderDbId
+          : orderDbId // ignore: cast_nullable_to_non_nullable
               as String,
       shopProdId: shopProdId == freezed
           ? _value.shopProdId
@@ -1196,11 +1168,13 @@ class __$$_ProdOrderCopyWithImpl<$Res> extends _$ProdOrderCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProdOrder with DiagnosticableTreeMixin implements _ProdOrder {
+class _$_ProdOrder extends _ProdOrder {
   const _$_ProdOrder(
       {required this.id,
       required this.vendorId,
       required this.vendorProdId,
+      required this.shopId,
+      required this.orderDbId,
       required this.shopProdId,
       required this.shipmentId,
       required this.orderCnt,
@@ -1208,7 +1182,8 @@ class _$_ProdOrder with DiagnosticableTreeMixin implements _ProdOrder {
       required this.pendingCnt,
       required this.actualAmount,
       required this.initialAmount,
-      required this.state});
+      required this.state})
+      : super._();
 
   factory _$_ProdOrder.fromJson(Map<String, dynamic> json) =>
       _$$_ProdOrderFromJson(json);
@@ -1219,6 +1194,10 @@ class _$_ProdOrder with DiagnosticableTreeMixin implements _ProdOrder {
   final String vendorId;
   @override
   final String vendorProdId;
+  @override
+  final String shopId;
+  @override
+  final String orderDbId;
   @override
   final String shopProdId;
   @override
@@ -1236,69 +1215,6 @@ class _$_ProdOrder with DiagnosticableTreeMixin implements _ProdOrder {
   @override
   final OrderState state;
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProdOrder(id: $id, vendorId: $vendorId, vendorProdId: $vendorProdId, shopProdId: $shopProdId, shipmentId: $shipmentId, orderCnt: $orderCnt, activeCnt: $activeCnt, pendingCnt: $pendingCnt, actualAmount: $actualAmount, initialAmount: $initialAmount, state: $state)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ProdOrder'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('vendorId', vendorId))
-      ..add(DiagnosticsProperty('vendorProdId', vendorProdId))
-      ..add(DiagnosticsProperty('shopProdId', shopProdId))
-      ..add(DiagnosticsProperty('shipmentId', shipmentId))
-      ..add(DiagnosticsProperty('orderCnt', orderCnt))
-      ..add(DiagnosticsProperty('activeCnt', activeCnt))
-      ..add(DiagnosticsProperty('pendingCnt', pendingCnt))
-      ..add(DiagnosticsProperty('actualAmount', actualAmount))
-      ..add(DiagnosticsProperty('initialAmount', initialAmount))
-      ..add(DiagnosticsProperty('state', state));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ProdOrder &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.vendorId, vendorId) &&
-            const DeepCollectionEquality()
-                .equals(other.vendorProdId, vendorProdId) &&
-            const DeepCollectionEquality()
-                .equals(other.shopProdId, shopProdId) &&
-            const DeepCollectionEquality()
-                .equals(other.shipmentId, shipmentId) &&
-            const DeepCollectionEquality().equals(other.orderCnt, orderCnt) &&
-            const DeepCollectionEquality().equals(other.activeCnt, activeCnt) &&
-            const DeepCollectionEquality()
-                .equals(other.pendingCnt, pendingCnt) &&
-            const DeepCollectionEquality()
-                .equals(other.actualAmount, actualAmount) &&
-            const DeepCollectionEquality()
-                .equals(other.initialAmount, initialAmount) &&
-            const DeepCollectionEquality().equals(other.state, state));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(vendorId),
-      const DeepCollectionEquality().hash(vendorProdId),
-      const DeepCollectionEquality().hash(shopProdId),
-      const DeepCollectionEquality().hash(shipmentId),
-      const DeepCollectionEquality().hash(orderCnt),
-      const DeepCollectionEquality().hash(activeCnt),
-      const DeepCollectionEquality().hash(pendingCnt),
-      const DeepCollectionEquality().hash(actualAmount),
-      const DeepCollectionEquality().hash(initialAmount),
-      const DeepCollectionEquality().hash(state));
-
   @JsonKey(ignore: true)
   @override
   _$$_ProdOrderCopyWith<_$_ProdOrder> get copyWith =>
@@ -1312,11 +1228,13 @@ class _$_ProdOrder with DiagnosticableTreeMixin implements _ProdOrder {
   }
 }
 
-abstract class _ProdOrder implements ProdOrder {
+abstract class _ProdOrder extends ProdOrder {
   const factory _ProdOrder(
       {required final String id,
       required final String vendorId,
       required final String vendorProdId,
+      required final String shopId,
+      required final String orderDbId,
       required final String shopProdId,
       required final String shipmentId,
       required final int orderCnt,
@@ -1325,6 +1243,7 @@ abstract class _ProdOrder implements ProdOrder {
       required final OrderAmount actualAmount,
       required final OrderAmount initialAmount,
       required final OrderState state}) = _$_ProdOrder;
+  const _ProdOrder._() : super._();
 
   factory _ProdOrder.fromJson(Map<String, dynamic> json) =
       _$_ProdOrder.fromJson;
@@ -1335,6 +1254,10 @@ abstract class _ProdOrder implements ProdOrder {
   String get vendorId;
   @override
   String get vendorProdId;
+  @override
+  String get shopId;
+  @override
+  String get orderDbId;
   @override
   String get shopProdId;
   @override
@@ -1727,7 +1650,7 @@ class __$$_ShipmentCopyWithImpl<$Res> extends _$ShipmentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Shipment with DiagnosticableTreeMixin implements _Shipment {
+class _$_Shipment implements _Shipment {
   const _$_Shipment(
       {required this.createdAt,
       required this.updatedAt,
@@ -1798,36 +1721,8 @@ class _$_Shipment with DiagnosticableTreeMixin implements _Shipment {
   final Locate receiveAddress;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'Shipment(createdAt: $createdAt, updatedAt: $updatedAt, wishedDeliveryTime: $wishedDeliveryTime, shippingId: $shippingId, orderDbId: $orderDbId, managerId: $managerId, uncleId: $uncleId, trackingNo: $trackingNo, prodOrderId: $prodOrderId, shipMethod: $shipMethod, additionalInfo: $additionalInfo, paid: $paid, weightUnit: $weightUnit, weight: $weight, amountByWeight: $amountByWeight, sizeUnit: $sizeUnit, size: $size, amountBySize: $amountBySize, returnAddress: $returnAddress, startAddress: $startAddress, receiveAddress: $receiveAddress)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Shipment'))
-      ..add(DiagnosticsProperty('createdAt', createdAt))
-      ..add(DiagnosticsProperty('updatedAt', updatedAt))
-      ..add(DiagnosticsProperty('wishedDeliveryTime', wishedDeliveryTime))
-      ..add(DiagnosticsProperty('shippingId', shippingId))
-      ..add(DiagnosticsProperty('orderDbId', orderDbId))
-      ..add(DiagnosticsProperty('managerId', managerId))
-      ..add(DiagnosticsProperty('uncleId', uncleId))
-      ..add(DiagnosticsProperty('trackingNo', trackingNo))
-      ..add(DiagnosticsProperty('prodOrderId', prodOrderId))
-      ..add(DiagnosticsProperty('shipMethod', shipMethod))
-      ..add(DiagnosticsProperty('additionalInfo', additionalInfo))
-      ..add(DiagnosticsProperty('paid', paid))
-      ..add(DiagnosticsProperty('weightUnit', weightUnit))
-      ..add(DiagnosticsProperty('weight', weight))
-      ..add(DiagnosticsProperty('amountByWeight', amountByWeight))
-      ..add(DiagnosticsProperty('sizeUnit', sizeUnit))
-      ..add(DiagnosticsProperty('size', size))
-      ..add(DiagnosticsProperty('amountBySize', amountBySize))
-      ..add(DiagnosticsProperty('returnAddress', returnAddress))
-      ..add(DiagnosticsProperty('startAddress', startAddress))
-      ..add(DiagnosticsProperty('receiveAddress', receiveAddress));
   }
 
   @override
@@ -2228,7 +2123,7 @@ class __$$_LocateCopyWithImpl<$Res> extends _$LocateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Locate extends _Locate with DiagnosticableTreeMixin {
+class _$_Locate extends _Locate {
   const _$_Locate(
       {this.code,
       required this.alias,
@@ -2279,29 +2174,8 @@ class _$_Locate extends _Locate with DiagnosticableTreeMixin {
   final LocateType? locateType;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'Locate(code: $code, alias: $alias, latitude: $latitude, longitude: $longitude, detailLocate: $detailLocate, firstName: $firstName, lastName: $lastName, phone: $phone, postalCode: $postalCode, country: $country, city: $city, county: $county, town: $town, locateType: $locateType)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Locate'))
-      ..add(DiagnosticsProperty('code', code))
-      ..add(DiagnosticsProperty('alias', alias))
-      ..add(DiagnosticsProperty('latitude', latitude))
-      ..add(DiagnosticsProperty('longitude', longitude))
-      ..add(DiagnosticsProperty('detailLocate', detailLocate))
-      ..add(DiagnosticsProperty('firstName', firstName))
-      ..add(DiagnosticsProperty('lastName', lastName))
-      ..add(DiagnosticsProperty('phone', phone))
-      ..add(DiagnosticsProperty('postalCode', postalCode))
-      ..add(DiagnosticsProperty('country', country))
-      ..add(DiagnosticsProperty('city', city))
-      ..add(DiagnosticsProperty('county', county))
-      ..add(DiagnosticsProperty('town', town))
-      ..add(DiagnosticsProperty('locateType', locateType));
   }
 
   @override

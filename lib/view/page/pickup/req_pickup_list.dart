@@ -50,29 +50,35 @@ class ReqPickupPage extends StatelessWidget {
       );
     }
 
-    return SafeArea(
-      child: Scaffold(
-        body: BlocSelector<ShipmentBloc, ShipmentState, List<ShipOrder>>(
-          selector: (state) {
-            return state.shipOrders
-                .where(
-                    (element) => element.order.state == OrderState.beforePickup)
-                .toList();
-          },
-          builder: (context, state) {
-            if (state.isNotEmpty) {
-              for (var i = 0; i < state.length; i++) {
-                return renderCard(state.first);
+    return WillPopScope(
+      onWillPop: () async {
+        context.read<AppBloc>().add(DisSelectModule());
+        return true;
+      },
+      child: SafeArea(
+        child: Scaffold(
+          body: BlocSelector<ShipmentBloc, ShipmentState, List<ShipOrder>>(
+            selector: (state) {
+              return state.shipOrders
+                  .where((element) =>
+                      element.order.state == OrderState.beforePickup)
+                  .toList();
+            },
+            builder: (context, state) {
+              if (state.isNotEmpty) {
+                for (var i = 0; i < state.length; i++) {
+                  return renderCard(state.first);
+                }
+                return Container();
+              } else {
+                return Center(
+                    child: Text(
+                  "픽업 데이터가 없습니다.",
+                  style: T.headline3,
+                ));
               }
-              return Container();
-            } else {
-              return Center(
-                  child: Text(
-                "픽업 데이터가 없습니다.",
-                style: T.headline3,
-              ));
-            }
-          },
+            },
+          ),
         ),
       ),
     );

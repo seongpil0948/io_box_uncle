@@ -110,7 +110,7 @@ class __$$_IoUserCopyWithImpl<$Res> extends _$IoUserCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_IoUser with DiagnosticableTreeMixin implements _IoUser {
+class _$_IoUser implements _IoUser {
   const _$_IoUser({required this.userInfo, required this.preferDark});
 
   factory _$_IoUser.fromJson(Map<String, dynamic> json) =>
@@ -122,17 +122,8 @@ class _$_IoUser with DiagnosticableTreeMixin implements _IoUser {
   final bool preferDark;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'IoUser(userInfo: $userInfo, preferDark: $preferDark)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'IoUser'))
-      ..add(DiagnosticsProperty('userInfo', userInfo))
-      ..add(DiagnosticsProperty('preferDark', preferDark));
   }
 
   @override
@@ -444,7 +435,7 @@ class __$$_IoUserInfoCopyWithImpl<$Res> extends _$IoUserInfoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
+class _$_IoUserInfo implements _IoUserInfo {
   const _$_IoUserInfo(
       {required this.createdAt,
       required this.updatedAt,
@@ -511,30 +502,8 @@ class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
   final String? uncleId;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'IoUserInfo(createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId, userName: $userName, displayName: $displayName, email: $email, emailVerified: $emailVerified, profileImg: $profileImg, role: $role, fcmTokens: $fcmTokens, passed: $passed, phone: $phone, managerId: $managerId, workerIds: $workerIds, uncleId: $uncleId)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'IoUserInfo'))
-      ..add(DiagnosticsProperty('createdAt', createdAt))
-      ..add(DiagnosticsProperty('updatedAt', updatedAt))
-      ..add(DiagnosticsProperty('userId', userId))
-      ..add(DiagnosticsProperty('userName', userName))
-      ..add(DiagnosticsProperty('displayName', displayName))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('emailVerified', emailVerified))
-      ..add(DiagnosticsProperty('profileImg', profileImg))
-      ..add(DiagnosticsProperty('role', role))
-      ..add(DiagnosticsProperty('fcmTokens', fcmTokens))
-      ..add(DiagnosticsProperty('passed', passed))
-      ..add(DiagnosticsProperty('phone', phone))
-      ..add(DiagnosticsProperty('managerId', managerId))
-      ..add(DiagnosticsProperty('workerIds', workerIds))
-      ..add(DiagnosticsProperty('uncleId', uncleId));
   }
 
   @override

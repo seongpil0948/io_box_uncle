@@ -27,6 +27,8 @@ class SelectModule extends AppEvent {
   List<Object> get props => [module == null ? 'null' : module.toString()];
 }
 
+class DisSelectModule extends AppEvent {}
+
 class SelectPickup extends AppEvent {
   final ShipOrder pickup;
   const SelectPickup({required this.pickup});
@@ -34,3 +36,5 @@ class SelectPickup extends AppEvent {
   @override
   List<Object> get props => [pickup.shipment.shippingId, pickup.order.id];
 }
+
+class DisSelectPickup extends AppEvent {}
