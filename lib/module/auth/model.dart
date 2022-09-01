@@ -10,9 +10,10 @@ class IoUser with _$IoUser {
 
 @freezed //  all of this class's properties are immutable.
 class IoUserInfo with _$IoUserInfo {
+  @JsonSerializable(explicitToJson: true)
   const factory IoUserInfo({
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    DateTime? createdAt,
+    DateTime? updatedAt,
     required String userId,
     required String userName,
     String? displayName,

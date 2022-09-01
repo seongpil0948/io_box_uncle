@@ -15,13 +15,13 @@ CollectionReference getCollection({required IoCollection c, String? userId}) {
       assert(userId != null);
       return store
           .collection(userCollection)
-          .doc(userId)
+          .doc(userId!)
           .collection(shipCollection);
     case IoCollection.order:
       assert(userId != null);
       return store
           .collection(userCollection)
-          .doc(userId)
+          .doc(userId!)
           .collection(orderCollection);
   }
 }

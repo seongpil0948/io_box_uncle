@@ -179,8 +179,8 @@ IoUserInfo _$IoUserInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$IoUserInfo {
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String? get displayName => throw _privateConstructorUsedError;
@@ -207,8 +207,8 @@ abstract class $IoUserInfoCopyWith<$Res> {
           IoUserInfo value, $Res Function(IoUserInfo) then) =
       _$IoUserInfoCopyWithImpl<$Res>;
   $Res call(
-      {DateTime createdAt,
-      DateTime updatedAt,
+      {DateTime? createdAt,
+      DateTime? updatedAt,
       String userId,
       String userName,
       String? displayName,
@@ -254,11 +254,11 @@ class _$IoUserInfoCopyWithImpl<$Res> implements $IoUserInfoCopyWith<$Res> {
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       updatedAt: updatedAt == freezed
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -323,8 +323,8 @@ abstract class _$$_IoUserInfoCopyWith<$Res>
       __$$_IoUserInfoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {DateTime createdAt,
-      DateTime updatedAt,
+      {DateTime? createdAt,
+      DateTime? updatedAt,
       String userId,
       String userName,
       String? displayName,
@@ -372,11 +372,11 @@ class __$$_IoUserInfoCopyWithImpl<$Res> extends _$IoUserInfoCopyWithImpl<$Res>
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       updatedAt: updatedAt == freezed
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -434,11 +434,12 @@ class __$$_IoUserInfoCopyWithImpl<$Res> extends _$IoUserInfoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_IoUserInfo implements _IoUserInfo {
   const _$_IoUserInfo(
-      {required this.createdAt,
-      required this.updatedAt,
+      {this.createdAt,
+      this.updatedAt,
       required this.userId,
       required this.userName,
       this.displayName,
@@ -459,9 +460,9 @@ class _$_IoUserInfo implements _IoUserInfo {
       _$$_IoUserInfoFromJson(json);
 
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @override
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
   @override
   final String userId;
   @override
@@ -568,8 +569,8 @@ class _$_IoUserInfo implements _IoUserInfo {
 
 abstract class _IoUserInfo implements IoUserInfo {
   const factory _IoUserInfo(
-      {required final DateTime createdAt,
-      required final DateTime updatedAt,
+      {final DateTime? createdAt,
+      final DateTime? updatedAt,
       required final String userId,
       required final String userName,
       final String? displayName,
@@ -588,9 +589,9 @@ abstract class _IoUserInfo implements IoUserInfo {
       _$_IoUserInfo.fromJson;
 
   @override
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
-  DateTime get updatedAt;
+  DateTime? get updatedAt;
   @override
   String get userId;
   @override

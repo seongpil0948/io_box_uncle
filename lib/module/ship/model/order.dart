@@ -2,6 +2,7 @@ part of "./index.dart";
 
 @freezed //  all of this class's properties are immutable.
 class GarmentOrder extends Equatable with _$GarmentOrder {
+  @JsonSerializable(explicitToJson: true)
   const factory GarmentOrder(
       {required DateTime orderDate,
       DateTime? doneDate,
@@ -103,6 +104,7 @@ enum OrderState {
 
 @freezed //  all of this class's properties are immutable.
 class OrderAmount with _$OrderAmount {
+  @JsonSerializable(explicitToJson: true)
   const factory OrderAmount({
     required int shipFeeAmount,
     required int shipFeeDiscountAmount,
@@ -121,6 +123,7 @@ class OrderAmount with _$OrderAmount {
 
 @freezed //  all of this class's properties are immutable.
 class ProdOrder extends Equatable with _$ProdOrder {
+  @JsonSerializable(explicitToJson: true)
   const factory ProdOrder({
     required String id,
     required String vendorId,

@@ -143,7 +143,8 @@ class __$$_ShipOrderCopyWithImpl<$Res> extends _$ShipOrderCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_ShipOrder extends _ShipOrder {
   const _$_ShipOrder(
       {required this.shipment, required this.garmentOrder, required this.order})
@@ -452,7 +453,8 @@ class __$$_GarmentOrderCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_GarmentOrder extends _GarmentOrder {
   const _$_GarmentOrder(
       {required this.orderDate,
@@ -783,7 +785,8 @@ class __$$_OrderAmountCopyWithImpl<$Res> extends _$OrderAmountCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_OrderAmount implements _OrderAmount {
   const _$_OrderAmount(
       {required this.shipFeeAmount,
@@ -1167,7 +1170,8 @@ class __$$_ProdOrderCopyWithImpl<$Res> extends _$ProdOrderCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_ProdOrder extends _ProdOrder {
   const _$_ProdOrder(
       {required this.id,
@@ -1649,7 +1653,8 @@ class __$$_ShipmentCopyWithImpl<$Res> extends _$ShipmentCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Shipment implements _Shipment {
   const _$_Shipment(
       {required this.createdAt,
@@ -2122,7 +2127,8 @@ class __$$_LocateCopyWithImpl<$Res> extends _$LocateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Locate extends _Locate {
   const _$_Locate(
       {this.code,

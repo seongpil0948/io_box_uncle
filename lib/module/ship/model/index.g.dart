@@ -15,9 +15,9 @@ _$_ShipOrder _$$_ShipOrderFromJson(Map<String, dynamic> json) => _$_ShipOrder(
 
 Map<String, dynamic> _$$_ShipOrderToJson(_$_ShipOrder instance) =>
     <String, dynamic>{
-      'shipment': instance.shipment,
-      'garmentOrder': instance.garmentOrder,
-      'order': instance.order,
+      'shipment': instance.shipment.toJson(),
+      'garmentOrder': instance.garmentOrder.toJson(),
+      'order': instance.order.toJson(),
     };
 
 _$_GarmentOrder _$$_GarmentOrderFromJson(Map<String, dynamic> json) =>
@@ -62,9 +62,9 @@ Map<String, dynamic> _$$_GarmentOrderToJson(_$_GarmentOrder instance) =>
       'subOrderIds': instance.subOrderIds,
       'vendorIds': instance.vendorIds,
       'states': instance.states.map((e) => _$OrderStateEnumMap[e]!).toList(),
-      'actualAmount': instance.actualAmount,
-      'initialAmount': instance.initialAmount,
-      'items': instance.items,
+      'actualAmount': instance.actualAmount.toJson(),
+      'initialAmount': instance.initialAmount.toJson(),
+      'items': instance.items.map((e) => e.toJson()).toList(),
     };
 
 const _$OrderStateEnumMap = {
@@ -161,8 +161,8 @@ Map<String, dynamic> _$$_ProdOrderToJson(_$_ProdOrder instance) =>
       'orderCnt': instance.orderCnt,
       'activeCnt': instance.activeCnt,
       'pendingCnt': instance.pendingCnt,
-      'actualAmount': instance.actualAmount,
-      'initialAmount': instance.initialAmount,
+      'actualAmount': instance.actualAmount.toJson(),
+      'initialAmount': instance.initialAmount.toJson(),
       'state': _$OrderStateEnumMap[instance.state]!,
     };
 
@@ -213,9 +213,9 @@ Map<String, dynamic> _$$_ShipmentToJson(_$_Shipment instance) =>
       'sizeUnit': instance.sizeUnit,
       'size': instance.size,
       'amountBySize': instance.amountBySize,
-      'returnAddress': instance.returnAddress,
-      'startAddress': instance.startAddress,
-      'receiveAddress': instance.receiveAddress,
+      'returnAddress': instance.returnAddress.toJson(),
+      'startAddress': instance.startAddress.toJson(),
+      'receiveAddress': instance.receiveAddress.toJson(),
     };
 
 const _$ShipMethodEnumMap = {

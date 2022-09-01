@@ -54,7 +54,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   void _onDisSelectModule(DisSelectModule event, Emitter<AppState> emit) {
-    emit(state.copyWith(module: null));
+    emit(AppState(
+        user: state.user,
+        status: state.status,
+        module: null,
+        selectedPickup: state.selectedPickup));
   }
 
   void _onSelectPickup(SelectPickup event, Emitter<AppState> emit) {
@@ -62,7 +66,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   void _onDisSelectPickup(DisSelectPickup event, Emitter<AppState> emit) {
-    emit(state.copyWith(selectedPickup: null));
+    emit(AppState(
+        user: state.user,
+        status: state.status,
+        module: state.module,
+        selectedPickup: null));
   }
 
   void _onLogoutRequested(AppLogoutRequested event, Emitter<AppState> emit) {

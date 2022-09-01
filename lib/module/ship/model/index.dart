@@ -11,6 +11,7 @@ part "./shipment.dart";
 
 @freezed //  all of this class's properties are immutable.
 class ShipOrder extends Equatable with _$ShipOrder {
+  @JsonSerializable(explicitToJson: true)
   const factory ShipOrder({
     required Shipment shipment,
     required GarmentOrder garmentOrder,

@@ -86,6 +86,6 @@ class ShipmentFB extends ShipmentApi {
   Future<void> updateShipment(Shipment s) async {
     await getCollection(c: IoCollection.order, userId: s.managerId)
         .doc(s.shippingId)
-        .update(s.toJson());
+        .set(s.toJson());
   }
 }

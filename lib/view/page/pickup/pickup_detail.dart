@@ -21,7 +21,12 @@ class PickupDetailPage extends StatelessWidget {
         body: Center(
           child: IoCard(
             height: size.height / 2.5,
+            title: BackButton(onPressed: () {
+              context.read<AppBloc>().add(DisSelectPickup());
+            }),
             content: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,41 +54,46 @@ class PickupDetailPage extends StatelessWidget {
               ],
             ),
             footer: [
+              if (p.order.state == OrderState.beforePickup)
+                OutlinedButton(
+                    onPressed: () {
+                      shipBloc.add(StartPickup(shipOrder: p));
+                      context.read<AppBloc>().add(DisSelectPickup());
+                    },
+                    child: const Text("픽업시작")),
+              if (p.order.state == OrderState.ongoingPickup)
+                OutlinedButton(
+                    onPressed: () {
+                      shipBloc.add(DonePickup(shipOrder: p));
+                      context.read<AppBloc>().add(DisSelectPickup());
+                    },
+                    child: const Text("픽업완료")),
+              if (p.order.state == OrderState.pickupComplete)
+                OutlinedButton(
+                    onPressed: () {
+                      shipBloc.add(ToBeforeShip(shipOrder: p));
+                      context.read<AppBloc>().add(DisSelectPickup());
+                    },
+                    child: const Text("배송전")),
+              if (p.order.state == OrderState.beforeShip)
+                OutlinedButton(
+                    onPressed: () {
+                      shipBloc.add(StartShip(shipOrder: p));
+                      context.read<AppBloc>().add(DisSelectPickup());
+                    },
+                    child: const Text("배송시작")),
               OutlinedButton(
                   onPressed: () {
                     debugPrint("토스요청");
                   },
                   child: const Text("토스요청")),
-              OutlinedButton(
-                  onPressed: () {
-                    debugPrint("픽업시작");
-                    shipBloc.add(StartPickup(shipOrder: p));
-                  },
-                  child: const Text("픽업시작")),
-              OutlinedButton(
-                  onPressed: () {
-                    debugPrint("픽업완료");
-                    shipBloc.add(DonePickup(shipOrder: p));
-                  },
-                  child: const Text("픽업완료")),
-              OutlinedButton(
-                  onPressed: () {
-                    debugPrint("배송전");
-                    shipBloc.add(ToBeforeShip(shipOrder: p));
-                  },
-                  child: const Text("배송전")),
-              OutlinedButton(
-                  onPressed: () {
-                    debugPrint("배송시작");
-                    shipBloc.add(StartShip(shipOrder: p));
-                  },
-                  child: const Text("배송시작")),
-              OutlinedButton(
-                  onPressed: () {
-                    debugPrint("배송완료");
-                    shipBloc.add(DoneShip(shipOrder: p));
-                  },
-                  child: const Text("배송완료")),
+              if (p.order.state == OrderState.shipping)
+                OutlinedButton(
+                    onPressed: () {
+                      shipBloc.add(DoneShip(shipOrder: p));
+                      context.read<AppBloc>().add(DisSelectPickup());
+                    },
+                    child: const Text("배송완료")),
             ],
           ),
         ),

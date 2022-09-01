@@ -15,7 +15,7 @@ import '../../module/ship/repo.dart';
 
 part "./home.dart";
 part './login.dart';
-part 'pickup/req_pickup_list.dart';
+part 'pickup/pickup_list.dart';
 part 'pickup/pickup_detail.dart';
 
 class App extends StatelessWidget {
@@ -25,10 +25,6 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    if (kDebugMode) {
-      print("in App currentUser: ${authRepo.currentUser}");
-    }
-
     return MaterialApp(
         title: 'Flutter Demo',
         theme: lightTheme,
@@ -64,9 +60,6 @@ List<Page<dynamic>> _onGenerateAppViewPages(
   AppState state,
   List<Page<dynamic>> pages,
 ) {
-  if (kDebugMode) {
-    print("in onGenerateAppViewPages state: $state \n pages: $pages");
-  }
   pages = [];
   switch (state.status) {
     case AppStatus.authenticated:
@@ -81,10 +74,13 @@ List<Page<dynamic>> _onGenerateAppViewPages(
       if (state.selectedPickup != null) {
         pages.add(PickupDetailPage.page(p: state.selectedPickup!));
       } else {
-        pages.add(ReqPickupPage.page());
+        pages.add(PickupListPage.page());
       }
       break;
     default:
+  }
+  if (kDebugMode) {
+    print("pages of onGeneratePages: $pages");
   }
   return pages;
 }

@@ -112,7 +112,13 @@ targets:
     builders:
       json_serializable:
         enabled: true
+        any_map: true
         generate_for:
           include:
             - lib/module/**.dart
             - lib/**.gen.dart
+        options:
+          explicit_to_json: true
+      freezed:
+        options:
+          generic_argument_factories: true

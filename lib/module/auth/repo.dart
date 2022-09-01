@@ -21,9 +21,6 @@ class AuthRepo {
       // final j = user.toJsonCache();
       final j = user.toJson();
       pref.setString(userCacheKey, jsonEncode(j));
-      if (kDebugMode) {
-        print("authStateChanges, io user: $user ");
-      }
       return user;
     });
   }

@@ -1,8 +1,8 @@
 part of '../index.dart';
 
-class ReqPickupPage extends StatelessWidget {
-  ReqPickupPage({Key? key}) : super(key: key);
-  static Page<void> page() => MaterialPage<void>(child: ReqPickupPage());
+class PickupListPage extends StatelessWidget {
+  PickupListPage({Key? key}) : super(key: key);
+  static Page<void> page() => MaterialPage<void>(child: PickupListPage());
   final scrollController = FixedExtentScrollController();
   @override
   Widget build(BuildContext context) {
@@ -66,15 +66,27 @@ class ReqPickupPage extends StatelessWidget {
             },
             builder: (context, state) {
               if (state.isNotEmpty) {
-                for (var i = 0; i < state.length; i++) {
-                  return renderCard(state.first);
-                }
-                return Container();
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BackButton(onPressed: () {
+                      context.read<AppBloc>().add(DisSelectModule());
+                    }),
+                    Center(
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        child: ListView(
+                          children: state.map((e) => renderCard(e)).toList(),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
               } else {
                 return Center(
                     child: Text(
                   "픽업 데이터가 없습니다.",
-                  style: T.headline3,
+                  style: T.headline5,
                 ));
               }
             },

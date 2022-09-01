@@ -36,8 +36,12 @@ class AppState extends Equatable {
   }
 
   @override
-  List<Object> get props =>
-      [status, user ?? "", module.toString(), selectedPickup ?? ""];
+  List<Object> get props => [
+        status,
+        user ?? "",
+        module ?? "",
+        selectedPickup ?? "",
+      ];
 }
 
 enum ModulePage { pickupList }

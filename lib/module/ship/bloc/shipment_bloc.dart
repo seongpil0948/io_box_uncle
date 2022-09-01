@@ -38,35 +38,29 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
 
   Future<void> startPickup(
       StartPickup event, Emitter<ShipmentState> emit) async {
-    debugPrint("on DonePickup: $event, emit: $emit");
     await orderRepo.startPickup(event.shipOrder);
   }
 
   Future<void> _donePickup(
       DonePickup event, Emitter<ShipmentState> emit) async {
-    debugPrint("on DonePickup: $event, emit: $emit");
     await orderRepo.donePickup(event.shipOrder);
   }
 
   Future<void> _toBeforeShip(
       ToBeforeShip event, Emitter<ShipmentState> emit) async {
-    debugPrint("on DonePickup: $event, emit: $emit");
     await orderRepo.toBeforeShip(event.shipOrder);
   }
 
   Future<void> _startShip(StartShip event, Emitter<ShipmentState> emit) async {
-    debugPrint("on DonePickup: $event, emit: $emit");
     await orderRepo.startShip(event.shipOrder);
   }
 
   Future<void> _doneShip(DoneShip event, Emitter<ShipmentState> emit) async {
-    debugPrint("on DonePickup: $event, emit: $emit");
     await orderRepo.doneShip(event.shipOrder);
   }
 
   Future<void> _reqTossOrd(
       RequestTossOrder event, Emitter<ShipmentState> emit) async {
-    debugPrint("on RequestTossOrder: $event, emit: $emit");
     await orderRepo.reqToss(event.s, event.targetUncleId);
   }
 

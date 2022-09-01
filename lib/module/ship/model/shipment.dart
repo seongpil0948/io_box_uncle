@@ -2,6 +2,7 @@ part of "./index.dart";
 
 @freezed //  all of this class's properties are immutable.
 class Shipment with _$Shipment {
+  @JsonSerializable(explicitToJson: true)
   const factory Shipment({
     required DateTime createdAt,
     required DateTime updatedAt,
@@ -32,6 +33,7 @@ class Shipment with _$Shipment {
 
 @freezed //  all of this class's properties are immutable.
 class Locate with _$Locate {
+  @JsonSerializable(explicitToJson: true)
   const factory Locate({
     String? code,
     required String alias,
