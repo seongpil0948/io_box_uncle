@@ -31,8 +31,9 @@ class PickupDetailPage extends StatelessWidget {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("행정구역"),
-                      Text(p.shipment.startAddress.adminArea)
+                      const Text("주소"),
+                      Text(
+                          "${p.shipment.startAddress.adminArea}, ${p.shipment.startAddress.alias}")
                     ]),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,6 +54,7 @@ class PickupDetailPage extends StatelessWidget {
                     ]),
               ],
             ),
+            // FIXME: 현재 디비 반영후 다시 받아오는게 안됌..
             footer: [
               if (p.order.state == OrderState.beforePickup)
                 OutlinedButton(

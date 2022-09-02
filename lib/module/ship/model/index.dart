@@ -23,5 +23,16 @@ class ShipOrder extends Equatable with _$ShipOrder {
       _$ShipOrderFromJson(json);
 
   @override
-  List<Object?> get props => [order.id, shipment.shippingId];
+  List<Object?> get props => [
+        order.id,
+        shipment.shippingId,
+        shipment.updatedAt,
+        shipment.paid,
+        shipment.size,
+        shipment.weight,
+        shipment.uncleId,
+        order.state,
+        order.orderCnt,
+        order.activeCnt
+      ];
 }

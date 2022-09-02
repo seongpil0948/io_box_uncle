@@ -5,7 +5,7 @@ abstract class ShipmentState extends Equatable {
   final List<ShipOrder> shipOrders;
 
   @override
-  List<Object> get props => [shipOrders.length];
+  List<Object> get props => [shipOrders];
 }
 
 class ShipmentInitial extends ShipmentState {

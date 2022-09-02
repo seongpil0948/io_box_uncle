@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                                   ?.copyWith(color: Colors.grey.shade500)),
                           Align(
                             alignment: Alignment.centerRight,
-                            child: Text('Item $index',
+                            child: Text('픽업목록',
                                 style: textTheme.headline5?.copyWith(
                                     color: Theme.of(context).primaryColor)),
                           )
