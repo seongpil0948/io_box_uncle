@@ -54,7 +54,6 @@ class PickupDetailPage extends StatelessWidget {
                     ]),
               ],
             ),
-            // FIXME: 현재 디비 반영후 다시 받아오는게 안됌..
             footer: [
               if (p.order.state == OrderState.beforePickup)
                 OutlinedButton(

@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
 
 part 'index.freezed.dart';
