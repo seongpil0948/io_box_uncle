@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'index.dart';
 
 // **************************************************************************
@@ -13,6 +11,11 @@ _$_ShipOrder _$$_ShipOrderFromJson(Map<String, dynamic> json) => _$_ShipOrder(
       garmentOrder:
           GarmentOrder.fromJson(json['garmentOrder'] as Map<String, dynamic>),
       order: ProdOrder.fromJson(json['order'] as Map<String, dynamic>),
+      shopUser: IoUser.fromJson(json['shopUser'] as Map<String, dynamic>),
+      vendorUser: IoUser.fromJson(json['vendorUser'] as Map<String, dynamic>),
+      managerUser: IoUser.fromJson(json['managerUser'] as Map<String, dynamic>),
+      vendorGarment:
+          VendorGarment.fromJson(json['vendorGarment'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ShipOrderToJson(_$_ShipOrder instance) =>
@@ -20,6 +23,10 @@ Map<String, dynamic> _$$_ShipOrderToJson(_$_ShipOrder instance) =>
       'shipment': instance.shipment.toJson(),
       'garmentOrder': instance.garmentOrder.toJson(),
       'order': instance.order.toJson(),
+      'shopUser': instance.shopUser.toJson(),
+      'vendorUser': instance.vendorUser.toJson(),
+      'managerUser': instance.managerUser.toJson(),
+      'vendorGarment': instance.vendorGarment.toJson(),
     };
 
 _$_GarmentOrder _$$_GarmentOrderFromJson(Map<String, dynamic> json) =>

@@ -3,8 +3,11 @@ part of './index.dart';
 @freezed //  all of this class's properties are immutable.
 class IoUser with _$IoUser {
   const factory IoUser(
-      {required IoUserInfo userInfo, required bool preferDark}) = _IoUser;
-
+      {required IoUserInfo userInfo,
+      required bool preferDark,
+      UncleInfo? uncleInfo}) = _IoUser;
+  String get name => userInfo.displayName ?? userInfo.userName;
+  const IoUser._();
   factory IoUser.fromJson(Map<String, Object?> json) => _$IoUserFromJson(json);
 }
 
@@ -31,6 +34,30 @@ class IoUserInfo with _$IoUserInfo {
 
   factory IoUserInfo.fromJson(Map<String, Object?> json) =>
       _$IoUserInfoFromJson(json);
+}
+
+@freezed
+class UncleInfo with _$UncleInfo {
+  @JsonSerializable(explicitToJson: true)
+  const factory UncleInfo({
+    required List<LocateAmount> pickupLocates,
+    required List<LocateAmount> shipLocates,
+    required Map<String, int> amountBySize,
+    required Map<String, int> amountByWeight,
+  }) = _UncleInfo;
+
+  factory UncleInfo.fromJson(Map<String, Object?> json) =>
+      _$UncleInfoFromJson(json);
+}
+
+@freezed
+class LocateAmount with _$LocateAmount {
+  @JsonSerializable(explicitToJson: true)
+  const factory LocateAmount({required int amount, required Locate locate}) =
+      _LocateAmount;
+
+  factory LocateAmount.fromJson(Map<String, Object?> json) =>
+      _$LocateAmountFromJson(json);
 }
 
 enum UserRole {

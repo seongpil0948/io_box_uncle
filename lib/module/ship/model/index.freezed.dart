@@ -23,6 +23,10 @@ mixin _$ShipOrder {
   Shipment get shipment => throw _privateConstructorUsedError;
   GarmentOrder get garmentOrder => throw _privateConstructorUsedError;
   ProdOrder get order => throw _privateConstructorUsedError;
+  IoUser get shopUser => throw _privateConstructorUsedError;
+  IoUser get vendorUser => throw _privateConstructorUsedError;
+  IoUser get managerUser => throw _privateConstructorUsedError;
+  VendorGarment get vendorGarment => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,11 +38,22 @@ mixin _$ShipOrder {
 abstract class $ShipOrderCopyWith<$Res> {
   factory $ShipOrderCopyWith(ShipOrder value, $Res Function(ShipOrder) then) =
       _$ShipOrderCopyWithImpl<$Res>;
-  $Res call({Shipment shipment, GarmentOrder garmentOrder, ProdOrder order});
+  $Res call(
+      {Shipment shipment,
+      GarmentOrder garmentOrder,
+      ProdOrder order,
+      IoUser shopUser,
+      IoUser vendorUser,
+      IoUser managerUser,
+      VendorGarment vendorGarment});
 
   $ShipmentCopyWith<$Res> get shipment;
   $GarmentOrderCopyWith<$Res> get garmentOrder;
   $ProdOrderCopyWith<$Res> get order;
+  $IoUserCopyWith<$Res> get shopUser;
+  $IoUserCopyWith<$Res> get vendorUser;
+  $IoUserCopyWith<$Res> get managerUser;
+  $VendorGarmentCopyWith<$Res> get vendorGarment;
 }
 
 /// @nodoc
@@ -54,6 +69,10 @@ class _$ShipOrderCopyWithImpl<$Res> implements $ShipOrderCopyWith<$Res> {
     Object? shipment = freezed,
     Object? garmentOrder = freezed,
     Object? order = freezed,
+    Object? shopUser = freezed,
+    Object? vendorUser = freezed,
+    Object? managerUser = freezed,
+    Object? vendorGarment = freezed,
   }) {
     return _then(_value.copyWith(
       shipment: shipment == freezed
@@ -68,6 +87,22 @@ class _$ShipOrderCopyWithImpl<$Res> implements $ShipOrderCopyWith<$Res> {
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
               as ProdOrder,
+      shopUser: shopUser == freezed
+          ? _value.shopUser
+          : shopUser // ignore: cast_nullable_to_non_nullable
+              as IoUser,
+      vendorUser: vendorUser == freezed
+          ? _value.vendorUser
+          : vendorUser // ignore: cast_nullable_to_non_nullable
+              as IoUser,
+      managerUser: managerUser == freezed
+          ? _value.managerUser
+          : managerUser // ignore: cast_nullable_to_non_nullable
+              as IoUser,
+      vendorGarment: vendorGarment == freezed
+          ? _value.vendorGarment
+          : vendorGarment // ignore: cast_nullable_to_non_nullable
+              as VendorGarment,
     ));
   }
 
@@ -91,6 +126,34 @@ class _$ShipOrderCopyWithImpl<$Res> implements $ShipOrderCopyWith<$Res> {
       return _then(_value.copyWith(order: value));
     });
   }
+
+  @override
+  $IoUserCopyWith<$Res> get shopUser {
+    return $IoUserCopyWith<$Res>(_value.shopUser, (value) {
+      return _then(_value.copyWith(shopUser: value));
+    });
+  }
+
+  @override
+  $IoUserCopyWith<$Res> get vendorUser {
+    return $IoUserCopyWith<$Res>(_value.vendorUser, (value) {
+      return _then(_value.copyWith(vendorUser: value));
+    });
+  }
+
+  @override
+  $IoUserCopyWith<$Res> get managerUser {
+    return $IoUserCopyWith<$Res>(_value.managerUser, (value) {
+      return _then(_value.copyWith(managerUser: value));
+    });
+  }
+
+  @override
+  $VendorGarmentCopyWith<$Res> get vendorGarment {
+    return $VendorGarmentCopyWith<$Res>(_value.vendorGarment, (value) {
+      return _then(_value.copyWith(vendorGarment: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -99,7 +162,14 @@ abstract class _$$_ShipOrderCopyWith<$Res> implements $ShipOrderCopyWith<$Res> {
           _$_ShipOrder value, $Res Function(_$_ShipOrder) then) =
       __$$_ShipOrderCopyWithImpl<$Res>;
   @override
-  $Res call({Shipment shipment, GarmentOrder garmentOrder, ProdOrder order});
+  $Res call(
+      {Shipment shipment,
+      GarmentOrder garmentOrder,
+      ProdOrder order,
+      IoUser shopUser,
+      IoUser vendorUser,
+      IoUser managerUser,
+      VendorGarment vendorGarment});
 
   @override
   $ShipmentCopyWith<$Res> get shipment;
@@ -107,6 +177,14 @@ abstract class _$$_ShipOrderCopyWith<$Res> implements $ShipOrderCopyWith<$Res> {
   $GarmentOrderCopyWith<$Res> get garmentOrder;
   @override
   $ProdOrderCopyWith<$Res> get order;
+  @override
+  $IoUserCopyWith<$Res> get shopUser;
+  @override
+  $IoUserCopyWith<$Res> get vendorUser;
+  @override
+  $IoUserCopyWith<$Res> get managerUser;
+  @override
+  $VendorGarmentCopyWith<$Res> get vendorGarment;
 }
 
 /// @nodoc
@@ -124,6 +202,10 @@ class __$$_ShipOrderCopyWithImpl<$Res> extends _$ShipOrderCopyWithImpl<$Res>
     Object? shipment = freezed,
     Object? garmentOrder = freezed,
     Object? order = freezed,
+    Object? shopUser = freezed,
+    Object? vendorUser = freezed,
+    Object? managerUser = freezed,
+    Object? vendorGarment = freezed,
   }) {
     return _then(_$_ShipOrder(
       shipment: shipment == freezed
@@ -138,6 +220,22 @@ class __$$_ShipOrderCopyWithImpl<$Res> extends _$ShipOrderCopyWithImpl<$Res>
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
               as ProdOrder,
+      shopUser: shopUser == freezed
+          ? _value.shopUser
+          : shopUser // ignore: cast_nullable_to_non_nullable
+              as IoUser,
+      vendorUser: vendorUser == freezed
+          ? _value.vendorUser
+          : vendorUser // ignore: cast_nullable_to_non_nullable
+              as IoUser,
+      managerUser: managerUser == freezed
+          ? _value.managerUser
+          : managerUser // ignore: cast_nullable_to_non_nullable
+              as IoUser,
+      vendorGarment: vendorGarment == freezed
+          ? _value.vendorGarment
+          : vendorGarment // ignore: cast_nullable_to_non_nullable
+              as VendorGarment,
     ));
   }
 }
@@ -147,7 +245,13 @@ class __$$_ShipOrderCopyWithImpl<$Res> extends _$ShipOrderCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_ShipOrder extends _ShipOrder {
   const _$_ShipOrder(
-      {required this.shipment, required this.garmentOrder, required this.order})
+      {required this.shipment,
+      required this.garmentOrder,
+      required this.order,
+      required this.shopUser,
+      required this.vendorUser,
+      required this.managerUser,
+      required this.vendorGarment})
       : super._();
 
   factory _$_ShipOrder.fromJson(Map<String, dynamic> json) =>
@@ -159,6 +263,14 @@ class _$_ShipOrder extends _ShipOrder {
   final GarmentOrder garmentOrder;
   @override
   final ProdOrder order;
+  @override
+  final IoUser shopUser;
+  @override
+  final IoUser vendorUser;
+  @override
+  final IoUser managerUser;
+  @override
+  final VendorGarment vendorGarment;
 
   @JsonKey(ignore: true)
   @override
@@ -177,7 +289,11 @@ abstract class _ShipOrder extends ShipOrder {
   const factory _ShipOrder(
       {required final Shipment shipment,
       required final GarmentOrder garmentOrder,
-      required final ProdOrder order}) = _$_ShipOrder;
+      required final ProdOrder order,
+      required final IoUser shopUser,
+      required final IoUser vendorUser,
+      required final IoUser managerUser,
+      required final VendorGarment vendorGarment}) = _$_ShipOrder;
   const _ShipOrder._() : super._();
 
   factory _ShipOrder.fromJson(Map<String, dynamic> json) =
@@ -189,6 +305,14 @@ abstract class _ShipOrder extends ShipOrder {
   GarmentOrder get garmentOrder;
   @override
   ProdOrder get order;
+  @override
+  IoUser get shopUser;
+  @override
+  IoUser get vendorUser;
+  @override
+  IoUser get managerUser;
+  @override
+  VendorGarment get vendorGarment;
   @override
   @JsonKey(ignore: true)
   _$$_ShipOrderCopyWith<_$_ShipOrder> get copyWith =>

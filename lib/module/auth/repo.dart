@@ -52,6 +52,17 @@ class AuthRepo {
     return IoUser.fromJson(doc.data() as Map<String, dynamic>);
   }
 
+  static Future<List<IoUser>> getUserByIds(List<String> userIds) async {
+    assert(userIds.length < 11);
+    final snapshot = await getCollection(c: IoCollection.users)
+        .where("userInfo.userId", whereIn: userIds)
+        .get();
+    assert(snapshot.size == userIds.length);
+    return snapshot.docs
+        .map((e) => IoUser.fromJson(e.data() as Map<String, dynamic>))
+        .toList();
+  }
+
   Future<void> kakaoLogin() async {
     k.OAuthToken? token;
     try {

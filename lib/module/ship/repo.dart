@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import 'package:io_box_uncle/module/auth/index.dart';
+import 'package:io_box_uncle/module/product/index.dart';
+
 import 'api/domain.dart';
 import 'model/index.dart';
 
@@ -36,10 +39,11 @@ class ShipmentRepo {
     List<ShipOrder> data = [];
     List<Shipment> shipments = [];
     List<GarmentOrder> orders = [];
+    Map<String, IoUser> users = {};
     final shipStream = api.getShipmentStream(shipManagerId);
     final orderStream = api.getOrderStream(userId, shipManagerId);
 
-    void trigger() {
+    void trigger() async {
       data = [];
       for (var i = 0; i < orders.length; i++) {
         var order = orders[i];
@@ -49,7 +53,14 @@ class ShipmentRepo {
           );
           assert(ships.length == 1);
           final ship = ships.first;
-          data.add(ShipOrder(order: ord, shipment: ship, garmentOrder: order));
+          data.add(ShipOrder(
+              order: ord,
+              shipment: ship,
+              garmentOrder: order,
+              vendorGarment: await ProdRepo.getVendorProdById(ord.vendorProdId),
+              shopUser: users[ord.shopId]!,
+              vendorUser: users[ord.vendorId]!,
+              managerUser: users[order.shipManagerId]!));
         }
       }
 
@@ -73,13 +84,26 @@ class ShipmentRepo {
       }
     });
 
-    final orderSubscribe = orderStream.listen((event) {
+    final orderSubscribe = orderStream.listen((event) async {
       orders = [];
       if (event.docs.isEmpty) return;
       for (var element in event.docs) {
         if (element.exists) {
-          orders.add(
-              GarmentOrder.fromJson(element.data() as Map<String, Object?>));
+          final ord =
+              GarmentOrder.fromJson(element.data() as Map<String, Object?>);
+          orders.add(ord);
+          if (!users.containsKey(ord.shopId)) {
+            users[ord.shopId] = await AuthRepo.getUserById(ord.shopId);
+          }
+          if (!users.containsKey(ord.shipManagerId)) {
+            users[ord.shipManagerId] =
+                await AuthRepo.getUserById(ord.shipManagerId);
+          }
+          for (var vendorId in ord.vendorIds) {
+            if (!users.containsKey(vendorId)) {
+              users[vendorId] = await AuthRepo.getUserById(vendorId);
+            }
+          }
         }
       }
       if (shipments.isNotEmpty) {

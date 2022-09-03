@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'index.dart';
 
 // **************************************************************************
@@ -11,11 +9,15 @@ part of 'index.dart';
 _$_IoUser _$$_IoUserFromJson(Map<String, dynamic> json) => _$_IoUser(
       userInfo: IoUserInfo.fromJson(json['userInfo'] as Map<String, dynamic>),
       preferDark: json['preferDark'] as bool,
+      uncleInfo: json['uncleInfo'] == null
+          ? null
+          : UncleInfo.fromJson(json['uncleInfo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_IoUserToJson(_$_IoUser instance) => <String, dynamic>{
       'userInfo': instance.userInfo,
       'preferDark': instance.preferDark,
+      'uncleInfo': instance.uncleInfo,
     };
 
 _$_IoUserInfo _$$_IoUserInfoFromJson(Map<String, dynamic> json) =>
@@ -69,3 +71,34 @@ const _$UserRoleEnumMap = {
   UserRole.vendor: 'VENDOR',
   UserRole.uncleWorker: 'UNCLE_WORKER',
 };
+
+_$_UncleInfo _$$_UncleInfoFromJson(Map<String, dynamic> json) => _$_UncleInfo(
+      pickupLocates: (json['pickupLocates'] as List<dynamic>)
+          .map((e) => LocateAmount.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      shipLocates: (json['shipLocates'] as List<dynamic>)
+          .map((e) => LocateAmount.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      amountBySize: Map<String, int>.from(json['amountBySize'] as Map),
+      amountByWeight: Map<String, int>.from(json['amountByWeight'] as Map),
+    );
+
+Map<String, dynamic> _$$_UncleInfoToJson(_$_UncleInfo instance) =>
+    <String, dynamic>{
+      'pickupLocates': instance.pickupLocates.map((e) => e.toJson()).toList(),
+      'shipLocates': instance.shipLocates.map((e) => e.toJson()).toList(),
+      'amountBySize': instance.amountBySize,
+      'amountByWeight': instance.amountByWeight,
+    };
+
+_$_LocateAmount _$$_LocateAmountFromJson(Map<String, dynamic> json) =>
+    _$_LocateAmount(
+      amount: json['amount'] as int,
+      locate: Locate.fromJson(json['locate'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_LocateAmountToJson(_$_LocateAmount instance) =>
+    <String, dynamic>{
+      'amount': instance.amount,
+      'locate': instance.locate.toJson(),
+    };

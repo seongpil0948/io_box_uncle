@@ -17,8 +17,6 @@ class _HomePageState extends State<HomePage> {
     final user = context.select((AppBloc bloc) => bloc.state.user)!;
     final size = MediaQuery.of(context).size;
     final customColors = Theme.of(context).extension<CustomColors>()!;
-    final shipBloc = context.watch<ShipmentBloc>();
-    debugPrint("shipOrders: ===> ${shipBloc.state.shipOrders}");
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(

@@ -102,6 +102,57 @@ enum OrderState {
   orderDone,
 }
 
+extension IoBankExtension on OrderState {
+  String get toKoString {
+    switch (this) {
+      case OrderState.beforeOrder:
+        return "주문전";
+      case OrderState.beforeApprove:
+        return "주문승인전";
+      case OrderState.beforePayment:
+        return "결제전";
+      case OrderState.beforeReady:
+        return "물품준비전";
+      case OrderState.beforePickupReq:
+        return "픽업요청전";
+      case OrderState.beforeApprovePickup:
+        return "픽업승인전";
+      case OrderState.beforeAssignPickup:
+        return "픽업할당전";
+      case OrderState.beforePickup:
+        return "픽업전";
+      case OrderState.pickupComplete:
+        return "픽업완료";
+      case OrderState.beforeShip:
+        return "배송전";
+      case OrderState.shipping:
+        return "배송중";
+      case OrderState.shippingComplete:
+        return "배송완료";
+      case OrderState.takeBack:
+        return "반품중";
+      case OrderState.takeBackDone:
+        return "반품완료";
+      case OrderState.refund:
+        return "환불중";
+      case OrderState.refundDone:
+        return "환불완료";
+      case OrderState.change:
+        return "교환중";
+      case OrderState.changeDone:
+        return "교환완료";
+      case OrderState.cancel:
+        return "취소중";
+      case OrderState.cancelDone:
+        return "취소완료";
+      case OrderState.orderDone:
+        return "거래완료";
+      default:
+        throw ArgumentError("not Matched $this");
+    }
+  }
+}
+
 @freezed //  all of this class's properties are immutable.
 class OrderAmount with _$OrderAmount {
   @JsonSerializable(explicitToJson: true)
