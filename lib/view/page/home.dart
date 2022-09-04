@@ -33,74 +33,65 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            GridView.builder(
-                shrinkWrap: true,
-                itemCount: 6,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 8,
-                    crossAxisSpacing: 8,
-                    childAspectRatio: 1.5 / 1),
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: () => context
-                        .read<AppBloc>()
-                        .add(const SelectModule(ModulePage.pickupList)),
-                    child: DashBoardCard(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 24, horizontal: 12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Size: ${size.height}',
-                              style: textTheme.headline5
-                                  ?.copyWith(color: Colors.grey.shade500)),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Text('픽업목록',
-                                style: textTheme.headline5?.copyWith(
-                                    color: Theme.of(context).primaryColor)),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-            DashBoardCard(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('정산 예정액',
-                              style: textTheme.headline5
-                                  ?.copyWith(color: Colors.grey.shade500)),
-                          Text('카카오뱅크 3333-17-170009',
-                              style: textTheme.caption?.copyWith(
+          child: ConstrainedBox(
+        constraints: BoxConstraints(minHeight: size.height * 0.75),
+        child: BlocSelector<ShipmentBloc, ShipmentState, List<ShipOrder>>(
+          selector: (state) => state.shipOrders,
+          builder: (context, state) {
+            final pickCnt = state.where((e) => e.order.isPickup).length;
+            final shipCnt = state.where((e) => e.order.isShip).length;
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkWell(
+                  onTap: () => context
+                      .read<AppBloc>()
+                      .add(const SelectModule(ModulePage.pickupList)),
+                  child: DashBoardCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('픽업목록',
+                            style: textTheme.headline5
+                                ?.copyWith(color: Colors.grey.shade500)),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text('$pickCnt 건',
+                              style: textTheme.headline5?.copyWith(
                                   color: Theme.of(context).primaryColor)),
-                        ],
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text('999,999원',
-                            style: textTheme.headline5?.copyWith(
-                                color: Theme.of(context).primaryColor)),
-                      )
-                    ])),
-            DashBoardCard(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () => context
+                      .read<AppBloc>()
+                      .add(const SelectModule(ModulePage.shipList)),
+                  child: DashBoardCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('배송목록',
+                            style: textTheme.headline5
+                                ?.copyWith(color: Colors.grey.shade500)),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text('$shipCnt 건',
+                              style: textTheme.headline5?.copyWith(
+                                  color: Theme.of(context).primaryColor)),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                DashBoardCard(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,59 +111,33 @@ class _HomePageState extends State<HomePage> {
                                 color: Theme.of(context).primaryColor)),
                       )
                     ])),
-            DashBoardCard(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                SizedBox(
+                  height: size.height / 5,
+                  child: Row(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('정산 예정액',
-                              style: textTheme.headline5
-                                  ?.copyWith(color: Colors.grey.shade500)),
-                          Text('카카오뱅크 3333-17-170009',
-                              style: textTheme.caption?.copyWith(
-                                  color: customColors.primaryCloudy)),
-                        ],
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text('999,999원',
-                            style: textTheme.headline5?.copyWith(
-                                color: Theme.of(context).primaryColor)),
-                      )
-                    ])),
-            const SizedBox(height: 5),
-            SizedBox(
-              height: size.height / 5,
-              child: Row(
-                children: [
-                  Expanded(child: UserProfile(user: user)),
-                  const SizedBox(width: 5),
-                  Expanded(
-                    child: LayoutBuilder(builder: (context, constraint) {
-                      return SizedBox(
-                        height: constraint.maxHeight,
-                        width: constraint.maxWidth,
-                        child: DashBoardCard(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 24.0, horizontal: 12.0),
-                            child: Text(
-                              "픽업 시작!",
+                      Expanded(child: UserProfile(user: user)),
+                      const SizedBox(width: 5),
+                      Expanded(
+                        child: LayoutBuilder(builder: (context, constraint) {
+                          return SizedBox(
+                            height: constraint.maxHeight,
+                            width: constraint.maxWidth,
+                            child: DashBoardCard(
+                                child: Text(
+                              "힝구!",
                               style: textTheme.titleLarge,
                             )),
-                      );
-                    }),
+                          );
+                        }),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-          ],
+                ),
+              ],
+            );
+          },
         ),
-      ),
+      )),
     );
   }
 }
@@ -204,7 +169,6 @@ class UserProfile extends StatelessWidget {
       Text("활동상태:  활동중", style: textTheme.overline),
     ];
     return DashBoardCard(
-        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
         child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,11 +180,9 @@ class DashBoardCard extends StatelessWidget {
   const DashBoardCard({
     Key? key,
     required this.child,
-    required this.padding,
   }) : super(key: key);
 
   final Widget child;
-  final EdgeInsetsGeometry padding;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -228,7 +190,9 @@ class DashBoardCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24.0),
       ),
-      child: Padding(padding: padding, child: Center(child: child)),
+      child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
+          child: Center(child: child)),
     );
   }
 }

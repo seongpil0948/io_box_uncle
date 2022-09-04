@@ -22,7 +22,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<AppLogoutRequested>(_onLogoutRequested);
     on<SelectModule>(_onSelectModule);
     on<DisSelectModule>(_onDisSelectModule);
-    on<SelectPickup>(_onSelectPickup);
+    on<SelectShip>(_onSelectPickup);
     on<DisSelectPickup>(_onDisSelectPickup);
 
     _userSubscription = authRepo.user.listen((user) async {
@@ -58,11 +58,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         user: state.user,
         status: state.status,
         module: null,
-        selectedPickup: state.selectedPickup));
+        selectedShip: state.selectedShip));
   }
 
-  void _onSelectPickup(SelectPickup event, Emitter<AppState> emit) {
-    emit(state.copyWith(selectedPickup: event.pickup));
+  void _onSelectPickup(SelectShip event, Emitter<AppState> emit) {
+    emit(state.copyWith(selectedShip: event.shipOrder));
   }
 
   void _onDisSelectPickup(DisSelectPickup event, Emitter<AppState> emit) {
@@ -70,7 +70,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         user: state.user,
         status: state.status,
         module: state.module,
-        selectedPickup: null));
+        selectedShip: null));
   }
 
   void _onLogoutRequested(AppLogoutRequested event, Emitter<AppState> emit) {

@@ -737,8 +737,10 @@ mixin _$OrderAmount {
   int get tax => throw _privateConstructorUsedError;
   int get paidAmount => throw _privateConstructorUsedError;
   BoolM get paid => throw _privateConstructorUsedError;
-  int get pureAmount => throw _privateConstructorUsedError;
+  int get pureAmount => throw _privateConstructorUsedError; // 순수 상품금액
   int get orderAmount => throw _privateConstructorUsedError;
+  int? get pickFeeAmount => throw _privateConstructorUsedError;
+  int? get pickFeeDiscountAmount => throw _privateConstructorUsedError;
   bool get paymentConfirm => throw _privateConstructorUsedError;
   PayMethod? get paymentMethod => throw _privateConstructorUsedError;
 
@@ -761,6 +763,8 @@ abstract class $OrderAmountCopyWith<$Res> {
       BoolM paid,
       int pureAmount,
       int orderAmount,
+      int? pickFeeAmount,
+      int? pickFeeDiscountAmount,
       bool paymentConfirm,
       PayMethod? paymentMethod});
 }
@@ -782,6 +786,8 @@ class _$OrderAmountCopyWithImpl<$Res> implements $OrderAmountCopyWith<$Res> {
     Object? paid = freezed,
     Object? pureAmount = freezed,
     Object? orderAmount = freezed,
+    Object? pickFeeAmount = freezed,
+    Object? pickFeeDiscountAmount = freezed,
     Object? paymentConfirm = freezed,
     Object? paymentMethod = freezed,
   }) {
@@ -814,6 +820,14 @@ class _$OrderAmountCopyWithImpl<$Res> implements $OrderAmountCopyWith<$Res> {
           ? _value.orderAmount
           : orderAmount // ignore: cast_nullable_to_non_nullable
               as int,
+      pickFeeAmount: pickFeeAmount == freezed
+          ? _value.pickFeeAmount
+          : pickFeeAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pickFeeDiscountAmount: pickFeeDiscountAmount == freezed
+          ? _value.pickFeeDiscountAmount
+          : pickFeeDiscountAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
       paymentConfirm: paymentConfirm == freezed
           ? _value.paymentConfirm
           : paymentConfirm // ignore: cast_nullable_to_non_nullable
@@ -841,6 +855,8 @@ abstract class _$$_OrderAmountCopyWith<$Res>
       BoolM paid,
       int pureAmount,
       int orderAmount,
+      int? pickFeeAmount,
+      int? pickFeeDiscountAmount,
       bool paymentConfirm,
       PayMethod? paymentMethod});
 }
@@ -864,6 +880,8 @@ class __$$_OrderAmountCopyWithImpl<$Res> extends _$OrderAmountCopyWithImpl<$Res>
     Object? paid = freezed,
     Object? pureAmount = freezed,
     Object? orderAmount = freezed,
+    Object? pickFeeAmount = freezed,
+    Object? pickFeeDiscountAmount = freezed,
     Object? paymentConfirm = freezed,
     Object? paymentMethod = freezed,
   }) {
@@ -896,6 +914,14 @@ class __$$_OrderAmountCopyWithImpl<$Res> extends _$OrderAmountCopyWithImpl<$Res>
           ? _value.orderAmount
           : orderAmount // ignore: cast_nullable_to_non_nullable
               as int,
+      pickFeeAmount: pickFeeAmount == freezed
+          ? _value.pickFeeAmount
+          : pickFeeAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pickFeeDiscountAmount: pickFeeDiscountAmount == freezed
+          ? _value.pickFeeDiscountAmount
+          : pickFeeDiscountAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
       paymentConfirm: paymentConfirm == freezed
           ? _value.paymentConfirm
           : paymentConfirm // ignore: cast_nullable_to_non_nullable
@@ -911,7 +937,7 @@ class __$$_OrderAmountCopyWithImpl<$Res> extends _$OrderAmountCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_OrderAmount implements _OrderAmount {
+class _$_OrderAmount extends _OrderAmount {
   const _$_OrderAmount(
       {required this.shipFeeAmount,
       required this.shipFeeDiscountAmount,
@@ -920,8 +946,11 @@ class _$_OrderAmount implements _OrderAmount {
       required this.paid,
       required this.pureAmount,
       required this.orderAmount,
+      required this.pickFeeAmount,
+      required this.pickFeeDiscountAmount,
       required this.paymentConfirm,
-      this.paymentMethod});
+      this.paymentMethod})
+      : super._();
 
   factory _$_OrderAmount.fromJson(Map<String, dynamic> json) =>
       _$$_OrderAmountFromJson(json);
@@ -938,8 +967,13 @@ class _$_OrderAmount implements _OrderAmount {
   final BoolM paid;
   @override
   final int pureAmount;
+// 순수 상품금액
   @override
   final int orderAmount;
+  @override
+  final int? pickFeeAmount;
+  @override
+  final int? pickFeeDiscountAmount;
   @override
   final bool paymentConfirm;
   @override
@@ -947,7 +981,7 @@ class _$_OrderAmount implements _OrderAmount {
 
   @override
   String toString() {
-    return 'OrderAmount(shipFeeAmount: $shipFeeAmount, shipFeeDiscountAmount: $shipFeeDiscountAmount, tax: $tax, paidAmount: $paidAmount, paid: $paid, pureAmount: $pureAmount, orderAmount: $orderAmount, paymentConfirm: $paymentConfirm, paymentMethod: $paymentMethod)';
+    return 'OrderAmount(shipFeeAmount: $shipFeeAmount, shipFeeDiscountAmount: $shipFeeDiscountAmount, tax: $tax, paidAmount: $paidAmount, paid: $paid, pureAmount: $pureAmount, orderAmount: $orderAmount, pickFeeAmount: $pickFeeAmount, pickFeeDiscountAmount: $pickFeeDiscountAmount, paymentConfirm: $paymentConfirm, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -968,6 +1002,10 @@ class _$_OrderAmount implements _OrderAmount {
             const DeepCollectionEquality()
                 .equals(other.orderAmount, orderAmount) &&
             const DeepCollectionEquality()
+                .equals(other.pickFeeAmount, pickFeeAmount) &&
+            const DeepCollectionEquality()
+                .equals(other.pickFeeDiscountAmount, pickFeeDiscountAmount) &&
+            const DeepCollectionEquality()
                 .equals(other.paymentConfirm, paymentConfirm) &&
             const DeepCollectionEquality()
                 .equals(other.paymentMethod, paymentMethod));
@@ -984,6 +1022,8 @@ class _$_OrderAmount implements _OrderAmount {
       const DeepCollectionEquality().hash(paid),
       const DeepCollectionEquality().hash(pureAmount),
       const DeepCollectionEquality().hash(orderAmount),
+      const DeepCollectionEquality().hash(pickFeeAmount),
+      const DeepCollectionEquality().hash(pickFeeDiscountAmount),
       const DeepCollectionEquality().hash(paymentConfirm),
       const DeepCollectionEquality().hash(paymentMethod));
 
@@ -1000,7 +1040,7 @@ class _$_OrderAmount implements _OrderAmount {
   }
 }
 
-abstract class _OrderAmount implements OrderAmount {
+abstract class _OrderAmount extends OrderAmount {
   const factory _OrderAmount(
       {required final int shipFeeAmount,
       required final int shipFeeDiscountAmount,
@@ -1009,8 +1049,11 @@ abstract class _OrderAmount implements OrderAmount {
       required final BoolM paid,
       required final int pureAmount,
       required final int orderAmount,
+      required final int? pickFeeAmount,
+      required final int? pickFeeDiscountAmount,
       required final bool paymentConfirm,
       final PayMethod? paymentMethod}) = _$_OrderAmount;
+  const _OrderAmount._() : super._();
 
   factory _OrderAmount.fromJson(Map<String, dynamic> json) =
       _$_OrderAmount.fromJson;
@@ -1027,8 +1070,12 @@ abstract class _OrderAmount implements OrderAmount {
   BoolM get paid;
   @override
   int get pureAmount;
-  @override
+  @override // 순수 상품금액
   int get orderAmount;
+  @override
+  int? get pickFeeAmount;
+  @override
+  int? get pickFeeDiscountAmount;
   @override
   bool get paymentConfirm;
   @override
@@ -1058,6 +1105,10 @@ mixin _$ProdOrder {
   OrderAmount get actualAmount => throw _privateConstructorUsedError;
   OrderAmount get initialAmount => throw _privateConstructorUsedError;
   OrderState get state => throw _privateConstructorUsedError;
+  String? get sizeUnit => throw _privateConstructorUsedError;
+  String? get weightUnit => throw _privateConstructorUsedError;
+  int? get size => throw _privateConstructorUsedError;
+  int? get weight => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1082,7 +1133,11 @@ abstract class $ProdOrderCopyWith<$Res> {
       int pendingCnt,
       OrderAmount actualAmount,
       OrderAmount initialAmount,
-      OrderState state});
+      OrderState state,
+      String? sizeUnit,
+      String? weightUnit,
+      int? size,
+      int? weight});
 
   $OrderAmountCopyWith<$Res> get actualAmount;
   $OrderAmountCopyWith<$Res> get initialAmount;
@@ -1111,6 +1166,10 @@ class _$ProdOrderCopyWithImpl<$Res> implements $ProdOrderCopyWith<$Res> {
     Object? actualAmount = freezed,
     Object? initialAmount = freezed,
     Object? state = freezed,
+    Object? sizeUnit = freezed,
+    Object? weightUnit = freezed,
+    Object? size = freezed,
+    Object? weight = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -1165,6 +1224,22 @@ class _$ProdOrderCopyWithImpl<$Res> implements $ProdOrderCopyWith<$Res> {
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as OrderState,
+      sizeUnit: sizeUnit == freezed
+          ? _value.sizeUnit
+          : sizeUnit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      weightUnit: weightUnit == freezed
+          ? _value.weightUnit
+          : weightUnit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      size: size == freezed
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int?,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 
@@ -1202,7 +1277,11 @@ abstract class _$$_ProdOrderCopyWith<$Res> implements $ProdOrderCopyWith<$Res> {
       int pendingCnt,
       OrderAmount actualAmount,
       OrderAmount initialAmount,
-      OrderState state});
+      OrderState state,
+      String? sizeUnit,
+      String? weightUnit,
+      int? size,
+      int? weight});
 
   @override
   $OrderAmountCopyWith<$Res> get actualAmount;
@@ -1235,6 +1314,10 @@ class __$$_ProdOrderCopyWithImpl<$Res> extends _$ProdOrderCopyWithImpl<$Res>
     Object? actualAmount = freezed,
     Object? initialAmount = freezed,
     Object? state = freezed,
+    Object? sizeUnit = freezed,
+    Object? weightUnit = freezed,
+    Object? size = freezed,
+    Object? weight = freezed,
   }) {
     return _then(_$_ProdOrder(
       id: id == freezed
@@ -1289,6 +1372,22 @@ class __$$_ProdOrderCopyWithImpl<$Res> extends _$ProdOrderCopyWithImpl<$Res>
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as OrderState,
+      sizeUnit: sizeUnit == freezed
+          ? _value.sizeUnit
+          : sizeUnit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      weightUnit: weightUnit == freezed
+          ? _value.weightUnit
+          : weightUnit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      size: size == freezed
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int?,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -1310,7 +1409,11 @@ class _$_ProdOrder extends _ProdOrder {
       required this.pendingCnt,
       required this.actualAmount,
       required this.initialAmount,
-      required this.state})
+      required this.state,
+      this.sizeUnit,
+      this.weightUnit,
+      this.size,
+      this.weight})
       : super._();
 
   factory _$_ProdOrder.fromJson(Map<String, dynamic> json) =>
@@ -1342,6 +1445,14 @@ class _$_ProdOrder extends _ProdOrder {
   final OrderAmount initialAmount;
   @override
   final OrderState state;
+  @override
+  final String? sizeUnit;
+  @override
+  final String? weightUnit;
+  @override
+  final int? size;
+  @override
+  final int? weight;
 
   @JsonKey(ignore: true)
   @override
@@ -1370,7 +1481,11 @@ abstract class _ProdOrder extends ProdOrder {
       required final int pendingCnt,
       required final OrderAmount actualAmount,
       required final OrderAmount initialAmount,
-      required final OrderState state}) = _$_ProdOrder;
+      required final OrderState state,
+      final String? sizeUnit,
+      final String? weightUnit,
+      final int? size,
+      final int? weight}) = _$_ProdOrder;
   const _ProdOrder._() : super._();
 
   factory _ProdOrder.fromJson(Map<String, dynamic> json) =
@@ -1402,6 +1517,14 @@ abstract class _ProdOrder extends ProdOrder {
   OrderAmount get initialAmount;
   @override
   OrderState get state;
+  @override
+  String? get sizeUnit;
+  @override
+  String? get weightUnit;
+  @override
+  int? get size;
+  @override
+  int? get weight;
   @override
   @JsonKey(ignore: true)
   _$$_ProdOrderCopyWith<_$_ProdOrder> get copyWith =>
@@ -1779,7 +1902,7 @@ class __$$_ShipmentCopyWithImpl<$Res> extends _$ShipmentCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_Shipment implements _Shipment {
+class _$_Shipment extends _Shipment {
   const _$_Shipment(
       {required this.createdAt,
       required this.updatedAt,
@@ -1801,7 +1924,8 @@ class _$_Shipment implements _Shipment {
       this.amountBySize,
       required this.returnAddress,
       required this.startAddress,
-      required this.receiveAddress});
+      required this.receiveAddress})
+      : super._();
 
   factory _$_Shipment.fromJson(Map<String, dynamic> json) =>
       _$$_ShipmentFromJson(json);
@@ -1934,7 +2058,7 @@ class _$_Shipment implements _Shipment {
   }
 }
 
-abstract class _Shipment implements Shipment {
+abstract class _Shipment extends Shipment {
   const factory _Shipment(
       {required final DateTime createdAt,
       required final DateTime updatedAt,
@@ -1957,6 +2081,7 @@ abstract class _Shipment implements Shipment {
       required final Locate returnAddress,
       required final Locate startAddress,
       required final Locate receiveAddress}) = _$_Shipment;
+  const _Shipment._() : super._();
 
   factory _Shipment.fromJson(Map<String, dynamic> json) = _$_Shipment.fromJson;
 

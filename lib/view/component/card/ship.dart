@@ -21,14 +21,28 @@ class ShipThumb extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            txt("도매처"),
+            txt("수령인"),
             txt((dest.firstName ?? "") + (dest.lastName ?? "")),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            txt("상세"),
+            txt("번호"),
+            txt(dest.phone),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            txt("간이주소"),
+            txt(dest.adminArea),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            txt("상세주소"),
             txt(dest.detailLocate),
           ],
         ),

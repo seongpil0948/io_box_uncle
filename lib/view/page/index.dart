@@ -1,22 +1,22 @@
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/config/index.dart';
 import 'package:io_box_uncle/module/app/bloc/app_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
-import 'package:io_box_uncle/module/ship/api/domain.dart';
 import 'package:io_box_uncle/view/component/button/index.dart';
 import 'package:io_box_uncle/view/component/card/common.dart';
 
 import '../../module/ship/bloc/shipment_bloc.dart';
 import '../../module/ship/model/index.dart';
-import '../../module/ship/repo.dart';
 
 part "./home.dart";
 part './login.dart';
-part 'pickup/pickup_list.dart';
-part 'pickup/pickup_detail.dart';
+part 'ship/pickup_list.dart';
+part 'ship/ship_list.dart';
+part 'ship/pickup_detail.dart';
 
 class App extends StatelessWidget {
   final AuthRepo authRepo;
@@ -26,19 +26,21 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: '엉클박스',
+        debugShowCheckedModeBanner: false,
         theme: lightTheme,
         darkTheme: darkTheme,
-        home: RepositoryProvider.value(
-          value: authRepo,
-          child: MultiBlocProvider(providers: [
-            BlocProvider(create: (context) => AppBloc(authRepo: authRepo)),
-            BlocProvider(
-                create: (context) => ShipmentBloc(
-                    authRepo: authRepo,
-                    orderRepo: const ShipmentRepo(api: ShipmentFB())))
-          ], child: const AppView()),
-        ));
+        home: MultiRepositoryProvider(
+            providers: [
+              RepositoryProvider.value(value: shipRepo),
+              RepositoryProvider.value(value: authRepo)
+            ],
+            child: MultiBlocProvider(providers: [
+              BlocProvider(create: (context) => AppBloc(authRepo: authRepo)),
+              BlocProvider(
+                  create: (context) =>
+                      ShipmentBloc(authRepo: authRepo, orderRepo: shipRepo))
+            ], child: const AppView())));
   }
 }
 
@@ -69,16 +71,15 @@ List<Page<dynamic>> _onGenerateAppViewPages(
       pages.add(LoginPage.page());
       return pages;
   }
-  switch (state.module) {
-    case ModulePage.pickupList:
-      if (state.selectedPickup != null) {
-        pages.add(PickupDetailPage.page(p: state.selectedPickup!));
-      } else {
-        pages.add(PickupListPage.page());
-      }
-      break;
-    default:
+  if (state.module == ModulePage.pickupList) {
+    pages.add(PickupListPage.page());
+  } else if (state.module == ModulePage.shipList) {
+    pages.add(ShipListPage.page());
   }
+  if (state.selectedShip != null) {
+    pages.add(PickupDetailPage.page(p: state.selectedShip!));
+  }
+
   if (kDebugMode) {
     print("pages of onGeneratePages: $pages");
   }

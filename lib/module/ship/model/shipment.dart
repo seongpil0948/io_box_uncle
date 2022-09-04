@@ -27,6 +27,10 @@ class Shipment with _$Shipment {
     required Locate receiveAddress,
   }) = _Shipment;
 
+  get amountMeasurable =>
+      sizeUnit != null && weightUnit != null && size != null && weight != null;
+
+  const Shipment._();
   factory Shipment.fromJson(Map<String, Object?> json) =>
       _$ShipmentFromJson(json);
 }

@@ -102,7 +102,7 @@ enum OrderState {
   orderDone,
 }
 
-extension IoBankExtension on OrderState {
+extension OrderExtension on OrderState {
   String get toKoString {
     switch (this) {
       case OrderState.beforeOrder:
@@ -162,11 +162,20 @@ class OrderAmount with _$OrderAmount {
     required int tax,
     required int paidAmount,
     required BoolM paid,
-    required int pureAmount,
+    required int pureAmount, // 순수 상품금액
     required int orderAmount,
+    required int? pickFeeAmount,
+    required int? pickFeeDiscountAmount,
     required bool paymentConfirm,
     PayMethod? paymentMethod,
   }) = _OrderAmount;
+
+  const OrderAmount._();
+  int get amount =>
+      pureAmount +
+      (shipFeeAmount - shipFeeDiscountAmount) +
+      (pickFeeAmount ?? 0 - (pickFeeDiscountAmount ?? 0)) +
+      tax;
 
   factory OrderAmount.fromJson(Map<String, Object?> json) =>
       _$OrderAmountFromJson(json);
@@ -189,7 +198,22 @@ class ProdOrder extends Equatable with _$ProdOrder {
     required OrderAmount actualAmount,
     required OrderAmount initialAmount,
     required OrderState state,
+    String? sizeUnit,
+    String? weightUnit,
+    int? size,
+    int? weight,
   }) = _ProdOrder;
+
+  bool get isPickup => [
+        OrderState.beforePickup,
+        OrderState.ongoingPickup,
+        OrderState.pickupComplete
+      ].contains(state);
+  bool get isShip => [
+        OrderState.beforeShip,
+        OrderState.shipping,
+        OrderState.shippingComplete,
+      ].contains(state);
 
   factory ProdOrder.fromJson(Map<String, Object?> json) =>
       _$ProdOrderFromJson(json);

@@ -4,10 +4,10 @@ class AppState extends Equatable {
   final IoUser? user;
   final AppStatus status;
   final ModulePage? module;
-  final ShipOrder? selectedPickup;
+  final ShipOrder? selectedShip;
 
   const AppState(
-      {this.selectedPickup,
+      {this.selectedShip,
       required this.user,
       required this.status,
       required this.module});
@@ -15,24 +15,24 @@ class AppState extends Equatable {
       : status = AppStatus.authenticated,
         user = u,
         module = null,
-        selectedPickup = null;
+        selectedShip = null;
   const AppState.unauthenticated()
       : status = AppStatus.unauthenticated,
         user = null,
         module = null,
-        selectedPickup = null;
+        selectedShip = null;
 
   AppState copyWith({
     IoUser? user,
     AppStatus? status,
     ModulePage? module,
-    ShipOrder? selectedPickup,
+    ShipOrder? selectedShip,
   }) {
     return AppState(
         user: user ?? this.user,
         status: status ?? this.status,
         module: module ?? this.module,
-        selectedPickup: selectedPickup ?? this.selectedPickup);
+        selectedShip: selectedShip ?? this.selectedShip);
   }
 
   @override
@@ -40,8 +40,8 @@ class AppState extends Equatable {
         status,
         user ?? "",
         module ?? "",
-        selectedPickup ?? "",
+        selectedShip ?? "",
       ];
 }
 
-enum ModulePage { pickupList }
+enum ModulePage { pickupList, shipList }

@@ -84,7 +84,7 @@ class ShipmentFB extends ShipmentApi {
 
   @override
   Future<void> updateShipment(Shipment s) async {
-    await getCollection(c: IoCollection.order, userId: s.managerId)
+    await getCollection(c: IoCollection.shipment, userId: s.managerId)
         .doc(s.shippingId)
         .set(s.toJson());
   }

@@ -110,6 +110,8 @@ _$_OrderAmount _$$_OrderAmountFromJson(Map<String, dynamic> json) =>
       paid: $enumDecode(_$BoolMEnumMap, json['paid']),
       pureAmount: json['pureAmount'] as int,
       orderAmount: json['orderAmount'] as int,
+      pickFeeAmount: json['pickFeeAmount'] as int?,
+      pickFeeDiscountAmount: json['pickFeeDiscountAmount'] as int?,
       paymentConfirm: json['paymentConfirm'] as bool,
       paymentMethod:
           $enumDecodeNullable(_$PayMethodEnumMap, json['paymentMethod']),
@@ -124,6 +126,8 @@ Map<String, dynamic> _$$_OrderAmountToJson(_$_OrderAmount instance) =>
       'paid': _$BoolMEnumMap[instance.paid]!,
       'pureAmount': instance.pureAmount,
       'orderAmount': instance.orderAmount,
+      'pickFeeAmount': instance.pickFeeAmount,
+      'pickFeeDiscountAmount': instance.pickFeeDiscountAmount,
       'paymentConfirm': instance.paymentConfirm,
       'paymentMethod': _$PayMethodEnumMap[instance.paymentMethod],
     };
@@ -156,6 +160,10 @@ _$_ProdOrder _$$_ProdOrderFromJson(Map<String, dynamic> json) => _$_ProdOrder(
       initialAmount:
           OrderAmount.fromJson(json['initialAmount'] as Map<String, dynamic>),
       state: $enumDecode(_$OrderStateEnumMap, json['state']),
+      sizeUnit: json['sizeUnit'] as String?,
+      weightUnit: json['weightUnit'] as String?,
+      size: json['size'] as int?,
+      weight: json['weight'] as int?,
     );
 
 Map<String, dynamic> _$$_ProdOrderToJson(_$_ProdOrder instance) =>
@@ -173,6 +181,10 @@ Map<String, dynamic> _$$_ProdOrderToJson(_$_ProdOrder instance) =>
       'actualAmount': instance.actualAmount.toJson(),
       'initialAmount': instance.initialAmount.toJson(),
       'state': _$OrderStateEnumMap[instance.state]!,
+      'sizeUnit': instance.sizeUnit,
+      'weightUnit': instance.weightUnit,
+      'size': instance.size,
+      'weight': instance.weight,
     };
 
 _$_Shipment _$$_ShipmentFromJson(Map<String, dynamic> json) => _$_Shipment(

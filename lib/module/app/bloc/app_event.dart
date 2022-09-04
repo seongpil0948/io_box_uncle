@@ -29,12 +29,12 @@ class SelectModule extends AppEvent {
 
 class DisSelectModule extends AppEvent {}
 
-class SelectPickup extends AppEvent {
-  final ShipOrder pickup;
-  const SelectPickup({required this.pickup});
+class SelectShip extends AppEvent {
+  final ShipOrder shipOrder;
+  const SelectShip({required this.shipOrder});
 
   @override
-  List<Object> get props => [pickup.shipment.shippingId, pickup.order.id];
+  List<Object> get props => [shipOrder.shipment.shippingId, shipOrder.order.id];
 }
 
 class DisSelectPickup extends AppEvent {}
