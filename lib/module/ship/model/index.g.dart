@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'index.dart';
 
 // **************************************************************************
@@ -208,6 +206,8 @@ _$_Shipment _$$_ShipmentFromJson(Map<String, dynamic> json) => _$_Shipment(
       sizeUnit: json['sizeUnit'] as String?,
       size: json['size'] as int?,
       amountBySize: json['amountBySize'] as int?,
+      shipFeeBasic: json['shipFeeBasic'] as int,
+      pickupFeeBasic: json['pickupFeeBasic'] as int,
       returnAddress:
           Locate.fromJson(json['returnAddress'] as Map<String, dynamic>),
       startAddress:
@@ -236,6 +236,8 @@ Map<String, dynamic> _$$_ShipmentToJson(_$_Shipment instance) =>
       'sizeUnit': instance.sizeUnit,
       'size': instance.size,
       'amountBySize': instance.amountBySize,
+      'shipFeeBasic': instance.shipFeeBasic,
+      'pickupFeeBasic': instance.pickupFeeBasic,
       'returnAddress': instance.returnAddress.toJson(),
       'startAddress': instance.startAddress.toJson(),
       'receiveAddress': instance.receiveAddress.toJson(),

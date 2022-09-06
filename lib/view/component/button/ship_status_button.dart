@@ -16,8 +16,22 @@ List<Widget> shipStatusBtns(BuildContext context, ShipOrder p) {
       OutlinedButton(
           onPressed: () {
             showConfirmClose(context, () {
-              shipBloc.add(DonePickup(shipOrder: p));
-              context.read<AppBloc>().add(DisSelectPickup());
+              if (!p.shipment.amountMeasurable) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Row(
+                    children: const [
+                      Icon(
+                        Icons.error,
+                        color: Colors.red,
+                      ),
+                      Text('배송 제원정보가 누락 되었습니다.')
+                    ],
+                  ),
+                ));
+              } else {
+                shipBloc.add(DonePickup(shipOrder: p));
+                context.read<AppBloc>().add(DisSelectPickup());
+              }
             }, "픽업완료 처리 하시겠습니까?");
           },
           child: const Text("픽업완료")),

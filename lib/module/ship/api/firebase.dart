@@ -1,8 +1,8 @@
 part of "./domain.dart";
 
 class ShipmentFB extends ShipmentApi {
-  const ShipmentFB();
-
+  final db = FirebaseFirestore.instance;
+  ShipmentFB();
   @override
   Stream<QuerySnapshot> getShipmentStream(String userId) {
     return getCollection(c: IoCollection.shipment, userId: userId).snapshots();
@@ -36,6 +36,20 @@ class ShipmentFB extends ShipmentApi {
 
   @override
   Future<void> startPickup(ShipOrder s) async {
+    // // 픽업비용이 쌓이는건 매니저에게 쌓이는건데..
+    // // 앱에 보이는건 엉클 근로자 급여액인거잖아
+    // // 그럼 ..?
+    // final sfDocRef = db.collection("cities").doc("SF");
+    // db.runTransaction((transaction) async {
+    //   s.shipment.amountMeasurable
+    //   final snapshot = await transaction.get(sfDocRef);
+    //   final newPopulation = snapshot.get("population") + 1;
+    //   transaction.update(sfDocRef, {"population": newPopulation});
+    // }).then(
+    //   (value) => print("DocumentSnapshot successfully updated!"),
+    //   onError: (e) => print("Error updating document $e"),
+    // );
+
     final newOrd = s.garmentOrder.setState(
         s.order.id, OrderState.beforePickup, OrderState.ongoingPickup);
     await updateOrder(newOrd);

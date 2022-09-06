@@ -1555,6 +1555,8 @@ mixin _$Shipment {
   String? get sizeUnit => throw _privateConstructorUsedError;
   int? get size => throw _privateConstructorUsedError;
   int? get amountBySize => throw _privateConstructorUsedError;
+  int get shipFeeBasic => throw _privateConstructorUsedError;
+  int get pickupFeeBasic => throw _privateConstructorUsedError;
   Locate get returnAddress => throw _privateConstructorUsedError;
   Locate get startAddress => throw _privateConstructorUsedError;
   Locate get receiveAddress => throw _privateConstructorUsedError;
@@ -1588,6 +1590,8 @@ abstract class $ShipmentCopyWith<$Res> {
       String? sizeUnit,
       int? size,
       int? amountBySize,
+      int shipFeeBasic,
+      int pickupFeeBasic,
       Locate returnAddress,
       Locate startAddress,
       Locate receiveAddress});
@@ -1625,6 +1629,8 @@ class _$ShipmentCopyWithImpl<$Res> implements $ShipmentCopyWith<$Res> {
     Object? sizeUnit = freezed,
     Object? size = freezed,
     Object? amountBySize = freezed,
+    Object? shipFeeBasic = freezed,
+    Object? pickupFeeBasic = freezed,
     Object? returnAddress = freezed,
     Object? startAddress = freezed,
     Object? receiveAddress = freezed,
@@ -1702,6 +1708,14 @@ class _$ShipmentCopyWithImpl<$Res> implements $ShipmentCopyWith<$Res> {
           ? _value.amountBySize
           : amountBySize // ignore: cast_nullable_to_non_nullable
               as int?,
+      shipFeeBasic: shipFeeBasic == freezed
+          ? _value.shipFeeBasic
+          : shipFeeBasic // ignore: cast_nullable_to_non_nullable
+              as int,
+      pickupFeeBasic: pickupFeeBasic == freezed
+          ? _value.pickupFeeBasic
+          : pickupFeeBasic // ignore: cast_nullable_to_non_nullable
+              as int,
       returnAddress: returnAddress == freezed
           ? _value.returnAddress
           : returnAddress // ignore: cast_nullable_to_non_nullable
@@ -1764,6 +1778,8 @@ abstract class _$$_ShipmentCopyWith<$Res> implements $ShipmentCopyWith<$Res> {
       String? sizeUnit,
       int? size,
       int? amountBySize,
+      int shipFeeBasic,
+      int pickupFeeBasic,
       Locate returnAddress,
       Locate startAddress,
       Locate receiveAddress});
@@ -1806,6 +1822,8 @@ class __$$_ShipmentCopyWithImpl<$Res> extends _$ShipmentCopyWithImpl<$Res>
     Object? sizeUnit = freezed,
     Object? size = freezed,
     Object? amountBySize = freezed,
+    Object? shipFeeBasic = freezed,
+    Object? pickupFeeBasic = freezed,
     Object? returnAddress = freezed,
     Object? startAddress = freezed,
     Object? receiveAddress = freezed,
@@ -1883,6 +1901,14 @@ class __$$_ShipmentCopyWithImpl<$Res> extends _$ShipmentCopyWithImpl<$Res>
           ? _value.amountBySize
           : amountBySize // ignore: cast_nullable_to_non_nullable
               as int?,
+      shipFeeBasic: shipFeeBasic == freezed
+          ? _value.shipFeeBasic
+          : shipFeeBasic // ignore: cast_nullable_to_non_nullable
+              as int,
+      pickupFeeBasic: pickupFeeBasic == freezed
+          ? _value.pickupFeeBasic
+          : pickupFeeBasic // ignore: cast_nullable_to_non_nullable
+              as int,
       returnAddress: returnAddress == freezed
           ? _value.returnAddress
           : returnAddress // ignore: cast_nullable_to_non_nullable
@@ -1922,6 +1948,8 @@ class _$_Shipment extends _Shipment {
       this.sizeUnit,
       this.size,
       this.amountBySize,
+      required this.shipFeeBasic,
+      required this.pickupFeeBasic,
       required this.returnAddress,
       required this.startAddress,
       required this.receiveAddress})
@@ -1967,6 +1995,10 @@ class _$_Shipment extends _Shipment {
   @override
   final int? amountBySize;
   @override
+  final int shipFeeBasic;
+  @override
+  final int pickupFeeBasic;
+  @override
   final Locate returnAddress;
   @override
   final Locate startAddress;
@@ -1975,7 +2007,7 @@ class _$_Shipment extends _Shipment {
 
   @override
   String toString() {
-    return 'Shipment(createdAt: $createdAt, updatedAt: $updatedAt, wishedDeliveryTime: $wishedDeliveryTime, shippingId: $shippingId, orderDbId: $orderDbId, managerId: $managerId, uncleId: $uncleId, trackingNo: $trackingNo, prodOrderId: $prodOrderId, shipMethod: $shipMethod, additionalInfo: $additionalInfo, paid: $paid, weightUnit: $weightUnit, weight: $weight, amountByWeight: $amountByWeight, sizeUnit: $sizeUnit, size: $size, amountBySize: $amountBySize, returnAddress: $returnAddress, startAddress: $startAddress, receiveAddress: $receiveAddress)';
+    return 'Shipment(createdAt: $createdAt, updatedAt: $updatedAt, wishedDeliveryTime: $wishedDeliveryTime, shippingId: $shippingId, orderDbId: $orderDbId, managerId: $managerId, uncleId: $uncleId, trackingNo: $trackingNo, prodOrderId: $prodOrderId, shipMethod: $shipMethod, additionalInfo: $additionalInfo, paid: $paid, weightUnit: $weightUnit, weight: $weight, amountByWeight: $amountByWeight, sizeUnit: $sizeUnit, size: $size, amountBySize: $amountBySize, shipFeeBasic: $shipFeeBasic, pickupFeeBasic: $pickupFeeBasic, returnAddress: $returnAddress, startAddress: $startAddress, receiveAddress: $receiveAddress)';
   }
 
   @override
@@ -2011,6 +2043,10 @@ class _$_Shipment extends _Shipment {
             const DeepCollectionEquality()
                 .equals(other.amountBySize, amountBySize) &&
             const DeepCollectionEquality()
+                .equals(other.shipFeeBasic, shipFeeBasic) &&
+            const DeepCollectionEquality()
+                .equals(other.pickupFeeBasic, pickupFeeBasic) &&
+            const DeepCollectionEquality()
                 .equals(other.returnAddress, returnAddress) &&
             const DeepCollectionEquality()
                 .equals(other.startAddress, startAddress) &&
@@ -2040,6 +2076,8 @@ class _$_Shipment extends _Shipment {
         const DeepCollectionEquality().hash(sizeUnit),
         const DeepCollectionEquality().hash(size),
         const DeepCollectionEquality().hash(amountBySize),
+        const DeepCollectionEquality().hash(shipFeeBasic),
+        const DeepCollectionEquality().hash(pickupFeeBasic),
         const DeepCollectionEquality().hash(returnAddress),
         const DeepCollectionEquality().hash(startAddress),
         const DeepCollectionEquality().hash(receiveAddress)
@@ -2078,6 +2116,8 @@ abstract class _Shipment extends Shipment {
       final String? sizeUnit,
       final int? size,
       final int? amountBySize,
+      required final int shipFeeBasic,
+      required final int pickupFeeBasic,
       required final Locate returnAddress,
       required final Locate startAddress,
       required final Locate receiveAddress}) = _$_Shipment;
@@ -2121,6 +2161,10 @@ abstract class _Shipment extends Shipment {
   int? get size;
   @override
   int? get amountBySize;
+  @override
+  int get shipFeeBasic;
+  @override
+  int get pickupFeeBasic;
   @override
   Locate get returnAddress;
   @override

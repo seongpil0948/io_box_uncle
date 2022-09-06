@@ -22,6 +22,8 @@ class Shipment with _$Shipment {
     String? sizeUnit,
     int? size,
     int? amountBySize,
+    required int shipFeeBasic,
+    required int pickupFeeBasic,
     required Locate returnAddress,
     required Locate startAddress,
     required Locate receiveAddress,
@@ -29,6 +31,12 @@ class Shipment with _$Shipment {
 
   get amountMeasurable =>
       sizeUnit != null && weightUnit != null && size != null && weight != null;
+
+  get pickAmount => amountMeasurable
+      ? pickupFeeBasic! + (size! * amountBySize!) + (weight! + amountByWeight!)
+      : throw Exception("pickup amount not measurable");
+
+  get amount => pickAmount + shipFeeBasic;
 
   const Shipment._();
   factory Shipment.fromJson(Map<String, Object?> json) =>
