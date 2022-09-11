@@ -71,7 +71,9 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
       await emit.forEach<List<ShipOrder>>(
           orderRepo.getShipmentOrders(
               user.userInfo.userId, user.userInfo.managerId!),
-          onData: (orders) => ShipOrderState(shipOrders: orders));
+          onData: (orders) {
+        return ShipOrderState(shipOrders: orders);
+      });
     }
   }
 }

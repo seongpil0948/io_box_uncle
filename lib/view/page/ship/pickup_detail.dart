@@ -90,11 +90,13 @@ class ShipAmountCard extends StatelessWidget {
         ElevatedButton(
             onPressed: () {
               showDialog(
-                  context: context,
-                  barrierDismissible: false, // close when click outside
-                  builder: ((context) {
-                    return ShipSpecifySelect(p: p);
-                  })).then((value) => Navigator.of(context).pop());
+                      context: context,
+                      barrierDismissible: false, // close when click outside
+                      builder: ((context) {
+                        return ShipSpecifySelect(p: p);
+                      }))
+                  .then((value) =>
+                      context.read<AppBloc>().add(DisSelectPickup()));
             },
             child: txt("제원변경"))
       ],
@@ -136,81 +138,79 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.05, vertical: size.height * 0.1),
       child: IoCard(
-        height: size.height / 2,
+        height: size.height * 0.8,
         content: Form(
           key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                row(txt("사이즈 입력"), null),
-                row(
-                    SizedBox(
-                        width: widgetW,
-                        height: height,
-                        child: IntFormField(
-                          onSaved: (val) {
-                            shipSize = val != null ? int.parse(val) : 0;
-                          },
-                        )),
-                    SizedBox(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              row(txt("사이즈 입력"), null),
+              row(
+                  SizedBox(
                       width: widgetW,
                       height: height,
-                      child: DropdownButtonFormField(
-                          onSaved: (newValue) {
-                            shipSizeUnit = newValue as String;
-                          },
-                          validator: (value) =>
-                              value == null ? "사이즈단위를 선택해주십시오." : null,
-                          items: sizeUnits
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(
-                                value,
-                                style: const TextStyle(fontSize: 20),
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (val) {
-                            debugPrint("change size: $val");
-                          }),
-                    )),
-                row(txt("무게 입력"), null),
-                row(
-                    SizedBox(
-                        width: widgetW,
-                        height: height,
-                        child: IntFormField(
-                          onSaved: (val) {
-                            shipWeight = val != null ? int.parse(val) : 0;
-                          },
-                        )),
-                    SizedBox(
+                      child: IntFormField(
+                        onSaved: (val) {
+                          shipSize = val != null ? int.parse(val) : 0;
+                        },
+                      )),
+                  SizedBox(
+                    width: widgetW + 22,
+                    height: height,
+                    child: DropdownButtonFormField(
+                        onSaved: (newValue) {
+                          shipSizeUnit = newValue as String;
+                        },
+                        validator: (value) =>
+                            value == null ? "사이즈단위를 선택해주십시오." : null,
+                        items: sizeUnits
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (val) {
+                          debugPrint("change size: $val");
+                        }),
+                  )),
+              row(txt("무게 입력"), null),
+              row(
+                  SizedBox(
                       width: widgetW,
                       height: height,
-                      child: DropdownButtonFormField(
-                          onSaved: (newValue) {
-                            shipWeightUnit = newValue as String;
-                          },
-                          validator: (value) =>
-                              value == null ? "무게단위를 선택해주십시오." : null,
-                          items: weightUnits
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(
-                                value,
-                                style: const TextStyle(fontSize: 20),
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (val) {
-                            debugPrint("change weight: $val");
-                          }),
-                    )),
-              ],
-            ),
+                      child: IntFormField(
+                        onSaved: (val) {
+                          shipWeight = val != null ? int.parse(val) : 0;
+                        },
+                      )),
+                  SizedBox(
+                    width: widgetW,
+                    height: height,
+                    child: DropdownButtonFormField(
+                        onSaved: (newValue) {
+                          shipWeightUnit = newValue as String;
+                        },
+                        validator: (value) =>
+                            value == null ? "무게단위를 선택해주십시오." : null,
+                        items: weightUnits
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (val) {
+                          debugPrint("change weight: $val");
+                        }),
+                  )),
+            ],
           ),
         ),
         footer: [
@@ -231,6 +231,7 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
                     SnackBar(content: Text('저장완료 ${shipment.shippingId}')),
                   );
                   Navigator.of(context).pop();
+                  context.read<AppBloc>().add(DisSelectPickup());
                 });
               }
             },
@@ -239,6 +240,7 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
           ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
+                context.read<AppBloc>().add(DisSelectPickup());
               },
               child: txt("닫기"))
         ],

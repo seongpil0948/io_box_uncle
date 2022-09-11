@@ -33,7 +33,7 @@ class Shipment with _$Shipment {
       sizeUnit != null && weightUnit != null && size != null && weight != null;
 
   get pickAmount => amountMeasurable
-      ? pickupFeeBasic! + (size! * amountBySize!) + (weight! + amountByWeight!)
+      ? pickupFeeBasic + (size! * amountBySize!) + (weight! + amountByWeight!)
       : throw Exception("pickup amount not measurable");
 
   get amount => pickAmount + shipFeeBasic;

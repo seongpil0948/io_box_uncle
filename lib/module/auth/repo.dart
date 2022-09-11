@@ -18,6 +18,12 @@ class AuthRepo {
       }
 
       final user = await getUserById(firebaseUser.uid);
+      if (user.userInfo.role != UserRole.uncleWorker) {
+        if (kDebugMode) {
+          print("user role (${user.userInfo.role}) not uncle worker");
+          return null;
+        }
+      }
       // final j = user.toJsonCache();
       final j = user.toJson();
       pref.setString(userCacheKey, jsonEncode(j));
