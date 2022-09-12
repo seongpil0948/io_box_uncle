@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/module/ship/repo.dart';
+import 'package:io_box_uncle/util/common/index.dart';
 
 import '../../auth/index.dart';
 import '../model/index.dart';
@@ -38,25 +39,65 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
 
   Future<void> startPickup(
       StartPickup event, Emitter<ShipmentState> emit) async {
-    await orderRepo.startPickup(event.shipOrder);
+    final s = event.shipOrder;
+    await orderRepo.startPickup(s);
+    sendAlarm(AlarmParam(
+      toUserIds: [s.order.vendorId, s.order.shopId],
+      subject: "inoutbox 주문 처리내역 알림.",
+      body: "픽업을 시작 하였습니다. ",
+      notiLoadUri: "/",
+      uriArgs: {},
+    ));
   }
 
   Future<void> _donePickup(
       DonePickup event, Emitter<ShipmentState> emit) async {
-    await orderRepo.donePickup(event.shipOrder);
+    final s = event.shipOrder;
+    await orderRepo.donePickup(s);
+    sendAlarm(AlarmParam(
+      toUserIds: [s.order.vendorId, s.order.shopId],
+      subject: "inoutbox 주문 처리내역 알림.",
+      body: "픽업을 완료 했습니다.",
+      notiLoadUri: "/",
+      uriArgs: {},
+    ));
   }
 
   Future<void> _toBeforeShip(
       ToBeforeShip event, Emitter<ShipmentState> emit) async {
-    await orderRepo.toBeforeShip(event.shipOrder);
+    final s = event.shipOrder;
+    await orderRepo.toBeforeShip(s);
+    sendAlarm(AlarmParam(
+      toUserIds: [s.order.vendorId, s.order.shopId],
+      subject: "inoutbox 주문 처리내역 알림.",
+      body: "배송을 준비 중 입니다.",
+      notiLoadUri: "/",
+      uriArgs: {},
+    ));
   }
 
   Future<void> _startShip(StartShip event, Emitter<ShipmentState> emit) async {
-    await orderRepo.startShip(event.shipOrder);
+    final s = event.shipOrder;
+    await orderRepo.startShip(s);
+    sendAlarm(AlarmParam(
+      toUserIds: [s.order.vendorId, s.order.shopId],
+      subject: "inoutbox 주문 처리내역 알림.",
+      body: "배송을 시작 하였습니다.",
+      notiLoadUri: "/",
+      uriArgs: {},
+    ));
   }
 
   Future<void> _doneShip(DoneShip event, Emitter<ShipmentState> emit) async {
-    await orderRepo.doneShip(event.shipOrder);
+    final s = event.shipOrder;
+    await orderRepo.doneShip(s);
+    sendAlarm(AlarmParam(
+      toUserIds: [s.order.vendorId, s.order.shopId],
+      subject: "inoutbox 주문 처리내역 알림.",
+      body: "배송을 완료 하였습니다.",
+      notiLoadUri: "/",
+      uriArgs: {},
+    ));
   }
 
   Future<void> _reqTossOrd(
