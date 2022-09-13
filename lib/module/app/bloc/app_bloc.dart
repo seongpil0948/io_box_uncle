@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
 import 'package:io_box_uncle/module/ship/model/index.dart';
+import 'package:io_box_uncle/util/logger.dart';
 
 part 'app_event.dart';
 part 'app_state.dart';
@@ -26,22 +27,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<DisSelectPickup>(_onDisSelectPickup);
 
     _userSubscription = authRepo.user.listen((user) async {
-      if (kDebugMode) {
-        print("user: $user");
-      }
-      user.then((value) {
-        if (kDebugMode) {
-          print("in authRepo.user.listen: $value");
-        }
-        add(AppUserChanged(value));
-      });
+      user.then((value) => add(AppUserChanged(value)));
     });
   }
 
-  void _onUserChanged(AppUserChanged event, Emitter<AppState> emit) {
-    if (kDebugMode) {
-      print("event.user in _onUserChanged: ${event.user}");
-    }
+  Future<void> _onUserChanged(
+      AppUserChanged event, Emitter<AppState> emit) async {
+    await IoLogger.log(
+        IoSeverity.debug, "AppUserChanged, user: ${event.user} ");
     emit(
       event.user != null
           ? AppState.authenticated(event.user!)
@@ -73,7 +66,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         selectedShip: null));
   }
 
-  void _onLogoutRequested(AppLogoutRequested event, Emitter<AppState> emit) {
+  Future<void> _onLogoutRequested(
+      AppLogoutRequested event, Emitter<AppState> emit) async {
+    await IoLogger.log(
+        IoSeverity.debug, "user: ${authRepo.currentUser} AppLogoutRequested ");
     unawaited(authRepo.logOut());
   }
 
@@ -85,40 +81,31 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 }
 
 class AppBlocObserver extends BlocObserver {
-  @override
-  void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
-    super.onEvent(bloc, event);
-    if (kDebugMode) {
-      print(event);
-    }
-  }
+  // @override
+  // void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
+  //   super.onEvent(bloc, event);
+  // }
 
   @override
-  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    if (kDebugMode) {
-      print(error);
-    }
+  void onError(
+      BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) async {
+    await IoLogger.log(IoSeverity.error,
+        "onError in AppBlocObserver bloc: $bloc, error: $error,  stackTrace: $stackTrace");
     super.onError(bloc, error, stackTrace);
   }
 
-  @override
-  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
-    super.onChange(bloc, change);
-    if (kDebugMode) {
-      print(change);
-    }
-  }
+  // @override
+  // void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
+  //   super.onChange(bloc, change);
+  // }
 
-  @override
-  void onTransition(
-    Bloc<dynamic, dynamic> bloc,
-    Transition<dynamic, dynamic> transition,
-  ) {
-    super.onTransition(bloc, transition);
-    if (kDebugMode) {
-      print(transition);
-    }
-  }
+  // @override
+  // void onTransition(
+  //   Bloc<dynamic, dynamic> bloc,
+  //   Transition<dynamic, dynamic> transition,
+  // ) {
+  //   super.onTransition(bloc, transition);
+  // }
 }
 
 enum AppStatus {

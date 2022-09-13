@@ -35,12 +35,14 @@ Future<void> sendMail(AlarmParam p) async {
   var j = p.toJson();
   j["body"] =
       "${p.body} <br> 처리된 내용에 문의가 있으실 경우 해당 거래처에 문의하시면 보다 자세한 답변을 받아보실 수 있습니다. <br> 해당 메일은 회신이 불가한 메일입니다.";
-  final res = await Dio().post(
-    "$ioApiUrl/mail/sendEmail",
-    data: FormData.fromMap(j),
-    options: Options(contentType: Headers.formUrlEncodedContentType),
-  );
-  if (kDebugMode) {
-    print("sendEmail Response: $res");
+  try {
+    await Dio().post(
+      "$ioApiUrl/mail/sendEmail",
+      data: FormData.fromMap(j),
+      options: Options(contentType: Headers.formUrlEncodedContentType),
+    );
+  } catch (e) {
+    await IoLogger.log(IoSeverity.warn,
+        "error in request send mail, url: $ioApiUrl/mail/sendEmail, data: $j");
   }
 }

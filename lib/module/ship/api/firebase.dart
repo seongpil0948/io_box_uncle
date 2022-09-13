@@ -46,8 +46,8 @@ class ShipmentFB extends ShipmentApi {
     //   final newPopulation = snapshot.get("population") + 1;
     //   transaction.update(sfDocRef, {"population": newPopulation});
     // }).then(
-    //   (value) => print("DocumentSnapshot successfully updated!"),
-    //   onError: (e) => print("Error updating document $e"),
+    //   (value) async =>  await IoLogger.log(IoSeverity.info, "DocumentSnapshot successfully updated!");,
+    //   onError: (e) async =>  await IoLogger.log(IoSeverity.info, "Error updating document $e");,
     // );
 
     final newOrd = s.garmentOrder.setState(

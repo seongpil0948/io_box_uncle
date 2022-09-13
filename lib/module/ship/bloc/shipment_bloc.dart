@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/module/ship/repo.dart';
 import 'package:io_box_uncle/util/common/index.dart';
+import 'package:io_box_uncle/util/logger.dart';
 
 import '../../auth/index.dart';
 import '../model/index.dart';
@@ -16,7 +17,7 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
 
   ShipmentBloc({required this.orderRepo, required this.authRepo})
       : super(const ShipmentInitial()) {
-    on<ShipmentEvent>(_listenAll);
+    // on<ShipmentEvent>(_listenAll);
     on<ShipUserChange>(_userChange);
     on<StartPickup>(startPickup);
     on<DonePickup>(_donePickup);
@@ -33,9 +34,9 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
     );
   }
 
-  void _listenAll(ShipmentEvent event, Emitter<ShipmentState> emit) {
-    debugPrint("ship event in _listenAll: $event, emit: $emit");
-  }
+  // void _listenAll(ShipmentEvent event, Emitter<ShipmentState> emit) {
+  //   debugPrint("ship event in _listenAll: $event, emit: $emit");
+  // }
 
   Future<void> startPickup(
       StartPickup event, Emitter<ShipmentState> emit) async {
@@ -48,6 +49,7 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
       notiLoadUri: "/",
       uriArgs: {},
     ));
+    await IoLogger.log(IoSeverity.info, "pickup start: $s");
   }
 
   Future<void> _donePickup(
@@ -61,6 +63,7 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
       notiLoadUri: "/",
       uriArgs: {},
     ));
+    await IoLogger.log(IoSeverity.info, "pickup done: $s");
   }
 
   Future<void> _toBeforeShip(
@@ -74,6 +77,7 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
       notiLoadUri: "/",
       uriArgs: {},
     ));
+    await IoLogger.log(IoSeverity.info, "to before ship: $s");
   }
 
   Future<void> _startShip(StartShip event, Emitter<ShipmentState> emit) async {
@@ -86,6 +90,7 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
       notiLoadUri: "/",
       uriArgs: {},
     ));
+    await IoLogger.log(IoSeverity.info, "start ship: $s");
   }
 
   Future<void> _doneShip(DoneShip event, Emitter<ShipmentState> emit) async {
@@ -98,6 +103,7 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
       notiLoadUri: "/",
       uriArgs: {},
     ));
+    await IoLogger.log(IoSeverity.info, "done ship: $s");
   }
 
   Future<void> _reqTossOrd(

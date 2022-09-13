@@ -91,8 +91,6 @@ class CustomColors extends ThemeExtension<CustomColors> {
     );
   }
 
-  // Controls how it displays when the instance is being passed
-  // to the `print()` method.
   @override
   String toString() => 'CustomColors('
       'success: $success, info: $info, warning: $info, danger: $danger'
