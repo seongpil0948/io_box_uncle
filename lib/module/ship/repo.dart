@@ -49,22 +49,26 @@ class ShipmentRepo {
         var order = orders[i];
         for (var j = 0; j < order.items.length; j++) {
           final item = order.items[j];
-          final ships = shipments.where(
-            (x) => x.shippingId == item.shipmentId,
-          );
-          assert(ships.length == 1);
-          final ship = ships.first;
-          final d = ShipOrder(
-              order: item,
-              shipment: ship,
-              garmentOrder: order,
-              vendorGarment:
-                  await ProdRepo.getVendorProdById(item.vendorProdId),
-              shopUser: users[item.shopId]!,
-              vendorUser: users[item.vendorId]!,
-              managerUser: users[order.shipManagerId]!);
-          if (!data.contains(d)) {
-            data.add(d);
+          if (users.containsKey(item.shopId) &&
+              users.containsKey(item.vendorId) &&
+              users.containsKey(order.shipManagerId)) {
+            final ships = shipments.where(
+              (x) => x.shippingId == item.shipmentId,
+            );
+            assert(ships.length == 1);
+            final ship = ships.first;
+            final d = ShipOrder(
+                order: item,
+                shipment: ship,
+                garmentOrder: order,
+                vendorGarment:
+                    await ProdRepo.getVendorProdById(item.vendorProdId),
+                shopUser: users[item.shopId]!,
+                vendorUser: users[item.vendorId]!,
+                managerUser: users[order.shipManagerId]!);
+            if (!data.contains(d)) {
+              data.add(d);
+            }
           }
         }
       }

@@ -82,10 +82,12 @@ enum OrderState {
   shipping,
   @JsonValue('SHIPPING_COMPLETE')
   shippingComplete,
-  @JsonValue('TAKE_BACK')
-  takeBack,
-  @JsonValue('TAKE_BACK_DONE')
-  takeBackDone,
+  @JsonValue('RETURN_REQ')
+  returnReq,
+  @JsonValue('RETURN_APPROVED')
+  returnApproved,
+  @JsonValue('RETURN_DONE')
+  returnBackDone,
   @JsonValue('REFUND')
   refund,
   @JsonValue('REFUND_DONE')
@@ -129,9 +131,11 @@ extension OrderExtension on OrderState {
         return "배송중";
       case OrderState.shippingComplete:
         return "배송완료";
-      case OrderState.takeBack:
-        return "반품중";
-      case OrderState.takeBackDone:
+      case OrderState.returnReq:
+        return "반품요청중";
+      case OrderState.returnApproved:
+        return "반품승인";
+      case OrderState.returnBackDone:
         return "반품완료";
       case OrderState.refund:
         return "환불중";
