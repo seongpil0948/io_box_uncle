@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'index.dart';
 
 // **************************************************************************
@@ -92,8 +90,9 @@ const _$OrderStateEnumMap = {
   OrderState.beforeShip: 'BEFORE_SHIP',
   OrderState.shipping: 'SHIPPING',
   OrderState.shippingComplete: 'SHIPPING_COMPLETE',
-  OrderState.takeBack: 'RETURN',
-  OrderState.takeBackDone: 'RETURN_DONE',
+  OrderState.returnReq: 'RETURN_REQ',
+  OrderState.returnApproved: 'RETURN_APPROVED',
+  OrderState.returnBackDone: 'RETURN_DONE',
   OrderState.refund: 'REFUND',
   OrderState.refundDone: 'REFUND_DONE',
   OrderState.change: 'CHANGE',
