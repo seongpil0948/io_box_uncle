@@ -35,9 +35,6 @@ class IoLogger {
       data: FormData.fromMap(data),
       options: Options(contentType: Headers.formUrlEncodedContentType),
     );
-    if (kDebugMode) {
-      print("logging response: $res ");
-    }
   }
 }
 

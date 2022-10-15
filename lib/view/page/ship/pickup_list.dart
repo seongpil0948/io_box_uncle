@@ -33,7 +33,7 @@ class _PickupListPageState extends State<PickupListPage>
               leading: BackButton(onPressed: () {
                 context.read<AppBloc>().add(DisSelectModule());
               }),
-              title: const Text("픽업요청"),
+              title: const Text("픽업관리"),
               bottom: TabBar(
                 // isScrollable: true,
                 // indicator:
@@ -116,7 +116,7 @@ class _ShipListView extends StatelessWidget {
         } else {
           return Center(
               child: Text(
-            "픽업 데이터가 없습니다.",
+            "데이터가 없습니다.",
             style: T.headline5,
           ));
         }

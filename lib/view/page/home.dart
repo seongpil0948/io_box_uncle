@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                             width: constraint.maxWidth,
                             child: DashBoardCard(
                                 child: Text(
-                              "힝구!",
+                              "시작!",
                               style: textTheme.titleLarge,
                             )),
                           );
@@ -156,8 +156,14 @@ class UserProfile extends StatelessWidget {
         children: [
           Avatar(photo: user.userInfo.profileImg),
           const SizedBox(width: 10),
-          Text(user.userInfo.displayName ?? user.userInfo.userName,
-              style: textTheme.titleLarge)
+          Expanded(
+            child: Text(
+              user.userInfo.displayName ?? user.userInfo.userName,
+              style: textTheme.titleLarge,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+            ),
+          )
         ],
       ),
       const SizedBox(height: 4),

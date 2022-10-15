@@ -18,7 +18,7 @@ class AuthRepo {
       final user = await getUserById(firebaseUser.uid);
       if (user.userInfo.role != UserRole.uncleWorker) {
         await IoLogger.log(IoSeverity.warn,
-            "user role (${user.userInfo.role}) not uncle worker");
+            "user id(${user.userInfo.userId}) role (${user.userInfo.role}) not uncle worker");
         return null;
       }
       // final j = user.toJsonCache();
@@ -63,6 +63,24 @@ class AuthRepo {
     return snapshot.docs
         .map((e) => IoUser.fromJson(e.data() as Map<String, dynamic>))
         .toList();
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   Future<void> kakaoLogin() async {

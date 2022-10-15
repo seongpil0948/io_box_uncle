@@ -33,7 +33,7 @@ class _ShipListPageState extends State<ShipListPage>
               leading: BackButton(onPressed: () {
                 context.read<AppBloc>().add(DisSelectModule());
               }),
-              title: const Text("픽업요청"),
+              title: const Text("배송관리"),
               bottom: TabBar(
                 // isScrollable: true,
                 // indicator:

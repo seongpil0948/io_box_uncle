@@ -30,6 +30,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>kakaoee8b4a5bc6cce53051a8cc3154ab3c86</string>
+				<string>com.googleusercontent.apps.812477328372-p45n4dsugka9psbpcrv91peeg2a61fnp</string>
 			</array>
 		</dict>
 	</array>
@@ -66,5 +67,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_dartobservatory._tcp</string>
+	</array>	
 </dict>
 </plist>
