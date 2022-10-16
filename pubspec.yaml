@@ -48,6 +48,8 @@ dependencies:
   json_annotation: ^4.6.0
   firebase_remote_config: ^2.0.17
   google_sign_in: ^5.4.2
+  sign_in_with_apple: ^4.1.0
+  firebase_messaging: ^13.1.0
 
 dev_dependencies:
   flutter_test:

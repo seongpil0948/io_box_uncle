@@ -60,6 +60,16 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 child: Image.asset('assets/images/google_login.png')),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: SignInWithAppleButton(
+                height: 66,
+                onPressed: () async {
+                  await context.read<AuthRepo>().appleLogin();
+                },
+              ),
+            )
           ],
         ),
       ),

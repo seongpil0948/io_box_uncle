@@ -1,5 +1,4 @@
 import 'package:flow_builder/flow_builder.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +8,7 @@ import 'package:io_box_uncle/module/app/bloc/app_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
 import 'package:io_box_uncle/view/component/button/index.dart';
 import 'package:io_box_uncle/view/component/card/common.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../module/ship/bloc/shipment_bloc.dart';
 import '../../module/ship/model/index.dart';

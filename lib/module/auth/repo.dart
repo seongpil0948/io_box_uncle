@@ -83,6 +83,28 @@ class AuthRepo {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
+  Future<void> appleLogin() async {
+    final credential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      // Remove these if you have no need for them
+      // nonce: 'example-nonce',
+      // state: 'example-state',
+    );
+
+    debugPrint("apple credential: $credential");
+    final oauthCredential = OAuthProvider("apple.com").credential(
+      idToken: credential.identityToken,
+      accessToken: credential.authorizationCode,
+    );
+
+    final authResult =
+        await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+    debugPrint("authResult: $authResult");
+  }
+
   Future<void> kakaoLogin() async {
     k.OAuthToken? token;
     try {
