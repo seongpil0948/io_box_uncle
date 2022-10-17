@@ -12,6 +12,7 @@ import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart' as k;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'module/app/bloc/app_bloc.dart';
+import 'module/fcm/model.dart';
 
 void main() {
   runZonedGuarded(() async {
@@ -28,8 +29,9 @@ void main() {
       await IoLogger.log(
           IoSeverity.error, "Fatal Uncle App Error Detail: $details");
     };
-
-    runApp(App(authRepo: authRepo));
+    final fcm = FcmRepo();
+    await fcm.initFcm();
+    runApp(App(authRepo: authRepo, fcm: fcm));
   }, (error, stack) async {
     await IoLogger.log(
         IoSeverity.error, "Fatal Uncle App Error error: $error, stack: $stack");

@@ -2,6 +2,7 @@ part of './index.dart';
 
 @freezed //  all of this class's properties are immutable.
 class IoUser with _$IoUser {
+  @JsonSerializable(explicitToJson: true)
   const factory IoUser(
       {required IoUserInfo userInfo,
       required bool preferDark,
@@ -9,6 +10,15 @@ class IoUser with _$IoUser {
   String get name => userInfo.displayName ?? userInfo.userName;
   const IoUser._();
   factory IoUser.fromJson(Map<String, Object?> json) => _$IoUserFromJson(json);
+
+  Future<bool> update() async {
+    final doc = getCollection(c: IoCollection.users).doc(userInfo.userId);
+    await doc.set(
+        copyWith(userInfo: userInfo.copyWith(updatedAt: DateTime.now()))
+            .toJson(),
+        SetOptions(merge: true));
+    return true;
+  }
 }
 
 @freezed //  all of this class's properties are immutable.
@@ -24,7 +34,7 @@ class IoUserInfo with _$IoUserInfo {
     required bool emailVerified,
     String? profileImg,
     required UserRole role,
-    required List<String> fcmTokens,
+    @Default([]) List<FcmToken> fcmTokens,
     required bool passed,
     String? phone,
     String? managerId,

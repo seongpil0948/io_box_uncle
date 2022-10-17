@@ -32,7 +32,8 @@ mixin _$IoUser {
 /// @nodoc
 abstract class $IoUserCopyWith<$Res> {
   factory $IoUserCopyWith(IoUser value, $Res Function(IoUser) then) =
-      _$IoUserCopyWithImpl<$Res>;
+      _$IoUserCopyWithImpl<$Res, IoUser>;
+  @useResult
   $Res call({IoUserInfo userInfo, bool preferDark, UncleInfo? uncleInfo});
 
   $IoUserInfoCopyWith<$Res> get userInfo;
@@ -40,50 +41,55 @@ abstract class $IoUserCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$IoUserCopyWithImpl<$Res> implements $IoUserCopyWith<$Res> {
+class _$IoUserCopyWithImpl<$Res, $Val extends IoUser>
+    implements $IoUserCopyWith<$Res> {
   _$IoUserCopyWithImpl(this._value, this._then);
 
-  final IoUser _value;
   // ignore: unused_field
-  final $Res Function(IoUser) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userInfo = freezed,
-    Object? preferDark = freezed,
+    Object? userInfo = null,
+    Object? preferDark = null,
     Object? uncleInfo = freezed,
   }) {
     return _then(_value.copyWith(
-      userInfo: userInfo == freezed
+      userInfo: null == userInfo
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
               as IoUserInfo,
-      preferDark: preferDark == freezed
+      preferDark: null == preferDark
           ? _value.preferDark
           : preferDark // ignore: cast_nullable_to_non_nullable
               as bool,
-      uncleInfo: uncleInfo == freezed
+      uncleInfo: freezed == uncleInfo
           ? _value.uncleInfo
           : uncleInfo // ignore: cast_nullable_to_non_nullable
               as UncleInfo?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $IoUserInfoCopyWith<$Res> get userInfo {
     return $IoUserInfoCopyWith<$Res>(_value.userInfo, (value) {
-      return _then(_value.copyWith(userInfo: value));
+      return _then(_value.copyWith(userInfo: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UncleInfoCopyWith<$Res>? get uncleInfo {
     if (_value.uncleInfo == null) {
       return null;
     }
 
     return $UncleInfoCopyWith<$Res>(_value.uncleInfo!, (value) {
-      return _then(_value.copyWith(uncleInfo: value));
+      return _then(_value.copyWith(uncleInfo: value) as $Val);
     });
   }
 }
@@ -93,6 +99,7 @@ abstract class _$$_IoUserCopyWith<$Res> implements $IoUserCopyWith<$Res> {
   factory _$$_IoUserCopyWith(_$_IoUser value, $Res Function(_$_IoUser) then) =
       __$$_IoUserCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({IoUserInfo userInfo, bool preferDark, UncleInfo? uncleInfo});
 
   @override
@@ -102,30 +109,29 @@ abstract class _$$_IoUserCopyWith<$Res> implements $IoUserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_IoUserCopyWithImpl<$Res> extends _$IoUserCopyWithImpl<$Res>
+class __$$_IoUserCopyWithImpl<$Res>
+    extends _$IoUserCopyWithImpl<$Res, _$_IoUser>
     implements _$$_IoUserCopyWith<$Res> {
   __$$_IoUserCopyWithImpl(_$_IoUser _value, $Res Function(_$_IoUser) _then)
-      : super(_value, (v) => _then(v as _$_IoUser));
+      : super(_value, _then);
 
-  @override
-  _$_IoUser get _value => super._value as _$_IoUser;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userInfo = freezed,
-    Object? preferDark = freezed,
+    Object? userInfo = null,
+    Object? preferDark = null,
     Object? uncleInfo = freezed,
   }) {
     return _then(_$_IoUser(
-      userInfo: userInfo == freezed
+      userInfo: null == userInfo
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
               as IoUserInfo,
-      preferDark: preferDark == freezed
+      preferDark: null == preferDark
           ? _value.preferDark
           : preferDark // ignore: cast_nullable_to_non_nullable
               as bool,
-      uncleInfo: uncleInfo == freezed
+      uncleInfo: freezed == uncleInfo
           ? _value.uncleInfo
           : uncleInfo // ignore: cast_nullable_to_non_nullable
               as UncleInfo?,
@@ -134,8 +140,9 @@ class __$$_IoUserCopyWithImpl<$Res> extends _$IoUserCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_IoUser extends _IoUser {
+
+@JsonSerializable(explicitToJson: true)
+class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
   const _$_IoUser(
       {required this.userInfo, required this.preferDark, this.uncleInfo})
       : super._();
@@ -151,8 +158,18 @@ class _$_IoUser extends _IoUser {
   final UncleInfo? uncleInfo;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'IoUser(userInfo: $userInfo, preferDark: $preferDark, uncleInfo: $uncleInfo)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'IoUser'))
+      ..add(DiagnosticsProperty('userInfo', userInfo))
+      ..add(DiagnosticsProperty('preferDark', preferDark))
+      ..add(DiagnosticsProperty('uncleInfo', uncleInfo));
   }
 
   @override
@@ -160,22 +177,21 @@ class _$_IoUser extends _IoUser {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_IoUser &&
-            const DeepCollectionEquality().equals(other.userInfo, userInfo) &&
-            const DeepCollectionEquality()
-                .equals(other.preferDark, preferDark) &&
-            const DeepCollectionEquality().equals(other.uncleInfo, uncleInfo));
+            (identical(other.userInfo, userInfo) ||
+                other.userInfo == userInfo) &&
+            (identical(other.preferDark, preferDark) ||
+                other.preferDark == preferDark) &&
+            (identical(other.uncleInfo, uncleInfo) ||
+                other.uncleInfo == uncleInfo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(userInfo),
-      const DeepCollectionEquality().hash(preferDark),
-      const DeepCollectionEquality().hash(uncleInfo));
+  int get hashCode => Object.hash(runtimeType, userInfo, preferDark, uncleInfo);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_IoUserCopyWith<_$_IoUser> get copyWith =>
       __$$_IoUserCopyWithImpl<_$_IoUser>(this, _$identity);
 
@@ -223,7 +239,7 @@ mixin _$IoUserInfo {
   bool get emailVerified => throw _privateConstructorUsedError;
   String? get profileImg => throw _privateConstructorUsedError;
   UserRole get role => throw _privateConstructorUsedError;
-  List<String> get fcmTokens => throw _privateConstructorUsedError;
+  List<FcmToken> get fcmTokens => throw _privateConstructorUsedError;
   bool get passed => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get managerId => throw _privateConstructorUsedError;
@@ -240,7 +256,8 @@ mixin _$IoUserInfo {
 abstract class $IoUserInfoCopyWith<$Res> {
   factory $IoUserInfoCopyWith(
           IoUserInfo value, $Res Function(IoUserInfo) then) =
-      _$IoUserInfoCopyWithImpl<$Res>;
+      _$IoUserInfoCopyWithImpl<$Res, IoUserInfo>;
+  @useResult
   $Res call(
       {DateTime? createdAt,
       DateTime? updatedAt,
@@ -251,7 +268,7 @@ abstract class $IoUserInfoCopyWith<$Res> {
       bool emailVerified,
       String? profileImg,
       UserRole role,
-      List<String> fcmTokens,
+      List<FcmToken> fcmTokens,
       bool passed,
       String? phone,
       String? managerId,
@@ -260,93 +277,96 @@ abstract class $IoUserInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$IoUserInfoCopyWithImpl<$Res> implements $IoUserInfoCopyWith<$Res> {
+class _$IoUserInfoCopyWithImpl<$Res, $Val extends IoUserInfo>
+    implements $IoUserInfoCopyWith<$Res> {
   _$IoUserInfoCopyWithImpl(this._value, this._then);
 
-  final IoUserInfo _value;
   // ignore: unused_field
-  final $Res Function(IoUserInfo) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
-    Object? userId = freezed,
-    Object? userName = freezed,
+    Object? userId = null,
+    Object? userName = null,
     Object? displayName = freezed,
     Object? email = freezed,
-    Object? emailVerified = freezed,
+    Object? emailVerified = null,
     Object? profileImg = freezed,
-    Object? role = freezed,
-    Object? fcmTokens = freezed,
-    Object? passed = freezed,
+    Object? role = null,
+    Object? fcmTokens = null,
+    Object? passed = null,
     Object? phone = freezed,
     Object? managerId = freezed,
     Object? workerIds = freezed,
     Object? uncleId = freezed,
   }) {
     return _then(_value.copyWith(
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      userId: userId == freezed
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      userName: userName == freezed
+      userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      displayName: displayName == freezed
+      displayName: freezed == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: email == freezed
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailVerified: emailVerified == freezed
+      emailVerified: null == emailVerified
           ? _value.emailVerified
           : emailVerified // ignore: cast_nullable_to_non_nullable
               as bool,
-      profileImg: profileImg == freezed
+      profileImg: freezed == profileImg
           ? _value.profileImg
           : profileImg // ignore: cast_nullable_to_non_nullable
               as String?,
-      role: role == freezed
+      role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as UserRole,
-      fcmTokens: fcmTokens == freezed
+      fcmTokens: null == fcmTokens
           ? _value.fcmTokens
           : fcmTokens // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      passed: passed == freezed
+              as List<FcmToken>,
+      passed: null == passed
           ? _value.passed
           : passed // ignore: cast_nullable_to_non_nullable
               as bool,
-      phone: phone == freezed
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      managerId: managerId == freezed
+      managerId: freezed == managerId
           ? _value.managerId
           : managerId // ignore: cast_nullable_to_non_nullable
               as String?,
-      workerIds: workerIds == freezed
+      workerIds: freezed == workerIds
           ? _value.workerIds
           : workerIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      uncleId: uncleId == freezed
+      uncleId: freezed == uncleId
           ? _value.uncleId
           : uncleId // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -357,6 +377,7 @@ abstract class _$$_IoUserInfoCopyWith<$Res>
           _$_IoUserInfo value, $Res Function(_$_IoUserInfo) then) =
       __$$_IoUserInfoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {DateTime? createdAt,
       DateTime? updatedAt,
@@ -367,7 +388,7 @@ abstract class _$$_IoUserInfoCopyWith<$Res>
       bool emailVerified,
       String? profileImg,
       UserRole role,
-      List<String> fcmTokens,
+      List<FcmToken> fcmTokens,
       bool passed,
       String? phone,
       String? managerId,
@@ -376,91 +397,90 @@ abstract class _$$_IoUserInfoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_IoUserInfoCopyWithImpl<$Res> extends _$IoUserInfoCopyWithImpl<$Res>
+class __$$_IoUserInfoCopyWithImpl<$Res>
+    extends _$IoUserInfoCopyWithImpl<$Res, _$_IoUserInfo>
     implements _$$_IoUserInfoCopyWith<$Res> {
   __$$_IoUserInfoCopyWithImpl(
       _$_IoUserInfo _value, $Res Function(_$_IoUserInfo) _then)
-      : super(_value, (v) => _then(v as _$_IoUserInfo));
+      : super(_value, _then);
 
-  @override
-  _$_IoUserInfo get _value => super._value as _$_IoUserInfo;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
-    Object? userId = freezed,
-    Object? userName = freezed,
+    Object? userId = null,
+    Object? userName = null,
     Object? displayName = freezed,
     Object? email = freezed,
-    Object? emailVerified = freezed,
+    Object? emailVerified = null,
     Object? profileImg = freezed,
-    Object? role = freezed,
-    Object? fcmTokens = freezed,
-    Object? passed = freezed,
+    Object? role = null,
+    Object? fcmTokens = null,
+    Object? passed = null,
     Object? phone = freezed,
     Object? managerId = freezed,
     Object? workerIds = freezed,
     Object? uncleId = freezed,
   }) {
     return _then(_$_IoUserInfo(
-      createdAt: createdAt == freezed
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      userId: userId == freezed
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      userName: userName == freezed
+      userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      displayName: displayName == freezed
+      displayName: freezed == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: email == freezed
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailVerified: emailVerified == freezed
+      emailVerified: null == emailVerified
           ? _value.emailVerified
           : emailVerified // ignore: cast_nullable_to_non_nullable
               as bool,
-      profileImg: profileImg == freezed
+      profileImg: freezed == profileImg
           ? _value.profileImg
           : profileImg // ignore: cast_nullable_to_non_nullable
               as String?,
-      role: role == freezed
+      role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as UserRole,
-      fcmTokens: fcmTokens == freezed
+      fcmTokens: null == fcmTokens
           ? _value._fcmTokens
           : fcmTokens // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      passed: passed == freezed
+              as List<FcmToken>,
+      passed: null == passed
           ? _value.passed
           : passed // ignore: cast_nullable_to_non_nullable
               as bool,
-      phone: phone == freezed
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      managerId: managerId == freezed
+      managerId: freezed == managerId
           ? _value.managerId
           : managerId // ignore: cast_nullable_to_non_nullable
               as String?,
-      workerIds: workerIds == freezed
+      workerIds: freezed == workerIds
           ? _value._workerIds
           : workerIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      uncleId: uncleId == freezed
+      uncleId: freezed == uncleId
           ? _value.uncleId
           : uncleId // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -471,7 +491,7 @@ class __$$_IoUserInfoCopyWithImpl<$Res> extends _$IoUserInfoCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_IoUserInfo implements _IoUserInfo {
+class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
   const _$_IoUserInfo(
       {this.createdAt,
       this.updatedAt,
@@ -482,7 +502,7 @@ class _$_IoUserInfo implements _IoUserInfo {
       required this.emailVerified,
       this.profileImg,
       required this.role,
-      required final List<String> fcmTokens,
+      final List<FcmToken> fcmTokens = const [],
       required this.passed,
       this.phone,
       this.managerId,
@@ -512,9 +532,10 @@ class _$_IoUserInfo implements _IoUserInfo {
   final String? profileImg;
   @override
   final UserRole role;
-  final List<String> _fcmTokens;
+  final List<FcmToken> _fcmTokens;
   @override
-  List<String> get fcmTokens {
+  @JsonKey()
+  List<FcmToken> get fcmTokens {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_fcmTokens);
   }
@@ -538,8 +559,30 @@ class _$_IoUserInfo implements _IoUserInfo {
   final String? uncleId;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'IoUserInfo(createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId, userName: $userName, displayName: $displayName, email: $email, emailVerified: $emailVerified, profileImg: $profileImg, role: $role, fcmTokens: $fcmTokens, passed: $passed, phone: $phone, managerId: $managerId, workerIds: $workerIds, uncleId: $uncleId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'IoUserInfo'))
+      ..add(DiagnosticsProperty('createdAt', createdAt))
+      ..add(DiagnosticsProperty('updatedAt', updatedAt))
+      ..add(DiagnosticsProperty('userId', userId))
+      ..add(DiagnosticsProperty('userName', userName))
+      ..add(DiagnosticsProperty('displayName', displayName))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('emailVerified', emailVerified))
+      ..add(DiagnosticsProperty('profileImg', profileImg))
+      ..add(DiagnosticsProperty('role', role))
+      ..add(DiagnosticsProperty('fcmTokens', fcmTokens))
+      ..add(DiagnosticsProperty('passed', passed))
+      ..add(DiagnosticsProperty('phone', phone))
+      ..add(DiagnosticsProperty('managerId', managerId))
+      ..add(DiagnosticsProperty('workerIds', workerIds))
+      ..add(DiagnosticsProperty('uncleId', uncleId));
   }
 
   @override
@@ -547,50 +590,55 @@ class _$_IoUserInfo implements _IoUserInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_IoUserInfo &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
-            const DeepCollectionEquality().equals(other.userId, userId) &&
-            const DeepCollectionEquality().equals(other.userName, userName) &&
-            const DeepCollectionEquality()
-                .equals(other.displayName, displayName) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality()
-                .equals(other.emailVerified, emailVerified) &&
-            const DeepCollectionEquality()
-                .equals(other.profileImg, profileImg) &&
-            const DeepCollectionEquality().equals(other.role, role) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.emailVerified, emailVerified) ||
+                other.emailVerified == emailVerified) &&
+            (identical(other.profileImg, profileImg) ||
+                other.profileImg == profileImg) &&
+            (identical(other.role, role) || other.role == role) &&
             const DeepCollectionEquality()
                 .equals(other._fcmTokens, _fcmTokens) &&
-            const DeepCollectionEquality().equals(other.passed, passed) &&
-            const DeepCollectionEquality().equals(other.phone, phone) &&
-            const DeepCollectionEquality().equals(other.managerId, managerId) &&
+            (identical(other.passed, passed) || other.passed == passed) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.managerId, managerId) ||
+                other.managerId == managerId) &&
             const DeepCollectionEquality()
                 .equals(other._workerIds, _workerIds) &&
-            const DeepCollectionEquality().equals(other.uncleId, uncleId));
+            (identical(other.uncleId, uncleId) || other.uncleId == uncleId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(updatedAt),
-      const DeepCollectionEquality().hash(userId),
-      const DeepCollectionEquality().hash(userName),
-      const DeepCollectionEquality().hash(displayName),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(emailVerified),
-      const DeepCollectionEquality().hash(profileImg),
-      const DeepCollectionEquality().hash(role),
+      createdAt,
+      updatedAt,
+      userId,
+      userName,
+      displayName,
+      email,
+      emailVerified,
+      profileImg,
+      role,
       const DeepCollectionEquality().hash(_fcmTokens),
-      const DeepCollectionEquality().hash(passed),
-      const DeepCollectionEquality().hash(phone),
-      const DeepCollectionEquality().hash(managerId),
+      passed,
+      phone,
+      managerId,
       const DeepCollectionEquality().hash(_workerIds),
-      const DeepCollectionEquality().hash(uncleId));
+      uncleId);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_IoUserInfoCopyWith<_$_IoUserInfo> get copyWith =>
       __$$_IoUserInfoCopyWithImpl<_$_IoUserInfo>(this, _$identity);
 
@@ -613,7 +661,7 @@ abstract class _IoUserInfo implements IoUserInfo {
       required final bool emailVerified,
       final String? profileImg,
       required final UserRole role,
-      required final List<String> fcmTokens,
+      final List<FcmToken> fcmTokens,
       required final bool passed,
       final String? phone,
       final String? managerId,
@@ -642,7 +690,7 @@ abstract class _IoUserInfo implements IoUserInfo {
   @override
   UserRole get role;
   @override
-  List<String> get fcmTokens;
+  List<FcmToken> get fcmTokens;
   @override
   bool get passed;
   @override
@@ -679,7 +727,8 @@ mixin _$UncleInfo {
 /// @nodoc
 abstract class $UncleInfoCopyWith<$Res> {
   factory $UncleInfoCopyWith(UncleInfo value, $Res Function(UncleInfo) then) =
-      _$UncleInfoCopyWithImpl<$Res>;
+      _$UncleInfoCopyWithImpl<$Res, UncleInfo>;
+  @useResult
   $Res call(
       {List<LocateAmount> pickupLocates,
       List<LocateAmount> shipLocates,
@@ -688,38 +737,41 @@ abstract class $UncleInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UncleInfoCopyWithImpl<$Res> implements $UncleInfoCopyWith<$Res> {
+class _$UncleInfoCopyWithImpl<$Res, $Val extends UncleInfo>
+    implements $UncleInfoCopyWith<$Res> {
   _$UncleInfoCopyWithImpl(this._value, this._then);
 
-  final UncleInfo _value;
   // ignore: unused_field
-  final $Res Function(UncleInfo) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pickupLocates = freezed,
-    Object? shipLocates = freezed,
-    Object? amountBySize = freezed,
-    Object? amountByWeight = freezed,
+    Object? pickupLocates = null,
+    Object? shipLocates = null,
+    Object? amountBySize = null,
+    Object? amountByWeight = null,
   }) {
     return _then(_value.copyWith(
-      pickupLocates: pickupLocates == freezed
+      pickupLocates: null == pickupLocates
           ? _value.pickupLocates
           : pickupLocates // ignore: cast_nullable_to_non_nullable
               as List<LocateAmount>,
-      shipLocates: shipLocates == freezed
+      shipLocates: null == shipLocates
           ? _value.shipLocates
           : shipLocates // ignore: cast_nullable_to_non_nullable
               as List<LocateAmount>,
-      amountBySize: amountBySize == freezed
+      amountBySize: null == amountBySize
           ? _value.amountBySize
           : amountBySize // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
-      amountByWeight: amountByWeight == freezed
+      amountByWeight: null == amountByWeight
           ? _value.amountByWeight
           : amountByWeight // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -729,6 +781,7 @@ abstract class _$$_UncleInfoCopyWith<$Res> implements $UncleInfoCopyWith<$Res> {
           _$_UncleInfo value, $Res Function(_$_UncleInfo) then) =
       __$$_UncleInfoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {List<LocateAmount> pickupLocates,
       List<LocateAmount> shipLocates,
@@ -737,36 +790,35 @@ abstract class _$$_UncleInfoCopyWith<$Res> implements $UncleInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UncleInfoCopyWithImpl<$Res> extends _$UncleInfoCopyWithImpl<$Res>
+class __$$_UncleInfoCopyWithImpl<$Res>
+    extends _$UncleInfoCopyWithImpl<$Res, _$_UncleInfo>
     implements _$$_UncleInfoCopyWith<$Res> {
   __$$_UncleInfoCopyWithImpl(
       _$_UncleInfo _value, $Res Function(_$_UncleInfo) _then)
-      : super(_value, (v) => _then(v as _$_UncleInfo));
+      : super(_value, _then);
 
-  @override
-  _$_UncleInfo get _value => super._value as _$_UncleInfo;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pickupLocates = freezed,
-    Object? shipLocates = freezed,
-    Object? amountBySize = freezed,
-    Object? amountByWeight = freezed,
+    Object? pickupLocates = null,
+    Object? shipLocates = null,
+    Object? amountBySize = null,
+    Object? amountByWeight = null,
   }) {
     return _then(_$_UncleInfo(
-      pickupLocates: pickupLocates == freezed
+      pickupLocates: null == pickupLocates
           ? _value._pickupLocates
           : pickupLocates // ignore: cast_nullable_to_non_nullable
               as List<LocateAmount>,
-      shipLocates: shipLocates == freezed
+      shipLocates: null == shipLocates
           ? _value._shipLocates
           : shipLocates // ignore: cast_nullable_to_non_nullable
               as List<LocateAmount>,
-      amountBySize: amountBySize == freezed
+      amountBySize: null == amountBySize
           ? _value._amountBySize
           : amountBySize // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
-      amountByWeight: amountByWeight == freezed
+      amountByWeight: null == amountByWeight
           ? _value._amountByWeight
           : amountByWeight // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
@@ -777,7 +829,7 @@ class __$$_UncleInfoCopyWithImpl<$Res> extends _$UncleInfoCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_UncleInfo implements _UncleInfo {
+class _$_UncleInfo with DiagnosticableTreeMixin implements _UncleInfo {
   const _$_UncleInfo(
       {required final List<LocateAmount> pickupLocates,
       required final List<LocateAmount> shipLocates,
@@ -820,8 +872,19 @@ class _$_UncleInfo implements _UncleInfo {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'UncleInfo(pickupLocates: $pickupLocates, shipLocates: $shipLocates, amountBySize: $amountBySize, amountByWeight: $amountByWeight)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UncleInfo'))
+      ..add(DiagnosticsProperty('pickupLocates', pickupLocates))
+      ..add(DiagnosticsProperty('shipLocates', shipLocates))
+      ..add(DiagnosticsProperty('amountBySize', amountBySize))
+      ..add(DiagnosticsProperty('amountByWeight', amountByWeight));
   }
 
   @override
@@ -850,6 +913,7 @@ class _$_UncleInfo implements _UncleInfo {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UncleInfoCopyWith<_$_UncleInfo> get copyWith =>
       __$$_UncleInfoCopyWithImpl<_$_UncleInfo>(this, _$identity);
 
@@ -904,41 +968,46 @@ mixin _$LocateAmount {
 abstract class $LocateAmountCopyWith<$Res> {
   factory $LocateAmountCopyWith(
           LocateAmount value, $Res Function(LocateAmount) then) =
-      _$LocateAmountCopyWithImpl<$Res>;
+      _$LocateAmountCopyWithImpl<$Res, LocateAmount>;
+  @useResult
   $Res call({int amount, Locate locate});
 
   $LocateCopyWith<$Res> get locate;
 }
 
 /// @nodoc
-class _$LocateAmountCopyWithImpl<$Res> implements $LocateAmountCopyWith<$Res> {
+class _$LocateAmountCopyWithImpl<$Res, $Val extends LocateAmount>
+    implements $LocateAmountCopyWith<$Res> {
   _$LocateAmountCopyWithImpl(this._value, this._then);
 
-  final LocateAmount _value;
   // ignore: unused_field
-  final $Res Function(LocateAmount) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? amount = freezed,
-    Object? locate = freezed,
+    Object? amount = null,
+    Object? locate = null,
   }) {
     return _then(_value.copyWith(
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      locate: locate == freezed
+      locate: null == locate
           ? _value.locate
           : locate // ignore: cast_nullable_to_non_nullable
               as Locate,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $LocateCopyWith<$Res> get locate {
     return $LocateCopyWith<$Res>(_value.locate, (value) {
-      return _then(_value.copyWith(locate: value));
+      return _then(_value.copyWith(locate: value) as $Val);
     });
   }
 }
@@ -950,6 +1019,7 @@ abstract class _$$_LocateAmountCopyWith<$Res>
           _$_LocateAmount value, $Res Function(_$_LocateAmount) then) =
       __$$_LocateAmountCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int amount, Locate locate});
 
   @override
@@ -958,26 +1028,24 @@ abstract class _$$_LocateAmountCopyWith<$Res>
 
 /// @nodoc
 class __$$_LocateAmountCopyWithImpl<$Res>
-    extends _$LocateAmountCopyWithImpl<$Res>
+    extends _$LocateAmountCopyWithImpl<$Res, _$_LocateAmount>
     implements _$$_LocateAmountCopyWith<$Res> {
   __$$_LocateAmountCopyWithImpl(
       _$_LocateAmount _value, $Res Function(_$_LocateAmount) _then)
-      : super(_value, (v) => _then(v as _$_LocateAmount));
+      : super(_value, _then);
 
-  @override
-  _$_LocateAmount get _value => super._value as _$_LocateAmount;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? amount = freezed,
-    Object? locate = freezed,
+    Object? amount = null,
+    Object? locate = null,
   }) {
     return _then(_$_LocateAmount(
-      amount: amount == freezed
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
-      locate: locate == freezed
+      locate: null == locate
           ? _value.locate
           : locate // ignore: cast_nullable_to_non_nullable
               as Locate,
@@ -988,7 +1056,7 @@ class __$$_LocateAmountCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_LocateAmount implements _LocateAmount {
+class _$_LocateAmount with DiagnosticableTreeMixin implements _LocateAmount {
   const _$_LocateAmount({required this.amount, required this.locate});
 
   factory _$_LocateAmount.fromJson(Map<String, dynamic> json) =>
@@ -1000,8 +1068,17 @@ class _$_LocateAmount implements _LocateAmount {
   final Locate locate;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LocateAmount(amount: $amount, locate: $locate)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LocateAmount'))
+      ..add(DiagnosticsProperty('amount', amount))
+      ..add(DiagnosticsProperty('locate', locate));
   }
 
   @override
@@ -1009,19 +1086,17 @@ class _$_LocateAmount implements _LocateAmount {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LocateAmount &&
-            const DeepCollectionEquality().equals(other.amount, amount) &&
-            const DeepCollectionEquality().equals(other.locate, locate));
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.locate, locate) || other.locate == locate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(amount),
-      const DeepCollectionEquality().hash(locate));
+  int get hashCode => Object.hash(runtimeType, amount, locate);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LocateAmountCopyWith<_$_LocateAmount> get copyWith =>
       __$$_LocateAmountCopyWithImpl<_$_LocateAmount>(this, _$identity);
 

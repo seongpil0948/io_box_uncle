@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/config/index.dart';
 import 'package:io_box_uncle/module/app/bloc/app_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
+import 'package:io_box_uncle/module/fcm/model.dart';
 import 'package:io_box_uncle/view/component/button/index.dart';
 import 'package:io_box_uncle/view/component/card/common.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -21,7 +22,9 @@ part 'ship/pickup_detail.dart';
 
 class App extends StatelessWidget {
   final AuthRepo authRepo;
-  const App({Key? key, required this.authRepo}) : super(key: key);
+  final FcmRepo fcm;
+  const App({Key? key, required this.authRepo, required this.fcm})
+      : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -37,7 +40,8 @@ class App extends StatelessWidget {
               RepositoryProvider.value(value: authRepo)
             ],
             child: MultiBlocProvider(providers: [
-              BlocProvider(create: (context) => AppBloc(authRepo: authRepo)),
+              BlocProvider(
+                  create: (context) => AppBloc(authRepo: authRepo, fcm: fcm)),
               BlocProvider(
                   create: (context) =>
                       ShipmentBloc(authRepo: authRepo, orderRepo: shipRepo))

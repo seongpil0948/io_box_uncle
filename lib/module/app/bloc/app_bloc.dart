@@ -1,10 +1,14 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:equatable/equatable.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
+import 'package:io_box_uncle/module/fcm/model.dart';
 import 'package:io_box_uncle/module/ship/model/index.dart';
+import 'package:io_box_uncle/util/common/index.dart';
 import 'package:io_box_uncle/util/logger.dart';
 
 part 'app_event.dart';
@@ -13,7 +17,8 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   AuthRepo authRepo;
   late final StreamSubscription<Future<IoUser?>> _userSubscription;
-  AppBloc({required this.authRepo})
+  final FcmRepo fcm;
+  AppBloc({required this.authRepo, required this.fcm})
       : super(
           authRepo.currentUser != null
               ? AppState.authenticated(authRepo.currentUser!)
@@ -33,8 +38,34 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   Future<void> _onUserChanged(
       AppUserChanged event, Emitter<AppState> emit) async {
-    await IoLogger.log(
-        IoSeverity.debug, "AppUserChanged, user: ${event.user} ");
+    IoUser? u = event.user;
+    await IoLogger.log(IoSeverity.debug, "AppUserChanged, user: $u ");
+    if (u != null) {
+      FirebaseMessaging.instance.getToken().then((token) async {
+        if (token != null) {
+          final now = DateTime.now();
+          final newToken = FcmToken(createdAt: now, token: token);
+          fcm.token = newToken;
+          for (var e in u!.userInfo.fcmTokens) {
+            if (daysBetween(e.createdAt, now).abs() > 7) {
+              u = u!.copyWith.userInfo(
+                  fcmTokens: u!.userInfo.fcmTokens
+                      .where((element) => element != e)
+                      .toList());
+            }
+          }
+          if (!u!.userInfo.fcmTokens.contains(newToken)) {
+            u = u!.copyWith
+                .userInfo(fcmTokens: [...u!.userInfo.fcmTokens, newToken]);
+          }
+          await u!.update();
+        } else {
+          await IoLogger.log(IoSeverity.warn,
+              "Fail to retrieve fcm token, os: ${Platform.operatingSystem}, user: $u ");
+        }
+      });
+    }
+
     emit(
       event.user != null
           ? AppState.authenticated(event.user!)

@@ -49,7 +49,8 @@ mixin _$VendorGarment {
 abstract class $VendorGarmentCopyWith<$Res> {
   factory $VendorGarmentCopyWith(
           VendorGarment value, $Res Function(VendorGarment) then) =
-      _$VendorGarmentCopyWithImpl<$Res>;
+      _$VendorGarmentCopyWithImpl<$Res, VendorGarment>;
+  @useResult
   $Res call(
       {Gender gender,
       Part part,
@@ -70,99 +71,101 @@ abstract class $VendorGarmentCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$VendorGarmentCopyWithImpl<$Res>
+class _$VendorGarmentCopyWithImpl<$Res, $Val extends VendorGarment>
     implements $VendorGarmentCopyWith<$Res> {
   _$VendorGarmentCopyWithImpl(this._value, this._then);
 
-  final VendorGarment _value;
   // ignore: unused_field
-  final $Res Function(VendorGarment) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? gender = freezed,
-    Object? part = freezed,
-    Object? ctgr = freezed,
-    Object? color = freezed,
-    Object? allowPending = freezed,
-    Object? size = freezed,
-    Object? fabric = freezed,
-    Object? vendorId = freezed,
-    Object? vendorProdId = freezed,
-    Object? vendorPrice = freezed,
-    Object? stockCnt = freezed,
-    Object? vendorProdName = freezed,
-    Object? titleImgs = freezed,
-    Object? bodyImgs = freezed,
-    Object? info = freezed,
-    Object? description = freezed,
+    Object? gender = null,
+    Object? part = null,
+    Object? ctgr = null,
+    Object? color = null,
+    Object? allowPending = null,
+    Object? size = null,
+    Object? fabric = null,
+    Object? vendorId = null,
+    Object? vendorProdId = null,
+    Object? vendorPrice = null,
+    Object? stockCnt = null,
+    Object? vendorProdName = null,
+    Object? titleImgs = null,
+    Object? bodyImgs = null,
+    Object? info = null,
+    Object? description = null,
   }) {
     return _then(_value.copyWith(
-      gender: gender == freezed
+      gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
-      part: part == freezed
+      part: null == part
           ? _value.part
           : part // ignore: cast_nullable_to_non_nullable
               as Part,
-      ctgr: ctgr == freezed
+      ctgr: null == ctgr
           ? _value.ctgr
           : ctgr // ignore: cast_nullable_to_non_nullable
               as String,
-      color: color == freezed
+      color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String,
-      allowPending: allowPending == freezed
+      allowPending: null == allowPending
           ? _value.allowPending
           : allowPending // ignore: cast_nullable_to_non_nullable
               as bool,
-      size: size == freezed
+      size: null == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as String,
-      fabric: fabric == freezed
+      fabric: null == fabric
           ? _value.fabric
           : fabric // ignore: cast_nullable_to_non_nullable
               as String,
-      vendorId: vendorId == freezed
+      vendorId: null == vendorId
           ? _value.vendorId
           : vendorId // ignore: cast_nullable_to_non_nullable
               as String,
-      vendorProdId: vendorProdId == freezed
+      vendorProdId: null == vendorProdId
           ? _value.vendorProdId
           : vendorProdId // ignore: cast_nullable_to_non_nullable
               as String,
-      vendorPrice: vendorPrice == freezed
+      vendorPrice: null == vendorPrice
           ? _value.vendorPrice
           : vendorPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      stockCnt: stockCnt == freezed
+      stockCnt: null == stockCnt
           ? _value.stockCnt
           : stockCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      vendorProdName: vendorProdName == freezed
+      vendorProdName: null == vendorProdName
           ? _value.vendorProdName
           : vendorProdName // ignore: cast_nullable_to_non_nullable
               as String,
-      titleImgs: titleImgs == freezed
+      titleImgs: null == titleImgs
           ? _value.titleImgs
           : titleImgs // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      bodyImgs: bodyImgs == freezed
+      bodyImgs: null == bodyImgs
           ? _value.bodyImgs
           : bodyImgs // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      info: info == freezed
+      info: null == info
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -173,6 +176,7 @@ abstract class _$$_VendorGarmentCopyWith<$Res>
           _$_VendorGarment value, $Res Function(_$_VendorGarment) then) =
       __$$_VendorGarmentCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {Gender gender,
       Part part,
@@ -194,96 +198,94 @@ abstract class _$$_VendorGarmentCopyWith<$Res>
 
 /// @nodoc
 class __$$_VendorGarmentCopyWithImpl<$Res>
-    extends _$VendorGarmentCopyWithImpl<$Res>
+    extends _$VendorGarmentCopyWithImpl<$Res, _$_VendorGarment>
     implements _$$_VendorGarmentCopyWith<$Res> {
   __$$_VendorGarmentCopyWithImpl(
       _$_VendorGarment _value, $Res Function(_$_VendorGarment) _then)
-      : super(_value, (v) => _then(v as _$_VendorGarment));
+      : super(_value, _then);
 
-  @override
-  _$_VendorGarment get _value => super._value as _$_VendorGarment;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? gender = freezed,
-    Object? part = freezed,
-    Object? ctgr = freezed,
-    Object? color = freezed,
-    Object? allowPending = freezed,
-    Object? size = freezed,
-    Object? fabric = freezed,
-    Object? vendorId = freezed,
-    Object? vendorProdId = freezed,
-    Object? vendorPrice = freezed,
-    Object? stockCnt = freezed,
-    Object? vendorProdName = freezed,
-    Object? titleImgs = freezed,
-    Object? bodyImgs = freezed,
-    Object? info = freezed,
-    Object? description = freezed,
+    Object? gender = null,
+    Object? part = null,
+    Object? ctgr = null,
+    Object? color = null,
+    Object? allowPending = null,
+    Object? size = null,
+    Object? fabric = null,
+    Object? vendorId = null,
+    Object? vendorProdId = null,
+    Object? vendorPrice = null,
+    Object? stockCnt = null,
+    Object? vendorProdName = null,
+    Object? titleImgs = null,
+    Object? bodyImgs = null,
+    Object? info = null,
+    Object? description = null,
   }) {
     return _then(_$_VendorGarment(
-      gender: gender == freezed
+      gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
-      part: part == freezed
+      part: null == part
           ? _value.part
           : part // ignore: cast_nullable_to_non_nullable
               as Part,
-      ctgr: ctgr == freezed
+      ctgr: null == ctgr
           ? _value.ctgr
           : ctgr // ignore: cast_nullable_to_non_nullable
               as String,
-      color: color == freezed
+      color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String,
-      allowPending: allowPending == freezed
+      allowPending: null == allowPending
           ? _value.allowPending
           : allowPending // ignore: cast_nullable_to_non_nullable
               as bool,
-      size: size == freezed
+      size: null == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as String,
-      fabric: fabric == freezed
+      fabric: null == fabric
           ? _value.fabric
           : fabric // ignore: cast_nullable_to_non_nullable
               as String,
-      vendorId: vendorId == freezed
+      vendorId: null == vendorId
           ? _value.vendorId
           : vendorId // ignore: cast_nullable_to_non_nullable
               as String,
-      vendorProdId: vendorProdId == freezed
+      vendorProdId: null == vendorProdId
           ? _value.vendorProdId
           : vendorProdId // ignore: cast_nullable_to_non_nullable
               as String,
-      vendorPrice: vendorPrice == freezed
+      vendorPrice: null == vendorPrice
           ? _value.vendorPrice
           : vendorPrice // ignore: cast_nullable_to_non_nullable
               as int,
-      stockCnt: stockCnt == freezed
+      stockCnt: null == stockCnt
           ? _value.stockCnt
           : stockCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      vendorProdName: vendorProdName == freezed
+      vendorProdName: null == vendorProdName
           ? _value.vendorProdName
           : vendorProdName // ignore: cast_nullable_to_non_nullable
               as String,
-      titleImgs: titleImgs == freezed
+      titleImgs: null == titleImgs
           ? _value._titleImgs
           : titleImgs // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      bodyImgs: bodyImgs == freezed
+      bodyImgs: null == bodyImgs
           ? _value._bodyImgs
           : bodyImgs // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      info: info == freezed
+      info: null == info
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
@@ -373,53 +375,56 @@ class _$_VendorGarment implements _VendorGarment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_VendorGarment &&
-            const DeepCollectionEquality().equals(other.gender, gender) &&
-            const DeepCollectionEquality().equals(other.part, part) &&
-            const DeepCollectionEquality().equals(other.ctgr, ctgr) &&
-            const DeepCollectionEquality().equals(other.color, color) &&
-            const DeepCollectionEquality()
-                .equals(other.allowPending, allowPending) &&
-            const DeepCollectionEquality().equals(other.size, size) &&
-            const DeepCollectionEquality().equals(other.fabric, fabric) &&
-            const DeepCollectionEquality().equals(other.vendorId, vendorId) &&
-            const DeepCollectionEquality()
-                .equals(other.vendorProdId, vendorProdId) &&
-            const DeepCollectionEquality()
-                .equals(other.vendorPrice, vendorPrice) &&
-            const DeepCollectionEquality().equals(other.stockCnt, stockCnt) &&
-            const DeepCollectionEquality()
-                .equals(other.vendorProdName, vendorProdName) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.part, part) || other.part == part) &&
+            (identical(other.ctgr, ctgr) || other.ctgr == ctgr) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.allowPending, allowPending) ||
+                other.allowPending == allowPending) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.fabric, fabric) || other.fabric == fabric) &&
+            (identical(other.vendorId, vendorId) ||
+                other.vendorId == vendorId) &&
+            (identical(other.vendorProdId, vendorProdId) ||
+                other.vendorProdId == vendorProdId) &&
+            (identical(other.vendorPrice, vendorPrice) ||
+                other.vendorPrice == vendorPrice) &&
+            (identical(other.stockCnt, stockCnt) ||
+                other.stockCnt == stockCnt) &&
+            (identical(other.vendorProdName, vendorProdName) ||
+                other.vendorProdName == vendorProdName) &&
             const DeepCollectionEquality()
                 .equals(other._titleImgs, _titleImgs) &&
             const DeepCollectionEquality().equals(other._bodyImgs, _bodyImgs) &&
-            const DeepCollectionEquality().equals(other.info, info) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description));
+            (identical(other.info, info) || other.info == info) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(gender),
-      const DeepCollectionEquality().hash(part),
-      const DeepCollectionEquality().hash(ctgr),
-      const DeepCollectionEquality().hash(color),
-      const DeepCollectionEquality().hash(allowPending),
-      const DeepCollectionEquality().hash(size),
-      const DeepCollectionEquality().hash(fabric),
-      const DeepCollectionEquality().hash(vendorId),
-      const DeepCollectionEquality().hash(vendorProdId),
-      const DeepCollectionEquality().hash(vendorPrice),
-      const DeepCollectionEquality().hash(stockCnt),
-      const DeepCollectionEquality().hash(vendorProdName),
+      gender,
+      part,
+      ctgr,
+      color,
+      allowPending,
+      size,
+      fabric,
+      vendorId,
+      vendorProdId,
+      vendorPrice,
+      stockCnt,
+      vendorProdName,
       const DeepCollectionEquality().hash(_titleImgs),
       const DeepCollectionEquality().hash(_bodyImgs),
-      const DeepCollectionEquality().hash(info),
-      const DeepCollectionEquality().hash(description));
+      info,
+      description);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_VendorGarmentCopyWith<_$_VendorGarment> get copyWith =>
       __$$_VendorGarmentCopyWithImpl<_$_VendorGarment>(this, _$identity);
 

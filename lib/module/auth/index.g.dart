@@ -15,9 +15,9 @@ _$_IoUser _$$_IoUserFromJson(Map<String, dynamic> json) => _$_IoUser(
     );
 
 Map<String, dynamic> _$$_IoUserToJson(_$_IoUser instance) => <String, dynamic>{
-      'userInfo': instance.userInfo,
+      'userInfo': instance.userInfo.toJson(),
       'preferDark': instance.preferDark,
-      'uncleInfo': instance.uncleInfo,
+      'uncleInfo': instance.uncleInfo?.toJson(),
     };
 
 _$_IoUserInfo _$$_IoUserInfoFromJson(Map<String, dynamic> json) =>
@@ -35,8 +35,10 @@ _$_IoUserInfo _$$_IoUserInfoFromJson(Map<String, dynamic> json) =>
       emailVerified: json['emailVerified'] as bool,
       profileImg: json['profileImg'] as String?,
       role: $enumDecode(_$UserRoleEnumMap, json['role']),
-      fcmTokens:
-          (json['fcmTokens'] as List<dynamic>).map((e) => e as String).toList(),
+      fcmTokens: (json['fcmTokens'] as List<dynamic>?)
+              ?.map((e) => FcmToken.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       passed: json['passed'] as bool,
       phone: json['phone'] as String?,
       managerId: json['managerId'] as String?,
@@ -57,7 +59,7 @@ Map<String, dynamic> _$$_IoUserInfoToJson(_$_IoUserInfo instance) =>
       'emailVerified': instance.emailVerified,
       'profileImg': instance.profileImg,
       'role': _$UserRoleEnumMap[instance.role]!,
-      'fcmTokens': instance.fcmTokens,
+      'fcmTokens': instance.fcmTokens.map((e) => e.toJson()).toList(),
       'passed': instance.passed,
       'phone': instance.phone,
       'managerId': instance.managerId,

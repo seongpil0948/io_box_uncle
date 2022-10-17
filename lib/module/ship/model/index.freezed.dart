@@ -37,7 +37,8 @@ mixin _$ShipOrder {
 /// @nodoc
 abstract class $ShipOrderCopyWith<$Res> {
   factory $ShipOrderCopyWith(ShipOrder value, $Res Function(ShipOrder) then) =
-      _$ShipOrderCopyWithImpl<$Res>;
+      _$ShipOrderCopyWithImpl<$Res, ShipOrder>;
+  @useResult
   $Res call(
       {Shipment shipment,
       GarmentOrder garmentOrder,
@@ -57,101 +58,111 @@ abstract class $ShipOrderCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ShipOrderCopyWithImpl<$Res> implements $ShipOrderCopyWith<$Res> {
+class _$ShipOrderCopyWithImpl<$Res, $Val extends ShipOrder>
+    implements $ShipOrderCopyWith<$Res> {
   _$ShipOrderCopyWithImpl(this._value, this._then);
 
-  final ShipOrder _value;
   // ignore: unused_field
-  final $Res Function(ShipOrder) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? shipment = freezed,
-    Object? garmentOrder = freezed,
-    Object? order = freezed,
-    Object? shopUser = freezed,
-    Object? vendorUser = freezed,
-    Object? managerUser = freezed,
-    Object? vendorGarment = freezed,
+    Object? shipment = null,
+    Object? garmentOrder = null,
+    Object? order = null,
+    Object? shopUser = null,
+    Object? vendorUser = null,
+    Object? managerUser = null,
+    Object? vendorGarment = null,
   }) {
     return _then(_value.copyWith(
-      shipment: shipment == freezed
+      shipment: null == shipment
           ? _value.shipment
           : shipment // ignore: cast_nullable_to_non_nullable
               as Shipment,
-      garmentOrder: garmentOrder == freezed
+      garmentOrder: null == garmentOrder
           ? _value.garmentOrder
           : garmentOrder // ignore: cast_nullable_to_non_nullable
               as GarmentOrder,
-      order: order == freezed
+      order: null == order
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
               as ProdOrder,
-      shopUser: shopUser == freezed
+      shopUser: null == shopUser
           ? _value.shopUser
           : shopUser // ignore: cast_nullable_to_non_nullable
               as IoUser,
-      vendorUser: vendorUser == freezed
+      vendorUser: null == vendorUser
           ? _value.vendorUser
           : vendorUser // ignore: cast_nullable_to_non_nullable
               as IoUser,
-      managerUser: managerUser == freezed
+      managerUser: null == managerUser
           ? _value.managerUser
           : managerUser // ignore: cast_nullable_to_non_nullable
               as IoUser,
-      vendorGarment: vendorGarment == freezed
+      vendorGarment: null == vendorGarment
           ? _value.vendorGarment
           : vendorGarment // ignore: cast_nullable_to_non_nullable
               as VendorGarment,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ShipmentCopyWith<$Res> get shipment {
     return $ShipmentCopyWith<$Res>(_value.shipment, (value) {
-      return _then(_value.copyWith(shipment: value));
+      return _then(_value.copyWith(shipment: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $GarmentOrderCopyWith<$Res> get garmentOrder {
     return $GarmentOrderCopyWith<$Res>(_value.garmentOrder, (value) {
-      return _then(_value.copyWith(garmentOrder: value));
+      return _then(_value.copyWith(garmentOrder: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ProdOrderCopyWith<$Res> get order {
     return $ProdOrderCopyWith<$Res>(_value.order, (value) {
-      return _then(_value.copyWith(order: value));
+      return _then(_value.copyWith(order: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $IoUserCopyWith<$Res> get shopUser {
     return $IoUserCopyWith<$Res>(_value.shopUser, (value) {
-      return _then(_value.copyWith(shopUser: value));
+      return _then(_value.copyWith(shopUser: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $IoUserCopyWith<$Res> get vendorUser {
     return $IoUserCopyWith<$Res>(_value.vendorUser, (value) {
-      return _then(_value.copyWith(vendorUser: value));
+      return _then(_value.copyWith(vendorUser: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $IoUserCopyWith<$Res> get managerUser {
     return $IoUserCopyWith<$Res>(_value.managerUser, (value) {
-      return _then(_value.copyWith(managerUser: value));
+      return _then(_value.copyWith(managerUser: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $VendorGarmentCopyWith<$Res> get vendorGarment {
     return $VendorGarmentCopyWith<$Res>(_value.vendorGarment, (value) {
-      return _then(_value.copyWith(vendorGarment: value));
+      return _then(_value.copyWith(vendorGarment: value) as $Val);
     });
   }
 }
@@ -162,6 +173,7 @@ abstract class _$$_ShipOrderCopyWith<$Res> implements $ShipOrderCopyWith<$Res> {
           _$_ShipOrder value, $Res Function(_$_ShipOrder) then) =
       __$$_ShipOrderCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {Shipment shipment,
       GarmentOrder garmentOrder,
@@ -188,51 +200,50 @@ abstract class _$$_ShipOrderCopyWith<$Res> implements $ShipOrderCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ShipOrderCopyWithImpl<$Res> extends _$ShipOrderCopyWithImpl<$Res>
+class __$$_ShipOrderCopyWithImpl<$Res>
+    extends _$ShipOrderCopyWithImpl<$Res, _$_ShipOrder>
     implements _$$_ShipOrderCopyWith<$Res> {
   __$$_ShipOrderCopyWithImpl(
       _$_ShipOrder _value, $Res Function(_$_ShipOrder) _then)
-      : super(_value, (v) => _then(v as _$_ShipOrder));
+      : super(_value, _then);
 
-  @override
-  _$_ShipOrder get _value => super._value as _$_ShipOrder;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? shipment = freezed,
-    Object? garmentOrder = freezed,
-    Object? order = freezed,
-    Object? shopUser = freezed,
-    Object? vendorUser = freezed,
-    Object? managerUser = freezed,
-    Object? vendorGarment = freezed,
+    Object? shipment = null,
+    Object? garmentOrder = null,
+    Object? order = null,
+    Object? shopUser = null,
+    Object? vendorUser = null,
+    Object? managerUser = null,
+    Object? vendorGarment = null,
   }) {
     return _then(_$_ShipOrder(
-      shipment: shipment == freezed
+      shipment: null == shipment
           ? _value.shipment
           : shipment // ignore: cast_nullable_to_non_nullable
               as Shipment,
-      garmentOrder: garmentOrder == freezed
+      garmentOrder: null == garmentOrder
           ? _value.garmentOrder
           : garmentOrder // ignore: cast_nullable_to_non_nullable
               as GarmentOrder,
-      order: order == freezed
+      order: null == order
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
               as ProdOrder,
-      shopUser: shopUser == freezed
+      shopUser: null == shopUser
           ? _value.shopUser
           : shopUser // ignore: cast_nullable_to_non_nullable
               as IoUser,
-      vendorUser: vendorUser == freezed
+      vendorUser: null == vendorUser
           ? _value.vendorUser
           : vendorUser // ignore: cast_nullable_to_non_nullable
               as IoUser,
-      managerUser: managerUser == freezed
+      managerUser: null == managerUser
           ? _value.managerUser
           : managerUser // ignore: cast_nullable_to_non_nullable
               as IoUser,
-      vendorGarment: vendorGarment == freezed
+      vendorGarment: null == vendorGarment
           ? _value.vendorGarment
           : vendorGarment // ignore: cast_nullable_to_non_nullable
               as VendorGarment,
@@ -274,6 +285,7 @@ class _$_ShipOrder extends _ShipOrder {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ShipOrderCopyWith<_$_ShipOrder> get copyWith =>
       __$$_ShipOrderCopyWithImpl<_$_ShipOrder>(this, _$identity);
 
@@ -349,7 +361,8 @@ mixin _$GarmentOrder {
 abstract class $GarmentOrderCopyWith<$Res> {
   factory $GarmentOrderCopyWith(
           GarmentOrder value, $Res Function(GarmentOrder) then) =
-      _$GarmentOrderCopyWithImpl<$Res>;
+      _$GarmentOrderCopyWithImpl<$Res, GarmentOrder>;
+  @useResult
   $Res call(
       {DateTime orderDate,
       DateTime? doneDate,
@@ -370,96 +383,101 @@ abstract class $GarmentOrderCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GarmentOrderCopyWithImpl<$Res> implements $GarmentOrderCopyWith<$Res> {
+class _$GarmentOrderCopyWithImpl<$Res, $Val extends GarmentOrder>
+    implements $GarmentOrderCopyWith<$Res> {
   _$GarmentOrderCopyWithImpl(this._value, this._then);
 
-  final GarmentOrder _value;
   // ignore: unused_field
-  final $Res Function(GarmentOrder) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? orderDate = freezed,
+    Object? orderDate = null,
     Object? doneDate = freezed,
-    Object? dbId = freezed,
-    Object? shopId = freezed,
-    Object? shipManagerId = freezed,
-    Object? orderIds = freezed,
-    Object? itemIds = freezed,
-    Object? subOrderIds = freezed,
-    Object? vendorIds = freezed,
-    Object? states = freezed,
-    Object? actualAmount = freezed,
-    Object? initialAmount = freezed,
-    Object? items = freezed,
+    Object? dbId = null,
+    Object? shopId = null,
+    Object? shipManagerId = null,
+    Object? orderIds = null,
+    Object? itemIds = null,
+    Object? subOrderIds = null,
+    Object? vendorIds = null,
+    Object? states = null,
+    Object? actualAmount = null,
+    Object? initialAmount = null,
+    Object? items = null,
   }) {
     return _then(_value.copyWith(
-      orderDate: orderDate == freezed
+      orderDate: null == orderDate
           ? _value.orderDate
           : orderDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      doneDate: doneDate == freezed
+      doneDate: freezed == doneDate
           ? _value.doneDate
           : doneDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      dbId: dbId == freezed
+      dbId: null == dbId
           ? _value.dbId
           : dbId // ignore: cast_nullable_to_non_nullable
               as String,
-      shopId: shopId == freezed
+      shopId: null == shopId
           ? _value.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
               as String,
-      shipManagerId: shipManagerId == freezed
+      shipManagerId: null == shipManagerId
           ? _value.shipManagerId
           : shipManagerId // ignore: cast_nullable_to_non_nullable
               as String,
-      orderIds: orderIds == freezed
+      orderIds: null == orderIds
           ? _value.orderIds
           : orderIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      itemIds: itemIds == freezed
+      itemIds: null == itemIds
           ? _value.itemIds
           : itemIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      subOrderIds: subOrderIds == freezed
+      subOrderIds: null == subOrderIds
           ? _value.subOrderIds
           : subOrderIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      vendorIds: vendorIds == freezed
+      vendorIds: null == vendorIds
           ? _value.vendorIds
           : vendorIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      states: states == freezed
+      states: null == states
           ? _value.states
           : states // ignore: cast_nullable_to_non_nullable
               as List<OrderState>,
-      actualAmount: actualAmount == freezed
+      actualAmount: null == actualAmount
           ? _value.actualAmount
           : actualAmount // ignore: cast_nullable_to_non_nullable
               as OrderAmount,
-      initialAmount: initialAmount == freezed
+      initialAmount: null == initialAmount
           ? _value.initialAmount
           : initialAmount // ignore: cast_nullable_to_non_nullable
               as OrderAmount,
-      items: items == freezed
+      items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<ProdOrder>,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $OrderAmountCopyWith<$Res> get actualAmount {
     return $OrderAmountCopyWith<$Res>(_value.actualAmount, (value) {
-      return _then(_value.copyWith(actualAmount: value));
+      return _then(_value.copyWith(actualAmount: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $OrderAmountCopyWith<$Res> get initialAmount {
     return $OrderAmountCopyWith<$Res>(_value.initialAmount, (value) {
-      return _then(_value.copyWith(initialAmount: value));
+      return _then(_value.copyWith(initialAmount: value) as $Val);
     });
   }
 }
@@ -471,6 +489,7 @@ abstract class _$$_GarmentOrderCopyWith<$Res>
           _$_GarmentOrder value, $Res Function(_$_GarmentOrder) then) =
       __$$_GarmentOrderCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {DateTime orderDate,
       DateTime? doneDate,
@@ -494,81 +513,79 @@ abstract class _$$_GarmentOrderCopyWith<$Res>
 
 /// @nodoc
 class __$$_GarmentOrderCopyWithImpl<$Res>
-    extends _$GarmentOrderCopyWithImpl<$Res>
+    extends _$GarmentOrderCopyWithImpl<$Res, _$_GarmentOrder>
     implements _$$_GarmentOrderCopyWith<$Res> {
   __$$_GarmentOrderCopyWithImpl(
       _$_GarmentOrder _value, $Res Function(_$_GarmentOrder) _then)
-      : super(_value, (v) => _then(v as _$_GarmentOrder));
+      : super(_value, _then);
 
-  @override
-  _$_GarmentOrder get _value => super._value as _$_GarmentOrder;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? orderDate = freezed,
+    Object? orderDate = null,
     Object? doneDate = freezed,
-    Object? dbId = freezed,
-    Object? shopId = freezed,
-    Object? shipManagerId = freezed,
-    Object? orderIds = freezed,
-    Object? itemIds = freezed,
-    Object? subOrderIds = freezed,
-    Object? vendorIds = freezed,
-    Object? states = freezed,
-    Object? actualAmount = freezed,
-    Object? initialAmount = freezed,
-    Object? items = freezed,
+    Object? dbId = null,
+    Object? shopId = null,
+    Object? shipManagerId = null,
+    Object? orderIds = null,
+    Object? itemIds = null,
+    Object? subOrderIds = null,
+    Object? vendorIds = null,
+    Object? states = null,
+    Object? actualAmount = null,
+    Object? initialAmount = null,
+    Object? items = null,
   }) {
     return _then(_$_GarmentOrder(
-      orderDate: orderDate == freezed
+      orderDate: null == orderDate
           ? _value.orderDate
           : orderDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      doneDate: doneDate == freezed
+      doneDate: freezed == doneDate
           ? _value.doneDate
           : doneDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      dbId: dbId == freezed
+      dbId: null == dbId
           ? _value.dbId
           : dbId // ignore: cast_nullable_to_non_nullable
               as String,
-      shopId: shopId == freezed
+      shopId: null == shopId
           ? _value.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
               as String,
-      shipManagerId: shipManagerId == freezed
+      shipManagerId: null == shipManagerId
           ? _value.shipManagerId
           : shipManagerId // ignore: cast_nullable_to_non_nullable
               as String,
-      orderIds: orderIds == freezed
+      orderIds: null == orderIds
           ? _value._orderIds
           : orderIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      itemIds: itemIds == freezed
+      itemIds: null == itemIds
           ? _value._itemIds
           : itemIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      subOrderIds: subOrderIds == freezed
+      subOrderIds: null == subOrderIds
           ? _value._subOrderIds
           : subOrderIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      vendorIds: vendorIds == freezed
+      vendorIds: null == vendorIds
           ? _value._vendorIds
           : vendorIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      states: states == freezed
+      states: null == states
           ? _value._states
           : states // ignore: cast_nullable_to_non_nullable
               as List<OrderState>,
-      actualAmount: actualAmount == freezed
+      actualAmount: null == actualAmount
           ? _value.actualAmount
           : actualAmount // ignore: cast_nullable_to_non_nullable
               as OrderAmount,
-      initialAmount: initialAmount == freezed
+      initialAmount: null == initialAmount
           ? _value.initialAmount
           : initialAmount // ignore: cast_nullable_to_non_nullable
               as OrderAmount,
-      items: items == freezed
+      items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<ProdOrder>,
@@ -663,6 +680,7 @@ class _$_GarmentOrder extends _GarmentOrder {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_GarmentOrderCopyWith<_$_GarmentOrder> get copyWith =>
       __$$_GarmentOrderCopyWithImpl<_$_GarmentOrder>(this, _$identity);
 
@@ -754,7 +772,8 @@ mixin _$OrderAmount {
 abstract class $OrderAmountCopyWith<$Res> {
   factory $OrderAmountCopyWith(
           OrderAmount value, $Res Function(OrderAmount) then) =
-      _$OrderAmountCopyWithImpl<$Res>;
+      _$OrderAmountCopyWithImpl<$Res, OrderAmount>;
+  @useResult
   $Res call(
       {int shipFeeAmount,
       int shipFeeDiscountAmount,
@@ -770,73 +789,76 @@ abstract class $OrderAmountCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OrderAmountCopyWithImpl<$Res> implements $OrderAmountCopyWith<$Res> {
+class _$OrderAmountCopyWithImpl<$Res, $Val extends OrderAmount>
+    implements $OrderAmountCopyWith<$Res> {
   _$OrderAmountCopyWithImpl(this._value, this._then);
 
-  final OrderAmount _value;
   // ignore: unused_field
-  final $Res Function(OrderAmount) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? shipFeeAmount = freezed,
-    Object? shipFeeDiscountAmount = freezed,
-    Object? tax = freezed,
-    Object? paidAmount = freezed,
-    Object? paid = freezed,
-    Object? pureAmount = freezed,
-    Object? orderAmount = freezed,
+    Object? shipFeeAmount = null,
+    Object? shipFeeDiscountAmount = null,
+    Object? tax = null,
+    Object? paidAmount = null,
+    Object? paid = null,
+    Object? pureAmount = null,
+    Object? orderAmount = null,
     Object? pickFeeAmount = freezed,
     Object? pickFeeDiscountAmount = freezed,
-    Object? paymentConfirm = freezed,
+    Object? paymentConfirm = null,
     Object? paymentMethod = freezed,
   }) {
     return _then(_value.copyWith(
-      shipFeeAmount: shipFeeAmount == freezed
+      shipFeeAmount: null == shipFeeAmount
           ? _value.shipFeeAmount
           : shipFeeAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      shipFeeDiscountAmount: shipFeeDiscountAmount == freezed
+      shipFeeDiscountAmount: null == shipFeeDiscountAmount
           ? _value.shipFeeDiscountAmount
           : shipFeeDiscountAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      tax: tax == freezed
+      tax: null == tax
           ? _value.tax
           : tax // ignore: cast_nullable_to_non_nullable
               as int,
-      paidAmount: paidAmount == freezed
+      paidAmount: null == paidAmount
           ? _value.paidAmount
           : paidAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      paid: paid == freezed
+      paid: null == paid
           ? _value.paid
           : paid // ignore: cast_nullable_to_non_nullable
               as BoolM,
-      pureAmount: pureAmount == freezed
+      pureAmount: null == pureAmount
           ? _value.pureAmount
           : pureAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      orderAmount: orderAmount == freezed
+      orderAmount: null == orderAmount
           ? _value.orderAmount
           : orderAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      pickFeeAmount: pickFeeAmount == freezed
+      pickFeeAmount: freezed == pickFeeAmount
           ? _value.pickFeeAmount
           : pickFeeAmount // ignore: cast_nullable_to_non_nullable
               as int?,
-      pickFeeDiscountAmount: pickFeeDiscountAmount == freezed
+      pickFeeDiscountAmount: freezed == pickFeeDiscountAmount
           ? _value.pickFeeDiscountAmount
           : pickFeeDiscountAmount // ignore: cast_nullable_to_non_nullable
               as int?,
-      paymentConfirm: paymentConfirm == freezed
+      paymentConfirm: null == paymentConfirm
           ? _value.paymentConfirm
           : paymentConfirm // ignore: cast_nullable_to_non_nullable
               as bool,
-      paymentMethod: paymentMethod == freezed
+      paymentMethod: freezed == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as PayMethod?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -847,6 +869,7 @@ abstract class _$$_OrderAmountCopyWith<$Res>
           _$_OrderAmount value, $Res Function(_$_OrderAmount) then) =
       __$$_OrderAmountCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int shipFeeAmount,
       int shipFeeDiscountAmount,
@@ -862,71 +885,70 @@ abstract class _$$_OrderAmountCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_OrderAmountCopyWithImpl<$Res> extends _$OrderAmountCopyWithImpl<$Res>
+class __$$_OrderAmountCopyWithImpl<$Res>
+    extends _$OrderAmountCopyWithImpl<$Res, _$_OrderAmount>
     implements _$$_OrderAmountCopyWith<$Res> {
   __$$_OrderAmountCopyWithImpl(
       _$_OrderAmount _value, $Res Function(_$_OrderAmount) _then)
-      : super(_value, (v) => _then(v as _$_OrderAmount));
+      : super(_value, _then);
 
-  @override
-  _$_OrderAmount get _value => super._value as _$_OrderAmount;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? shipFeeAmount = freezed,
-    Object? shipFeeDiscountAmount = freezed,
-    Object? tax = freezed,
-    Object? paidAmount = freezed,
-    Object? paid = freezed,
-    Object? pureAmount = freezed,
-    Object? orderAmount = freezed,
+    Object? shipFeeAmount = null,
+    Object? shipFeeDiscountAmount = null,
+    Object? tax = null,
+    Object? paidAmount = null,
+    Object? paid = null,
+    Object? pureAmount = null,
+    Object? orderAmount = null,
     Object? pickFeeAmount = freezed,
     Object? pickFeeDiscountAmount = freezed,
-    Object? paymentConfirm = freezed,
+    Object? paymentConfirm = null,
     Object? paymentMethod = freezed,
   }) {
     return _then(_$_OrderAmount(
-      shipFeeAmount: shipFeeAmount == freezed
+      shipFeeAmount: null == shipFeeAmount
           ? _value.shipFeeAmount
           : shipFeeAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      shipFeeDiscountAmount: shipFeeDiscountAmount == freezed
+      shipFeeDiscountAmount: null == shipFeeDiscountAmount
           ? _value.shipFeeDiscountAmount
           : shipFeeDiscountAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      tax: tax == freezed
+      tax: null == tax
           ? _value.tax
           : tax // ignore: cast_nullable_to_non_nullable
               as int,
-      paidAmount: paidAmount == freezed
+      paidAmount: null == paidAmount
           ? _value.paidAmount
           : paidAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      paid: paid == freezed
+      paid: null == paid
           ? _value.paid
           : paid // ignore: cast_nullable_to_non_nullable
               as BoolM,
-      pureAmount: pureAmount == freezed
+      pureAmount: null == pureAmount
           ? _value.pureAmount
           : pureAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      orderAmount: orderAmount == freezed
+      orderAmount: null == orderAmount
           ? _value.orderAmount
           : orderAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      pickFeeAmount: pickFeeAmount == freezed
+      pickFeeAmount: freezed == pickFeeAmount
           ? _value.pickFeeAmount
           : pickFeeAmount // ignore: cast_nullable_to_non_nullable
               as int?,
-      pickFeeDiscountAmount: pickFeeDiscountAmount == freezed
+      pickFeeDiscountAmount: freezed == pickFeeDiscountAmount
           ? _value.pickFeeDiscountAmount
           : pickFeeDiscountAmount // ignore: cast_nullable_to_non_nullable
               as int?,
-      paymentConfirm: paymentConfirm == freezed
+      paymentConfirm: null == paymentConfirm
           ? _value.paymentConfirm
           : paymentConfirm // ignore: cast_nullable_to_non_nullable
               as bool,
-      paymentMethod: paymentMethod == freezed
+      paymentMethod: freezed == paymentMethod
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as PayMethod?,
@@ -989,46 +1011,47 @@ class _$_OrderAmount extends _OrderAmount {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OrderAmount &&
-            const DeepCollectionEquality()
-                .equals(other.shipFeeAmount, shipFeeAmount) &&
-            const DeepCollectionEquality()
-                .equals(other.shipFeeDiscountAmount, shipFeeDiscountAmount) &&
-            const DeepCollectionEquality().equals(other.tax, tax) &&
-            const DeepCollectionEquality()
-                .equals(other.paidAmount, paidAmount) &&
-            const DeepCollectionEquality().equals(other.paid, paid) &&
-            const DeepCollectionEquality()
-                .equals(other.pureAmount, pureAmount) &&
-            const DeepCollectionEquality()
-                .equals(other.orderAmount, orderAmount) &&
-            const DeepCollectionEquality()
-                .equals(other.pickFeeAmount, pickFeeAmount) &&
-            const DeepCollectionEquality()
-                .equals(other.pickFeeDiscountAmount, pickFeeDiscountAmount) &&
-            const DeepCollectionEquality()
-                .equals(other.paymentConfirm, paymentConfirm) &&
-            const DeepCollectionEquality()
-                .equals(other.paymentMethod, paymentMethod));
+            (identical(other.shipFeeAmount, shipFeeAmount) ||
+                other.shipFeeAmount == shipFeeAmount) &&
+            (identical(other.shipFeeDiscountAmount, shipFeeDiscountAmount) ||
+                other.shipFeeDiscountAmount == shipFeeDiscountAmount) &&
+            (identical(other.tax, tax) || other.tax == tax) &&
+            (identical(other.paidAmount, paidAmount) ||
+                other.paidAmount == paidAmount) &&
+            (identical(other.paid, paid) || other.paid == paid) &&
+            (identical(other.pureAmount, pureAmount) ||
+                other.pureAmount == pureAmount) &&
+            (identical(other.orderAmount, orderAmount) ||
+                other.orderAmount == orderAmount) &&
+            (identical(other.pickFeeAmount, pickFeeAmount) ||
+                other.pickFeeAmount == pickFeeAmount) &&
+            (identical(other.pickFeeDiscountAmount, pickFeeDiscountAmount) ||
+                other.pickFeeDiscountAmount == pickFeeDiscountAmount) &&
+            (identical(other.paymentConfirm, paymentConfirm) ||
+                other.paymentConfirm == paymentConfirm) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(shipFeeAmount),
-      const DeepCollectionEquality().hash(shipFeeDiscountAmount),
-      const DeepCollectionEquality().hash(tax),
-      const DeepCollectionEquality().hash(paidAmount),
-      const DeepCollectionEquality().hash(paid),
-      const DeepCollectionEquality().hash(pureAmount),
-      const DeepCollectionEquality().hash(orderAmount),
-      const DeepCollectionEquality().hash(pickFeeAmount),
-      const DeepCollectionEquality().hash(pickFeeDiscountAmount),
-      const DeepCollectionEquality().hash(paymentConfirm),
-      const DeepCollectionEquality().hash(paymentMethod));
+      shipFeeAmount,
+      shipFeeDiscountAmount,
+      tax,
+      paidAmount,
+      paid,
+      pureAmount,
+      orderAmount,
+      pickFeeAmount,
+      pickFeeDiscountAmount,
+      paymentConfirm,
+      paymentMethod);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_OrderAmountCopyWith<_$_OrderAmount> get copyWith =>
       __$$_OrderAmountCopyWithImpl<_$_OrderAmount>(this, _$identity);
 
@@ -1119,7 +1142,8 @@ mixin _$ProdOrder {
 /// @nodoc
 abstract class $ProdOrderCopyWith<$Res> {
   factory $ProdOrderCopyWith(ProdOrder value, $Res Function(ProdOrder) then) =
-      _$ProdOrderCopyWithImpl<$Res>;
+      _$ProdOrderCopyWithImpl<$Res, ProdOrder>;
+  @useResult
   $Res call(
       {String id,
       String vendorId,
@@ -1144,116 +1168,121 @@ abstract class $ProdOrderCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProdOrderCopyWithImpl<$Res> implements $ProdOrderCopyWith<$Res> {
+class _$ProdOrderCopyWithImpl<$Res, $Val extends ProdOrder>
+    implements $ProdOrderCopyWith<$Res> {
   _$ProdOrderCopyWithImpl(this._value, this._then);
 
-  final ProdOrder _value;
   // ignore: unused_field
-  final $Res Function(ProdOrder) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? vendorId = freezed,
-    Object? vendorProdId = freezed,
-    Object? shopId = freezed,
-    Object? orderDbId = freezed,
-    Object? shopProdId = freezed,
-    Object? shipmentId = freezed,
-    Object? orderCnt = freezed,
-    Object? activeCnt = freezed,
-    Object? pendingCnt = freezed,
-    Object? actualAmount = freezed,
-    Object? initialAmount = freezed,
-    Object? state = freezed,
+    Object? id = null,
+    Object? vendorId = null,
+    Object? vendorProdId = null,
+    Object? shopId = null,
+    Object? orderDbId = null,
+    Object? shopProdId = null,
+    Object? shipmentId = null,
+    Object? orderCnt = null,
+    Object? activeCnt = null,
+    Object? pendingCnt = null,
+    Object? actualAmount = null,
+    Object? initialAmount = null,
+    Object? state = null,
     Object? sizeUnit = freezed,
     Object? weightUnit = freezed,
     Object? size = freezed,
     Object? weight = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      vendorId: vendorId == freezed
+      vendorId: null == vendorId
           ? _value.vendorId
           : vendorId // ignore: cast_nullable_to_non_nullable
               as String,
-      vendorProdId: vendorProdId == freezed
+      vendorProdId: null == vendorProdId
           ? _value.vendorProdId
           : vendorProdId // ignore: cast_nullable_to_non_nullable
               as String,
-      shopId: shopId == freezed
+      shopId: null == shopId
           ? _value.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
               as String,
-      orderDbId: orderDbId == freezed
+      orderDbId: null == orderDbId
           ? _value.orderDbId
           : orderDbId // ignore: cast_nullable_to_non_nullable
               as String,
-      shopProdId: shopProdId == freezed
+      shopProdId: null == shopProdId
           ? _value.shopProdId
           : shopProdId // ignore: cast_nullable_to_non_nullable
               as String,
-      shipmentId: shipmentId == freezed
+      shipmentId: null == shipmentId
           ? _value.shipmentId
           : shipmentId // ignore: cast_nullable_to_non_nullable
               as String,
-      orderCnt: orderCnt == freezed
+      orderCnt: null == orderCnt
           ? _value.orderCnt
           : orderCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      activeCnt: activeCnt == freezed
+      activeCnt: null == activeCnt
           ? _value.activeCnt
           : activeCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      pendingCnt: pendingCnt == freezed
+      pendingCnt: null == pendingCnt
           ? _value.pendingCnt
           : pendingCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      actualAmount: actualAmount == freezed
+      actualAmount: null == actualAmount
           ? _value.actualAmount
           : actualAmount // ignore: cast_nullable_to_non_nullable
               as OrderAmount,
-      initialAmount: initialAmount == freezed
+      initialAmount: null == initialAmount
           ? _value.initialAmount
           : initialAmount // ignore: cast_nullable_to_non_nullable
               as OrderAmount,
-      state: state == freezed
+      state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as OrderState,
-      sizeUnit: sizeUnit == freezed
+      sizeUnit: freezed == sizeUnit
           ? _value.sizeUnit
           : sizeUnit // ignore: cast_nullable_to_non_nullable
               as String?,
-      weightUnit: weightUnit == freezed
+      weightUnit: freezed == weightUnit
           ? _value.weightUnit
           : weightUnit // ignore: cast_nullable_to_non_nullable
               as String?,
-      size: size == freezed
+      size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as int?,
-      weight: weight == freezed
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $OrderAmountCopyWith<$Res> get actualAmount {
     return $OrderAmountCopyWith<$Res>(_value.actualAmount, (value) {
-      return _then(_value.copyWith(actualAmount: value));
+      return _then(_value.copyWith(actualAmount: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $OrderAmountCopyWith<$Res> get initialAmount {
     return $OrderAmountCopyWith<$Res>(_value.initialAmount, (value) {
-      return _then(_value.copyWith(initialAmount: value));
+      return _then(_value.copyWith(initialAmount: value) as $Val);
     });
   }
 }
@@ -1264,6 +1293,7 @@ abstract class _$$_ProdOrderCopyWith<$Res> implements $ProdOrderCopyWith<$Res> {
           _$_ProdOrder value, $Res Function(_$_ProdOrder) then) =
       __$$_ProdOrderCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String vendorId,
@@ -1290,101 +1320,100 @@ abstract class _$$_ProdOrderCopyWith<$Res> implements $ProdOrderCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ProdOrderCopyWithImpl<$Res> extends _$ProdOrderCopyWithImpl<$Res>
+class __$$_ProdOrderCopyWithImpl<$Res>
+    extends _$ProdOrderCopyWithImpl<$Res, _$_ProdOrder>
     implements _$$_ProdOrderCopyWith<$Res> {
   __$$_ProdOrderCopyWithImpl(
       _$_ProdOrder _value, $Res Function(_$_ProdOrder) _then)
-      : super(_value, (v) => _then(v as _$_ProdOrder));
+      : super(_value, _then);
 
-  @override
-  _$_ProdOrder get _value => super._value as _$_ProdOrder;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? vendorId = freezed,
-    Object? vendorProdId = freezed,
-    Object? shopId = freezed,
-    Object? orderDbId = freezed,
-    Object? shopProdId = freezed,
-    Object? shipmentId = freezed,
-    Object? orderCnt = freezed,
-    Object? activeCnt = freezed,
-    Object? pendingCnt = freezed,
-    Object? actualAmount = freezed,
-    Object? initialAmount = freezed,
-    Object? state = freezed,
+    Object? id = null,
+    Object? vendorId = null,
+    Object? vendorProdId = null,
+    Object? shopId = null,
+    Object? orderDbId = null,
+    Object? shopProdId = null,
+    Object? shipmentId = null,
+    Object? orderCnt = null,
+    Object? activeCnt = null,
+    Object? pendingCnt = null,
+    Object? actualAmount = null,
+    Object? initialAmount = null,
+    Object? state = null,
     Object? sizeUnit = freezed,
     Object? weightUnit = freezed,
     Object? size = freezed,
     Object? weight = freezed,
   }) {
     return _then(_$_ProdOrder(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      vendorId: vendorId == freezed
+      vendorId: null == vendorId
           ? _value.vendorId
           : vendorId // ignore: cast_nullable_to_non_nullable
               as String,
-      vendorProdId: vendorProdId == freezed
+      vendorProdId: null == vendorProdId
           ? _value.vendorProdId
           : vendorProdId // ignore: cast_nullable_to_non_nullable
               as String,
-      shopId: shopId == freezed
+      shopId: null == shopId
           ? _value.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
               as String,
-      orderDbId: orderDbId == freezed
+      orderDbId: null == orderDbId
           ? _value.orderDbId
           : orderDbId // ignore: cast_nullable_to_non_nullable
               as String,
-      shopProdId: shopProdId == freezed
+      shopProdId: null == shopProdId
           ? _value.shopProdId
           : shopProdId // ignore: cast_nullable_to_non_nullable
               as String,
-      shipmentId: shipmentId == freezed
+      shipmentId: null == shipmentId
           ? _value.shipmentId
           : shipmentId // ignore: cast_nullable_to_non_nullable
               as String,
-      orderCnt: orderCnt == freezed
+      orderCnt: null == orderCnt
           ? _value.orderCnt
           : orderCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      activeCnt: activeCnt == freezed
+      activeCnt: null == activeCnt
           ? _value.activeCnt
           : activeCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      pendingCnt: pendingCnt == freezed
+      pendingCnt: null == pendingCnt
           ? _value.pendingCnt
           : pendingCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      actualAmount: actualAmount == freezed
+      actualAmount: null == actualAmount
           ? _value.actualAmount
           : actualAmount // ignore: cast_nullable_to_non_nullable
               as OrderAmount,
-      initialAmount: initialAmount == freezed
+      initialAmount: null == initialAmount
           ? _value.initialAmount
           : initialAmount // ignore: cast_nullable_to_non_nullable
               as OrderAmount,
-      state: state == freezed
+      state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as OrderState,
-      sizeUnit: sizeUnit == freezed
+      sizeUnit: freezed == sizeUnit
           ? _value.sizeUnit
           : sizeUnit // ignore: cast_nullable_to_non_nullable
               as String?,
-      weightUnit: weightUnit == freezed
+      weightUnit: freezed == weightUnit
           ? _value.weightUnit
           : weightUnit // ignore: cast_nullable_to_non_nullable
               as String?,
-      size: size == freezed
+      size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as int?,
-      weight: weight == freezed
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -1456,6 +1485,7 @@ class _$_ProdOrder extends _ProdOrder {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ProdOrderCopyWith<_$_ProdOrder> get copyWith =>
       __$$_ProdOrderCopyWithImpl<_$_ProdOrder>(this, _$identity);
 
@@ -1570,7 +1600,8 @@ mixin _$Shipment {
 /// @nodoc
 abstract class $ShipmentCopyWith<$Res> {
   factory $ShipmentCopyWith(Shipment value, $Res Function(Shipment) then) =
-      _$ShipmentCopyWithImpl<$Res>;
+      _$ShipmentCopyWithImpl<$Res, Shipment>;
+  @useResult
   $Res call(
       {DateTime createdAt,
       DateTime updatedAt,
@@ -1602,153 +1633,159 @@ abstract class $ShipmentCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ShipmentCopyWithImpl<$Res> implements $ShipmentCopyWith<$Res> {
+class _$ShipmentCopyWithImpl<$Res, $Val extends Shipment>
+    implements $ShipmentCopyWith<$Res> {
   _$ShipmentCopyWithImpl(this._value, this._then);
 
-  final Shipment _value;
   // ignore: unused_field
-  final $Res Function(Shipment) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? wishedDeliveryTime = freezed,
-    Object? shippingId = freezed,
-    Object? orderDbId = freezed,
-    Object? managerId = freezed,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? wishedDeliveryTime = null,
+    Object? shippingId = null,
+    Object? orderDbId = null,
+    Object? managerId = null,
     Object? uncleId = freezed,
     Object? trackingNo = freezed,
-    Object? prodOrderId = freezed,
-    Object? shipMethod = freezed,
-    Object? additionalInfo = freezed,
-    Object? paid = freezed,
+    Object? prodOrderId = null,
+    Object? shipMethod = null,
+    Object? additionalInfo = null,
+    Object? paid = null,
     Object? weightUnit = freezed,
     Object? weight = freezed,
     Object? amountByWeight = freezed,
     Object? sizeUnit = freezed,
     Object? size = freezed,
     Object? amountBySize = freezed,
-    Object? shipFeeBasic = freezed,
-    Object? pickupFeeBasic = freezed,
-    Object? returnAddress = freezed,
-    Object? startAddress = freezed,
-    Object? receiveAddress = freezed,
+    Object? shipFeeBasic = null,
+    Object? pickupFeeBasic = null,
+    Object? returnAddress = null,
+    Object? startAddress = null,
+    Object? receiveAddress = null,
   }) {
     return _then(_value.copyWith(
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      updatedAt: updatedAt == freezed
+      updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      wishedDeliveryTime: wishedDeliveryTime == freezed
+      wishedDeliveryTime: null == wishedDeliveryTime
           ? _value.wishedDeliveryTime
           : wishedDeliveryTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      shippingId: shippingId == freezed
+      shippingId: null == shippingId
           ? _value.shippingId
           : shippingId // ignore: cast_nullable_to_non_nullable
               as String,
-      orderDbId: orderDbId == freezed
+      orderDbId: null == orderDbId
           ? _value.orderDbId
           : orderDbId // ignore: cast_nullable_to_non_nullable
               as String,
-      managerId: managerId == freezed
+      managerId: null == managerId
           ? _value.managerId
           : managerId // ignore: cast_nullable_to_non_nullable
               as String,
-      uncleId: uncleId == freezed
+      uncleId: freezed == uncleId
           ? _value.uncleId
           : uncleId // ignore: cast_nullable_to_non_nullable
               as String?,
-      trackingNo: trackingNo == freezed
+      trackingNo: freezed == trackingNo
           ? _value.trackingNo
           : trackingNo // ignore: cast_nullable_to_non_nullable
               as String?,
-      prodOrderId: prodOrderId == freezed
+      prodOrderId: null == prodOrderId
           ? _value.prodOrderId
           : prodOrderId // ignore: cast_nullable_to_non_nullable
               as String,
-      shipMethod: shipMethod == freezed
+      shipMethod: null == shipMethod
           ? _value.shipMethod
           : shipMethod // ignore: cast_nullable_to_non_nullable
               as ShipMethod,
-      additionalInfo: additionalInfo == freezed
+      additionalInfo: null == additionalInfo
           ? _value.additionalInfo
           : additionalInfo // ignore: cast_nullable_to_non_nullable
               as String,
-      paid: paid == freezed
+      paid: null == paid
           ? _value.paid
           : paid // ignore: cast_nullable_to_non_nullable
               as bool,
-      weightUnit: weightUnit == freezed
+      weightUnit: freezed == weightUnit
           ? _value.weightUnit
           : weightUnit // ignore: cast_nullable_to_non_nullable
               as String?,
-      weight: weight == freezed
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int?,
-      amountByWeight: amountByWeight == freezed
+      amountByWeight: freezed == amountByWeight
           ? _value.amountByWeight
           : amountByWeight // ignore: cast_nullable_to_non_nullable
               as int?,
-      sizeUnit: sizeUnit == freezed
+      sizeUnit: freezed == sizeUnit
           ? _value.sizeUnit
           : sizeUnit // ignore: cast_nullable_to_non_nullable
               as String?,
-      size: size == freezed
+      size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as int?,
-      amountBySize: amountBySize == freezed
+      amountBySize: freezed == amountBySize
           ? _value.amountBySize
           : amountBySize // ignore: cast_nullable_to_non_nullable
               as int?,
-      shipFeeBasic: shipFeeBasic == freezed
+      shipFeeBasic: null == shipFeeBasic
           ? _value.shipFeeBasic
           : shipFeeBasic // ignore: cast_nullable_to_non_nullable
               as int,
-      pickupFeeBasic: pickupFeeBasic == freezed
+      pickupFeeBasic: null == pickupFeeBasic
           ? _value.pickupFeeBasic
           : pickupFeeBasic // ignore: cast_nullable_to_non_nullable
               as int,
-      returnAddress: returnAddress == freezed
+      returnAddress: null == returnAddress
           ? _value.returnAddress
           : returnAddress // ignore: cast_nullable_to_non_nullable
               as Locate,
-      startAddress: startAddress == freezed
+      startAddress: null == startAddress
           ? _value.startAddress
           : startAddress // ignore: cast_nullable_to_non_nullable
               as Locate,
-      receiveAddress: receiveAddress == freezed
+      receiveAddress: null == receiveAddress
           ? _value.receiveAddress
           : receiveAddress // ignore: cast_nullable_to_non_nullable
               as Locate,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $LocateCopyWith<$Res> get returnAddress {
     return $LocateCopyWith<$Res>(_value.returnAddress, (value) {
-      return _then(_value.copyWith(returnAddress: value));
+      return _then(_value.copyWith(returnAddress: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $LocateCopyWith<$Res> get startAddress {
     return $LocateCopyWith<$Res>(_value.startAddress, (value) {
-      return _then(_value.copyWith(startAddress: value));
+      return _then(_value.copyWith(startAddress: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $LocateCopyWith<$Res> get receiveAddress {
     return $LocateCopyWith<$Res>(_value.receiveAddress, (value) {
-      return _then(_value.copyWith(receiveAddress: value));
+      return _then(_value.copyWith(receiveAddress: value) as $Val);
     });
   }
 }
@@ -1759,6 +1796,7 @@ abstract class _$$_ShipmentCopyWith<$Res> implements $ShipmentCopyWith<$Res> {
           _$_Shipment value, $Res Function(_$_Shipment) then) =
       __$$_ShipmentCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {DateTime createdAt,
       DateTime updatedAt,
@@ -1793,131 +1831,130 @@ abstract class _$$_ShipmentCopyWith<$Res> implements $ShipmentCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ShipmentCopyWithImpl<$Res> extends _$ShipmentCopyWithImpl<$Res>
+class __$$_ShipmentCopyWithImpl<$Res>
+    extends _$ShipmentCopyWithImpl<$Res, _$_Shipment>
     implements _$$_ShipmentCopyWith<$Res> {
   __$$_ShipmentCopyWithImpl(
       _$_Shipment _value, $Res Function(_$_Shipment) _then)
-      : super(_value, (v) => _then(v as _$_Shipment));
+      : super(_value, _then);
 
-  @override
-  _$_Shipment get _value => super._value as _$_Shipment;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? wishedDeliveryTime = freezed,
-    Object? shippingId = freezed,
-    Object? orderDbId = freezed,
-    Object? managerId = freezed,
+    Object? createdAt = null,
+    Object? updatedAt = null,
+    Object? wishedDeliveryTime = null,
+    Object? shippingId = null,
+    Object? orderDbId = null,
+    Object? managerId = null,
     Object? uncleId = freezed,
     Object? trackingNo = freezed,
-    Object? prodOrderId = freezed,
-    Object? shipMethod = freezed,
-    Object? additionalInfo = freezed,
-    Object? paid = freezed,
+    Object? prodOrderId = null,
+    Object? shipMethod = null,
+    Object? additionalInfo = null,
+    Object? paid = null,
     Object? weightUnit = freezed,
     Object? weight = freezed,
     Object? amountByWeight = freezed,
     Object? sizeUnit = freezed,
     Object? size = freezed,
     Object? amountBySize = freezed,
-    Object? shipFeeBasic = freezed,
-    Object? pickupFeeBasic = freezed,
-    Object? returnAddress = freezed,
-    Object? startAddress = freezed,
-    Object? receiveAddress = freezed,
+    Object? shipFeeBasic = null,
+    Object? pickupFeeBasic = null,
+    Object? returnAddress = null,
+    Object? startAddress = null,
+    Object? receiveAddress = null,
   }) {
     return _then(_$_Shipment(
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      updatedAt: updatedAt == freezed
+      updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      wishedDeliveryTime: wishedDeliveryTime == freezed
+      wishedDeliveryTime: null == wishedDeliveryTime
           ? _value.wishedDeliveryTime
           : wishedDeliveryTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      shippingId: shippingId == freezed
+      shippingId: null == shippingId
           ? _value.shippingId
           : shippingId // ignore: cast_nullable_to_non_nullable
               as String,
-      orderDbId: orderDbId == freezed
+      orderDbId: null == orderDbId
           ? _value.orderDbId
           : orderDbId // ignore: cast_nullable_to_non_nullable
               as String,
-      managerId: managerId == freezed
+      managerId: null == managerId
           ? _value.managerId
           : managerId // ignore: cast_nullable_to_non_nullable
               as String,
-      uncleId: uncleId == freezed
+      uncleId: freezed == uncleId
           ? _value.uncleId
           : uncleId // ignore: cast_nullable_to_non_nullable
               as String?,
-      trackingNo: trackingNo == freezed
+      trackingNo: freezed == trackingNo
           ? _value.trackingNo
           : trackingNo // ignore: cast_nullable_to_non_nullable
               as String?,
-      prodOrderId: prodOrderId == freezed
+      prodOrderId: null == prodOrderId
           ? _value.prodOrderId
           : prodOrderId // ignore: cast_nullable_to_non_nullable
               as String,
-      shipMethod: shipMethod == freezed
+      shipMethod: null == shipMethod
           ? _value.shipMethod
           : shipMethod // ignore: cast_nullable_to_non_nullable
               as ShipMethod,
-      additionalInfo: additionalInfo == freezed
+      additionalInfo: null == additionalInfo
           ? _value.additionalInfo
           : additionalInfo // ignore: cast_nullable_to_non_nullable
               as String,
-      paid: paid == freezed
+      paid: null == paid
           ? _value.paid
           : paid // ignore: cast_nullable_to_non_nullable
               as bool,
-      weightUnit: weightUnit == freezed
+      weightUnit: freezed == weightUnit
           ? _value.weightUnit
           : weightUnit // ignore: cast_nullable_to_non_nullable
               as String?,
-      weight: weight == freezed
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int?,
-      amountByWeight: amountByWeight == freezed
+      amountByWeight: freezed == amountByWeight
           ? _value.amountByWeight
           : amountByWeight // ignore: cast_nullable_to_non_nullable
               as int?,
-      sizeUnit: sizeUnit == freezed
+      sizeUnit: freezed == sizeUnit
           ? _value.sizeUnit
           : sizeUnit // ignore: cast_nullable_to_non_nullable
               as String?,
-      size: size == freezed
+      size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
               as int?,
-      amountBySize: amountBySize == freezed
+      amountBySize: freezed == amountBySize
           ? _value.amountBySize
           : amountBySize // ignore: cast_nullable_to_non_nullable
               as int?,
-      shipFeeBasic: shipFeeBasic == freezed
+      shipFeeBasic: null == shipFeeBasic
           ? _value.shipFeeBasic
           : shipFeeBasic // ignore: cast_nullable_to_non_nullable
               as int,
-      pickupFeeBasic: pickupFeeBasic == freezed
+      pickupFeeBasic: null == pickupFeeBasic
           ? _value.pickupFeeBasic
           : pickupFeeBasic // ignore: cast_nullable_to_non_nullable
               as int,
-      returnAddress: returnAddress == freezed
+      returnAddress: null == returnAddress
           ? _value.returnAddress
           : returnAddress // ignore: cast_nullable_to_non_nullable
               as Locate,
-      startAddress: startAddress == freezed
+      startAddress: null == startAddress
           ? _value.startAddress
           : startAddress // ignore: cast_nullable_to_non_nullable
               as Locate,
-      receiveAddress: receiveAddress == freezed
+      receiveAddress: null == receiveAddress
           ? _value.receiveAddress
           : receiveAddress // ignore: cast_nullable_to_non_nullable
               as Locate,
@@ -2015,76 +2052,82 @@ class _$_Shipment extends _Shipment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Shipment &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
-            const DeepCollectionEquality()
-                .equals(other.wishedDeliveryTime, wishedDeliveryTime) &&
-            const DeepCollectionEquality()
-                .equals(other.shippingId, shippingId) &&
-            const DeepCollectionEquality().equals(other.orderDbId, orderDbId) &&
-            const DeepCollectionEquality().equals(other.managerId, managerId) &&
-            const DeepCollectionEquality().equals(other.uncleId, uncleId) &&
-            const DeepCollectionEquality()
-                .equals(other.trackingNo, trackingNo) &&
-            const DeepCollectionEquality()
-                .equals(other.prodOrderId, prodOrderId) &&
-            const DeepCollectionEquality()
-                .equals(other.shipMethod, shipMethod) &&
-            const DeepCollectionEquality()
-                .equals(other.additionalInfo, additionalInfo) &&
-            const DeepCollectionEquality().equals(other.paid, paid) &&
-            const DeepCollectionEquality()
-                .equals(other.weightUnit, weightUnit) &&
-            const DeepCollectionEquality().equals(other.weight, weight) &&
-            const DeepCollectionEquality()
-                .equals(other.amountByWeight, amountByWeight) &&
-            const DeepCollectionEquality().equals(other.sizeUnit, sizeUnit) &&
-            const DeepCollectionEquality().equals(other.size, size) &&
-            const DeepCollectionEquality()
-                .equals(other.amountBySize, amountBySize) &&
-            const DeepCollectionEquality()
-                .equals(other.shipFeeBasic, shipFeeBasic) &&
-            const DeepCollectionEquality()
-                .equals(other.pickupFeeBasic, pickupFeeBasic) &&
-            const DeepCollectionEquality()
-                .equals(other.returnAddress, returnAddress) &&
-            const DeepCollectionEquality()
-                .equals(other.startAddress, startAddress) &&
-            const DeepCollectionEquality()
-                .equals(other.receiveAddress, receiveAddress));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.wishedDeliveryTime, wishedDeliveryTime) ||
+                other.wishedDeliveryTime == wishedDeliveryTime) &&
+            (identical(other.shippingId, shippingId) ||
+                other.shippingId == shippingId) &&
+            (identical(other.orderDbId, orderDbId) ||
+                other.orderDbId == orderDbId) &&
+            (identical(other.managerId, managerId) ||
+                other.managerId == managerId) &&
+            (identical(other.uncleId, uncleId) || other.uncleId == uncleId) &&
+            (identical(other.trackingNo, trackingNo) ||
+                other.trackingNo == trackingNo) &&
+            (identical(other.prodOrderId, prodOrderId) ||
+                other.prodOrderId == prodOrderId) &&
+            (identical(other.shipMethod, shipMethod) ||
+                other.shipMethod == shipMethod) &&
+            (identical(other.additionalInfo, additionalInfo) ||
+                other.additionalInfo == additionalInfo) &&
+            (identical(other.paid, paid) || other.paid == paid) &&
+            (identical(other.weightUnit, weightUnit) ||
+                other.weightUnit == weightUnit) &&
+            (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.amountByWeight, amountByWeight) ||
+                other.amountByWeight == amountByWeight) &&
+            (identical(other.sizeUnit, sizeUnit) ||
+                other.sizeUnit == sizeUnit) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.amountBySize, amountBySize) ||
+                other.amountBySize == amountBySize) &&
+            (identical(other.shipFeeBasic, shipFeeBasic) ||
+                other.shipFeeBasic == shipFeeBasic) &&
+            (identical(other.pickupFeeBasic, pickupFeeBasic) ||
+                other.pickupFeeBasic == pickupFeeBasic) &&
+            (identical(other.returnAddress, returnAddress) ||
+                other.returnAddress == returnAddress) &&
+            (identical(other.startAddress, startAddress) ||
+                other.startAddress == startAddress) &&
+            (identical(other.receiveAddress, receiveAddress) ||
+                other.receiveAddress == receiveAddress));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(createdAt),
-        const DeepCollectionEquality().hash(updatedAt),
-        const DeepCollectionEquality().hash(wishedDeliveryTime),
-        const DeepCollectionEquality().hash(shippingId),
-        const DeepCollectionEquality().hash(orderDbId),
-        const DeepCollectionEquality().hash(managerId),
-        const DeepCollectionEquality().hash(uncleId),
-        const DeepCollectionEquality().hash(trackingNo),
-        const DeepCollectionEquality().hash(prodOrderId),
-        const DeepCollectionEquality().hash(shipMethod),
-        const DeepCollectionEquality().hash(additionalInfo),
-        const DeepCollectionEquality().hash(paid),
-        const DeepCollectionEquality().hash(weightUnit),
-        const DeepCollectionEquality().hash(weight),
-        const DeepCollectionEquality().hash(amountByWeight),
-        const DeepCollectionEquality().hash(sizeUnit),
-        const DeepCollectionEquality().hash(size),
-        const DeepCollectionEquality().hash(amountBySize),
-        const DeepCollectionEquality().hash(shipFeeBasic),
-        const DeepCollectionEquality().hash(pickupFeeBasic),
-        const DeepCollectionEquality().hash(returnAddress),
-        const DeepCollectionEquality().hash(startAddress),
-        const DeepCollectionEquality().hash(receiveAddress)
+        createdAt,
+        updatedAt,
+        wishedDeliveryTime,
+        shippingId,
+        orderDbId,
+        managerId,
+        uncleId,
+        trackingNo,
+        prodOrderId,
+        shipMethod,
+        additionalInfo,
+        paid,
+        weightUnit,
+        weight,
+        amountByWeight,
+        sizeUnit,
+        size,
+        amountBySize,
+        shipFeeBasic,
+        pickupFeeBasic,
+        returnAddress,
+        startAddress,
+        receiveAddress
       ]);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ShipmentCopyWith<_$_Shipment> get copyWith =>
       __$$_ShipmentCopyWithImpl<_$_Shipment>(this, _$identity);
 
@@ -2206,7 +2249,8 @@ mixin _$Locate {
 /// @nodoc
 abstract class $LocateCopyWith<$Res> {
   factory $LocateCopyWith(Locate value, $Res Function(Locate) then) =
-      _$LocateCopyWithImpl<$Res>;
+      _$LocateCopyWithImpl<$Res, Locate>;
+  @useResult
   $Res call(
       {String? code,
       String alias,
@@ -2225,17 +2269,20 @@ abstract class $LocateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LocateCopyWithImpl<$Res> implements $LocateCopyWith<$Res> {
+class _$LocateCopyWithImpl<$Res, $Val extends Locate>
+    implements $LocateCopyWith<$Res> {
   _$LocateCopyWithImpl(this._value, this._then);
 
-  final Locate _value;
   // ignore: unused_field
-  final $Res Function(Locate) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? code = freezed,
-    Object? alias = freezed,
+    Object? alias = null,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? detailLocate = freezed,
@@ -2243,70 +2290,70 @@ class _$LocateCopyWithImpl<$Res> implements $LocateCopyWith<$Res> {
     Object? lastName = freezed,
     Object? phone = freezed,
     Object? postalCode = freezed,
-    Object? country = freezed,
+    Object? country = null,
     Object? city = freezed,
     Object? county = freezed,
     Object? town = freezed,
     Object? locateType = freezed,
   }) {
     return _then(_value.copyWith(
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String?,
-      alias: alias == freezed
+      alias: null == alias
           ? _value.alias
           : alias // ignore: cast_nullable_to_non_nullable
               as String,
-      latitude: latitude == freezed
+      latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as int?,
-      longitude: longitude == freezed
+      longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as int?,
-      detailLocate: detailLocate == freezed
+      detailLocate: freezed == detailLocate
           ? _value.detailLocate
           : detailLocate // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstName: firstName == freezed
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
-      lastName: lastName == freezed
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      phone: phone == freezed
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      postalCode: postalCode == freezed
+      postalCode: freezed == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      country: country == freezed
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String,
-      city: city == freezed
+      city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String?,
-      county: county == freezed
+      county: freezed == county
           ? _value.county
           : county // ignore: cast_nullable_to_non_nullable
               as String?,
-      town: town == freezed
+      town: freezed == town
           ? _value.town
           : town // ignore: cast_nullable_to_non_nullable
               as String?,
-      locateType: locateType == freezed
+      locateType: freezed == locateType
           ? _value.locateType
           : locateType // ignore: cast_nullable_to_non_nullable
               as LocateType?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -2315,6 +2362,7 @@ abstract class _$$_LocateCopyWith<$Res> implements $LocateCopyWith<$Res> {
   factory _$$_LocateCopyWith(_$_Locate value, $Res Function(_$_Locate) then) =
       __$$_LocateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String? code,
       String alias,
@@ -2333,18 +2381,17 @@ abstract class _$$_LocateCopyWith<$Res> implements $LocateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LocateCopyWithImpl<$Res> extends _$LocateCopyWithImpl<$Res>
+class __$$_LocateCopyWithImpl<$Res>
+    extends _$LocateCopyWithImpl<$Res, _$_Locate>
     implements _$$_LocateCopyWith<$Res> {
   __$$_LocateCopyWithImpl(_$_Locate _value, $Res Function(_$_Locate) _then)
-      : super(_value, (v) => _then(v as _$_Locate));
+      : super(_value, _then);
 
-  @override
-  _$_Locate get _value => super._value as _$_Locate;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? code = freezed,
-    Object? alias = freezed,
+    Object? alias = null,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? detailLocate = freezed,
@@ -2352,66 +2399,66 @@ class __$$_LocateCopyWithImpl<$Res> extends _$LocateCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? phone = freezed,
     Object? postalCode = freezed,
-    Object? country = freezed,
+    Object? country = null,
     Object? city = freezed,
     Object? county = freezed,
     Object? town = freezed,
     Object? locateType = freezed,
   }) {
     return _then(_$_Locate(
-      code: code == freezed
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String?,
-      alias: alias == freezed
+      alias: null == alias
           ? _value.alias
           : alias // ignore: cast_nullable_to_non_nullable
               as String,
-      latitude: latitude == freezed
+      latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as int?,
-      longitude: longitude == freezed
+      longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as int?,
-      detailLocate: detailLocate == freezed
+      detailLocate: freezed == detailLocate
           ? _value.detailLocate
           : detailLocate // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstName: firstName == freezed
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
-      lastName: lastName == freezed
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
-      phone: phone == freezed
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      postalCode: postalCode == freezed
+      postalCode: freezed == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      country: country == freezed
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String,
-      city: city == freezed
+      city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String?,
-      county: county == freezed
+      county: freezed == county
           ? _value.county
           : county // ignore: cast_nullable_to_non_nullable
               as String?,
-      town: town == freezed
+      town: freezed == town
           ? _value.town
           : town // ignore: cast_nullable_to_non_nullable
               as String?,
-      locateType: locateType == freezed
+      locateType: freezed == locateType
           ? _value.locateType
           : locateType // ignore: cast_nullable_to_non_nullable
               as LocateType?,
@@ -2482,46 +2529,51 @@ class _$_Locate extends _Locate {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Locate &&
-            const DeepCollectionEquality().equals(other.code, code) &&
-            const DeepCollectionEquality().equals(other.alias, alias) &&
-            const DeepCollectionEquality().equals(other.latitude, latitude) &&
-            const DeepCollectionEquality().equals(other.longitude, longitude) &&
-            const DeepCollectionEquality()
-                .equals(other.detailLocate, detailLocate) &&
-            const DeepCollectionEquality().equals(other.firstName, firstName) &&
-            const DeepCollectionEquality().equals(other.lastName, lastName) &&
-            const DeepCollectionEquality().equals(other.phone, phone) &&
-            const DeepCollectionEquality()
-                .equals(other.postalCode, postalCode) &&
-            const DeepCollectionEquality().equals(other.country, country) &&
-            const DeepCollectionEquality().equals(other.city, city) &&
-            const DeepCollectionEquality().equals(other.county, county) &&
-            const DeepCollectionEquality().equals(other.town, town) &&
-            const DeepCollectionEquality()
-                .equals(other.locateType, locateType));
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.alias, alias) || other.alias == alias) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.detailLocate, detailLocate) ||
+                other.detailLocate == detailLocate) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.postalCode, postalCode) ||
+                other.postalCode == postalCode) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.county, county) || other.county == county) &&
+            (identical(other.town, town) || other.town == town) &&
+            (identical(other.locateType, locateType) ||
+                other.locateType == locateType));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(code),
-      const DeepCollectionEquality().hash(alias),
-      const DeepCollectionEquality().hash(latitude),
-      const DeepCollectionEquality().hash(longitude),
-      const DeepCollectionEquality().hash(detailLocate),
-      const DeepCollectionEquality().hash(firstName),
-      const DeepCollectionEquality().hash(lastName),
-      const DeepCollectionEquality().hash(phone),
-      const DeepCollectionEquality().hash(postalCode),
-      const DeepCollectionEquality().hash(country),
-      const DeepCollectionEquality().hash(city),
-      const DeepCollectionEquality().hash(county),
-      const DeepCollectionEquality().hash(town),
-      const DeepCollectionEquality().hash(locateType));
+      code,
+      alias,
+      latitude,
+      longitude,
+      detailLocate,
+      firstName,
+      lastName,
+      phone,
+      postalCode,
+      country,
+      city,
+      county,
+      town,
+      locateType);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LocateCopyWith<_$_Locate> get copyWith =>
       __$$_LocateCopyWithImpl<_$_Locate>(this, _$identity);
 
