@@ -55,7 +55,9 @@ class ShipmentRepo {
             final ships = shipments.where(
               (x) => x.shippingId == item.shipmentId,
             );
-            assert(ships.length == 1);
+            if (ships.length < 1) {
+              continue;
+            }
             final ship = ships.first;
             final d = ShipOrder(
                 order: item,

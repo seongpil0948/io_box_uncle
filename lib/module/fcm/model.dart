@@ -77,6 +77,5 @@ class FcmToken extends Equatable with _$FcmToken {
       _$FcmTokenFromJson(json);
   const FcmToken._();
   @override
-  // TODO: implement props
   List<Object?> get props => [token];
 }
