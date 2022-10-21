@@ -226,12 +226,15 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
                     sizeUnit: shipSizeUnit,
                     weight: shipWeight,
                     weightUnit: shipWeightUnit);
+                try {
+                  context.read<AppBloc>().add(DisSelectPickup());
+                } on ProviderNotFoundException catch (e) {}
+
                 shipRepo.api.updateShipment(shipment).then((value) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('저장완료 ${shipment.shippingId}')),
                   );
                   Navigator.of(context).pop();
-                  context.read<AppBloc>().add(DisSelectPickup());
                 });
               }
             },
