@@ -12,6 +12,15 @@ List<Widget> shipStatusBtns(BuildContext context, ShipOrder p) {
             }, "픽업시작 처리 하시겠습니까?");
           },
           child: const Text("픽업시작")),
+    if (p.order.state == OrderState.beforePickup)
+      OutlinedButton(
+          onPressed: () {
+            showConfirmClose(context, () {
+              shipBloc.add(RequestTossOrder(s: p));
+              context.read<AppBloc>().add(DisSelectPickup());
+            }, "해당 주문건을 다른 근로자에게 토스 하시겠어요?");
+          },
+          child: const Text("토스요청")),
     if (p.order.state == OrderState.ongoingPickup)
       OutlinedButton(
           onPressed: () {
@@ -53,11 +62,6 @@ List<Widget> shipStatusBtns(BuildContext context, ShipOrder p) {
             }, "배송시작 처리 하시겠습니까?");
           },
           child: const Text("배송시작")),
-    OutlinedButton(
-        onPressed: () {
-          debugPrint("토스요청");
-        },
-        child: const Text("토스요청")),
     if (p.order.state == OrderState.shipping)
       OutlinedButton(
           onPressed: () {

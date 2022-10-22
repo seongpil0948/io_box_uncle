@@ -37,6 +37,10 @@ class DoneShip extends ShipmentEvent {
 
 class RequestTossOrder extends ShipmentEvent {
   final ShipOrder s;
-  final String targetUncleId;
-  RequestTossOrder({required this.targetUncleId, required this.s});
+  RequestTossOrder({required this.s});
+}
+
+class ReceiveTossOrder extends ShipmentEvent {
+  final ShipOrder s;
+  ReceiveTossOrder({required this.s});
 }

@@ -1,15 +1,11 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:io_box_uncle/config/index.dart';
-import 'package:io_box_uncle/util/common/index.dart';
 import 'package:io_box_uncle/util/logger.dart';
 
 part "repo.dart";

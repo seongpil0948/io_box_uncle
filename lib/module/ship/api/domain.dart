@@ -18,7 +18,8 @@ abstract class ShipmentApi {
 
   Future<void> updateOrder(GarmentOrder o);
   Future<void> updateShipment(Shipment s);
-  Future<void> reqToss(ShipOrder s, String targetUncleId);
+  Future<void> reqToss(ShipOrder s);
+  Future<void> receiveToss(ShipOrder s, String newUncle);
   Future<void> startPickup(ShipOrder s);
   Future<void> donePickup(ShipOrder s);
   Future<void> toBeforeShip(ShipOrder s);

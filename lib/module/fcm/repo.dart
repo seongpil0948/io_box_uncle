@@ -66,7 +66,10 @@ class FcmRepo {
       badge: true,
       sound: true,
     );
-    print("result of  requestPermission: \n status: ${p.authorizationStatus}");
+    if (kDebugMode) {
+      print(
+          "result of  requestPermission: \n status: ${p.authorizationStatus}");
+    }
 
     FirebaseMessaging.onBackgroundMessage(_onBackMessage);
 

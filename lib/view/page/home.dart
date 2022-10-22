@@ -35,11 +35,14 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
           child: ConstrainedBox(
         constraints: BoxConstraints(minHeight: size.height * 0.75),
-        child: BlocSelector<ShipmentBloc, ShipmentState, List<ShipOrder>>(
-          selector: (state) => state.shipOrders,
+        child: BlocBuilder<ShipmentBloc, ShipmentState>(
           builder: (context, state) {
-            final pickCnt = state.where((e) => e.order.isPickup).length;
-            final shipCnt = state.where((e) => e.order.isShip).length;
+            final pickCnt =
+                state.shipOrders.where((e) => e.order.isPickup).length;
+            final shipCnt =
+                state.shipOrders.where((e) => e.order.isShip).length;
+            final tossCnt =
+                state.tossData.where((e) => e.shipment.uncleId == null).length;
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -80,6 +83,29 @@ class _HomePageState extends State<HomePage> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: Text('$shipCnt 건',
+                              style: textTheme.headline5?.copyWith(
+                                  color: Theme.of(context).primaryColor)),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    final bloc = context.read<AppBloc>();
+                    bloc.add(const SelectModule(ModulePage.tossList));
+                  },
+                  child: DashBoardCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('미배정 배송목록',
+                            style: textTheme.headline5
+                                ?.copyWith(color: Colors.grey.shade500)),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text('$tossCnt 건',
                               style: textTheme.headline5?.copyWith(
                                   color: Theme.of(context).primaryColor)),
                         )

@@ -84,9 +84,21 @@ class ShipmentFB extends ShipmentApi {
   }
 
   @override
-  Future<void> reqToss(ShipOrder s, String targetUncleId) async {
-    final newShip = s.shipment.copyWith(uncleId: targetUncleId);
+  Future<void> reqToss(ShipOrder s) async {
+    final newShip = s.shipment.copyWith(uncleId: null);
+    final newOrd = s.garmentOrder.setState(
+        s.order.id, OrderState.beforePickup, OrderState.beforeAssignPickup);
     await updateShipment(newShip);
+    await updateOrder(newOrd);
+  }
+
+  @override
+  Future<void> receiveToss(ShipOrder s, String newUncle) async {
+    final newShip = s.shipment.copyWith(uncleId: newUncle);
+    final newOrd = s.garmentOrder.setState(
+        s.order.id, OrderState.beforeAssignPickup, OrderState.beforePickup);
+    await updateShipment(newShip);
+    await updateOrder(newOrd);
   }
 
   @override
@@ -100,6 +112,6 @@ class ShipmentFB extends ShipmentApi {
   Future<void> updateShipment(Shipment s) async {
     await getCollection(c: IoCollection.shipment, userId: s.managerId)
         .doc(s.shippingId)
-        .set(s.toJson());
+        .update(s.toJson());
   }
 }

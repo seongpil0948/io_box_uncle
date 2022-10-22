@@ -13,10 +13,9 @@ class IoUser with _$IoUser {
 
   Future<bool> update() async {
     final doc = getCollection(c: IoCollection.users).doc(userInfo.userId);
-    await doc.set(
+    await doc.update(
         copyWith(userInfo: userInfo.copyWith(updatedAt: DateTime.now()))
-            .toJson(),
-        SetOptions(merge: true));
+            .toJson());
     return true;
   }
 }

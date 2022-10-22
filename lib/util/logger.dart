@@ -30,7 +30,7 @@ class IoLogger {
       "severity": level.name
     };
 
-    final res = await Dio().post(
+    await Dio().post(
       "$ioApiUrl/log/ioLogging",
       data: FormData.fromMap(data),
       options: Options(contentType: Headers.formUrlEncodedContentType),

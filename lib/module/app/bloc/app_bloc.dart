@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
 import 'package:io_box_uncle/module/fcm/model.dart';

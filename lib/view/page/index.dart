@@ -19,6 +19,7 @@ part './login.dart';
 part 'ship/pickup_list.dart';
 part 'ship/ship_list.dart';
 part 'ship/pickup_detail.dart';
+part 'ship/toss_list.dart';
 
 class App extends StatelessWidget {
   final AuthRepo authRepo;
@@ -80,6 +81,8 @@ List<Page<dynamic>> _onGenerateAppViewPages(
     pages.add(PickupListPage.page());
   } else if (state.module == ModulePage.shipList) {
     pages.add(ShipListPage.page());
+  } else if (state.module == ModulePage.tossList) {
+    pages.add(TossListPage.page());
   }
   if (state.selectedShip != null) {
     pages.add(PickupDetailPage.page(p: state.selectedShip!));

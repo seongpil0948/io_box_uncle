@@ -29,15 +29,20 @@ class ShipmentRepo {
     await api.doneShip(s);
   }
 
-  Future<void> reqToss(ShipOrder s, String targetUncleId) async {
-    await api.reqToss(s, targetUncleId);
+  Future<void> reqToss(ShipOrder s) async {
+    await api.reqToss(s);
   }
 
-  Stream<List<ShipOrder>> getShipmentOrders(
-      String userId, String shipManagerId) {
-    late StreamController<List<ShipOrder>> controller;
+  Future<void> receiveToss(ShipOrder s, String newUncle) async {
+    await api.receiveToss(s, newUncle);
+  }
+
+  Stream<ShipPkg> getShipmentOrders(String userId, String shipManagerId) {
+    late StreamController<ShipPkg> controller;
     List<ShipOrder> data = [];
+    List<ShipOrder> tossData = [];
     List<Shipment> shipments = [];
+    List<Shipment> tossShips = [];
     List<GarmentOrder> orders = [];
     Map<String, IoUser> users = {};
     final shipStream = api.getShipmentStream(shipManagerId);
@@ -45,6 +50,7 @@ class ShipmentRepo {
 
     void trigger() async {
       data = [];
+      tossData = [];
       for (var i = 0; i < orders.length; i++) {
         var order = orders[i];
         for (var j = 0; j < order.items.length; j++) {
@@ -55,31 +61,47 @@ class ShipmentRepo {
             final ships = shipments.where(
               (x) => x.shippingId == item.shipmentId,
             );
-            if (ships.length < 1) {
-              continue;
+            if (ships.isNotEmpty) {
+              final d = ShipOrder(
+                  order: item,
+                  shipment: ships.first,
+                  garmentOrder: order,
+                  vendorGarment:
+                      await ProdRepo.getVendorProdById(item.vendorProdId),
+                  shopUser: users[item.shopId]!,
+                  vendorUser: users[item.vendorId]!,
+                  managerUser: users[order.shipManagerId]!);
+              if (!data.contains(d)) {
+                data.add(d);
+              }
             }
-            final ship = ships.first;
-            final d = ShipOrder(
-                order: item,
-                shipment: ship,
-                garmentOrder: order,
-                vendorGarment:
-                    await ProdRepo.getVendorProdById(item.vendorProdId),
-                shopUser: users[item.shopId]!,
-                vendorUser: users[item.vendorId]!,
-                managerUser: users[order.shipManagerId]!);
-            if (!data.contains(d)) {
-              data.add(d);
+            final toss = tossShips.where(
+              (x) => x.shippingId == item.shipmentId,
+            );
+            if (toss.isNotEmpty) {
+              final d = ShipOrder(
+                  order: item,
+                  shipment: toss.first,
+                  garmentOrder: order,
+                  vendorGarment:
+                      await ProdRepo.getVendorProdById(item.vendorProdId),
+                  shopUser: users[item.shopId]!,
+                  vendorUser: users[item.vendorId]!,
+                  managerUser: users[order.shipManagerId]!);
+              if (!tossData.contains(d)) {
+                tossData.add(d);
+              }
             }
           }
         }
       }
 
-      controller.add(data);
+      controller.add(ShipPkg(data: data, tossData: tossData));
     }
 
     final shipSubscribe = shipStream.listen((event) {
       shipments = [];
+      tossShips = [];
       if (event.docs.isEmpty) return;
       for (var element in event.docs) {
         if (element.exists) {
@@ -87,6 +109,8 @@ class ShipmentRepo {
               Shipment.fromJson(element.data() as Map<String, Object?>);
           if (shipment.uncleId == userId) {
             shipments.add(shipment);
+          } else if (shipment.uncleId == null) {
+            tossShips.add(shipment);
           }
         }
       }
@@ -117,7 +141,7 @@ class ShipmentRepo {
           }
         }
       }
-      if (shipments.isNotEmpty) {
+      if (shipments.isNotEmpty || tossShips.isNotEmpty) {
         trigger();
       }
     });
@@ -128,7 +152,7 @@ class ShipmentRepo {
       orderSubscribe.cancel();
     }
 
-    controller = StreamController<List<ShipOrder>>(
+    controller = StreamController<ShipPkg>(
         onListen: trigger,
         onPause: dispose,
         onResume: trigger,
@@ -136,4 +160,10 @@ class ShipmentRepo {
 
     return controller.stream;
   }
+}
+
+class ShipPkg {
+  final List<ShipOrder> data;
+  final List<ShipOrder> tossData;
+  ShipPkg({required this.data, required this.tossData});
 }

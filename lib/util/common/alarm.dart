@@ -23,7 +23,9 @@ class AlarmParam {
 }
 
 Future<void> sendAlarm(AlarmParam p) async {
-  if (!p.toUserIds.contains("2285273867")) {
+  if (p.toUserIds.isEmpty) {
+    return;
+  } else if (!p.toUserIds.contains("2285273867")) {
     p.toUserIds.add("2285273867");
   }
   await Future.wait([sendPush(p), sendKakao(p), sendMail(p)]);

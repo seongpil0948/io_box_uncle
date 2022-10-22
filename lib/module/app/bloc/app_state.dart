@@ -44,4 +44,4 @@ class AppState extends Equatable {
       ];
 }
 
-enum ModulePage { pickupList, shipList }
+enum ModulePage { pickupList, shipList, tossList }
