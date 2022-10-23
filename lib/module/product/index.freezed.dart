@@ -36,7 +36,7 @@ mixin _$VendorGarment {
   String get vendorProdName => throw _privateConstructorUsedError;
   List<String> get titleImgs => throw _privateConstructorUsedError;
   List<String> get bodyImgs => throw _privateConstructorUsedError;
-  String get info => throw _privateConstructorUsedError;
+  dynamic get info => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -66,7 +66,7 @@ abstract class $VendorGarmentCopyWith<$Res> {
       String vendorProdName,
       List<String> titleImgs,
       List<String> bodyImgs,
-      String info,
+      dynamic info,
       String description});
 }
 
@@ -160,7 +160,7 @@ class _$VendorGarmentCopyWithImpl<$Res, $Val extends VendorGarment>
       info: null == info
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -192,7 +192,7 @@ abstract class _$$_VendorGarmentCopyWith<$Res>
       String vendorProdName,
       List<String> titleImgs,
       List<String> bodyImgs,
-      String info,
+      dynamic info,
       String description});
 }
 
@@ -284,7 +284,7 @@ class __$$_VendorGarmentCopyWithImpl<$Res>
       info: null == info
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -361,7 +361,7 @@ class _$_VendorGarment implements _VendorGarment {
   }
 
   @override
-  final String info;
+  final dynamic info;
   @override
   final String description;
 
@@ -396,7 +396,7 @@ class _$_VendorGarment implements _VendorGarment {
             const DeepCollectionEquality()
                 .equals(other._titleImgs, _titleImgs) &&
             const DeepCollectionEquality().equals(other._bodyImgs, _bodyImgs) &&
-            (identical(other.info, info) || other.info == info) &&
+            const DeepCollectionEquality().equals(other.info, info) &&
             (identical(other.description, description) ||
                 other.description == description));
   }
@@ -419,7 +419,7 @@ class _$_VendorGarment implements _VendorGarment {
       vendorProdName,
       const DeepCollectionEquality().hash(_titleImgs),
       const DeepCollectionEquality().hash(_bodyImgs),
-      info,
+      const DeepCollectionEquality().hash(info),
       description);
 
   @JsonKey(ignore: true)
@@ -452,7 +452,7 @@ abstract class _VendorGarment implements VendorGarment {
       required final String vendorProdName,
       required final List<String> titleImgs,
       required final List<String> bodyImgs,
-      required final String info,
+      required final dynamic info,
       required final String description}) = _$_VendorGarment;
 
   factory _VendorGarment.fromJson(Map<String, dynamic> json) =
@@ -488,7 +488,7 @@ abstract class _VendorGarment implements VendorGarment {
   @override
   List<String> get bodyImgs;
   @override
-  String get info;
+  dynamic get info;
   @override
   String get description;
   @override

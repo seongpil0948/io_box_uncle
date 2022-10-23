@@ -24,7 +24,7 @@ _$_VendorGarment _$$_VendorGarmentFromJson(Map<String, dynamic> json) =>
           (json['titleImgs'] as List<dynamic>).map((e) => e as String).toList(),
       bodyImgs:
           (json['bodyImgs'] as List<dynamic>).map((e) => e as String).toList(),
-      info: json['info'] as String,
+      info: json['info'],
       description: json['description'] as String,
     );
 

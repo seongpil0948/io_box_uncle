@@ -74,6 +74,7 @@ class ShipmentRepo {
               if (!data.contains(d)) {
                 data.add(d);
               }
+              continue;
             }
             final toss = tossShips.where(
               (x) => x.shippingId == item.shipmentId,

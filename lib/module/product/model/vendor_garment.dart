@@ -28,7 +28,7 @@ class VendorGarment with _$VendorGarment {
     required String vendorProdName,
     required List<String> titleImgs,
     required List<String> bodyImgs,
-    required String info,
+    required dynamic info,
     required String description,
   }) = _VendorGarment;
 

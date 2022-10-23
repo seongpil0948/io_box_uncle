@@ -11,6 +11,7 @@ class ShipmentFB extends ShipmentApi {
   @override
   Stream<QuerySnapshot> getOrderStream(String userId, shipManagerId) {
     const targetState = [
+      "BEFORE_ASSIGN_PICKUP",
       "BEFORE_PICKUP",
       "ONGOING_PICKUP",
       "PICKUP_COMPLETE",
