@@ -339,6 +339,7 @@ GarmentOrder _$GarmentOrderFromJson(Map<String, dynamic> json) {
 mixin _$GarmentOrder {
   DateTime get orderDate => throw _privateConstructorUsedError;
   DateTime? get doneDate => throw _privateConstructorUsedError;
+  DateTime? get tossDate => throw _privateConstructorUsedError;
   String get dbId => throw _privateConstructorUsedError;
   String get shopId => throw _privateConstructorUsedError;
   String get shipManagerId => throw _privateConstructorUsedError;
@@ -366,6 +367,7 @@ abstract class $GarmentOrderCopyWith<$Res> {
   $Res call(
       {DateTime orderDate,
       DateTime? doneDate,
+      DateTime? tossDate,
       String dbId,
       String shopId,
       String shipManagerId,
@@ -397,6 +399,7 @@ class _$GarmentOrderCopyWithImpl<$Res, $Val extends GarmentOrder>
   $Res call({
     Object? orderDate = null,
     Object? doneDate = freezed,
+    Object? tossDate = freezed,
     Object? dbId = null,
     Object? shopId = null,
     Object? shipManagerId = null,
@@ -417,6 +420,10 @@ class _$GarmentOrderCopyWithImpl<$Res, $Val extends GarmentOrder>
       doneDate: freezed == doneDate
           ? _value.doneDate
           : doneDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      tossDate: freezed == tossDate
+          ? _value.tossDate
+          : tossDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       dbId: null == dbId
           ? _value.dbId
@@ -493,6 +500,7 @@ abstract class _$$_GarmentOrderCopyWith<$Res>
   $Res call(
       {DateTime orderDate,
       DateTime? doneDate,
+      DateTime? tossDate,
       String dbId,
       String shopId,
       String shipManagerId,
@@ -524,6 +532,7 @@ class __$$_GarmentOrderCopyWithImpl<$Res>
   $Res call({
     Object? orderDate = null,
     Object? doneDate = freezed,
+    Object? tossDate = freezed,
     Object? dbId = null,
     Object? shopId = null,
     Object? shipManagerId = null,
@@ -544,6 +553,10 @@ class __$$_GarmentOrderCopyWithImpl<$Res>
       doneDate: freezed == doneDate
           ? _value.doneDate
           : doneDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      tossDate: freezed == tossDate
+          ? _value.tossDate
+          : tossDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       dbId: null == dbId
           ? _value.dbId
@@ -600,6 +613,7 @@ class _$_GarmentOrder extends _GarmentOrder {
   const _$_GarmentOrder(
       {required this.orderDate,
       this.doneDate,
+      this.tossDate,
       required this.dbId,
       required this.shopId,
       required this.shipManagerId,
@@ -626,6 +640,8 @@ class _$_GarmentOrder extends _GarmentOrder {
   final DateTime orderDate;
   @override
   final DateTime? doneDate;
+  @override
+  final DateTime? tossDate;
   @override
   final String dbId;
   @override
@@ -696,6 +712,7 @@ abstract class _GarmentOrder extends GarmentOrder {
   const factory _GarmentOrder(
       {required final DateTime orderDate,
       final DateTime? doneDate,
+      final DateTime? tossDate,
       required final String dbId,
       required final String shopId,
       required final String shipManagerId,
@@ -716,6 +733,8 @@ abstract class _GarmentOrder extends GarmentOrder {
   DateTime get orderDate;
   @override
   DateTime? get doneDate;
+  @override
+  DateTime? get tossDate;
   @override
   String get dbId;
   @override

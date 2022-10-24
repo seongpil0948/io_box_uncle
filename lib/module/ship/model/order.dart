@@ -6,6 +6,7 @@ class GarmentOrder extends Equatable with _$GarmentOrder {
   const factory GarmentOrder(
       {required DateTime orderDate,
       DateTime? doneDate,
+      DateTime? tossDate,
       required String dbId,
       required String shopId,
       required String shipManagerId,

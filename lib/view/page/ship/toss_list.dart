@@ -37,27 +37,31 @@ class _TossListPageState extends State<TossListPage> {
                     child: DataTable(
                       columns: const [
                         DataColumn(label: Text('주소')),
-                        DataColumn(label: Text('토스 받기')),
+                        DataColumn(label: Text('요청시간')),
+                        DataColumn(label: Text('토스받기')),
                       ],
-                      rows: state
-                          .map((e) => DataRow(cells: [
-                                DataCell(Text(
-                                    e.shipment.startAddress.detailLocate ??
-                                        "")),
-                                DataCell(ElevatedButton(
-                                    onPressed: () {
-                                      showConfirmClose(context, () {
-                                        context
-                                            .read<ShipmentBloc>()
-                                            .add(ReceiveTossOrder(s: e));
-                                        context
-                                            .read<AppBloc>()
-                                            .add(DisSelectModule());
-                                      }, "해당 배송건을 맡으시겠습니까?");
-                                    },
-                                    child: const Text("받기"))),
-                              ]))
-                          .toList(),
+                      rows: state.map((e) {
+                        final td = e.garmentOrder.tossDate;
+                        return DataRow(cells: [
+                          DataCell(
+                              Text(e.shipment.startAddress.detailLocate ?? "")),
+                          DataCell(Text(td != null
+                              ? "${td.month}월${td.day}일 ${td.hour}:${td.minute}"
+                              : "-")),
+                          DataCell(ElevatedButton(
+                              onPressed: () {
+                                showConfirmClose(context, () {
+                                  context
+                                      .read<ShipmentBloc>()
+                                      .add(ReceiveTossOrder(s: e));
+                                  context
+                                      .read<AppBloc>()
+                                      .add(DisSelectModule());
+                                }, "해당 배송건을 맡으시겠습니까?");
+                              },
+                              child: const Text("받기"))),
+                        ]);
+                      }).toList(),
                     ),
                   );
                 } else {

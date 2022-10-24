@@ -35,6 +35,9 @@ _$_GarmentOrder _$$_GarmentOrderFromJson(Map<String, dynamic> json) =>
       doneDate: json['doneDate'] == null
           ? null
           : DateTime.parse(json['doneDate'] as String),
+      tossDate: json['tossDate'] == null
+          ? null
+          : DateTime.parse(json['tossDate'] as String),
       dbId: json['dbId'] as String,
       shopId: json['shopId'] as String,
       shipManagerId: json['shipManagerId'] as String,
@@ -63,6 +66,7 @@ Map<String, dynamic> _$$_GarmentOrderToJson(_$_GarmentOrder instance) =>
     <String, dynamic>{
       'orderDate': instance.orderDate.toIso8601String(),
       'doneDate': instance.doneDate?.toIso8601String(),
+      'tossDate': instance.tossDate?.toIso8601String(),
       'dbId': instance.dbId,
       'shopId': instance.shopId,
       'shipManagerId': instance.shipManagerId,
