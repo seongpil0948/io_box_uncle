@@ -22,6 +22,7 @@ IoUser _$IoUserFromJson(Map<String, dynamic> json) {
 mixin _$IoUser {
   IoUserInfo get userInfo => throw _privateConstructorUsedError;
   bool get preferDark => throw _privateConstructorUsedError;
+  String? get connectState => throw _privateConstructorUsedError;
   UncleInfo? get uncleInfo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +35,11 @@ abstract class $IoUserCopyWith<$Res> {
   factory $IoUserCopyWith(IoUser value, $Res Function(IoUser) then) =
       _$IoUserCopyWithImpl<$Res, IoUser>;
   @useResult
-  $Res call({IoUserInfo userInfo, bool preferDark, UncleInfo? uncleInfo});
+  $Res call(
+      {IoUserInfo userInfo,
+      bool preferDark,
+      String? connectState,
+      UncleInfo? uncleInfo});
 
   $IoUserInfoCopyWith<$Res> get userInfo;
   $UncleInfoCopyWith<$Res>? get uncleInfo;
@@ -55,6 +60,7 @@ class _$IoUserCopyWithImpl<$Res, $Val extends IoUser>
   $Res call({
     Object? userInfo = null,
     Object? preferDark = null,
+    Object? connectState = freezed,
     Object? uncleInfo = freezed,
   }) {
     return _then(_value.copyWith(
@@ -66,6 +72,10 @@ class _$IoUserCopyWithImpl<$Res, $Val extends IoUser>
           ? _value.preferDark
           : preferDark // ignore: cast_nullable_to_non_nullable
               as bool,
+      connectState: freezed == connectState
+          ? _value.connectState
+          : connectState // ignore: cast_nullable_to_non_nullable
+              as String?,
       uncleInfo: freezed == uncleInfo
           ? _value.uncleInfo
           : uncleInfo // ignore: cast_nullable_to_non_nullable
@@ -100,7 +110,11 @@ abstract class _$$_IoUserCopyWith<$Res> implements $IoUserCopyWith<$Res> {
       __$$_IoUserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({IoUserInfo userInfo, bool preferDark, UncleInfo? uncleInfo});
+  $Res call(
+      {IoUserInfo userInfo,
+      bool preferDark,
+      String? connectState,
+      UncleInfo? uncleInfo});
 
   @override
   $IoUserInfoCopyWith<$Res> get userInfo;
@@ -120,6 +134,7 @@ class __$$_IoUserCopyWithImpl<$Res>
   $Res call({
     Object? userInfo = null,
     Object? preferDark = null,
+    Object? connectState = freezed,
     Object? uncleInfo = freezed,
   }) {
     return _then(_$_IoUser(
@@ -131,6 +146,10 @@ class __$$_IoUserCopyWithImpl<$Res>
           ? _value.preferDark
           : preferDark // ignore: cast_nullable_to_non_nullable
               as bool,
+      connectState: freezed == connectState
+          ? _value.connectState
+          : connectState // ignore: cast_nullable_to_non_nullable
+              as String?,
       uncleInfo: freezed == uncleInfo
           ? _value.uncleInfo
           : uncleInfo // ignore: cast_nullable_to_non_nullable
@@ -144,7 +163,10 @@ class __$$_IoUserCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
   const _$_IoUser(
-      {required this.userInfo, required this.preferDark, this.uncleInfo})
+      {required this.userInfo,
+      required this.preferDark,
+      this.connectState,
+      this.uncleInfo})
       : super._();
 
   factory _$_IoUser.fromJson(Map<String, dynamic> json) =>
@@ -155,11 +177,13 @@ class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
   @override
   final bool preferDark;
   @override
+  final String? connectState;
+  @override
   final UncleInfo? uncleInfo;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'IoUser(userInfo: $userInfo, preferDark: $preferDark, uncleInfo: $uncleInfo)';
+    return 'IoUser(userInfo: $userInfo, preferDark: $preferDark, connectState: $connectState, uncleInfo: $uncleInfo)';
   }
 
   @override
@@ -169,6 +193,7 @@ class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('type', 'IoUser'))
       ..add(DiagnosticsProperty('userInfo', userInfo))
       ..add(DiagnosticsProperty('preferDark', preferDark))
+      ..add(DiagnosticsProperty('connectState', connectState))
       ..add(DiagnosticsProperty('uncleInfo', uncleInfo));
   }
 
@@ -181,13 +206,16 @@ class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
                 other.userInfo == userInfo) &&
             (identical(other.preferDark, preferDark) ||
                 other.preferDark == preferDark) &&
+            (identical(other.connectState, connectState) ||
+                other.connectState == connectState) &&
             (identical(other.uncleInfo, uncleInfo) ||
                 other.uncleInfo == uncleInfo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userInfo, preferDark, uncleInfo);
+  int get hashCode =>
+      Object.hash(runtimeType, userInfo, preferDark, connectState, uncleInfo);
 
   @JsonKey(ignore: true)
   @override
@@ -207,6 +235,7 @@ abstract class _IoUser extends IoUser {
   const factory _IoUser(
       {required final IoUserInfo userInfo,
       required final bool preferDark,
+      final String? connectState,
       final UncleInfo? uncleInfo}) = _$_IoUser;
   const _IoUser._() : super._();
 
@@ -216,6 +245,8 @@ abstract class _IoUser extends IoUser {
   IoUserInfo get userInfo;
   @override
   bool get preferDark;
+  @override
+  String? get connectState;
   @override
   UncleInfo? get uncleInfo;
   @override

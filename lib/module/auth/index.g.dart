@@ -9,6 +9,7 @@ part of 'index.dart';
 _$_IoUser _$$_IoUserFromJson(Map<String, dynamic> json) => _$_IoUser(
       userInfo: IoUserInfo.fromJson(json['userInfo'] as Map<String, dynamic>),
       preferDark: json['preferDark'] as bool,
+      connectState: json['connectState'] as String?,
       uncleInfo: json['uncleInfo'] == null
           ? null
           : UncleInfo.fromJson(json['uncleInfo'] as Map<String, dynamic>),
@@ -17,6 +18,7 @@ _$_IoUser _$$_IoUserFromJson(Map<String, dynamic> json) => _$_IoUser(
 Map<String, dynamic> _$$_IoUserToJson(_$_IoUser instance) => <String, dynamic>{
       'userInfo': instance.userInfo.toJson(),
       'preferDark': instance.preferDark,
+      'connectState': instance.connectState,
       'uncleInfo': instance.uncleInfo?.toJson(),
     };
 

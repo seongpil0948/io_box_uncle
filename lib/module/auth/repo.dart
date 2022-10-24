@@ -1,10 +1,31 @@
 part of './index.dart';
 
-class AuthRepo {
+class AuthRepo with WidgetsBindingObserver {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final SharedPreferences pref;
   static const userCacheKey = '__user_cache_key__';
-  AuthRepo({required this.pref});
+
+  AuthRepo({required this.pref}) {
+    currentUser!
+        .copyWith(connectState: AppLifecycleState.resumed.name)
+        .update(refreshUpdatedAt: false);
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  /// make sure the clients of this library invoke the dispose method
+  /// so that the observer can be unregistered
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (currentUser != null) {
+      currentUser!
+          .copyWith(connectState: state.name)
+          .update(refreshUpdatedAt: false);
+    }
+  }
 
   Stream<Future<IoUser?>> get user {
     return _auth.authStateChanges().map((firebaseUser) async {

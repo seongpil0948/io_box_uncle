@@ -6,16 +6,18 @@ class IoUser with _$IoUser {
   const factory IoUser(
       {required IoUserInfo userInfo,
       required bool preferDark,
+      String? connectState,
       UncleInfo? uncleInfo}) = _IoUser;
   String get name => userInfo.displayName ?? userInfo.userName;
   const IoUser._();
   factory IoUser.fromJson(Map<String, Object?> json) => _$IoUserFromJson(json);
 
-  Future<bool> update() async {
+  Future<bool> update({bool refreshUpdatedAt = true}) async {
     final doc = getCollection(c: IoCollection.users).doc(userInfo.userId);
-    await doc.update(
-        copyWith(userInfo: userInfo.copyWith(updatedAt: DateTime.now()))
-            .toJson());
+    await doc.update(refreshUpdatedAt
+        ? copyWith(userInfo: userInfo.copyWith(updatedAt: DateTime.now()))
+            .toJson()
+        : toJson());
     return true;
   }
 }
