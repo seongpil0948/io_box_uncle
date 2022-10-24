@@ -10,6 +10,7 @@ _$_IoUser _$$_IoUserFromJson(Map<String, dynamic> json) => _$_IoUser(
       userInfo: IoUserInfo.fromJson(json['userInfo'] as Map<String, dynamic>),
       preferDark: json['preferDark'] as bool,
       connectState: json['connectState'] as String?,
+      workState: json['workState'] as String?,
       uncleInfo: json['uncleInfo'] == null
           ? null
           : UncleInfo.fromJson(json['uncleInfo'] as Map<String, dynamic>),
@@ -19,6 +20,7 @@ Map<String, dynamic> _$$_IoUserToJson(_$_IoUser instance) => <String, dynamic>{
       'userInfo': instance.userInfo.toJson(),
       'preferDark': instance.preferDark,
       'connectState': instance.connectState,
+      'workState': instance.workState,
       'uncleInfo': instance.uncleInfo?.toJson(),
     };
 

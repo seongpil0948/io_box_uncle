@@ -148,11 +148,8 @@ class _HomePageState extends State<HomePage> {
                           return SizedBox(
                             height: constraint.maxHeight,
                             width: constraint.maxWidth,
-                            child: DashBoardCard(
-                                child: Text(
-                              "시작!",
-                              style: textTheme.titleLarge,
-                            )),
+                            child:
+                                ConnectState(textTheme: textTheme, user: user),
                           );
                         }),
                       ),
@@ -163,6 +160,34 @@ class _HomePageState extends State<HomePage> {
             );
           },
         ),
+      )),
+    );
+  }
+}
+
+class ConnectState extends StatelessWidget {
+  const ConnectState({
+    Key? key,
+    required this.textTheme,
+    required this.user,
+  }) : super(key: key);
+
+  final TextTheme textTheme;
+  final IoUser user;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () async {
+        final newUser =
+            user.copyWith(workState: user.inWork ? "inactive" : "active");
+        context.read<AppBloc>().add(AppUserChanged(newUser));
+        await newUser.update(refreshUpdatedAt: false);
+      },
+      child: DashBoardCard(
+          child: Text(
+        user.inWork ? "퇴근!" : "업무시작!",
+        style: textTheme.titleLarge,
       )),
     );
   }
@@ -198,7 +223,7 @@ class UserProfile extends StatelessWidget {
       const SizedBox(height: 4),
       Text(user.userInfo.email ?? '', style: textTheme.caption),
       const SizedBox(height: 4),
-      Text("활동상태:  활동중", style: textTheme.overline),
+      Text("활동상태: ${user.inWork ? '업무중' : '퇴근'}", style: textTheme.overline),
     ];
     return DashBoardCard(
         child: Column(

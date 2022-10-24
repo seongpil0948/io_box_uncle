@@ -7,17 +7,22 @@ class IoUser with _$IoUser {
       {required IoUserInfo userInfo,
       required bool preferDark,
       String? connectState,
+      String? workState,
       UncleInfo? uncleInfo}) = _IoUser;
   String get name => userInfo.displayName ?? userInfo.userName;
+  bool get inWork => workState != null && workState == "active";
   const IoUser._();
   factory IoUser.fromJson(Map<String, Object?> json) => _$IoUserFromJson(json);
 
   Future<bool> update({bool refreshUpdatedAt = true}) async {
     final doc = getCollection(c: IoCollection.users).doc(userInfo.userId);
-    await doc.update(refreshUpdatedAt
+    final json = refreshUpdatedAt
         ? copyWith(userInfo: userInfo.copyWith(updatedAt: DateTime.now()))
             .toJson()
-        : toJson());
+        : toJson();
+    final pref = await SharedPreferences.getInstance();
+    pref.setString(AuthRepo.userCacheKey, jsonEncode(json));
+    await doc.update(json);
     return true;
   }
 }
