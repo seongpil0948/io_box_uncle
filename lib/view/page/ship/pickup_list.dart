@@ -74,7 +74,7 @@ class _ShipCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final dest = s.shipment.startAddress;
     final size = MediaQuery.of(context).size;
-    final itemHeight = size.height / 5;
+    final itemHeight = size.height / 6;
     return Center(
       child: InkWell(
         onTap: () {
