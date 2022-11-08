@@ -75,6 +75,7 @@ class _ShipCard extends StatelessWidget {
     final dest = s.shipment.startAddress;
     final size = MediaQuery.of(context).size;
     final itemHeight = size.height / 6;
+    final customColors = Theme.of(context).extension<CustomColors>()!;
     return Center(
       child: InkWell(
         onTap: () {
@@ -85,7 +86,16 @@ class _ShipCard extends StatelessWidget {
           width: size.width / 1.2,
           height: itemHeight,
           child: Card(
-            child: ShipThumb(dest: dest, order: s.order),
+            shape: s.order.isReturn
+                ? RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: customColors.info ?? Colors.blueAccent,
+                      width: cardBorderWidth,
+                    ),
+                    borderRadius: cardRadius,
+                  )
+                : null,
+            child: ShipThumb(isBig: false, dest: dest, order: s.order),
           ),
         ),
       ),

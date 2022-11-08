@@ -165,6 +165,8 @@ _$_ProdOrder _$$_ProdOrderFromJson(Map<String, dynamic> json) => _$_ProdOrder(
       initialAmount:
           OrderAmount.fromJson(json['initialAmount'] as Map<String, dynamic>),
       state: $enumDecode(_$OrderStateEnumMap, json['state']),
+      orderType: $enumDecodeNullable(_$OrderTypeEnumMap, json['orderType']) ??
+          OrderType.standard,
       sizeUnit: json['sizeUnit'] as String?,
       weightUnit: json['weightUnit'] as String?,
       size: json['size'] as int?,
@@ -186,11 +188,17 @@ Map<String, dynamic> _$$_ProdOrderToJson(_$_ProdOrder instance) =>
       'actualAmount': instance.actualAmount.toJson(),
       'initialAmount': instance.initialAmount.toJson(),
       'state': _$OrderStateEnumMap[instance.state]!,
+      'orderType': _$OrderTypeEnumMap[instance.orderType],
       'sizeUnit': instance.sizeUnit,
       'weightUnit': instance.weightUnit,
       'size': instance.size,
       'weight': instance.weight,
     };
+
+const _$OrderTypeEnumMap = {
+  OrderType.standard: 'STANDARD',
+  OrderType.orderReturn: 'RETURN',
+};
 
 _$_Shipment _$$_ShipmentFromJson(Map<String, dynamic> json) => _$_Shipment(
       createdAt: DateTime.parse(json['createdAt'] as String),

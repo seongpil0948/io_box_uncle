@@ -1147,6 +1147,7 @@ mixin _$ProdOrder {
   OrderAmount get actualAmount => throw _privateConstructorUsedError;
   OrderAmount get initialAmount => throw _privateConstructorUsedError;
   OrderState get state => throw _privateConstructorUsedError;
+  OrderType? get orderType => throw _privateConstructorUsedError;
   String? get sizeUnit => throw _privateConstructorUsedError;
   String? get weightUnit => throw _privateConstructorUsedError;
   int? get size => throw _privateConstructorUsedError;
@@ -1177,6 +1178,7 @@ abstract class $ProdOrderCopyWith<$Res> {
       OrderAmount actualAmount,
       OrderAmount initialAmount,
       OrderState state,
+      OrderType? orderType,
       String? sizeUnit,
       String? weightUnit,
       int? size,
@@ -1212,6 +1214,7 @@ class _$ProdOrderCopyWithImpl<$Res, $Val extends ProdOrder>
     Object? actualAmount = null,
     Object? initialAmount = null,
     Object? state = null,
+    Object? orderType = freezed,
     Object? sizeUnit = freezed,
     Object? weightUnit = freezed,
     Object? size = freezed,
@@ -1270,6 +1273,10 @@ class _$ProdOrderCopyWithImpl<$Res, $Val extends ProdOrder>
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as OrderState,
+      orderType: freezed == orderType
+          ? _value.orderType
+          : orderType // ignore: cast_nullable_to_non_nullable
+              as OrderType?,
       sizeUnit: freezed == sizeUnit
           ? _value.sizeUnit
           : sizeUnit // ignore: cast_nullable_to_non_nullable
@@ -1327,6 +1334,7 @@ abstract class _$$_ProdOrderCopyWith<$Res> implements $ProdOrderCopyWith<$Res> {
       OrderAmount actualAmount,
       OrderAmount initialAmount,
       OrderState state,
+      OrderType? orderType,
       String? sizeUnit,
       String? weightUnit,
       int? size,
@@ -1362,6 +1370,7 @@ class __$$_ProdOrderCopyWithImpl<$Res>
     Object? actualAmount = null,
     Object? initialAmount = null,
     Object? state = null,
+    Object? orderType = freezed,
     Object? sizeUnit = freezed,
     Object? weightUnit = freezed,
     Object? size = freezed,
@@ -1420,6 +1429,10 @@ class __$$_ProdOrderCopyWithImpl<$Res>
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as OrderState,
+      orderType: freezed == orderType
+          ? _value.orderType
+          : orderType // ignore: cast_nullable_to_non_nullable
+              as OrderType?,
       sizeUnit: freezed == sizeUnit
           ? _value.sizeUnit
           : sizeUnit // ignore: cast_nullable_to_non_nullable
@@ -1458,6 +1471,7 @@ class _$_ProdOrder extends _ProdOrder {
       required this.actualAmount,
       required this.initialAmount,
       required this.state,
+      this.orderType = OrderType.standard,
       this.sizeUnit,
       this.weightUnit,
       this.size,
@@ -1493,6 +1507,9 @@ class _$_ProdOrder extends _ProdOrder {
   final OrderAmount initialAmount;
   @override
   final OrderState state;
+  @override
+  @JsonKey()
+  final OrderType? orderType;
   @override
   final String? sizeUnit;
   @override
@@ -1531,6 +1548,7 @@ abstract class _ProdOrder extends ProdOrder {
       required final OrderAmount actualAmount,
       required final OrderAmount initialAmount,
       required final OrderState state,
+      final OrderType? orderType,
       final String? sizeUnit,
       final String? weightUnit,
       final int? size,
@@ -1566,6 +1584,8 @@ abstract class _ProdOrder extends ProdOrder {
   OrderAmount get initialAmount;
   @override
   OrderState get state;
+  @override
+  OrderType? get orderType;
   @override
   String? get sizeUnit;
   @override

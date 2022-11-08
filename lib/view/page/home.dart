@@ -16,7 +16,6 @@ class _HomePageState extends State<HomePage> {
     final textTheme = Theme.of(context).textTheme;
     final user = context.select((AppBloc bloc) => bloc.state.user)!;
     final size = MediaQuery.of(context).size;
-    final customColors = Theme.of(context).extension<CustomColors>()!;
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(

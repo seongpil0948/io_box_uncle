@@ -9,6 +9,8 @@ class PickupDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final footer = shipStatusBtns(context, p);
+    final customColors = Theme.of(context).extension<CustomColors>()!;
     return WillPopScope(
       onWillPop: () async {
         context.read<AppBloc>().add(DisSelectPickup());
@@ -20,16 +22,26 @@ class PickupDetailPage extends StatelessWidget {
           child: Column(
             children: [
               IoCard(
+                shape: p.order.isReturn
+                    ? RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: customColors.info ?? Colors.blueAccent,
+                          width: cardBorderWidth,
+                        ),
+                        borderRadius: cardRadius,
+                      )
+                    : null,
                 height: size.height / 2.5,
                 title: BackButton(onPressed: () {
                   context.read<AppBloc>().add(DisSelectPickup());
                 }),
                 content: ShipThumb(
+                    isBig: true,
                     dest: p.order.isPickup
                         ? p.shipment.startAddress
                         : p.shipment.receiveAddress,
                     order: p.order),
-                footer: shipStatusBtns(context, p),
+                footer: footer,
               ),
               const SizedBox(height: 10),
               ShipAmountCard(p: p),
@@ -77,8 +89,8 @@ class ShipAmountCard extends StatelessWidget {
           children: [label, content],
         );
     return IoCard(
-      height: p.shipment.amountMeasurable ? size.height / 5.5 : 100,
-      title: txt("배송비 카드"),
+      height: p.shipment.amountMeasurable ? size.height / 5.5 : size.height / 8,
+      title: Text("배송비 카드", style: T.titleMedium),
       content: p.shipment.amountMeasurable
           ? Column(
               children: [
@@ -126,94 +138,120 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final sizeUnits = widget.p.managerUser.uncleInfo?.amountBySize.keys ?? [];
-    final weightUnits =
-        widget.p.managerUser.uncleInfo?.amountByWeight.keys ?? [];
+
+    final amountBySize =
+        widget.p.managerUser.uncleInfo?.amountBySize.entries.toList();
+    amountBySize?.sort((a, b) => a.value.compareTo(b.value));
+    final sizeUnits = amountBySize?.map((e) => e.key) ?? [];
+
+    final amountByWeight =
+        widget.p.managerUser.uncleInfo?.amountByWeight.entries.toList();
+    amountByWeight?.sort((a, b) => a.value.compareTo(b.value));
+    final weightUnits = amountByWeight?.map((e) => e.key) ?? [];
+
     assert(sizeUnits.isNotEmpty && weightUnits.isNotEmpty);
     txt(String? t) => Text(t ?? "");
-    row(Widget? label, Widget? content) => Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [label ?? Container(), content ?? Container()],
-        );
-    const height = 200.0;
+    const height = 100.0;
     final widgetW = size.width * 0.3;
 
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: size.width * 0.05, vertical: size.height * 0.1),
+          horizontal: size.width * 0.05, vertical: size.height * 0.2),
       child: IoCard(
-        height: size.height * 0.8,
+        height: size.height * 0.5,
         content: Form(
           key: _formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              row(txt("사이즈 입력"), null),
-              row(
-                  SizedBox(
-                      width: widgetW,
-                      height: height,
-                      child: IntFormField(
-                        onSaved: (val) {
-                          shipSize = val != null ? int.parse(val) : 0;
-                        },
-                      )),
-                  SizedBox(
-                    width: widgetW + 22,
-                    height: height,
-                    child: DropdownButtonFormField(
-                        onSaved: (newValue) {
-                          shipSizeUnit = newValue as String;
-                        },
-                        validator: (value) =>
-                            value == null ? "사이즈단위를 선택해주십시오." : null,
-                        items: sizeUnits
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
+              txt("사이즈 선택"),
+              // SizedBox(
+              //     width: widgetW,
+              //     height: height,
+              //     child: IntFormField(
+              //       onSaved: (val) {
+              //         shipSize = val != null ? int.parse(val) : 0;
+              //       },
+              //     )),
+              SizedBox(
+                width: widgetW + 22,
+                height: height,
+                child: DropdownButtonFormField(
+                    onSaved: (newValue) {
+                      shipSizeUnit = newValue as String;
+                    },
+                    validator: (value) =>
+                        value == null ? "사이즈단위를 선택해주십시오." : null,
+                    selectedItemBuilder: (BuildContext context) {
+                      return sizeUnits.map<Widget>((String value) {
+                        return Container(
+                            alignment: Alignment.center,
+                            width: widgetW - 5,
                             child: Text(
                               value,
+                              textAlign: TextAlign.center,
                               style: const TextStyle(fontSize: 20),
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (val) {
-                          debugPrint("change size: $val");
-                        }),
-                  )),
-              row(txt("무게 입력"), null),
-              row(
-                  SizedBox(
-                      width: widgetW,
-                      height: height,
-                      child: IntFormField(
-                        onSaved: (val) {
-                          shipWeight = val != null ? int.parse(val) : 0;
-                        },
-                      )),
-                  SizedBox(
-                    width: widgetW,
-                    height: height,
-                    child: DropdownButtonFormField(
-                        onSaved: (newValue) {
-                          shipWeightUnit = newValue as String;
-                        },
-                        validator: (value) =>
-                            value == null ? "무게단위를 선택해주십시오." : null,
-                        items: weightUnits
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
+                            ));
+                      }).toList();
+                    },
+                    items:
+                        sizeUnits.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      debugPrint("change size: $val");
+                    }),
+              ),
+              txt("무게 선택"),
+              // SizedBox(
+              //     width: widgetW,
+              //     height: height,
+              //     child: IntFormField(
+              //       onSaved: (val) {
+              //         shipWeight = val != null ? int.parse(val) : 0;
+              //       },
+              //     )),
+              SizedBox(
+                width: widgetW + 22,
+                height: height,
+                child: DropdownButtonFormField(
+                    onSaved: (newValue) {
+                      shipWeightUnit = newValue as String;
+                    },
+                    validator: (value) =>
+                        value == null ? "무게단위를 선택해주십시오." : null,
+                    selectedItemBuilder: (BuildContext context) {
+                      return weightUnits.map<Widget>((String value) {
+                        return Container(
+                            alignment: Alignment.center,
+                            width: widgetW - 5,
                             child: Text(
                               value,
+                              textAlign: TextAlign.center,
                               style: const TextStyle(fontSize: 20),
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (val) {
-                          debugPrint("change weight: $val");
-                        }),
-                  )),
+                            ));
+                      }).toList();
+                    },
+                    items: weightUnits
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      debugPrint("change weight: $val");
+                    }),
+              ),
             ],
           ),
         ),
@@ -226,9 +264,11 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
                 debugPrint(
                     "shipSize: $shipSize, shipSizeUnit: $shipSizeUnit, shipWeight: $shipWeight, shipWeightUnit: $shipWeightUnit");
                 final shipment = widget.p.shipment.copyWith(
-                    size: shipSize,
+                    // size: shipSize,
+                    size: 1,
                     sizeUnit: shipSizeUnit,
-                    weight: shipWeight,
+                    // weight: shipWeight,
+                    weight: 1,
                     weightUnit: shipWeightUnit);
                 try {
                   context.read<AppBloc>().add(DisSelectPickup());
@@ -242,7 +282,7 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
                 });
               }
             },
-            child: const Text('저장'),
+            child: const Text('적용'),
           ),
           ElevatedButton(
               onPressed: () {

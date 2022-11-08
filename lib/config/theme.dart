@@ -1,13 +1,15 @@
 part of "./index.dart";
 
+const cardBorderWidth = 1.5;
+final cardRadius = BorderRadius.circular(20.0);
 final cardTheme = CardTheme(
     elevation: 8.0,
     shape: RoundedRectangleBorder(
       side: const BorderSide(
         color: Color(0xFFFBC02D),
-        width: 1.5,
+        width: cardBorderWidth,
       ),
-      borderRadius: BorderRadius.circular(20.0),
+      borderRadius: cardRadius,
     ));
 final outlineBtnTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(

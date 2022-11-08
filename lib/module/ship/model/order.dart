@@ -186,6 +186,13 @@ class OrderAmount with _$OrderAmount {
       _$OrderAmountFromJson(json);
 }
 
+enum OrderType {
+  @JsonValue('STANDARD')
+  standard,
+  @JsonValue('RETURN')
+  orderReturn,
+}
+
 @freezed //  all of this class's properties are immutable.
 class ProdOrder extends Equatable with _$ProdOrder {
   @JsonSerializable(explicitToJson: true)
@@ -203,6 +210,7 @@ class ProdOrder extends Equatable with _$ProdOrder {
     required OrderAmount actualAmount,
     required OrderAmount initialAmount,
     required OrderState state,
+    @Default(OrderType.standard) OrderType? orderType,
     String? sizeUnit,
     String? weightUnit,
     int? size,
@@ -219,6 +227,8 @@ class ProdOrder extends Equatable with _$ProdOrder {
         OrderState.shipping,
         OrderState.shippingComplete,
       ].contains(state);
+
+  bool get isReturn => orderType == OrderType.orderReturn;
 
   factory ProdOrder.fromJson(Map<String, Object?> json) =>
       _$ProdOrderFromJson(json);

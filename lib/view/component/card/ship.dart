@@ -5,10 +5,12 @@ class ShipThumb extends StatelessWidget {
     Key? key,
     required this.dest,
     required this.order,
+    required this.isBig,
   }) : super(key: key);
 
   final Locate dest;
   final ProdOrder order;
+  final bool isBig;
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +27,22 @@ class ShipThumb extends StatelessWidget {
             txt((dest.firstName ?? "") + (dest.lastName ?? "")),
           ],
         ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     txt("번호"),
-        //     txt(dest.phone),
-        //   ],
-        // ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     txt("간이주소"),
-        //     txt(dest.adminArea),
-        //   ],
-        // ),
+        if (isBig)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              txt("번호"),
+              txt(dest.phone),
+            ],
+          ),
+        if (isBig)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              txt("간이주소"),
+              txt(dest.adminArea),
+            ],
+          ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
