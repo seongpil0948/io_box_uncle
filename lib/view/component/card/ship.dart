@@ -21,28 +21,28 @@ class ShipThumb extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            txt("수령인"),
+            txt("도매처명"),
             txt((dest.firstName ?? "") + (dest.lastName ?? "")),
           ],
         ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     txt("번호"),
+        //     txt(dest.phone),
+        //   ],
+        // ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     txt("간이주소"),
+        //     txt(dest.adminArea),
+        //   ],
+        // ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            txt("번호"),
-            txt(dest.phone),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            txt("간이주소"),
-            txt(dest.adminArea),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            txt("상세주소"),
+            txt(order.isPickup ? "픽업주소" : "배송주소"),
             txt(dest.detailLocate),
           ],
         ),
@@ -50,7 +50,7 @@ class ShipThumb extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             txt("픽업수량"),
-            txt("${order.activeCnt}벌"),
+            txt("${order.activeCnt}"),
           ],
         )
       ]),

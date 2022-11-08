@@ -113,30 +113,30 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                DashBoardCard(
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('정산 예정액',
-                              style: textTheme.headline5
-                                  ?.copyWith(color: Colors.grey.shade500)),
-                          Text('카카오뱅크 3333-17-170009',
-                              style: textTheme.caption?.copyWith(
-                                  color: customColors.primaryCloudy)),
-                        ],
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text('999,999원',
-                            style: textTheme.headline5?.copyWith(
-                                color: Theme.of(context).primaryColor)),
-                      )
-                    ])),
+                // DashBoardCard(
+                //     child: Column(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         children: [
+                //       Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Text('정산 예정액',
+                //               style: textTheme.headline5
+                //                   ?.copyWith(color: Colors.grey.shade500)),
+                //           Text('카카오뱅크 3333-17-170009',
+                //               style: textTheme.caption?.copyWith(
+                //                   color: customColors.primaryCloudy)),
+                //         ],
+                //       ),
+                //       Align(
+                //         alignment: Alignment.centerRight,
+                //         child: Text('999,999원',
+                //             style: textTheme.headline5?.copyWith(
+                //                 color: Theme.of(context).primaryColor)),
+                //       )
+                //     ])),
                 SizedBox(
                   height: size.height / 5,
                   child: Row(
