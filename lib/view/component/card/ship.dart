@@ -23,7 +23,7 @@ class ShipThumb extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            txt("도매처명"),
+            txt(order.isReturn ? "소매처명" : "도매처명"),
             txt((dest.firstName ?? "") + (dest.lastName ?? "")),
           ],
         ),
@@ -31,7 +31,7 @@ class ShipThumb extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              txt("번호"),
+              txt("연락처"),
               txt(dest.phone),
             ],
           ),
@@ -39,14 +39,15 @@ class ShipThumb extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              txt("간이주소"),
+              txt("주소지"),
               txt(dest.adminArea),
             ],
           ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            txt(order.isPickup ? "픽업주소" : "배송주소"),
+            // txt(order.isPickup ? "픽업주소" : "배송주소"),
+            txt("상세주소"),
             txt(dest.detailLocate),
           ],
         ),
@@ -77,7 +78,7 @@ class ShipAmountCard extends StatelessWidget {
         );
     return IoCard(
       height: p.shipment.amountMeasurable ? size.height / 5.5 : size.height / 8,
-      title: Text("배송비 카드", style: T.titleMedium),
+      title: Text("픽업료 및 배송비 설정", style: T.titleMedium),
       content: p.shipment.amountMeasurable
           ? Column(
               children: [
@@ -101,7 +102,7 @@ class ShipAmountCard extends StatelessWidget {
                   .then((value) =>
                       context.read<AppBloc>().add(DisSelectPickup()));
             },
-            child: txt("제원변경"))
+            child: txt("설정"))
       ],
     );
   }
