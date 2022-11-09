@@ -6,3 +6,4 @@ import 'package:io_box_uncle/module/ship/bloc/shipment_bloc.dart';
 import 'package:io_box_uncle/module/ship/model/index.dart';
 
 part "./ship_status_button.dart";
+part "./ship_filter.dart";

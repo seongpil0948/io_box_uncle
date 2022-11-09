@@ -1,7 +1,7 @@
 part of "./index.dart";
 
 @freezed //  all of this class's properties are immutable.
-class Shipment with _$Shipment {
+class Shipment extends Equatable with _$Shipment {
   @JsonSerializable(explicitToJson: true)
   const factory Shipment({
     required DateTime createdAt,
@@ -41,10 +41,13 @@ class Shipment with _$Shipment {
   const Shipment._();
   factory Shipment.fromJson(Map<String, Object?> json) =>
       _$ShipmentFromJson(json);
+
+  @override
+  List<Object?> get props => [shippingId];
 }
 
 @freezed //  all of this class's properties are immutable.
-class Locate with _$Locate {
+class Locate extends Equatable with _$Locate {
   @JsonSerializable(explicitToJson: true)
   const factory Locate({
     String? code,
@@ -69,6 +72,9 @@ class Locate with _$Locate {
   String get adminArea {
     return "$city $county $town";
   }
+
+  @override
+  List<Object?> get props => [code, alias];
 }
 
 enum LocateType {

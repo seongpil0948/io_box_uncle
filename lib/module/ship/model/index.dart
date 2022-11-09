@@ -21,6 +21,9 @@ class ShipOrder extends Equatable with _$ShipOrder {
       required IoUser managerUser,
       required VendorGarment vendorGarment}) = _ShipOrder;
 
+  Locate get dest =>
+      order.isPickup ? shipment.startAddress : shipment.receiveAddress;
+
   const ShipOrder._();
   factory ShipOrder.fromJson(Map<String, Object?> json) =>
       _$ShipOrderFromJson(json);

@@ -23,7 +23,13 @@ class ShipThumb extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            txt(order.isReturn ? "소매처명" : "도매처명"),
+            txt(order.isPickup
+                ? order.isReturn
+                    ? "소매처명"
+                    : "도매처명"
+                : order.isReturn
+                    ? "도매처명"
+                    : "소매처명"),
             txt((dest.firstName ?? "") + (dest.lastName ?? "")),
           ],
         ),

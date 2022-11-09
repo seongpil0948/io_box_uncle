@@ -35,12 +35,7 @@ class PickupDetailPage extends StatelessWidget {
                 title: BackButton(onPressed: () {
                   context.read<AppBloc>().add(DisSelectPickup());
                 }),
-                content: ShipThumb(
-                    isBig: true,
-                    dest: p.order.isPickup
-                        ? p.shipment.startAddress
-                        : p.shipment.receiveAddress,
-                    order: p.order),
+                content: ShipThumb(isBig: true, dest: p.dest, order: p.order),
                 footer: footer,
               ),
               const SizedBox(height: 10),

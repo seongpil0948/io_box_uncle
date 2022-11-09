@@ -45,6 +45,12 @@ class _PickupListPageState extends State<PickupListPage>
                     )
                 ],
               ),
+              actions: const [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: ShipLocateFilter(),
+                )
+              ],
             ),
             body: Container(
               padding: const EdgeInsets.only(top: 8),
@@ -66,13 +72,42 @@ class _PickupListPageState extends State<PickupListPage>
   bool get wantKeepAlive => true;
 }
 
+class _ShipListView extends StatelessWidget {
+  final OrderState ordState;
+  final String name;
+  const _ShipListView({required this.ordState, required this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    final T = Theme.of(context).textTheme;
+    return BlocSelector<ShipmentBloc, ShipmentState, List<ShipOrder>>(
+      selector: (state) => state.filteredShipOrders,
+      builder: (context, state) {
+        if (state.isNotEmpty) {
+          return ListView(
+            children: state
+                .where((element) => element.order.state == ordState)
+                .map((e) => _ShipCard(s: e))
+                .toList(),
+          );
+        } else {
+          return Center(
+              child: Text(
+            "데이터가 없습니다.",
+            style: T.headline5,
+          ));
+        }
+      },
+    );
+  }
+}
+
 class _ShipCard extends StatelessWidget {
   final ShipOrder s;
   const _ShipCard({required this.s});
 
   @override
   Widget build(BuildContext context) {
-    final dest = s.shipment.startAddress;
     final size = MediaQuery.of(context).size;
     final itemHeight = size.height / 6;
     final customColors = Theme.of(context).extension<CustomColors>()!;
@@ -95,42 +130,10 @@ class _ShipCard extends StatelessWidget {
                     borderRadius: cardRadius,
                   )
                 : null,
-            child: ShipThumb(isBig: false, dest: dest, order: s.order),
+            child: ShipThumb(isBig: false, dest: s.dest, order: s.order),
           ),
         ),
       ),
-    );
-  }
-}
-
-class _ShipListView extends StatelessWidget {
-  final OrderState ordState;
-  final String name;
-  const _ShipListView({required this.ordState, required this.name});
-
-  @override
-  Widget build(BuildContext context) {
-    final T = Theme.of(context).textTheme;
-    return BlocSelector<ShipmentBloc, ShipmentState, List<ShipOrder>>(
-      selector: (state) => state.shipOrders,
-      builder: (context, state) {
-        if (state.isNotEmpty) {
-          return ListView(
-            children: state
-                .where((element) {
-                  return element.order.state == ordState;
-                })
-                .map((e) => _ShipCard(s: e))
-                .toList(),
-          );
-        } else {
-          return Center(
-              child: Text(
-            "데이터가 없습니다.",
-            style: T.headline5,
-          ));
-        }
-      },
     );
   }
 }

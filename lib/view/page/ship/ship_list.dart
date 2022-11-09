@@ -45,6 +45,12 @@ class _ShipListPageState extends State<ShipListPage>
                     )
                 ],
               ),
+              actions: const [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: ShipLocateFilter(),
+                )
+              ],
             ),
             body: Container(
               padding: const EdgeInsets.only(top: 8),

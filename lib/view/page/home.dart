@@ -23,6 +23,14 @@ class _HomePageState extends State<HomePage> {
           fit: BoxFit.contain,
           width: 30,
         ),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(48.0),
+          child: Container(
+            height: 48.0,
+            alignment: Alignment.centerRight,
+            child: ShipLocateFilter(),
+          ),
+        ),
         actions: <Widget>[
           IconButton(
             key: const Key('homePage_logout_iconButton'),
@@ -37,11 +45,12 @@ class _HomePageState extends State<HomePage> {
         child: BlocBuilder<ShipmentBloc, ShipmentState>(
           builder: (context, state) {
             final pickCnt =
-                state.shipOrders.where((e) => e.order.isPickup).length;
+                state.filteredShipOrders.where((e) => e.order.isPickup).length;
             final shipCnt =
-                state.shipOrders.where((e) => e.order.isShip).length;
-            final tossCnt =
-                state.tossData.where((e) => e.shipment.uncleId == null).length;
+                state.filteredShipOrders.where((e) => e.order.isShip).length;
+            final tossCnt = state.filteredTossOrders
+                .where((e) => e.shipment.uncleId == null)
+                .length;
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

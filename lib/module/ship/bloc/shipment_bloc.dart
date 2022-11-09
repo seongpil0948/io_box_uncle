@@ -25,6 +25,7 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
     on<DoneShip>(_doneShip);
     on<RequestTossOrder>(_reqTossOrd);
     on<ReceiveTossOrder>(_receiveTossOrd);
+    on<FilterByLocate>(_filterByLocate);
 
     authRepo.user.listen(
       (user) async {
@@ -37,6 +38,18 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
   // void _listenAll(ShipmentEvent event, Emitter<ShipmentState> emit) {
   //   debugPrint("ship event in _listenAll: $event, emit: $emit");
   // }
+  void _filterByLocate(FilterByLocate event, Emitter<ShipmentState> emit) {
+    // List<ShipOrder> filtering(List<ShipOrder> o, Locate? dest) {
+    //   return dest != null
+    //       ? o.where((e) => e.dest.adminArea == dest.adminArea).toList()
+    //       : o;
+    // }
+
+    emit(ShipOrderState(
+        dest: event.dest,
+        shipOrders: state.shipOrders,
+        tossData: state.tossData));
+  }
 
   Future<void> startPickup(
       StartPickup event, Emitter<ShipmentState> emit) async {
@@ -170,7 +183,9 @@ class ShipmentBloc extends Bloc<ShipmentEvent, ShipmentState> {
               user.userInfo.userId, user.userInfo.managerId!),
           onData: (orders) {
         return ShipOrderState(
-            shipOrders: orders.data, tossData: orders.tossData);
+            shipOrders: orders.data,
+            tossData: orders.tossData,
+            dest: state.dest);
       });
     }
   }

@@ -44,3 +44,8 @@ class ReceiveTossOrder extends ShipmentEvent {
   final ShipOrder s;
   ReceiveTossOrder({required this.s});
 }
+
+class FilterByLocate extends ShipmentEvent {
+  final Locate? dest;
+  FilterByLocate({required this.dest});
+}

@@ -29,7 +29,7 @@ class _TossListPageState extends State<TossListPage> {
             padding: const EdgeInsets.only(top: 8),
             height: MediaQuery.of(context).size.height * 0.75,
             child: BlocSelector<ShipmentBloc, ShipmentState, List<ShipOrder>>(
-              selector: (state) => state.tossData,
+              selector: (state) => state.filteredTossOrders,
               builder: (context, state) {
                 if (state.isNotEmpty) {
                   return Align(
