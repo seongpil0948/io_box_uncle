@@ -129,15 +129,23 @@ class ShipmentRepo {
               GarmentOrder.fromJson(element.data() as Map<String, Object?>);
           orders.add(ord);
           if (!users.containsKey(ord.shopId)) {
-            users[ord.shopId] = await AuthRepo.getUserById(ord.shopId);
+            final u = await AuthRepo.getUserById(ord.shopId);
+            if (u != null) {
+              users[ord.shopId] = u;
+            }
           }
           if (!users.containsKey(ord.shipManagerId)) {
-            users[ord.shipManagerId] =
-                await AuthRepo.getUserById(ord.shipManagerId);
+            final u = await AuthRepo.getUserById(ord.shipManagerId);
+            if (u != null) {
+              users[ord.shipManagerId] = u;
+            }
           }
           for (var vendorId in ord.vendorIds) {
             if (!users.containsKey(vendorId)) {
-              users[vendorId] = await AuthRepo.getUserById(vendorId);
+              final u = await AuthRepo.getUserById(vendorId);
+              if (u != null) {
+                users[vendorId] = u;
+              }
             }
           }
         }

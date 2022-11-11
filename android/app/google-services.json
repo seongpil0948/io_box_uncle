@@ -48,10 +48,10 @@
               "client_type": 3
             },
             {
-              "client_id": "812477328372-7s5roj5ip07g8nh1og96a33d94d7j4ih.apps.googleusercontent.com",
+              "client_id": "812477328372-6fnl01nq3cgj59hs8ml4e41nh4u0gsg5.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.ioBox.ioApp"
+                "bundle_id": "com.IoBox.App"
               }
             }
           ]

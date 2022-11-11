@@ -88,11 +88,9 @@ class ShipAmountCard extends StatelessWidget {
       content: p.shipment.amountMeasurable
           ? Column(
               children: [
-                row(txt("부피"),
-                    txt("${p.shipment.size} (${p.shipment.sizeUnit})")),
+                row(txt("부피"), txt("${p.shipment.sizeUnit}")),
                 const SizedBox(height: 10),
-                row(txt("무게"),
-                    txt("${p.shipment.weight} (${p.shipment.weightUnit})")),
+                row(txt("무게"), txt("${p.shipment.weightUnit}")),
               ],
             )
           : Container(),

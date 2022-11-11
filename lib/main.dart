@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,16 @@ void main() {
       FlutterError.presentError(details);
       await IoLogger.log(
           IoSeverity.error, "Fatal Uncle App Error Detail: $details");
+      FirebaseCrashlytics.instance.recordFlutterFatalError(details);
     };
+
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      IoLogger.log(IoSeverity.error,
+          "Fatal Uncle App PlatformDispatcher Error  $error, \n $stack");
+      return true;
+    };
+
     final fcm = FcmRepo();
     await fcm.initFcm();
     runApp(App(authRepo: authRepo, fcm: fcm));
@@ -43,6 +53,17 @@ Future<void> _firebaseInit() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // if (kDebugMode) {
+  //   // Force disable Crashlytics collection while doing every day development.
+  //   // Temporarily toggle this to true if you want to test crash reporting in your app.
+  //   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
+  // }
+  if (FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled) {
+    print("=== Crashlytics enabled ===");
+  } else {
+    print("=== Crashlytics disabled ===");
+  }
 
   final remoteConfig = FirebaseRemoteConfig.instance;
   await remoteConfig.setConfigSettings(RemoteConfigSettings(

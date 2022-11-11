@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ part 'ship/toss_list.dart';
 class App extends StatelessWidget {
   final AuthRepo authRepo;
   final FcmRepo fcm;
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   const App({Key? key, required this.authRepo, required this.fcm})
       : super(key: key);
 
@@ -31,6 +33,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        navigatorKey: App.navigatorKey,
         title: '엉클박스',
         debugShowCheckedModeBanner: false,
         theme: lightTheme,

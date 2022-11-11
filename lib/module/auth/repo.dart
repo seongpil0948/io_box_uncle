@@ -6,8 +6,8 @@ class AuthRepo with WidgetsBindingObserver {
   static const userCacheKey = '__user_cache_key__';
 
   AuthRepo({required this.pref}) {
-    currentUser!
-        .copyWith(connectState: AppLifecycleState.resumed.name)
+    currentUser
+        ?.copyWith(connectState: AppLifecycleState.resumed.name)
         .update(refreshUpdatedAt: false);
     WidgetsBinding.instance.addObserver(this);
   }
@@ -21,8 +21,8 @@ class AuthRepo with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (currentUser != null) {
-      currentUser!
-          .copyWith(connectState: state.name)
+      currentUser
+          ?.copyWith(connectState: state.name)
           .update(refreshUpdatedAt: false);
     }
   }
@@ -37,7 +37,31 @@ class AuthRepo with WidgetsBindingObserver {
       }
 
       final user = await getUserById(firebaseUser.uid);
-      if (user.userInfo.role != UserRole.uncleWorker) {
+      final context = App.navigatorKey.currentContext;
+      if (user == null) {
+        if (context != null) {
+          showDialog(
+              context: context,
+              builder: (_) => const AlertDialog(
+                  title: Text("계정 오류"),
+                  content: Text("존재하지 않는 계정 입니다."),
+                  elevation: 24.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)))));
+        }
+        return null;
+      } else if (user.userInfo.role != UserRole.uncleWorker) {
+        if (context != null) {
+          showDialog(
+              context: context,
+              builder: (_) => const AlertDialog(
+                  title: Text("권한 오류"),
+                  content: Text("엉클 근로자 권한을 가진 계정에게 제공되는 서비스 입니다."),
+                  elevation: 24.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)))));
+        }
+
         await IoLogger.log(IoSeverity.warn,
             "user id(${user.userInfo.userId}) role (${user.userInfo.role}) not uncle worker");
         return null;
@@ -68,9 +92,9 @@ class AuthRepo with WidgetsBindingObserver {
     }
   }
 
-  static Future<IoUser> getUserById(String userId) async {
+  static Future<IoUser?> getUserById(String userId) async {
     final doc = await getCollection(c: IoCollection.users).doc(userId).get();
-    assert(doc.exists);
+    if (!doc.exists) return null;
     // return IoUser(doc.data() as Map<String, dynamic>);
     return IoUser.fromJson(doc.data() as Map<String, dynamic>);
   }
