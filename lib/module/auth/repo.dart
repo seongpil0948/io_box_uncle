@@ -110,6 +110,13 @@ class AuthRepo with WidgetsBindingObserver {
         .toList();
   }
 
+  Future<UserCredential> signInWithPw(String email, String pw) async {
+    return await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: pw,
+    );
+  }
+
   Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
