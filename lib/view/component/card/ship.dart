@@ -103,8 +103,7 @@ class ShipAmountCard extends StatelessWidget {
                       builder: ((context) {
                         return ShipSpecifySelect(p: p);
                       }))
-                  .then((value) =>
-                      context.read<AppBloc>().add(DisSelectPickup()));
+                  .then((_) => context.read<AppBloc>().add(DisSelectPickup()));
             },
             child: txt("설정"))
       ],

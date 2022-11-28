@@ -63,18 +63,18 @@ _$_GarmentOrder _$$_GarmentOrderFromJson(Map<String, dynamic> json) =>
           (json['vendorIds'] as List<dynamic>).map((e) => e as String).toList(),
       itemIds:
           (json['itemIds'] as List<dynamic>).map((e) => e as String).toList(),
-      shipManagerId: json['shipManagerId'] as String,
+      shipManagerId: json['shipManagerId'] as String?,
       items: (json['items'] as List<dynamic>)
           .map((e) => OrderItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       states: (json['states'] as List<dynamic>)
           .map((e) => $enumDecode(_$OrderStateEnumMap, e))
           .toList(),
-      prodTypes: (json['prodTypes'] as List<dynamic>)
-          .map((e) => $enumDecode(_$ProdTypeEnumMap, e))
-          .toList(),
       cancellations: (json['cancellations'] as List<dynamic>)
           .map((e) => e as Map<String, dynamic>)
+          .toList(),
+      prodTypes: (json['prodTypes'] as List<dynamic>)
+          .map((e) => $enumDecode(_$ProdTypeEnumMap, e))
           .toList(),
       paids: (json['paids'] as List<dynamic>)
           .map((e) => $enumDecode(_$PaidInfoEnumMap, e))
@@ -105,9 +105,9 @@ Map<String, dynamic> _$$_GarmentOrderToJson(_$_GarmentOrder instance) =>
       'shipManagerId': instance.shipManagerId,
       'items': instance.items.map((e) => e.toJson()).toList(),
       'states': instance.states.map((e) => _$OrderStateEnumMap[e]!).toList(),
+      'cancellations': instance.cancellations,
       'prodTypes':
           instance.prodTypes.map((e) => _$ProdTypeEnumMap[e]!).toList(),
-      'cancellations': instance.cancellations,
       'paids': instance.paids.map((e) => _$PaidInfoEnumMap[e]!).toList(),
       'orderTypes':
           instance.orderTypes.map((e) => _$OrderTypeEnumMap[e]!).toList(),
@@ -202,24 +202,25 @@ _$_OrderItem _$$_OrderItemFromJson(Map<String, dynamic> json) => _$_OrderItem(
       id: json['id'] as String,
       orderIds:
           (json['orderIds'] as List<dynamic>).map((e) => e as String).toList(),
+      shopId: json['shopId'] as String,
       vendorId: json['vendorId'] as String,
       vendorProd:
           VendorGarment.fromJson(json['vendorProd'] as Map<String, dynamic>),
-      shopId: json['shopId'] as String,
-      orderDbId: json['orderDbId'] as String,
-      shipmentId: json['shipmentId'] as String,
-      shipManagerId: json['shipManagerId'] as String?,
+      shopProd: ShopGarment.fromJson(json['shopProd'] as Map<String, dynamic>),
       orderCnt: json['orderCnt'] as int,
       activeCnt: json['activeCnt'] as int,
       pendingCnt: json['pendingCnt'] as int,
-      amount: OrderAmount.fromJson(json['amount'] as Map<String, dynamic>),
       state: $enumDecode(_$OrderStateEnumMap, json['state']),
       beforeState:
           $enumDecodeNullable(_$OrderStateEnumMap, json['beforeState']),
-      prodType: $enumDecodeNullable(_$ProdTypeEnumMap, json['prodType']),
-      cancellation: json['cancellation'] as Map<String, dynamic>?,
+      shipmentId: json['shipmentId'] as String,
+      orderDbId: json['orderDbId'] as String,
       orderType: $enumDecodeNullable(_$OrderTypeEnumMap, json['orderType']) ??
           OrderType.standard,
+      prodType: $enumDecodeNullable(_$ProdTypeEnumMap, json['prodType']),
+      amount: OrderAmount.fromJson(json['amount'] as Map<String, dynamic>),
+      cancellation: json['cancellation'] as Map<String, dynamic>?,
+      shipManagerId: json['shipManagerId'] as String?,
       sizeUnit: json['sizeUnit'] as String?,
       weightUnit: json['weightUnit'] as String?,
       size: json['size'] as int?,
@@ -230,21 +231,22 @@ Map<String, dynamic> _$$_OrderItemToJson(_$_OrderItem instance) =>
     <String, dynamic>{
       'id': instance.id,
       'orderIds': instance.orderIds,
+      'shopId': instance.shopId,
       'vendorId': instance.vendorId,
       'vendorProd': instance.vendorProd.toJson(),
-      'shopId': instance.shopId,
-      'orderDbId': instance.orderDbId,
-      'shipmentId': instance.shipmentId,
-      'shipManagerId': instance.shipManagerId,
+      'shopProd': instance.shopProd.toJson(),
       'orderCnt': instance.orderCnt,
       'activeCnt': instance.activeCnt,
       'pendingCnt': instance.pendingCnt,
-      'amount': instance.amount.toJson(),
       'state': _$OrderStateEnumMap[instance.state]!,
       'beforeState': _$OrderStateEnumMap[instance.beforeState],
-      'prodType': _$ProdTypeEnumMap[instance.prodType],
-      'cancellation': instance.cancellation,
+      'shipmentId': instance.shipmentId,
+      'orderDbId': instance.orderDbId,
       'orderType': _$OrderTypeEnumMap[instance.orderType],
+      'prodType': _$ProdTypeEnumMap[instance.prodType],
+      'amount': instance.amount.toJson(),
+      'cancellation': instance.cancellation,
+      'shipManagerId': instance.shipManagerId,
       'sizeUnit': instance.sizeUnit,
       'weightUnit': instance.weightUnit,
       'size': instance.size,
@@ -254,22 +256,20 @@ Map<String, dynamic> _$$_OrderItemToJson(_$_OrderItem instance) =>
 _$_Shipment _$$_ShipmentFromJson(Map<String, dynamic> json) => _$_Shipment(
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
-      wishedDeliveryTime: DateTime.parse(json['wishedDeliveryTime'] as String),
       shippingId: json['shippingId'] as String,
       orderDbId: json['orderDbId'] as String,
-      managerId: json['managerId'] as String,
       uncleId: json['uncleId'] as String?,
-      trackingNo: json['trackingNo'] as String?,
       orderItemId: json['orderItemId'] as String,
+      trackingNo: json['trackingNo'] as String?,
       shipMethod: $enumDecode(_$ShipMethodEnumMap, json['shipMethod']),
       additionalInfo: json['additionalInfo'] as String,
       paid: json['paid'] as bool,
       weightUnit: json['weightUnit'] as String?,
       weight: json['weight'] as int?,
-      amountByWeight: json['amountByWeight'] as int?,
       sizeUnit: json['sizeUnit'] as String?,
       size: json['size'] as int?,
       amountBySize: json['amountBySize'] as int?,
+      amountByWeight: json['amountByWeight'] as int?,
       shipFeeBasic: json['shipFeeBasic'] as int,
       pickupFeeBasic: json['pickupFeeBasic'] as int,
       returnAddress:
@@ -278,33 +278,37 @@ _$_Shipment _$$_ShipmentFromJson(Map<String, dynamic> json) => _$_Shipment(
           Locate.fromJson(json['startAddress'] as Map<String, dynamic>),
       receiveAddress:
           Locate.fromJson(json['receiveAddress'] as Map<String, dynamic>),
+      wishedDeliveryTime: json['wishedDeliveryTime'] == null
+          ? null
+          : DateTime.parse(json['wishedDeliveryTime'] as String),
+      managerId: json['managerId'] as String,
     );
 
 Map<String, dynamic> _$$_ShipmentToJson(_$_Shipment instance) =>
     <String, dynamic>{
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
-      'wishedDeliveryTime': instance.wishedDeliveryTime.toIso8601String(),
       'shippingId': instance.shippingId,
       'orderDbId': instance.orderDbId,
-      'managerId': instance.managerId,
       'uncleId': instance.uncleId,
-      'trackingNo': instance.trackingNo,
       'orderItemId': instance.orderItemId,
+      'trackingNo': instance.trackingNo,
       'shipMethod': _$ShipMethodEnumMap[instance.shipMethod]!,
       'additionalInfo': instance.additionalInfo,
       'paid': instance.paid,
       'weightUnit': instance.weightUnit,
       'weight': instance.weight,
-      'amountByWeight': instance.amountByWeight,
       'sizeUnit': instance.sizeUnit,
       'size': instance.size,
       'amountBySize': instance.amountBySize,
+      'amountByWeight': instance.amountByWeight,
       'shipFeeBasic': instance.shipFeeBasic,
       'pickupFeeBasic': instance.pickupFeeBasic,
       'returnAddress': instance.returnAddress.toJson(),
       'startAddress': instance.startAddress.toJson(),
       'receiveAddress': instance.receiveAddress.toJson(),
+      'wishedDeliveryTime': instance.wishedDeliveryTime?.toIso8601String(),
+      'managerId': instance.managerId,
     };
 
 const _$ShipMethodEnumMap = {

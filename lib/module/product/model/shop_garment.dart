@@ -14,11 +14,11 @@ class ShopGarment with _$ShopGarment {
     required String prodName,
     required dynamic info,
     required String description,
-    required String cafeProdId,
-    required String zigzagProdId,
+    String? cafeProdId,
+    String? zigzagProdId,
     // ignore: non_constant_identifier_names
-    required Map<String, dynamic> TBD,
-    required ProdType prodType,
+    @Default({}) Map<String, dynamic> TBD,
+    @Default(ProdType.garment) ProdType prodType,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _ShopGarment;

@@ -8,6 +8,12 @@ part of 'index.dart';
 
 _$_VendorGarment _$$_VendorGarmentFromJson(Map<String, dynamic> json) =>
     _$_VendorGarment(
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       part: $enumDecode(_$PartEnumMap, json['part']),
       ctgr: json['ctgr'] as String,
@@ -17,6 +23,7 @@ _$_VendorGarment _$$_VendorGarmentFromJson(Map<String, dynamic> json) =>
       fabric: json['fabric'] as String,
       vendorId: json['vendorId'] as String,
       vendorProdId: json['vendorProdId'] as String,
+      vendorProdPkgId: json['vendorProdPkgId'] as String,
       vendorPrice: json['vendorPrice'] as int,
       stockCnt: json['stockCnt'] as int,
       vendorProdName: json['vendorProdName'] as String,
@@ -26,10 +33,14 @@ _$_VendorGarment _$$_VendorGarmentFromJson(Map<String, dynamic> json) =>
           (json['bodyImgs'] as List<dynamic>).map((e) => e as String).toList(),
       info: json['info'],
       description: json['description'] as String,
+      TBD: json['TBD'] as Map<String, dynamic>,
+      prodType: $enumDecode(_$ProdTypeEnumMap, json['prodType']),
     );
 
 Map<String, dynamic> _$$_VendorGarmentToJson(_$_VendorGarment instance) =>
     <String, dynamic>{
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
       'gender': _$GenderEnumMap[instance.gender]!,
       'part': _$PartEnumMap[instance.part]!,
       'ctgr': instance.ctgr,
@@ -39,6 +50,7 @@ Map<String, dynamic> _$$_VendorGarmentToJson(_$_VendorGarment instance) =>
       'fabric': instance.fabric,
       'vendorId': instance.vendorId,
       'vendorProdId': instance.vendorProdId,
+      'vendorProdPkgId': instance.vendorProdPkgId,
       'vendorPrice': instance.vendorPrice,
       'stockCnt': instance.stockCnt,
       'vendorProdName': instance.vendorProdName,
@@ -46,6 +58,8 @@ Map<String, dynamic> _$$_VendorGarmentToJson(_$_VendorGarment instance) =>
       'bodyImgs': instance.bodyImgs,
       'info': instance.info,
       'description': instance.description,
+      'TBD': instance.TBD,
+      'prodType': _$ProdTypeEnumMap[instance.prodType]!,
     };
 
 const _$GenderEnumMap = {
@@ -64,3 +78,53 @@ const _$PartEnumMap = {
   Part.etc: 'ETC',
   Part.kids: 'DRESS',
 };
+
+const _$ProdTypeEnumMap = {
+  ProdType.garment: 'GARMENT',
+  ProdType.grocery: 'GROCERY',
+};
+
+_$_ShopGarment _$$_ShopGarmentFromJson(Map<String, dynamic> json) =>
+    _$_ShopGarment(
+      size: json['size'] as String,
+      color: json['color'] as String,
+      vendorId: json['vendorId'] as String,
+      vendorProdId: json['vendorProdId'] as String,
+      shopProdId: json['shopProdId'] as String,
+      shopId: json['shopId'] as String,
+      prodPrice: json['prodPrice'] as int,
+      prodName: json['prodName'] as String,
+      info: json['info'],
+      description: json['description'] as String,
+      cafeProdId: json['cafeProdId'] as String?,
+      zigzagProdId: json['zigzagProdId'] as String?,
+      TBD: json['TBD'] as Map<String, dynamic>? ?? const {},
+      prodType: $enumDecodeNullable(_$ProdTypeEnumMap, json['prodType']) ??
+          ProdType.garment,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$$_ShopGarmentToJson(_$_ShopGarment instance) =>
+    <String, dynamic>{
+      'size': instance.size,
+      'color': instance.color,
+      'vendorId': instance.vendorId,
+      'vendorProdId': instance.vendorProdId,
+      'shopProdId': instance.shopProdId,
+      'shopId': instance.shopId,
+      'prodPrice': instance.prodPrice,
+      'prodName': instance.prodName,
+      'info': instance.info,
+      'description': instance.description,
+      'cafeProdId': instance.cafeProdId,
+      'zigzagProdId': instance.zigzagProdId,
+      'TBD': instance.TBD,
+      'prodType': _$ProdTypeEnumMap[instance.prodType]!,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };

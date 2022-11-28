@@ -133,7 +133,7 @@ class ShipmentRepo {
             }
           }
           final shipManagerId = ord.shipManagerId;
-          if (!users.containsKey(shipManagerId)) {
+          if (shipManagerId != null && !users.containsKey(shipManagerId)) {
             final u = await AuthRepo.getUserById(shipManagerId);
             if (u != null) {
               users[shipManagerId] = u;

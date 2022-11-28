@@ -352,12 +352,12 @@ mixin _$IoOrder {
   List<String> get shipmentIds => throw _privateConstructorUsedError;
   List<String> get vendorIds => throw _privateConstructorUsedError;
   List<String> get itemIds => throw _privateConstructorUsedError;
-  String get shipManagerId => throw _privateConstructorUsedError;
+  String? get shipManagerId => throw _privateConstructorUsedError;
   List<OrderItem> get items => throw _privateConstructorUsedError;
   List<OrderState> get states => throw _privateConstructorUsedError;
-  List<ProdType> get prodTypes => throw _privateConstructorUsedError;
   List<Map<String, dynamic>> get cancellations =>
       throw _privateConstructorUsedError;
+  List<ProdType> get prodTypes => throw _privateConstructorUsedError;
   List<PaidInfo> get paids => throw _privateConstructorUsedError;
   List<OrderType> get orderTypes => throw _privateConstructorUsedError;
   OrderAmount get amount => throw _privateConstructorUsedError;
@@ -388,11 +388,11 @@ abstract class $IoOrderCopyWith<$Res> {
       List<String> shipmentIds,
       List<String> vendorIds,
       List<String> itemIds,
-      String shipManagerId,
+      String? shipManagerId,
       List<OrderItem> items,
       List<OrderState> states,
-      List<ProdType> prodTypes,
       List<Map<String, dynamic>> cancellations,
+      List<ProdType> prodTypes,
       List<PaidInfo> paids,
       List<OrderType> orderTypes,
       OrderAmount amount});
@@ -428,11 +428,11 @@ class _$IoOrderCopyWithImpl<$Res, $Val extends IoOrder>
     Object? shipmentIds = null,
     Object? vendorIds = null,
     Object? itemIds = null,
-    Object? shipManagerId = null,
+    Object? shipManagerId = freezed,
     Object? items = null,
     Object? states = null,
-    Object? prodTypes = null,
     Object? cancellations = null,
+    Object? prodTypes = null,
     Object? paids = null,
     Object? orderTypes = null,
     Object? amount = null,
@@ -498,10 +498,10 @@ class _$IoOrderCopyWithImpl<$Res, $Val extends IoOrder>
           ? _value.itemIds
           : itemIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      shipManagerId: null == shipManagerId
+      shipManagerId: freezed == shipManagerId
           ? _value.shipManagerId
           : shipManagerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -510,14 +510,14 @@ class _$IoOrderCopyWithImpl<$Res, $Val extends IoOrder>
           ? _value.states
           : states // ignore: cast_nullable_to_non_nullable
               as List<OrderState>,
-      prodTypes: null == prodTypes
-          ? _value.prodTypes
-          : prodTypes // ignore: cast_nullable_to_non_nullable
-              as List<ProdType>,
       cancellations: null == cancellations
           ? _value.cancellations
           : cancellations // ignore: cast_nullable_to_non_nullable
               as List<Map<String, dynamic>>,
+      prodTypes: null == prodTypes
+          ? _value.prodTypes
+          : prodTypes // ignore: cast_nullable_to_non_nullable
+              as List<ProdType>,
       paids: null == paids
           ? _value.paids
           : paids // ignore: cast_nullable_to_non_nullable
@@ -566,11 +566,11 @@ abstract class _$$_GarmentOrderCopyWith<$Res>
       List<String> shipmentIds,
       List<String> vendorIds,
       List<String> itemIds,
-      String shipManagerId,
+      String? shipManagerId,
       List<OrderItem> items,
       List<OrderState> states,
-      List<ProdType> prodTypes,
       List<Map<String, dynamic>> cancellations,
+      List<ProdType> prodTypes,
       List<PaidInfo> paids,
       List<OrderType> orderTypes,
       OrderAmount amount});
@@ -605,11 +605,11 @@ class __$$_GarmentOrderCopyWithImpl<$Res>
     Object? shipmentIds = null,
     Object? vendorIds = null,
     Object? itemIds = null,
-    Object? shipManagerId = null,
+    Object? shipManagerId = freezed,
     Object? items = null,
     Object? states = null,
-    Object? prodTypes = null,
     Object? cancellations = null,
+    Object? prodTypes = null,
     Object? paids = null,
     Object? orderTypes = null,
     Object? amount = null,
@@ -675,10 +675,10 @@ class __$$_GarmentOrderCopyWithImpl<$Res>
           ? _value._itemIds
           : itemIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      shipManagerId: null == shipManagerId
+      shipManagerId: freezed == shipManagerId
           ? _value.shipManagerId
           : shipManagerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -687,14 +687,14 @@ class __$$_GarmentOrderCopyWithImpl<$Res>
           ? _value._states
           : states // ignore: cast_nullable_to_non_nullable
               as List<OrderState>,
-      prodTypes: null == prodTypes
-          ? _value._prodTypes
-          : prodTypes // ignore: cast_nullable_to_non_nullable
-              as List<ProdType>,
       cancellations: null == cancellations
           ? _value._cancellations
           : cancellations // ignore: cast_nullable_to_non_nullable
               as List<Map<String, dynamic>>,
+      prodTypes: null == prodTypes
+          ? _value._prodTypes
+          : prodTypes // ignore: cast_nullable_to_non_nullable
+              as List<ProdType>,
       paids: null == paids
           ? _value._paids
           : paids // ignore: cast_nullable_to_non_nullable
@@ -731,11 +731,11 @@ class _$_GarmentOrder extends _GarmentOrder {
       required final List<String> shipmentIds,
       required final List<String> vendorIds,
       required final List<String> itemIds,
-      required this.shipManagerId,
+      this.shipManagerId,
       required final List<OrderItem> items,
       required final List<OrderState> states,
-      required final List<ProdType> prodTypes,
       required final List<Map<String, dynamic>> cancellations,
+      required final List<ProdType> prodTypes,
       required final List<PaidInfo> paids,
       required final List<OrderType> orderTypes,
       required this.amount})
@@ -745,8 +745,8 @@ class _$_GarmentOrder extends _GarmentOrder {
         _itemIds = itemIds,
         _items = items,
         _states = states,
-        _prodTypes = prodTypes,
         _cancellations = cancellations,
+        _prodTypes = prodTypes,
         _paids = paids,
         _orderTypes = orderTypes,
         super._();
@@ -805,7 +805,7 @@ class _$_GarmentOrder extends _GarmentOrder {
   }
 
   @override
-  final String shipManagerId;
+  final String? shipManagerId;
   final List<OrderItem> _items;
   @override
   List<OrderItem> get items {
@@ -820,18 +820,18 @@ class _$_GarmentOrder extends _GarmentOrder {
     return EqualUnmodifiableListView(_states);
   }
 
-  final List<ProdType> _prodTypes;
-  @override
-  List<ProdType> get prodTypes {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_prodTypes);
-  }
-
   final List<Map<String, dynamic>> _cancellations;
   @override
   List<Map<String, dynamic>> get cancellations {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_cancellations);
+  }
+
+  final List<ProdType> _prodTypes;
+  @override
+  List<ProdType> get prodTypes {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_prodTypes);
   }
 
   final List<PaidInfo> _paids;
@@ -882,11 +882,11 @@ abstract class _GarmentOrder extends IoOrder {
       required final List<String> shipmentIds,
       required final List<String> vendorIds,
       required final List<String> itemIds,
-      required final String shipManagerId,
+      final String? shipManagerId,
       required final List<OrderItem> items,
       required final List<OrderState> states,
-      required final List<ProdType> prodTypes,
       required final List<Map<String, dynamic>> cancellations,
+      required final List<ProdType> prodTypes,
       required final List<PaidInfo> paids,
       required final List<OrderType> orderTypes,
       required final OrderAmount amount}) = _$_GarmentOrder;
@@ -926,15 +926,15 @@ abstract class _GarmentOrder extends IoOrder {
   @override
   List<String> get itemIds;
   @override
-  String get shipManagerId;
+  String? get shipManagerId;
   @override
   List<OrderItem> get items;
   @override
   List<OrderState> get states;
   @override
-  List<ProdType> get prodTypes;
-  @override
   List<Map<String, dynamic>> get cancellations;
+  @override
+  List<ProdType> get prodTypes;
   @override
   List<PaidInfo> get paids;
   @override
@@ -1341,21 +1341,22 @@ OrderItem _$OrderItemFromJson(Map<String, dynamic> json) {
 mixin _$OrderItem {
   String get id => throw _privateConstructorUsedError;
   List<String> get orderIds => throw _privateConstructorUsedError;
+  String get shopId => throw _privateConstructorUsedError;
   String get vendorId => throw _privateConstructorUsedError;
   VendorGarment get vendorProd => throw _privateConstructorUsedError;
-  String get shopId => throw _privateConstructorUsedError;
-  String get orderDbId => throw _privateConstructorUsedError;
-  String get shipmentId => throw _privateConstructorUsedError;
-  String? get shipManagerId => throw _privateConstructorUsedError;
+  ShopGarment get shopProd => throw _privateConstructorUsedError;
   int get orderCnt => throw _privateConstructorUsedError;
   int get activeCnt => throw _privateConstructorUsedError;
   int get pendingCnt => throw _privateConstructorUsedError;
-  OrderAmount get amount => throw _privateConstructorUsedError;
   OrderState get state => throw _privateConstructorUsedError;
   OrderState? get beforeState => throw _privateConstructorUsedError;
-  ProdType? get prodType => throw _privateConstructorUsedError;
-  Map<String, dynamic>? get cancellation => throw _privateConstructorUsedError;
+  String get shipmentId => throw _privateConstructorUsedError;
+  String get orderDbId => throw _privateConstructorUsedError;
   OrderType? get orderType => throw _privateConstructorUsedError;
+  ProdType? get prodType => throw _privateConstructorUsedError;
+  OrderAmount get amount => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get cancellation => throw _privateConstructorUsedError;
+  String? get shipManagerId => throw _privateConstructorUsedError;
   String? get sizeUnit => throw _privateConstructorUsedError;
   String? get weightUnit => throw _privateConstructorUsedError;
   int? get size => throw _privateConstructorUsedError;
@@ -1375,27 +1376,29 @@ abstract class $OrderItemCopyWith<$Res> {
   $Res call(
       {String id,
       List<String> orderIds,
+      String shopId,
       String vendorId,
       VendorGarment vendorProd,
-      String shopId,
-      String orderDbId,
-      String shipmentId,
-      String? shipManagerId,
+      ShopGarment shopProd,
       int orderCnt,
       int activeCnt,
       int pendingCnt,
-      OrderAmount amount,
       OrderState state,
       OrderState? beforeState,
-      ProdType? prodType,
-      Map<String, dynamic>? cancellation,
+      String shipmentId,
+      String orderDbId,
       OrderType? orderType,
+      ProdType? prodType,
+      OrderAmount amount,
+      Map<String, dynamic>? cancellation,
+      String? shipManagerId,
       String? sizeUnit,
       String? weightUnit,
       int? size,
       int? weight});
 
   $VendorGarmentCopyWith<$Res> get vendorProd;
+  $ShopGarmentCopyWith<$Res> get shopProd;
   $OrderAmountCopyWith<$Res> get amount;
 }
 
@@ -1414,21 +1417,22 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
   $Res call({
     Object? id = null,
     Object? orderIds = null,
+    Object? shopId = null,
     Object? vendorId = null,
     Object? vendorProd = null,
-    Object? shopId = null,
-    Object? orderDbId = null,
-    Object? shipmentId = null,
-    Object? shipManagerId = freezed,
+    Object? shopProd = null,
     Object? orderCnt = null,
     Object? activeCnt = null,
     Object? pendingCnt = null,
-    Object? amount = null,
     Object? state = null,
     Object? beforeState = freezed,
-    Object? prodType = freezed,
-    Object? cancellation = freezed,
+    Object? shipmentId = null,
+    Object? orderDbId = null,
     Object? orderType = freezed,
+    Object? prodType = freezed,
+    Object? amount = null,
+    Object? cancellation = freezed,
+    Object? shipManagerId = freezed,
     Object? sizeUnit = freezed,
     Object? weightUnit = freezed,
     Object? size = freezed,
@@ -1443,6 +1447,10 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
           ? _value.orderIds
           : orderIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
       vendorId: null == vendorId
           ? _value.vendorId
           : vendorId // ignore: cast_nullable_to_non_nullable
@@ -1451,22 +1459,10 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
           ? _value.vendorProd
           : vendorProd // ignore: cast_nullable_to_non_nullable
               as VendorGarment,
-      shopId: null == shopId
-          ? _value.shopId
-          : shopId // ignore: cast_nullable_to_non_nullable
-              as String,
-      orderDbId: null == orderDbId
-          ? _value.orderDbId
-          : orderDbId // ignore: cast_nullable_to_non_nullable
-              as String,
-      shipmentId: null == shipmentId
-          ? _value.shipmentId
-          : shipmentId // ignore: cast_nullable_to_non_nullable
-              as String,
-      shipManagerId: freezed == shipManagerId
-          ? _value.shipManagerId
-          : shipManagerId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      shopProd: null == shopProd
+          ? _value.shopProd
+          : shopProd // ignore: cast_nullable_to_non_nullable
+              as ShopGarment,
       orderCnt: null == orderCnt
           ? _value.orderCnt
           : orderCnt // ignore: cast_nullable_to_non_nullable
@@ -1479,10 +1475,6 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
           ? _value.pendingCnt
           : pendingCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as OrderAmount,
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -1491,18 +1483,34 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
           ? _value.beforeState
           : beforeState // ignore: cast_nullable_to_non_nullable
               as OrderState?,
-      prodType: freezed == prodType
-          ? _value.prodType
-          : prodType // ignore: cast_nullable_to_non_nullable
-              as ProdType?,
-      cancellation: freezed == cancellation
-          ? _value.cancellation
-          : cancellation // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+      shipmentId: null == shipmentId
+          ? _value.shipmentId
+          : shipmentId // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderDbId: null == orderDbId
+          ? _value.orderDbId
+          : orderDbId // ignore: cast_nullable_to_non_nullable
+              as String,
       orderType: freezed == orderType
           ? _value.orderType
           : orderType // ignore: cast_nullable_to_non_nullable
               as OrderType?,
+      prodType: freezed == prodType
+          ? _value.prodType
+          : prodType // ignore: cast_nullable_to_non_nullable
+              as ProdType?,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as OrderAmount,
+      cancellation: freezed == cancellation
+          ? _value.cancellation
+          : cancellation // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      shipManagerId: freezed == shipManagerId
+          ? _value.shipManagerId
+          : shipManagerId // ignore: cast_nullable_to_non_nullable
+              as String?,
       sizeUnit: freezed == sizeUnit
           ? _value.sizeUnit
           : sizeUnit // ignore: cast_nullable_to_non_nullable
@@ -1532,6 +1540,14 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
 
   @override
   @pragma('vm:prefer-inline')
+  $ShopGarmentCopyWith<$Res> get shopProd {
+    return $ShopGarmentCopyWith<$Res>(_value.shopProd, (value) {
+      return _then(_value.copyWith(shopProd: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $OrderAmountCopyWith<$Res> get amount {
     return $OrderAmountCopyWith<$Res>(_value.amount, (value) {
       return _then(_value.copyWith(amount: value) as $Val);
@@ -1549,21 +1565,22 @@ abstract class _$$_OrderItemCopyWith<$Res> implements $OrderItemCopyWith<$Res> {
   $Res call(
       {String id,
       List<String> orderIds,
+      String shopId,
       String vendorId,
       VendorGarment vendorProd,
-      String shopId,
-      String orderDbId,
-      String shipmentId,
-      String? shipManagerId,
+      ShopGarment shopProd,
       int orderCnt,
       int activeCnt,
       int pendingCnt,
-      OrderAmount amount,
       OrderState state,
       OrderState? beforeState,
-      ProdType? prodType,
-      Map<String, dynamic>? cancellation,
+      String shipmentId,
+      String orderDbId,
       OrderType? orderType,
+      ProdType? prodType,
+      OrderAmount amount,
+      Map<String, dynamic>? cancellation,
+      String? shipManagerId,
       String? sizeUnit,
       String? weightUnit,
       int? size,
@@ -1571,6 +1588,8 @@ abstract class _$$_OrderItemCopyWith<$Res> implements $OrderItemCopyWith<$Res> {
 
   @override
   $VendorGarmentCopyWith<$Res> get vendorProd;
+  @override
+  $ShopGarmentCopyWith<$Res> get shopProd;
   @override
   $OrderAmountCopyWith<$Res> get amount;
 }
@@ -1588,21 +1607,22 @@ class __$$_OrderItemCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? orderIds = null,
+    Object? shopId = null,
     Object? vendorId = null,
     Object? vendorProd = null,
-    Object? shopId = null,
-    Object? orderDbId = null,
-    Object? shipmentId = null,
-    Object? shipManagerId = freezed,
+    Object? shopProd = null,
     Object? orderCnt = null,
     Object? activeCnt = null,
     Object? pendingCnt = null,
-    Object? amount = null,
     Object? state = null,
     Object? beforeState = freezed,
-    Object? prodType = freezed,
-    Object? cancellation = freezed,
+    Object? shipmentId = null,
+    Object? orderDbId = null,
     Object? orderType = freezed,
+    Object? prodType = freezed,
+    Object? amount = null,
+    Object? cancellation = freezed,
+    Object? shipManagerId = freezed,
     Object? sizeUnit = freezed,
     Object? weightUnit = freezed,
     Object? size = freezed,
@@ -1617,6 +1637,10 @@ class __$$_OrderItemCopyWithImpl<$Res>
           ? _value._orderIds
           : orderIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
       vendorId: null == vendorId
           ? _value.vendorId
           : vendorId // ignore: cast_nullable_to_non_nullable
@@ -1625,22 +1649,10 @@ class __$$_OrderItemCopyWithImpl<$Res>
           ? _value.vendorProd
           : vendorProd // ignore: cast_nullable_to_non_nullable
               as VendorGarment,
-      shopId: null == shopId
-          ? _value.shopId
-          : shopId // ignore: cast_nullable_to_non_nullable
-              as String,
-      orderDbId: null == orderDbId
-          ? _value.orderDbId
-          : orderDbId // ignore: cast_nullable_to_non_nullable
-              as String,
-      shipmentId: null == shipmentId
-          ? _value.shipmentId
-          : shipmentId // ignore: cast_nullable_to_non_nullable
-              as String,
-      shipManagerId: freezed == shipManagerId
-          ? _value.shipManagerId
-          : shipManagerId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      shopProd: null == shopProd
+          ? _value.shopProd
+          : shopProd // ignore: cast_nullable_to_non_nullable
+              as ShopGarment,
       orderCnt: null == orderCnt
           ? _value.orderCnt
           : orderCnt // ignore: cast_nullable_to_non_nullable
@@ -1653,10 +1665,6 @@ class __$$_OrderItemCopyWithImpl<$Res>
           ? _value.pendingCnt
           : pendingCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as OrderAmount,
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -1665,18 +1673,34 @@ class __$$_OrderItemCopyWithImpl<$Res>
           ? _value.beforeState
           : beforeState // ignore: cast_nullable_to_non_nullable
               as OrderState?,
-      prodType: freezed == prodType
-          ? _value.prodType
-          : prodType // ignore: cast_nullable_to_non_nullable
-              as ProdType?,
-      cancellation: freezed == cancellation
-          ? _value._cancellation
-          : cancellation // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+      shipmentId: null == shipmentId
+          ? _value.shipmentId
+          : shipmentId // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderDbId: null == orderDbId
+          ? _value.orderDbId
+          : orderDbId // ignore: cast_nullable_to_non_nullable
+              as String,
       orderType: freezed == orderType
           ? _value.orderType
           : orderType // ignore: cast_nullable_to_non_nullable
               as OrderType?,
+      prodType: freezed == prodType
+          ? _value.prodType
+          : prodType // ignore: cast_nullable_to_non_nullable
+              as ProdType?,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as OrderAmount,
+      cancellation: freezed == cancellation
+          ? _value._cancellation
+          : cancellation // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      shipManagerId: freezed == shipManagerId
+          ? _value.shipManagerId
+          : shipManagerId // ignore: cast_nullable_to_non_nullable
+              as String?,
       sizeUnit: freezed == sizeUnit
           ? _value.sizeUnit
           : sizeUnit // ignore: cast_nullable_to_non_nullable
@@ -1704,21 +1728,22 @@ class _$_OrderItem extends _OrderItem {
   const _$_OrderItem(
       {required this.id,
       required final List<String> orderIds,
+      required this.shopId,
       required this.vendorId,
       required this.vendorProd,
-      required this.shopId,
-      required this.orderDbId,
-      required this.shipmentId,
-      required this.shipManagerId,
+      required this.shopProd,
       required this.orderCnt,
       required this.activeCnt,
       required this.pendingCnt,
-      required this.amount,
       required this.state,
       required this.beforeState,
-      required this.prodType,
-      final Map<String, dynamic>? cancellation,
+      required this.shipmentId,
+      required this.orderDbId,
       this.orderType = OrderType.standard,
+      required this.prodType,
+      required this.amount,
+      final Map<String, dynamic>? cancellation,
+      required this.shipManagerId,
       this.sizeUnit,
       this.weightUnit,
       this.size,
@@ -1740,17 +1765,13 @@ class _$_OrderItem extends _OrderItem {
   }
 
   @override
+  final String shopId;
+  @override
   final String vendorId;
   @override
   final VendorGarment vendorProd;
   @override
-  final String shopId;
-  @override
-  final String orderDbId;
-  @override
-  final String shipmentId;
-  @override
-  final String? shipManagerId;
+  final ShopGarment shopProd;
   @override
   final int orderCnt;
   @override
@@ -1758,13 +1779,20 @@ class _$_OrderItem extends _OrderItem {
   @override
   final int pendingCnt;
   @override
-  final OrderAmount amount;
-  @override
   final OrderState state;
   @override
   final OrderState? beforeState;
   @override
+  final String shipmentId;
+  @override
+  final String orderDbId;
+  @override
+  @JsonKey()
+  final OrderType? orderType;
+  @override
   final ProdType? prodType;
+  @override
+  final OrderAmount amount;
   final Map<String, dynamic>? _cancellation;
   @override
   Map<String, dynamic>? get cancellation {
@@ -1775,8 +1803,7 @@ class _$_OrderItem extends _OrderItem {
   }
 
   @override
-  @JsonKey()
-  final OrderType? orderType;
+  final String? shipManagerId;
   @override
   final String? sizeUnit;
   @override
@@ -1804,21 +1831,22 @@ abstract class _OrderItem extends OrderItem {
   const factory _OrderItem(
       {required final String id,
       required final List<String> orderIds,
+      required final String shopId,
       required final String vendorId,
       required final VendorGarment vendorProd,
-      required final String shopId,
-      required final String orderDbId,
-      required final String shipmentId,
-      required final String? shipManagerId,
+      required final ShopGarment shopProd,
       required final int orderCnt,
       required final int activeCnt,
       required final int pendingCnt,
-      required final OrderAmount amount,
       required final OrderState state,
       required final OrderState? beforeState,
-      required final ProdType? prodType,
-      final Map<String, dynamic>? cancellation,
+      required final String shipmentId,
+      required final String orderDbId,
       final OrderType? orderType,
+      required final ProdType? prodType,
+      required final OrderAmount amount,
+      final Map<String, dynamic>? cancellation,
+      required final String? shipManagerId,
       final String? sizeUnit,
       final String? weightUnit,
       final int? size,
@@ -1833,17 +1861,13 @@ abstract class _OrderItem extends OrderItem {
   @override
   List<String> get orderIds;
   @override
+  String get shopId;
+  @override
   String get vendorId;
   @override
   VendorGarment get vendorProd;
   @override
-  String get shopId;
-  @override
-  String get orderDbId;
-  @override
-  String get shipmentId;
-  @override
-  String? get shipManagerId;
+  ShopGarment get shopProd;
   @override
   int get orderCnt;
   @override
@@ -1851,17 +1875,23 @@ abstract class _OrderItem extends OrderItem {
   @override
   int get pendingCnt;
   @override
-  OrderAmount get amount;
-  @override
   OrderState get state;
   @override
   OrderState? get beforeState;
   @override
+  String get shipmentId;
+  @override
+  String get orderDbId;
+  @override
+  OrderType? get orderType;
+  @override
   ProdType? get prodType;
+  @override
+  OrderAmount get amount;
   @override
   Map<String, dynamic>? get cancellation;
   @override
-  OrderType? get orderType;
+  String? get shipManagerId;
   @override
   String? get sizeUnit;
   @override
@@ -1884,27 +1914,27 @@ Shipment _$ShipmentFromJson(Map<String, dynamic> json) {
 mixin _$Shipment {
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
-  DateTime get wishedDeliveryTime => throw _privateConstructorUsedError;
   String get shippingId => throw _privateConstructorUsedError;
   String get orderDbId => throw _privateConstructorUsedError;
-  String get managerId => throw _privateConstructorUsedError;
   String? get uncleId => throw _privateConstructorUsedError;
-  String? get trackingNo => throw _privateConstructorUsedError;
   String get orderItemId => throw _privateConstructorUsedError;
+  String? get trackingNo => throw _privateConstructorUsedError;
   ShipMethod get shipMethod => throw _privateConstructorUsedError;
   String get additionalInfo => throw _privateConstructorUsedError;
   bool get paid => throw _privateConstructorUsedError;
   String? get weightUnit => throw _privateConstructorUsedError;
   int? get weight => throw _privateConstructorUsedError;
-  int? get amountByWeight => throw _privateConstructorUsedError;
   String? get sizeUnit => throw _privateConstructorUsedError;
   int? get size => throw _privateConstructorUsedError;
   int? get amountBySize => throw _privateConstructorUsedError;
+  int? get amountByWeight => throw _privateConstructorUsedError;
   int get shipFeeBasic => throw _privateConstructorUsedError;
   int get pickupFeeBasic => throw _privateConstructorUsedError;
   Locate get returnAddress => throw _privateConstructorUsedError;
   Locate get startAddress => throw _privateConstructorUsedError;
   Locate get receiveAddress => throw _privateConstructorUsedError;
+  DateTime? get wishedDeliveryTime => throw _privateConstructorUsedError;
+  String get managerId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1920,27 +1950,27 @@ abstract class $ShipmentCopyWith<$Res> {
   $Res call(
       {DateTime createdAt,
       DateTime updatedAt,
-      DateTime wishedDeliveryTime,
       String shippingId,
       String orderDbId,
-      String managerId,
       String? uncleId,
-      String? trackingNo,
       String orderItemId,
+      String? trackingNo,
       ShipMethod shipMethod,
       String additionalInfo,
       bool paid,
       String? weightUnit,
       int? weight,
-      int? amountByWeight,
       String? sizeUnit,
       int? size,
       int? amountBySize,
+      int? amountByWeight,
       int shipFeeBasic,
       int pickupFeeBasic,
       Locate returnAddress,
       Locate startAddress,
-      Locate receiveAddress});
+      Locate receiveAddress,
+      DateTime? wishedDeliveryTime,
+      String managerId});
 
   $LocateCopyWith<$Res> get returnAddress;
   $LocateCopyWith<$Res> get startAddress;
@@ -1962,27 +1992,27 @@ class _$ShipmentCopyWithImpl<$Res, $Val extends Shipment>
   $Res call({
     Object? createdAt = null,
     Object? updatedAt = null,
-    Object? wishedDeliveryTime = null,
     Object? shippingId = null,
     Object? orderDbId = null,
-    Object? managerId = null,
     Object? uncleId = freezed,
-    Object? trackingNo = freezed,
     Object? orderItemId = null,
+    Object? trackingNo = freezed,
     Object? shipMethod = null,
     Object? additionalInfo = null,
     Object? paid = null,
     Object? weightUnit = freezed,
     Object? weight = freezed,
-    Object? amountByWeight = freezed,
     Object? sizeUnit = freezed,
     Object? size = freezed,
     Object? amountBySize = freezed,
+    Object? amountByWeight = freezed,
     Object? shipFeeBasic = null,
     Object? pickupFeeBasic = null,
     Object? returnAddress = null,
     Object? startAddress = null,
     Object? receiveAddress = null,
+    Object? wishedDeliveryTime = freezed,
+    Object? managerId = null,
   }) {
     return _then(_value.copyWith(
       createdAt: null == createdAt
@@ -1993,10 +2023,6 @@ class _$ShipmentCopyWithImpl<$Res, $Val extends Shipment>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      wishedDeliveryTime: null == wishedDeliveryTime
-          ? _value.wishedDeliveryTime
-          : wishedDeliveryTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       shippingId: null == shippingId
           ? _value.shippingId
           : shippingId // ignore: cast_nullable_to_non_nullable
@@ -2005,22 +2031,18 @@ class _$ShipmentCopyWithImpl<$Res, $Val extends Shipment>
           ? _value.orderDbId
           : orderDbId // ignore: cast_nullable_to_non_nullable
               as String,
-      managerId: null == managerId
-          ? _value.managerId
-          : managerId // ignore: cast_nullable_to_non_nullable
-              as String,
       uncleId: freezed == uncleId
           ? _value.uncleId
           : uncleId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      trackingNo: freezed == trackingNo
-          ? _value.trackingNo
-          : trackingNo // ignore: cast_nullable_to_non_nullable
               as String?,
       orderItemId: null == orderItemId
           ? _value.orderItemId
           : orderItemId // ignore: cast_nullable_to_non_nullable
               as String,
+      trackingNo: freezed == trackingNo
+          ? _value.trackingNo
+          : trackingNo // ignore: cast_nullable_to_non_nullable
+              as String?,
       shipMethod: null == shipMethod
           ? _value.shipMethod
           : shipMethod // ignore: cast_nullable_to_non_nullable
@@ -2041,10 +2063,6 @@ class _$ShipmentCopyWithImpl<$Res, $Val extends Shipment>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int?,
-      amountByWeight: freezed == amountByWeight
-          ? _value.amountByWeight
-          : amountByWeight // ignore: cast_nullable_to_non_nullable
-              as int?,
       sizeUnit: freezed == sizeUnit
           ? _value.sizeUnit
           : sizeUnit // ignore: cast_nullable_to_non_nullable
@@ -2056,6 +2074,10 @@ class _$ShipmentCopyWithImpl<$Res, $Val extends Shipment>
       amountBySize: freezed == amountBySize
           ? _value.amountBySize
           : amountBySize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      amountByWeight: freezed == amountByWeight
+          ? _value.amountByWeight
+          : amountByWeight // ignore: cast_nullable_to_non_nullable
               as int?,
       shipFeeBasic: null == shipFeeBasic
           ? _value.shipFeeBasic
@@ -2077,6 +2099,14 @@ class _$ShipmentCopyWithImpl<$Res, $Val extends Shipment>
           ? _value.receiveAddress
           : receiveAddress // ignore: cast_nullable_to_non_nullable
               as Locate,
+      wishedDeliveryTime: freezed == wishedDeliveryTime
+          ? _value.wishedDeliveryTime
+          : wishedDeliveryTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      managerId: null == managerId
+          ? _value.managerId
+          : managerId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -2115,27 +2145,27 @@ abstract class _$$_ShipmentCopyWith<$Res> implements $ShipmentCopyWith<$Res> {
   $Res call(
       {DateTime createdAt,
       DateTime updatedAt,
-      DateTime wishedDeliveryTime,
       String shippingId,
       String orderDbId,
-      String managerId,
       String? uncleId,
-      String? trackingNo,
       String orderItemId,
+      String? trackingNo,
       ShipMethod shipMethod,
       String additionalInfo,
       bool paid,
       String? weightUnit,
       int? weight,
-      int? amountByWeight,
       String? sizeUnit,
       int? size,
       int? amountBySize,
+      int? amountByWeight,
       int shipFeeBasic,
       int pickupFeeBasic,
       Locate returnAddress,
       Locate startAddress,
-      Locate receiveAddress});
+      Locate receiveAddress,
+      DateTime? wishedDeliveryTime,
+      String managerId});
 
   @override
   $LocateCopyWith<$Res> get returnAddress;
@@ -2158,27 +2188,27 @@ class __$$_ShipmentCopyWithImpl<$Res>
   $Res call({
     Object? createdAt = null,
     Object? updatedAt = null,
-    Object? wishedDeliveryTime = null,
     Object? shippingId = null,
     Object? orderDbId = null,
-    Object? managerId = null,
     Object? uncleId = freezed,
-    Object? trackingNo = freezed,
     Object? orderItemId = null,
+    Object? trackingNo = freezed,
     Object? shipMethod = null,
     Object? additionalInfo = null,
     Object? paid = null,
     Object? weightUnit = freezed,
     Object? weight = freezed,
-    Object? amountByWeight = freezed,
     Object? sizeUnit = freezed,
     Object? size = freezed,
     Object? amountBySize = freezed,
+    Object? amountByWeight = freezed,
     Object? shipFeeBasic = null,
     Object? pickupFeeBasic = null,
     Object? returnAddress = null,
     Object? startAddress = null,
     Object? receiveAddress = null,
+    Object? wishedDeliveryTime = freezed,
+    Object? managerId = null,
   }) {
     return _then(_$_Shipment(
       createdAt: null == createdAt
@@ -2189,10 +2219,6 @@ class __$$_ShipmentCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      wishedDeliveryTime: null == wishedDeliveryTime
-          ? _value.wishedDeliveryTime
-          : wishedDeliveryTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       shippingId: null == shippingId
           ? _value.shippingId
           : shippingId // ignore: cast_nullable_to_non_nullable
@@ -2201,22 +2227,18 @@ class __$$_ShipmentCopyWithImpl<$Res>
           ? _value.orderDbId
           : orderDbId // ignore: cast_nullable_to_non_nullable
               as String,
-      managerId: null == managerId
-          ? _value.managerId
-          : managerId // ignore: cast_nullable_to_non_nullable
-              as String,
       uncleId: freezed == uncleId
           ? _value.uncleId
           : uncleId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      trackingNo: freezed == trackingNo
-          ? _value.trackingNo
-          : trackingNo // ignore: cast_nullable_to_non_nullable
               as String?,
       orderItemId: null == orderItemId
           ? _value.orderItemId
           : orderItemId // ignore: cast_nullable_to_non_nullable
               as String,
+      trackingNo: freezed == trackingNo
+          ? _value.trackingNo
+          : trackingNo // ignore: cast_nullable_to_non_nullable
+              as String?,
       shipMethod: null == shipMethod
           ? _value.shipMethod
           : shipMethod // ignore: cast_nullable_to_non_nullable
@@ -2237,10 +2259,6 @@ class __$$_ShipmentCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int?,
-      amountByWeight: freezed == amountByWeight
-          ? _value.amountByWeight
-          : amountByWeight // ignore: cast_nullable_to_non_nullable
-              as int?,
       sizeUnit: freezed == sizeUnit
           ? _value.sizeUnit
           : sizeUnit // ignore: cast_nullable_to_non_nullable
@@ -2252,6 +2270,10 @@ class __$$_ShipmentCopyWithImpl<$Res>
       amountBySize: freezed == amountBySize
           ? _value.amountBySize
           : amountBySize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      amountByWeight: freezed == amountByWeight
+          ? _value.amountByWeight
+          : amountByWeight // ignore: cast_nullable_to_non_nullable
               as int?,
       shipFeeBasic: null == shipFeeBasic
           ? _value.shipFeeBasic
@@ -2273,6 +2295,14 @@ class __$$_ShipmentCopyWithImpl<$Res>
           ? _value.receiveAddress
           : receiveAddress // ignore: cast_nullable_to_non_nullable
               as Locate,
+      wishedDeliveryTime: freezed == wishedDeliveryTime
+          ? _value.wishedDeliveryTime
+          : wishedDeliveryTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      managerId: null == managerId
+          ? _value.managerId
+          : managerId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -2284,27 +2314,27 @@ class _$_Shipment extends _Shipment {
   const _$_Shipment(
       {required this.createdAt,
       required this.updatedAt,
-      required this.wishedDeliveryTime,
       required this.shippingId,
       required this.orderDbId,
-      required this.managerId,
       this.uncleId,
-      this.trackingNo,
       required this.orderItemId,
+      this.trackingNo,
       required this.shipMethod,
       required this.additionalInfo,
       required this.paid,
       this.weightUnit,
       this.weight,
-      this.amountByWeight,
       this.sizeUnit,
       this.size,
       this.amountBySize,
+      this.amountByWeight,
       required this.shipFeeBasic,
       required this.pickupFeeBasic,
       required this.returnAddress,
       required this.startAddress,
-      required this.receiveAddress})
+      required this.receiveAddress,
+      this.wishedDeliveryTime,
+      required this.managerId})
       : super._();
 
   factory _$_Shipment.fromJson(Map<String, dynamic> json) =>
@@ -2315,19 +2345,15 @@ class _$_Shipment extends _Shipment {
   @override
   final DateTime updatedAt;
   @override
-  final DateTime wishedDeliveryTime;
-  @override
   final String shippingId;
   @override
   final String orderDbId;
   @override
-  final String managerId;
-  @override
   final String? uncleId;
   @override
-  final String? trackingNo;
-  @override
   final String orderItemId;
+  @override
+  final String? trackingNo;
   @override
   final ShipMethod shipMethod;
   @override
@@ -2339,13 +2365,13 @@ class _$_Shipment extends _Shipment {
   @override
   final int? weight;
   @override
-  final int? amountByWeight;
-  @override
   final String? sizeUnit;
   @override
   final int? size;
   @override
   final int? amountBySize;
+  @override
+  final int? amountByWeight;
   @override
   final int shipFeeBasic;
   @override
@@ -2356,6 +2382,10 @@ class _$_Shipment extends _Shipment {
   final Locate startAddress;
   @override
   final Locate receiveAddress;
+  @override
+  final DateTime? wishedDeliveryTime;
+  @override
+  final String managerId;
 
   @JsonKey(ignore: true)
   @override
@@ -2375,27 +2405,27 @@ abstract class _Shipment extends Shipment {
   const factory _Shipment(
       {required final DateTime createdAt,
       required final DateTime updatedAt,
-      required final DateTime wishedDeliveryTime,
       required final String shippingId,
       required final String orderDbId,
-      required final String managerId,
       final String? uncleId,
-      final String? trackingNo,
       required final String orderItemId,
+      final String? trackingNo,
       required final ShipMethod shipMethod,
       required final String additionalInfo,
       required final bool paid,
       final String? weightUnit,
       final int? weight,
-      final int? amountByWeight,
       final String? sizeUnit,
       final int? size,
       final int? amountBySize,
+      final int? amountByWeight,
       required final int shipFeeBasic,
       required final int pickupFeeBasic,
       required final Locate returnAddress,
       required final Locate startAddress,
-      required final Locate receiveAddress}) = _$_Shipment;
+      required final Locate receiveAddress,
+      final DateTime? wishedDeliveryTime,
+      required final String managerId}) = _$_Shipment;
   const _Shipment._() : super._();
 
   factory _Shipment.fromJson(Map<String, dynamic> json) = _$_Shipment.fromJson;
@@ -2405,19 +2435,15 @@ abstract class _Shipment extends Shipment {
   @override
   DateTime get updatedAt;
   @override
-  DateTime get wishedDeliveryTime;
-  @override
   String get shippingId;
   @override
   String get orderDbId;
   @override
-  String get managerId;
-  @override
   String? get uncleId;
   @override
-  String? get trackingNo;
-  @override
   String get orderItemId;
+  @override
+  String? get trackingNo;
   @override
   ShipMethod get shipMethod;
   @override
@@ -2429,13 +2455,13 @@ abstract class _Shipment extends Shipment {
   @override
   int? get weight;
   @override
-  int? get amountByWeight;
-  @override
   String? get sizeUnit;
   @override
   int? get size;
   @override
   int? get amountBySize;
+  @override
+  int? get amountByWeight;
   @override
   int get shipFeeBasic;
   @override
@@ -2446,6 +2472,10 @@ abstract class _Shipment extends Shipment {
   Locate get startAddress;
   @override
   Locate get receiveAddress;
+  @override
+  DateTime? get wishedDeliveryTime;
+  @override
+  String get managerId;
   @override
   @JsonKey(ignore: true)
   _$$_ShipmentCopyWith<_$_Shipment> get copyWith =>

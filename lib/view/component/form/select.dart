@@ -166,8 +166,8 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
           ),
           ElevatedButton(
               onPressed: () {
+                // context.read<AppBloc>().add(DisSelectPickup());
                 Navigator.of(context).pop();
-                context.read<AppBloc>().add(DisSelectPickup());
               },
               child: txt("닫기"))
         ],
