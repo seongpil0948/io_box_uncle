@@ -12,7 +12,7 @@ class Shipment extends Equatable with _$Shipment {
     required String managerId,
     String? uncleId,
     String? trackingNo,
-    required String prodOrderId,
+    required String orderItemId,
     required ShipMethod shipMethod,
     required String additionalInfo,
     required bool paid,

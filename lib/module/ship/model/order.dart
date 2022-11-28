@@ -1,41 +1,68 @@
 part of "./index.dart";
 
 @freezed //  all of this class's properties are immutable.
-class GarmentOrder extends Equatable with _$GarmentOrder {
+class IoOrder extends Equatable with _$IoOrder {
   @JsonSerializable(explicitToJson: true)
-  const factory GarmentOrder(
-      {required DateTime orderDate,
-      DateTime? doneDate,
-      DateTime? tossDate,
-      required String dbId,
-      required String shopId,
-      required String shipManagerId,
-      required List<String> orderIds,
-      required List<String> itemIds,
-      required List<String> subOrderIds,
-      required List<String> vendorIds,
-      required List<OrderState> states,
-      required OrderAmount actualAmount,
-      required OrderAmount initialAmount,
-      required List<ProdOrder> items}) = _GarmentOrder;
+  const factory IoOrder({
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    DateTime? approvedAt,
+    DateTime? paidAt,
+    DateTime? doneAt,
+    DateTime? tossAt,
+    required String dbId,
+    required String shopId,
+    required int orderCnts,
+    required int activeCnts,
+    required int pendingCnts,
+    required List<String> orderIds,
+    required List<String> shipmentIds,
+    required List<String> vendorIds,
+    required List<String> itemIds,
+    required String shipManagerId,
+    required List<OrderItem> items,
+    required List<OrderState> states,
+    required List<ProdType> prodTypes,
+    required List<Map<String, dynamic>> cancellations,
+    required List<PaidInfo> paids,
+    required List<OrderType> orderTypes,
+    required OrderAmount amount,
+  }) = _GarmentOrder;
 
-  const GarmentOrder._();
+  const IoOrder._();
 
-  GarmentOrder setState(
-      String prodOrderId, OrderState before, OrderState after) {
-    var item = items.firstWhere((element) => element.id == prodOrderId);
+  IoOrder setState(String orderItemId, OrderState before, OrderState after) {
+    var item = items.firstWhere((element) => element.id == orderItemId);
     assert(item.state == before && states.contains(before));
     final newItem = item.copyWith(state: after);
+    final newItems = [newItem, ...items.where((e) => e != newItem)];
     return copyWith(
-        states: [after, ...states.where((element) => element != before)],
-        items: [newItem, ...items.where((e) => e != newItem)]);
+        states: newItems.map((e) => e.state).toSet().toList(), items: newItems);
   }
 
-  factory GarmentOrder.fromJson(Map<String, Object?> json) =>
-      _$GarmentOrderFromJson(json);
+  factory IoOrder.fromJson(Map<String, Object?> json) =>
+      _$IoOrderFromJson(json);
 
   @override
   List<Object?> get props => [dbId];
+}
+
+enum PaidInfo {
+  @JsonValue('OVERCOME')
+  overcome,
+  @JsonValue('CREDIT')
+  credit,
+  @JsonValue('EXACT')
+  exact,
+  @JsonValue('NO')
+  no,
+}
+
+enum ProdType {
+  @JsonValue('GARMENT')
+  garment,
+  @JsonValue('GROCERY')
+  grocery,
 }
 
 enum BoolM {
@@ -166,13 +193,14 @@ class OrderAmount with _$OrderAmount {
     required int shipFeeDiscountAmount,
     required int tax,
     required int paidAmount,
-    required BoolM paid,
+    required PaidInfo paid,
     required int pureAmount, // 순수 상품금액
     required int orderAmount,
     required int? pickFeeAmount,
     required int? pickFeeDiscountAmount,
     required bool paymentConfirm,
     PayMethod? paymentMethod,
+    DateTime? paidAt,
   }) = _OrderAmount;
 
   const OrderAmount._();
@@ -194,28 +222,31 @@ enum OrderType {
 }
 
 @freezed //  all of this class's properties are immutable.
-class ProdOrder extends Equatable with _$ProdOrder {
+class OrderItem extends Equatable with _$OrderItem {
   @JsonSerializable(explicitToJson: true)
-  const factory ProdOrder({
+  const factory OrderItem({
     required String id,
+    required List<String> orderIds,
     required String vendorId,
-    required String vendorProdId,
+    required VendorGarment vendorProd,
     required String shopId,
     required String orderDbId,
-    required String shopProdId,
     required String shipmentId,
+    required String? shipManagerId,
     required int orderCnt,
     required int activeCnt,
     required int pendingCnt,
-    required OrderAmount actualAmount,
-    required OrderAmount initialAmount,
+    required OrderAmount amount,
     required OrderState state,
+    required OrderState? beforeState,
+    required ProdType? prodType,
+    Map<String, dynamic>? cancellation,
     @Default(OrderType.standard) OrderType? orderType,
     String? sizeUnit,
     String? weightUnit,
     int? size,
     int? weight,
-  }) = _ProdOrder;
+  }) = _OrderItem;
 
   bool get isPickup => [
         OrderState.beforePickup,
@@ -230,9 +261,9 @@ class ProdOrder extends Equatable with _$ProdOrder {
 
   bool get isReturn => orderType == OrderType.orderReturn;
 
-  factory ProdOrder.fromJson(Map<String, Object?> json) =>
-      _$ProdOrderFromJson(json);
-  const ProdOrder._();
+  factory OrderItem.fromJson(Map<String, Object?> json) =>
+      _$OrderItemFromJson(json);
+  const OrderItem._();
 
   @override
   List<Object?> get props => [id];

@@ -87,7 +87,7 @@ class ShipmentFB extends ShipmentApi {
   @override
   Future<void> reqToss(ShipOrder s) async {
     final newShip = s.shipment.copyWith(uncleId: null);
-    final newOrd = s.garmentOrder.copyWith(tossDate: DateTime.now()).setState(
+    final newOrd = s.garmentOrder.copyWith(tossAt: DateTime.now()).setState(
         s.order.id, OrderState.beforePickup, OrderState.beforeAssignPickup);
 
     await updateShipment(newShip);
@@ -104,7 +104,7 @@ class ShipmentFB extends ShipmentApi {
   }
 
   @override
-  Future<void> updateOrder(GarmentOrder o) async {
+  Future<void> updateOrder(IoOrder o) async {
     await getCollection(c: IoCollection.order, userId: o.shopId)
         .doc(o.dbId)
         .update(o.toJson());

@@ -41,7 +41,7 @@ class _TossListPageState extends State<TossListPage> {
                         DataColumn(label: Text('토스받기')),
                       ],
                       rows: state.map((e) {
-                        final td = e.garmentOrder.tossDate;
+                        final td = e.garmentOrder.tossAt;
                         return DataRow(cells: [
                           DataCell(
                               Text(e.shipment.startAddress.detailLocate ?? "")),

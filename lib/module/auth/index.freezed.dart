@@ -177,7 +177,7 @@ class __$$_IoUserCopyWithImpl<$Res>
 class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
   const _$_IoUser(
       {required this.userInfo,
-      required this.preferDark,
+      this.preferDark = false,
       this.connectState,
       this.workState,
       this.uncleInfo})
@@ -189,6 +189,7 @@ class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
   @override
   final IoUserInfo userInfo;
   @override
+  @JsonKey()
   final bool preferDark;
   @override
   final String? connectState;
@@ -253,7 +254,7 @@ class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
 abstract class _IoUser extends IoUser {
   const factory _IoUser(
       {required final IoUserInfo userInfo,
-      required final bool preferDark,
+      final bool preferDark,
       final String? connectState,
       final String? workState,
       final UncleInfo? uncleInfo}) = _$_IoUser;
@@ -288,7 +289,9 @@ mixin _$IoUserInfo {
   String get userId => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String? get displayName => throw _privateConstructorUsedError;
+  String? get providerId => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  IoAccount? get account => throw _privateConstructorUsedError;
   bool get emailVerified => throw _privateConstructorUsedError;
   String? get profileImg => throw _privateConstructorUsedError;
   UserRole get role => throw _privateConstructorUsedError;
@@ -317,7 +320,9 @@ abstract class $IoUserInfoCopyWith<$Res> {
       String userId,
       String userName,
       String? displayName,
+      String? providerId,
       String? email,
+      IoAccount? account,
       bool emailVerified,
       String? profileImg,
       UserRole role,
@@ -327,6 +332,8 @@ abstract class $IoUserInfoCopyWith<$Res> {
       String? managerId,
       List<String>? workerIds,
       String? uncleId});
+
+  $IoAccountCopyWith<$Res>? get account;
 }
 
 /// @nodoc
@@ -347,7 +354,9 @@ class _$IoUserInfoCopyWithImpl<$Res, $Val extends IoUserInfo>
     Object? userId = null,
     Object? userName = null,
     Object? displayName = freezed,
+    Object? providerId = freezed,
     Object? email = freezed,
+    Object? account = freezed,
     Object? emailVerified = null,
     Object? profileImg = freezed,
     Object? role = null,
@@ -379,10 +388,18 @@ class _$IoUserInfoCopyWithImpl<$Res, $Val extends IoUserInfo>
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
               as String?,
+      providerId: freezed == providerId
+          ? _value.providerId
+          : providerId // ignore: cast_nullable_to_non_nullable
+              as String?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      account: freezed == account
+          ? _value.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as IoAccount?,
       emailVerified: null == emailVerified
           ? _value.emailVerified
           : emailVerified // ignore: cast_nullable_to_non_nullable
@@ -421,6 +438,18 @@ class _$IoUserInfoCopyWithImpl<$Res, $Val extends IoUserInfo>
               as String?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $IoAccountCopyWith<$Res>? get account {
+    if (_value.account == null) {
+      return null;
+    }
+
+    return $IoAccountCopyWith<$Res>(_value.account!, (value) {
+      return _then(_value.copyWith(account: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -437,7 +466,9 @@ abstract class _$$_IoUserInfoCopyWith<$Res>
       String userId,
       String userName,
       String? displayName,
+      String? providerId,
       String? email,
+      IoAccount? account,
       bool emailVerified,
       String? profileImg,
       UserRole role,
@@ -447,6 +478,9 @@ abstract class _$$_IoUserInfoCopyWith<$Res>
       String? managerId,
       List<String>? workerIds,
       String? uncleId});
+
+  @override
+  $IoAccountCopyWith<$Res>? get account;
 }
 
 /// @nodoc
@@ -465,7 +499,9 @@ class __$$_IoUserInfoCopyWithImpl<$Res>
     Object? userId = null,
     Object? userName = null,
     Object? displayName = freezed,
+    Object? providerId = freezed,
     Object? email = freezed,
+    Object? account = freezed,
     Object? emailVerified = null,
     Object? profileImg = freezed,
     Object? role = null,
@@ -497,10 +533,18 @@ class __$$_IoUserInfoCopyWithImpl<$Res>
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
               as String?,
+      providerId: freezed == providerId
+          ? _value.providerId
+          : providerId // ignore: cast_nullable_to_non_nullable
+              as String?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      account: freezed == account
+          ? _value.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as IoAccount?,
       emailVerified: null == emailVerified
           ? _value.emailVerified
           : emailVerified // ignore: cast_nullable_to_non_nullable
@@ -551,7 +595,9 @@ class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
       required this.userId,
       required this.userName,
       this.displayName,
+      this.providerId,
       this.email,
+      this.account,
       required this.emailVerified,
       this.profileImg,
       required this.role,
@@ -578,7 +624,11 @@ class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
   @override
   final String? displayName;
   @override
+  final String? providerId;
+  @override
   final String? email;
+  @override
+  final IoAccount? account;
   @override
   final bool emailVerified;
   @override
@@ -613,7 +663,7 @@ class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'IoUserInfo(createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId, userName: $userName, displayName: $displayName, email: $email, emailVerified: $emailVerified, profileImg: $profileImg, role: $role, fcmTokens: $fcmTokens, passed: $passed, phone: $phone, managerId: $managerId, workerIds: $workerIds, uncleId: $uncleId)';
+    return 'IoUserInfo(createdAt: $createdAt, updatedAt: $updatedAt, userId: $userId, userName: $userName, displayName: $displayName, providerId: $providerId, email: $email, account: $account, emailVerified: $emailVerified, profileImg: $profileImg, role: $role, fcmTokens: $fcmTokens, passed: $passed, phone: $phone, managerId: $managerId, workerIds: $workerIds, uncleId: $uncleId)';
   }
 
   @override
@@ -626,7 +676,9 @@ class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
       ..add(DiagnosticsProperty('userId', userId))
       ..add(DiagnosticsProperty('userName', userName))
       ..add(DiagnosticsProperty('displayName', displayName))
+      ..add(DiagnosticsProperty('providerId', providerId))
       ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('account', account))
       ..add(DiagnosticsProperty('emailVerified', emailVerified))
       ..add(DiagnosticsProperty('profileImg', profileImg))
       ..add(DiagnosticsProperty('role', role))
@@ -652,7 +704,10 @@ class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
                 other.userName == userName) &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
+            (identical(other.providerId, providerId) ||
+                other.providerId == providerId) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.account, account) || other.account == account) &&
             (identical(other.emailVerified, emailVerified) ||
                 other.emailVerified == emailVerified) &&
             (identical(other.profileImg, profileImg) ||
@@ -678,7 +733,9 @@ class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
       userId,
       userName,
       displayName,
+      providerId,
       email,
+      account,
       emailVerified,
       profileImg,
       role,
@@ -710,7 +767,9 @@ abstract class _IoUserInfo implements IoUserInfo {
       required final String userId,
       required final String userName,
       final String? displayName,
+      final String? providerId,
       final String? email,
+      final IoAccount? account,
       required final bool emailVerified,
       final String? profileImg,
       required final UserRole role,
@@ -735,7 +794,11 @@ abstract class _IoUserInfo implements IoUserInfo {
   @override
   String? get displayName;
   @override
+  String? get providerId;
+  @override
   String? get email;
+  @override
+  IoAccount? get account;
   @override
   bool get emailVerified;
   @override
@@ -757,6 +820,192 @@ abstract class _IoUserInfo implements IoUserInfo {
   @override
   @JsonKey(ignore: true)
   _$$_IoUserInfoCopyWith<_$_IoUserInfo> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+IoAccount _$IoAccountFromJson(Map<String, dynamic> json) {
+  return _IoAccount.fromJson(json);
+}
+
+/// @nodoc
+mixin _$IoAccount {
+  String get accountName => throw _privateConstructorUsedError;
+  String get accountNumber => throw _privateConstructorUsedError;
+  String get bank => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $IoAccountCopyWith<IoAccount> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IoAccountCopyWith<$Res> {
+  factory $IoAccountCopyWith(IoAccount value, $Res Function(IoAccount) then) =
+      _$IoAccountCopyWithImpl<$Res, IoAccount>;
+  @useResult
+  $Res call({String accountName, String accountNumber, String bank});
+}
+
+/// @nodoc
+class _$IoAccountCopyWithImpl<$Res, $Val extends IoAccount>
+    implements $IoAccountCopyWith<$Res> {
+  _$IoAccountCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountName = null,
+    Object? accountNumber = null,
+    Object? bank = null,
+  }) {
+    return _then(_value.copyWith(
+      accountName: null == accountName
+          ? _value.accountName
+          : accountName // ignore: cast_nullable_to_non_nullable
+              as String,
+      accountNumber: null == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      bank: null == bank
+          ? _value.bank
+          : bank // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_IoAccountCopyWith<$Res> implements $IoAccountCopyWith<$Res> {
+  factory _$$_IoAccountCopyWith(
+          _$_IoAccount value, $Res Function(_$_IoAccount) then) =
+      __$$_IoAccountCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String accountName, String accountNumber, String bank});
+}
+
+/// @nodoc
+class __$$_IoAccountCopyWithImpl<$Res>
+    extends _$IoAccountCopyWithImpl<$Res, _$_IoAccount>
+    implements _$$_IoAccountCopyWith<$Res> {
+  __$$_IoAccountCopyWithImpl(
+      _$_IoAccount _value, $Res Function(_$_IoAccount) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountName = null,
+    Object? accountNumber = null,
+    Object? bank = null,
+  }) {
+    return _then(_$_IoAccount(
+      accountName: null == accountName
+          ? _value.accountName
+          : accountName // ignore: cast_nullable_to_non_nullable
+              as String,
+      accountNumber: null == accountNumber
+          ? _value.accountNumber
+          : accountNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      bank: null == bank
+          ? _value.bank
+          : bank // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_IoAccount with DiagnosticableTreeMixin implements _IoAccount {
+  const _$_IoAccount(
+      {required this.accountName,
+      required this.accountNumber,
+      required this.bank});
+
+  factory _$_IoAccount.fromJson(Map<String, dynamic> json) =>
+      _$$_IoAccountFromJson(json);
+
+  @override
+  final String accountName;
+  @override
+  final String accountNumber;
+  @override
+  final String bank;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'IoAccount(accountName: $accountName, accountNumber: $accountNumber, bank: $bank)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'IoAccount'))
+      ..add(DiagnosticsProperty('accountName', accountName))
+      ..add(DiagnosticsProperty('accountNumber', accountNumber))
+      ..add(DiagnosticsProperty('bank', bank));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_IoAccount &&
+            (identical(other.accountName, accountName) ||
+                other.accountName == accountName) &&
+            (identical(other.accountNumber, accountNumber) ||
+                other.accountNumber == accountNumber) &&
+            (identical(other.bank, bank) || other.bank == bank));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, accountName, accountNumber, bank);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_IoAccountCopyWith<_$_IoAccount> get copyWith =>
+      __$$_IoAccountCopyWithImpl<_$_IoAccount>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_IoAccountToJson(
+      this,
+    );
+  }
+}
+
+abstract class _IoAccount implements IoAccount {
+  const factory _IoAccount(
+      {required final String accountName,
+      required final String accountNumber,
+      required final String bank}) = _$_IoAccount;
+
+  factory _IoAccount.fromJson(Map<String, dynamic> json) =
+      _$_IoAccount.fromJson;
+
+  @override
+  String get accountName;
+  @override
+  String get accountNumber;
+  @override
+  String get bank;
+  @override
+  @JsonKey(ignore: true)
+  _$$_IoAccountCopyWith<_$_IoAccount> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

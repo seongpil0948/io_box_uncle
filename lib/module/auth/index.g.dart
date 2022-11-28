@@ -8,7 +8,7 @@ part of 'index.dart';
 
 _$_IoUser _$$_IoUserFromJson(Map<String, dynamic> json) => _$_IoUser(
       userInfo: IoUserInfo.fromJson(json['userInfo'] as Map<String, dynamic>),
-      preferDark: json['preferDark'] as bool,
+      preferDark: json['preferDark'] as bool? ?? false,
       connectState: json['connectState'] as String?,
       workState: json['workState'] as String?,
       uncleInfo: json['uncleInfo'] == null
@@ -35,7 +35,11 @@ _$_IoUserInfo _$$_IoUserInfoFromJson(Map<String, dynamic> json) =>
       userId: json['userId'] as String,
       userName: json['userName'] as String,
       displayName: json['displayName'] as String?,
+      providerId: json['providerId'] as String?,
       email: json['email'] as String?,
+      account: json['account'] == null
+          ? null
+          : IoAccount.fromJson(json['account'] as Map<String, dynamic>),
       emailVerified: json['emailVerified'] as bool,
       profileImg: json['profileImg'] as String?,
       role: $enumDecode(_$UserRoleEnumMap, json['role']),
@@ -59,7 +63,9 @@ Map<String, dynamic> _$$_IoUserInfoToJson(_$_IoUserInfo instance) =>
       'userId': instance.userId,
       'userName': instance.userName,
       'displayName': instance.displayName,
+      'providerId': instance.providerId,
       'email': instance.email,
+      'account': instance.account?.toJson(),
       'emailVerified': instance.emailVerified,
       'profileImg': instance.profileImg,
       'role': _$UserRoleEnumMap[instance.role]!,
@@ -77,6 +83,19 @@ const _$UserRoleEnumMap = {
   UserRole.vendor: 'VENDOR',
   UserRole.uncleWorker: 'UNCLE_WORKER',
 };
+
+_$_IoAccount _$$_IoAccountFromJson(Map<String, dynamic> json) => _$_IoAccount(
+      accountName: json['accountName'] as String,
+      accountNumber: json['accountNumber'] as String,
+      bank: json['bank'] as String,
+    );
+
+Map<String, dynamic> _$$_IoAccountToJson(_$_IoAccount instance) =>
+    <String, dynamic>{
+      'accountName': instance.accountName,
+      'accountNumber': instance.accountNumber,
+      'bank': instance.bank,
+    };
 
 _$_UncleInfo _$$_UncleInfoFromJson(Map<String, dynamic> json) => _$_UncleInfo(
       pickupLocates: (json['pickupLocates'] as List<dynamic>)

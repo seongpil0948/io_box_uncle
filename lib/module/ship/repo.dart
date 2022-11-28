@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:io_box_uncle/module/auth/index.dart';
-import 'package:io_box_uncle/module/product/index.dart';
+import 'package:io_box_uncle/util/logger.dart';
 
 import 'api/domain.dart';
 import 'model/index.dart';
@@ -43,7 +43,7 @@ class ShipmentRepo {
     List<ShipOrder> tossData = [];
     List<Shipment> shipments = [];
     List<Shipment> tossShips = [];
-    List<GarmentOrder> orders = [];
+    List<IoOrder> orders = [];
     Map<String, IoUser> users = {};
     final shipStream = api.getShipmentStream(shipManagerId);
     final orderStream = api.getOrderStream(userId, shipManagerId);
@@ -53,6 +53,7 @@ class ShipmentRepo {
       tossData = [];
       for (var i = 0; i < orders.length; i++) {
         var order = orders[i];
+
         for (var j = 0; j < order.items.length; j++) {
           final item = order.items[j];
           if (users.containsKey(item.shopId) &&
@@ -66,8 +67,7 @@ class ShipmentRepo {
                   order: item,
                   shipment: ships.first,
                   garmentOrder: order,
-                  vendorGarment:
-                      await ProdRepo.getVendorProdById(item.vendorProdId),
+                  vendorGarment: item.vendorProd,
                   shopUser: users[item.shopId]!,
                   vendorUser: users[item.vendorId]!,
                   managerUser: users[order.shipManagerId]!);
@@ -84,8 +84,7 @@ class ShipmentRepo {
                   order: item,
                   shipment: toss.first,
                   garmentOrder: order,
-                  vendorGarment:
-                      await ProdRepo.getVendorProdById(item.vendorProdId),
+                  vendorGarment: item.vendorProd,
                   shopUser: users[item.shopId]!,
                   vendorUser: users[item.vendorId]!,
                   managerUser: users[order.shipManagerId]!);
@@ -125,8 +124,7 @@ class ShipmentRepo {
       if (event.docs.isEmpty) return;
       for (var element in event.docs) {
         if (element.exists) {
-          final ord =
-              GarmentOrder.fromJson(element.data() as Map<String, Object?>);
+          final ord = IoOrder.fromJson(element.data() as Map<String, Object?>);
           orders.add(ord);
           if (!users.containsKey(ord.shopId)) {
             final u = await AuthRepo.getUserById(ord.shopId);
@@ -134,12 +132,14 @@ class ShipmentRepo {
               users[ord.shopId] = u;
             }
           }
-          if (!users.containsKey(ord.shipManagerId)) {
-            final u = await AuthRepo.getUserById(ord.shipManagerId);
+          final shipManagerId = ord.shipManagerId;
+          if (!users.containsKey(shipManagerId)) {
+            final u = await AuthRepo.getUserById(shipManagerId);
             if (u != null) {
-              users[ord.shipManagerId] = u;
+              users[shipManagerId] = u;
             }
           }
+
           for (var vendorId in ord.vendorIds) {
             if (!users.containsKey(vendorId)) {
               final u = await AuthRepo.getUserById(vendorId);

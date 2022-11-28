@@ -9,7 +9,7 @@ class ShipThumb extends StatelessWidget {
   }) : super(key: key);
 
   final Locate dest;
-  final ProdOrder order;
+  final OrderItem order;
   final bool isBig;
 
   @override

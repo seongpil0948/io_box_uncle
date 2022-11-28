@@ -5,7 +5,7 @@ class IoUser with _$IoUser {
   @JsonSerializable(explicitToJson: true)
   const factory IoUser(
       {required IoUserInfo userInfo,
-      required bool preferDark,
+      @Default(false) bool preferDark,
       String? connectState,
       String? workState,
       UncleInfo? uncleInfo}) = _IoUser;
@@ -36,7 +36,9 @@ class IoUserInfo with _$IoUserInfo {
     required String userId,
     required String userName,
     String? displayName,
+    String? providerId,
     String? email,
+    IoAccount? account,
     required bool emailVerified,
     String? profileImg,
     required UserRole role,
@@ -50,6 +52,19 @@ class IoUserInfo with _$IoUserInfo {
 
   factory IoUserInfo.fromJson(Map<String, Object?> json) =>
       _$IoUserInfoFromJson(json);
+}
+
+@freezed
+class IoAccount with _$IoAccount {
+  @JsonSerializable(explicitToJson: true)
+  const factory IoAccount({
+    required String accountName,
+    required String accountNumber,
+    required String bank,
+  }) = _IoAccount;
+
+  factory IoAccount.fromJson(Map<String, Object?> json) =>
+      _$IoAccountFromJson(json);
 }
 
 @freezed

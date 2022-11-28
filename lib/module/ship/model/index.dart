@@ -14,8 +14,8 @@ class ShipOrder extends Equatable with _$ShipOrder {
   @JsonSerializable(explicitToJson: true)
   const factory ShipOrder(
       {required Shipment shipment,
-      required GarmentOrder garmentOrder,
-      required ProdOrder order,
+      required IoOrder garmentOrder,
+      required OrderItem order,
       required IoUser shopUser,
       required IoUser vendorUser,
       required IoUser managerUser,
@@ -42,6 +42,6 @@ class ShipOrder extends Equatable with _$ShipOrder {
         order.activeCnt,
         shopUser.userInfo.userId,
         vendorUser.userInfo.userId,
-        managerUser.userInfo.userId,
+        managerUser,
       ];
 }

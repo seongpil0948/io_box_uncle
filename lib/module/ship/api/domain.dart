@@ -7,7 +7,7 @@ import "../model/index.dart";
 part './firebase.dart';
 
 /// {@template shipment api}
-/// The interface for an API that provides access to a Shipment & GarmentOrder.
+/// The interface for an API that provides access to a Shipment & IoOrder.
 /// {@endtemplate}
 ///
 abstract class ShipmentApi {
@@ -16,7 +16,7 @@ abstract class ShipmentApi {
   Stream<QuerySnapshot> getShipmentStream(String userId);
   Stream<QuerySnapshot> getOrderStream(String userId, shipManagerId);
 
-  Future<void> updateOrder(GarmentOrder o);
+  Future<void> updateOrder(IoOrder o);
   Future<void> updateShipment(Shipment s);
   Future<void> reqToss(ShipOrder s);
   Future<void> receiveToss(ShipOrder s, String newUncle);
