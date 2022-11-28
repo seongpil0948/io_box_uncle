@@ -60,9 +60,9 @@ Future<void> _firebaseInit() async {
   //   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   // }
   if (FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled) {
-    print("=== Crashlytics enabled ===");
+    IoLogger.log(IoSeverity.debug, "=== Crashlytics enabled ===");
   } else {
-    print("=== Crashlytics disabled ===");
+    IoLogger.log(IoSeverity.debug, "=== Crashlytics disabled ===");
   }
 
   final remoteConfig = FirebaseRemoteConfig.instance;

@@ -138,8 +138,6 @@ class _EmailFormState extends State<_EmailForm> {
           child: ElevatedButton(
             onPressed: () async {
               try {
-                print("emailController.text: ${emailController.text}");
-                print("pwController.text: ${pwController.text}");
                 await context
                     .read<AuthRepo>()
                     .signInWithPw(emailController.text, pwController.text);

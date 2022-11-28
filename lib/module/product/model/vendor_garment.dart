@@ -31,6 +31,7 @@ class VendorGarment with _$VendorGarment {
     required List<String> bodyImgs,
     required dynamic info,
     required String description,
+    // ignore: non_constant_identifier_names
     required Map<String, dynamic> TBD,
     required ProdType prodType,
   }) = _VendorGarment;

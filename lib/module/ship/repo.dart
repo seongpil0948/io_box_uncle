@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:io_box_uncle/module/auth/index.dart';
-import 'package:io_box_uncle/util/logger.dart';
 
 import 'api/domain.dart';
 import 'model/index.dart';

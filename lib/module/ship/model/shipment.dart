@@ -29,14 +29,14 @@ class Shipment extends Equatable with _$Shipment {
     required String managerId,
   }) = _Shipment;
 
-  get amountMeasurable =>
+  bool get amountMeasurable =>
       sizeUnit != null && weightUnit != null && size != null && weight != null;
 
-  get pickAmount => amountMeasurable
+  int get pickAmount => amountMeasurable
       ? pickupFeeBasic + (size! * amountBySize!) + (weight! + amountByWeight!)
       : throw Exception("pickup amount not measurable");
 
-  get amount => pickAmount + shipFeeBasic;
+  int get amount => pickAmount + shipFeeBasic;
 
   const Shipment._();
   factory Shipment.fromJson(Map<String, Object?> json) =>

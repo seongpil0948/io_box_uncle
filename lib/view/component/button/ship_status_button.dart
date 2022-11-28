@@ -74,7 +74,7 @@ List<Widget> shipStatusBtns(BuildContext context, ShipOrder p) {
   ];
 }
 
-Future showConfirmClose(
+Future<void> showConfirmClose(
     BuildContext context, void Function() onConfirm, String content) {
   return showDialog(
       context: context,

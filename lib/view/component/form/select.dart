@@ -152,7 +152,9 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
                     weightUnit: shipWeightUnit);
                 try {
                   context.read<AppBloc>().add(DisSelectPickup());
-                } on ProviderNotFoundException catch (e) {}
+                } on ProviderNotFoundException catch (e) {
+                  debugPrint(e.toString());
+                }
 
                 shipRepo.api.updateShipment(shipment).then((value) {
                   ScaffoldMessenger.of(context).showSnackBar(
