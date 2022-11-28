@@ -12,8 +12,8 @@ part of "../index.dart";
 class VendorGarment with _$VendorGarment {
   @JsonSerializable(explicitToJson: true)
   const factory VendorGarment({
-    // DateTime? createdAt,
-    // DateTime? updatedAt,
+    DateTime? createdAt,
+    DateTime? updatedAt,
     required Gender gender,
     required Part part,
     required String ctgr,
@@ -23,6 +23,7 @@ class VendorGarment with _$VendorGarment {
     required String fabric,
     required String vendorId,
     required String vendorProdId,
+    required String vendorProdPkgId,
     required int vendorPrice,
     required int stockCnt,
     required String vendorProdName,
@@ -30,6 +31,8 @@ class VendorGarment with _$VendorGarment {
     required List<String> bodyImgs,
     required dynamic info,
     required String description,
+    required Map<String, dynamic> TBD,
+    required ProdType prodType,
   }) = _VendorGarment;
 
   factory VendorGarment.fromJson(Map<String, Object?> json) =>
@@ -62,4 +65,11 @@ enum Part {
   etc,
   @JsonValue('DRESS')
   kids
+}
+
+enum ProdType {
+  @JsonValue('GARMENT')
+  garment,
+  @JsonValue('GROCERY')
+  grocery,
 }
