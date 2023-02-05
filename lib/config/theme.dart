@@ -16,12 +16,14 @@ final outlineBtnTheme = OutlinedButtonThemeData(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))));
 final lightTheme = ThemeData(
+    useMaterial3: true,
     extensions: const [CustomColors.light],
     brightness: Brightness.light,
     outlinedButtonTheme: outlineBtnTheme,
     primarySwatch: createMaterialColor(const Color(0xFFFBC02D)),
     cardTheme: cardTheme);
 final darkTheme = ThemeData(
+    useMaterial3: true,
     extensions: const [CustomColors.dark],
     brightness: Brightness.dark,
     outlinedButtonTheme: outlineBtnTheme,
