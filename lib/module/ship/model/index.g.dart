@@ -49,6 +49,8 @@ _$_GarmentOrder _$$_GarmentOrderFromJson(Map<String, dynamic> json) =>
       tossAt: json['tossAt'] == null
           ? null
           : DateTime.parse(json['tossAt'] as String),
+      isDone: json['isDone'] as bool?,
+      isDirectToShip: json['isDirectToShip'] as bool?,
       dbId: json['dbId'] as String,
       shopId: json['shopId'] as String,
       orderCnts: json['orderCnts'] as int,
@@ -82,7 +84,12 @@ _$_GarmentOrder _$$_GarmentOrderFromJson(Map<String, dynamic> json) =>
       orderTypes: (json['orderTypes'] as List<dynamic>)
           .map((e) => $enumDecode(_$OrderTypeEnumMap, e))
           .toList(),
-      amount: OrderAmount.fromJson(json['amount'] as Map<String, dynamic>),
+      prodAmount:
+          PayAmount.fromJson(json['prodAmount'] as Map<String, dynamic>),
+      shipAmount:
+          PayAmount.fromJson(json['shipAmount'] as Map<String, dynamic>),
+      pickAmount:
+          PayAmount.fromJson(json['pickAmount'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_GarmentOrderToJson(_$_GarmentOrder instance) =>
@@ -93,6 +100,8 @@ Map<String, dynamic> _$$_GarmentOrderToJson(_$_GarmentOrder instance) =>
       'paidAt': instance.paidAt?.toIso8601String(),
       'doneAt': instance.doneAt?.toIso8601String(),
       'tossAt': instance.tossAt?.toIso8601String(),
+      'isDone': instance.isDone,
+      'isDirectToShip': instance.isDirectToShip,
       'dbId': instance.dbId,
       'shopId': instance.shopId,
       'orderCnts': instance.orderCnts,
@@ -111,7 +120,9 @@ Map<String, dynamic> _$$_GarmentOrderToJson(_$_GarmentOrder instance) =>
       'paids': instance.paids.map((e) => _$PaidInfoEnumMap[e]!).toList(),
       'orderTypes':
           instance.orderTypes.map((e) => _$OrderTypeEnumMap[e]!).toList(),
-      'amount': instance.amount.toJson(),
+      'prodAmount': instance.prodAmount.toJson(),
+      'shipAmount': instance.shipAmount.toJson(),
+      'pickAmount': instance.pickAmount.toJson(),
     };
 
 const _$OrderStateEnumMap = {
@@ -157,8 +168,7 @@ const _$OrderTypeEnumMap = {
   OrderType.orderReturn: 'RETURN',
 };
 
-_$_OrderAmount _$$_OrderAmountFromJson(Map<String, dynamic> json) =>
-    _$_OrderAmount(
+_$_PayAmount _$$_PayAmountFromJson(Map<String, dynamic> json) => _$_PayAmount(
       shipFeeAmount: json['shipFeeAmount'] as int,
       shipFeeDiscountAmount: json['shipFeeDiscountAmount'] as int,
       tax: json['tax'] as int,
@@ -176,7 +186,7 @@ _$_OrderAmount _$$_OrderAmountFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['paidAt'] as String),
     );
 
-Map<String, dynamic> _$$_OrderAmountToJson(_$_OrderAmount instance) =>
+Map<String, dynamic> _$$_PayAmountToJson(_$_PayAmount instance) =>
     <String, dynamic>{
       'shipFeeAmount': instance.shipFeeAmount,
       'shipFeeDiscountAmount': instance.shipFeeDiscountAmount,
@@ -202,8 +212,8 @@ _$_OrderItem _$$_OrderItemFromJson(Map<String, dynamic> json) => _$_OrderItem(
       id: json['id'] as String,
       orderIds:
           (json['orderIds'] as List<dynamic>).map((e) => e as String).toList(),
-      shopId: json['shopId'] as String,
       vendorId: json['vendorId'] as String,
+      shopId: json['shopId'] as String,
       vendorProd:
           VendorGarment.fromJson(json['vendorProd'] as Map<String, dynamic>),
       shopProd: ShopGarment.fromJson(json['shopProd'] as Map<String, dynamic>),
@@ -218,21 +228,18 @@ _$_OrderItem _$$_OrderItemFromJson(Map<String, dynamic> json) => _$_OrderItem(
       orderType: $enumDecodeNullable(_$OrderTypeEnumMap, json['orderType']) ??
           OrderType.standard,
       prodType: $enumDecodeNullable(_$ProdTypeEnumMap, json['prodType']),
-      amount: OrderAmount.fromJson(json['amount'] as Map<String, dynamic>),
+      prodAmount:
+          PayAmount.fromJson(json['prodAmount'] as Map<String, dynamic>),
       cancellation: json['cancellation'] as Map<String, dynamic>?,
       shipManagerId: json['shipManagerId'] as String?,
-      sizeUnit: json['sizeUnit'] as String?,
-      weightUnit: json['weightUnit'] as String?,
-      size: json['size'] as int?,
-      weight: json['weight'] as int?,
     );
 
 Map<String, dynamic> _$$_OrderItemToJson(_$_OrderItem instance) =>
     <String, dynamic>{
       'id': instance.id,
       'orderIds': instance.orderIds,
-      'shopId': instance.shopId,
       'vendorId': instance.vendorId,
+      'shopId': instance.shopId,
       'vendorProd': instance.vendorProd.toJson(),
       'shopProd': instance.shopProd.toJson(),
       'orderCnt': instance.orderCnt,
@@ -244,13 +251,9 @@ Map<String, dynamic> _$$_OrderItemToJson(_$_OrderItem instance) =>
       'orderDbId': instance.orderDbId,
       'orderType': _$OrderTypeEnumMap[instance.orderType],
       'prodType': _$ProdTypeEnumMap[instance.prodType],
-      'amount': instance.amount.toJson(),
+      'prodAmount': instance.prodAmount.toJson(),
       'cancellation': instance.cancellation,
       'shipManagerId': instance.shipManagerId,
-      'sizeUnit': instance.sizeUnit,
-      'weightUnit': instance.weightUnit,
-      'size': instance.size,
-      'weight': instance.weight,
     };
 
 _$_Shipment _$$_ShipmentFromJson(Map<String, dynamic> json) => _$_Shipment(

@@ -5,6 +5,7 @@ class IoUser with _$IoUser {
   @JsonSerializable(explicitToJson: true)
   const factory IoUser(
       {required IoUserInfo userInfo,
+      CompanyInfo? companyInfo,
       @Default(false) bool preferDark,
       String? connectState,
       String? workState,
@@ -25,6 +26,28 @@ class IoUser with _$IoUser {
     await doc.update(json);
     return true;
   }
+}
+
+@freezed //  all of this class's properties are immutable.
+class CompanyInfo with _$CompanyInfo {
+  @JsonSerializable(explicitToJson: true)
+  const factory CompanyInfo({
+    required String companyName,
+    required String companyNo,
+    @Default([]) List<String> companyCertificate,
+    @Default([]) List<Locate> locations,
+    Locate? shipLocate,
+    required String emailTax,
+    required String companyPhone,
+    String? shopLink,
+    required String ceoName,
+    required String ceoPhone,
+    required String managerName,
+    required String managerPhone,
+  }) = _CompanyInfo;
+
+  factory CompanyInfo.fromJson(Map<String, Object?> json) =>
+      _$CompanyInfoFromJson(json);
 }
 
 @freezed //  all of this class's properties are immutable.
@@ -75,6 +98,7 @@ class UncleInfo with _$UncleInfo {
     required List<LocateAmount> shipLocates,
     required Map<String, int> amountBySize,
     required Map<String, int> amountByWeight,
+    required int shipPendingAmount,
   }) = _UncleInfo;
 
   factory UncleInfo.fromJson(Map<String, Object?> json) =>

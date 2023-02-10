@@ -10,6 +10,8 @@ class IoOrder extends Equatable with _$IoOrder {
     DateTime? paidAt,
     DateTime? doneAt,
     DateTime? tossAt,
+    bool? isDone,
+    bool? isDirectToShip,
     required String dbId,
     required String shopId,
     required int orderCnts,
@@ -26,7 +28,9 @@ class IoOrder extends Equatable with _$IoOrder {
     required List<ProdType> prodTypes,
     required List<PaidInfo> paids,
     required List<OrderType> orderTypes,
-    required OrderAmount amount,
+    required PayAmount prodAmount,
+    required PayAmount shipAmount,
+    required PayAmount pickAmount,
   }) = _GarmentOrder;
 
   const IoOrder._();
@@ -186,9 +190,9 @@ extension OrderExtension on OrderState {
 }
 
 @freezed //  all of this class's properties are immutable.
-class OrderAmount with _$OrderAmount {
+class PayAmount with _$PayAmount {
   @JsonSerializable(explicitToJson: true)
-  const factory OrderAmount({
+  const factory PayAmount({
     required int shipFeeAmount,
     required int shipFeeDiscountAmount,
     required int tax,
@@ -201,17 +205,17 @@ class OrderAmount with _$OrderAmount {
     required bool paymentConfirm,
     PayMethod? paymentMethod,
     DateTime? paidAt,
-  }) = _OrderAmount;
+  }) = _PayAmount;
 
-  const OrderAmount._();
+  const PayAmount._();
   int get amount =>
       pureAmount +
       (shipFeeAmount - shipFeeDiscountAmount) +
       (pickFeeAmount ?? 0 - (pickFeeDiscountAmount ?? 0)) +
       tax;
 
-  factory OrderAmount.fromJson(Map<String, Object?> json) =>
-      _$OrderAmountFromJson(json);
+  factory PayAmount.fromJson(Map<String, Object?> json) =>
+      _$PayAmountFromJson(json);
 }
 
 enum OrderType {
@@ -227,8 +231,8 @@ class OrderItem extends Equatable with _$OrderItem {
   const factory OrderItem({
     required String id,
     required List<String> orderIds,
-    required String shopId,
     required String vendorId,
+    required String shopId,
     required VendorGarment vendorProd,
     required ShopGarment shopProd,
     required int orderCnt,
@@ -240,13 +244,14 @@ class OrderItem extends Equatable with _$OrderItem {
     required String orderDbId,
     @Default(OrderType.standard) OrderType? orderType,
     required ProdType? prodType,
-    required OrderAmount amount,
+    required PayAmount prodAmount,
     Map<String, dynamic>? cancellation,
     required String? shipManagerId,
-    String? sizeUnit,
-    String? weightUnit,
-    int? size,
-    int? weight,
+    // # DEPRECATED
+    // String? sizeUnit,
+    // String? weightUnit,
+    // int? size,
+    // int? weight,
   }) = _OrderItem;
 
   bool get isPickup => [

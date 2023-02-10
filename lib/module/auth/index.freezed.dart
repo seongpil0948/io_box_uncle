@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'index.dart';
 
@@ -21,6 +21,7 @@ IoUser _$IoUserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$IoUser {
   IoUserInfo get userInfo => throw _privateConstructorUsedError;
+  CompanyInfo? get companyInfo => throw _privateConstructorUsedError;
   bool get preferDark => throw _privateConstructorUsedError;
   String? get connectState => throw _privateConstructorUsedError;
   String? get workState => throw _privateConstructorUsedError;
@@ -38,12 +39,14 @@ abstract class $IoUserCopyWith<$Res> {
   @useResult
   $Res call(
       {IoUserInfo userInfo,
+      CompanyInfo? companyInfo,
       bool preferDark,
       String? connectState,
       String? workState,
       UncleInfo? uncleInfo});
 
   $IoUserInfoCopyWith<$Res> get userInfo;
+  $CompanyInfoCopyWith<$Res>? get companyInfo;
   $UncleInfoCopyWith<$Res>? get uncleInfo;
 }
 
@@ -61,6 +64,7 @@ class _$IoUserCopyWithImpl<$Res, $Val extends IoUser>
   @override
   $Res call({
     Object? userInfo = null,
+    Object? companyInfo = freezed,
     Object? preferDark = null,
     Object? connectState = freezed,
     Object? workState = freezed,
@@ -71,6 +75,10 @@ class _$IoUserCopyWithImpl<$Res, $Val extends IoUser>
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
               as IoUserInfo,
+      companyInfo: freezed == companyInfo
+          ? _value.companyInfo
+          : companyInfo // ignore: cast_nullable_to_non_nullable
+              as CompanyInfo?,
       preferDark: null == preferDark
           ? _value.preferDark
           : preferDark // ignore: cast_nullable_to_non_nullable
@@ -100,6 +108,18 @@ class _$IoUserCopyWithImpl<$Res, $Val extends IoUser>
 
   @override
   @pragma('vm:prefer-inline')
+  $CompanyInfoCopyWith<$Res>? get companyInfo {
+    if (_value.companyInfo == null) {
+      return null;
+    }
+
+    return $CompanyInfoCopyWith<$Res>(_value.companyInfo!, (value) {
+      return _then(_value.copyWith(companyInfo: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $UncleInfoCopyWith<$Res>? get uncleInfo {
     if (_value.uncleInfo == null) {
       return null;
@@ -119,6 +139,7 @@ abstract class _$$_IoUserCopyWith<$Res> implements $IoUserCopyWith<$Res> {
   @useResult
   $Res call(
       {IoUserInfo userInfo,
+      CompanyInfo? companyInfo,
       bool preferDark,
       String? connectState,
       String? workState,
@@ -126,6 +147,8 @@ abstract class _$$_IoUserCopyWith<$Res> implements $IoUserCopyWith<$Res> {
 
   @override
   $IoUserInfoCopyWith<$Res> get userInfo;
+  @override
+  $CompanyInfoCopyWith<$Res>? get companyInfo;
   @override
   $UncleInfoCopyWith<$Res>? get uncleInfo;
 }
@@ -141,6 +164,7 @@ class __$$_IoUserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userInfo = null,
+    Object? companyInfo = freezed,
     Object? preferDark = null,
     Object? connectState = freezed,
     Object? workState = freezed,
@@ -151,6 +175,10 @@ class __$$_IoUserCopyWithImpl<$Res>
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
               as IoUserInfo,
+      companyInfo: freezed == companyInfo
+          ? _value.companyInfo
+          : companyInfo // ignore: cast_nullable_to_non_nullable
+              as CompanyInfo?,
       preferDark: null == preferDark
           ? _value.preferDark
           : preferDark // ignore: cast_nullable_to_non_nullable
@@ -177,6 +205,7 @@ class __$$_IoUserCopyWithImpl<$Res>
 class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
   const _$_IoUser(
       {required this.userInfo,
+      this.companyInfo,
       this.preferDark = false,
       this.connectState,
       this.workState,
@@ -189,6 +218,8 @@ class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
   @override
   final IoUserInfo userInfo;
   @override
+  final CompanyInfo? companyInfo;
+  @override
   @JsonKey()
   final bool preferDark;
   @override
@@ -200,7 +231,7 @@ class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'IoUser(userInfo: $userInfo, preferDark: $preferDark, connectState: $connectState, workState: $workState, uncleInfo: $uncleInfo)';
+    return 'IoUser(userInfo: $userInfo, companyInfo: $companyInfo, preferDark: $preferDark, connectState: $connectState, workState: $workState, uncleInfo: $uncleInfo)';
   }
 
   @override
@@ -209,6 +240,7 @@ class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'IoUser'))
       ..add(DiagnosticsProperty('userInfo', userInfo))
+      ..add(DiagnosticsProperty('companyInfo', companyInfo))
       ..add(DiagnosticsProperty('preferDark', preferDark))
       ..add(DiagnosticsProperty('connectState', connectState))
       ..add(DiagnosticsProperty('workState', workState))
@@ -222,6 +254,8 @@ class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
             other is _$_IoUser &&
             (identical(other.userInfo, userInfo) ||
                 other.userInfo == userInfo) &&
+            (identical(other.companyInfo, companyInfo) ||
+                other.companyInfo == companyInfo) &&
             (identical(other.preferDark, preferDark) ||
                 other.preferDark == preferDark) &&
             (identical(other.connectState, connectState) ||
@@ -234,8 +268,8 @@ class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, userInfo, preferDark, connectState, workState, uncleInfo);
+  int get hashCode => Object.hash(runtimeType, userInfo, companyInfo,
+      preferDark, connectState, workState, uncleInfo);
 
   @JsonKey(ignore: true)
   @override
@@ -254,6 +288,7 @@ class _$_IoUser extends _IoUser with DiagnosticableTreeMixin {
 abstract class _IoUser extends IoUser {
   const factory _IoUser(
       {required final IoUserInfo userInfo,
+      final CompanyInfo? companyInfo,
       final bool preferDark,
       final String? connectState,
       final String? workState,
@@ -265,6 +300,8 @@ abstract class _IoUser extends IoUser {
   @override
   IoUserInfo get userInfo;
   @override
+  CompanyInfo? get companyInfo;
+  @override
   bool get preferDark;
   @override
   String? get connectState;
@@ -275,6 +312,444 @@ abstract class _IoUser extends IoUser {
   @override
   @JsonKey(ignore: true)
   _$$_IoUserCopyWith<_$_IoUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CompanyInfo _$CompanyInfoFromJson(Map<String, dynamic> json) {
+  return _CompanyInfo.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CompanyInfo {
+  String get companyName => throw _privateConstructorUsedError;
+  String get companyNo => throw _privateConstructorUsedError;
+  List<String> get companyCertificate => throw _privateConstructorUsedError;
+  List<Locate> get locations => throw _privateConstructorUsedError;
+  Locate? get shipLocate => throw _privateConstructorUsedError;
+  String get emailTax => throw _privateConstructorUsedError;
+  String get companyPhone => throw _privateConstructorUsedError;
+  String? get shopLink => throw _privateConstructorUsedError;
+  String get ceoName => throw _privateConstructorUsedError;
+  String get ceoPhone => throw _privateConstructorUsedError;
+  String get managerName => throw _privateConstructorUsedError;
+  String get managerPhone => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CompanyInfoCopyWith<CompanyInfo> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CompanyInfoCopyWith<$Res> {
+  factory $CompanyInfoCopyWith(
+          CompanyInfo value, $Res Function(CompanyInfo) then) =
+      _$CompanyInfoCopyWithImpl<$Res, CompanyInfo>;
+  @useResult
+  $Res call(
+      {String companyName,
+      String companyNo,
+      List<String> companyCertificate,
+      List<Locate> locations,
+      Locate? shipLocate,
+      String emailTax,
+      String companyPhone,
+      String? shopLink,
+      String ceoName,
+      String ceoPhone,
+      String managerName,
+      String managerPhone});
+
+  $LocateCopyWith<$Res>? get shipLocate;
+}
+
+/// @nodoc
+class _$CompanyInfoCopyWithImpl<$Res, $Val extends CompanyInfo>
+    implements $CompanyInfoCopyWith<$Res> {
+  _$CompanyInfoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? companyName = null,
+    Object? companyNo = null,
+    Object? companyCertificate = null,
+    Object? locations = null,
+    Object? shipLocate = freezed,
+    Object? emailTax = null,
+    Object? companyPhone = null,
+    Object? shopLink = freezed,
+    Object? ceoName = null,
+    Object? ceoPhone = null,
+    Object? managerName = null,
+    Object? managerPhone = null,
+  }) {
+    return _then(_value.copyWith(
+      companyName: null == companyName
+          ? _value.companyName
+          : companyName // ignore: cast_nullable_to_non_nullable
+              as String,
+      companyNo: null == companyNo
+          ? _value.companyNo
+          : companyNo // ignore: cast_nullable_to_non_nullable
+              as String,
+      companyCertificate: null == companyCertificate
+          ? _value.companyCertificate
+          : companyCertificate // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      locations: null == locations
+          ? _value.locations
+          : locations // ignore: cast_nullable_to_non_nullable
+              as List<Locate>,
+      shipLocate: freezed == shipLocate
+          ? _value.shipLocate
+          : shipLocate // ignore: cast_nullable_to_non_nullable
+              as Locate?,
+      emailTax: null == emailTax
+          ? _value.emailTax
+          : emailTax // ignore: cast_nullable_to_non_nullable
+              as String,
+      companyPhone: null == companyPhone
+          ? _value.companyPhone
+          : companyPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopLink: freezed == shopLink
+          ? _value.shopLink
+          : shopLink // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ceoName: null == ceoName
+          ? _value.ceoName
+          : ceoName // ignore: cast_nullable_to_non_nullable
+              as String,
+      ceoPhone: null == ceoPhone
+          ? _value.ceoPhone
+          : ceoPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+      managerName: null == managerName
+          ? _value.managerName
+          : managerName // ignore: cast_nullable_to_non_nullable
+              as String,
+      managerPhone: null == managerPhone
+          ? _value.managerPhone
+          : managerPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LocateCopyWith<$Res>? get shipLocate {
+    if (_value.shipLocate == null) {
+      return null;
+    }
+
+    return $LocateCopyWith<$Res>(_value.shipLocate!, (value) {
+      return _then(_value.copyWith(shipLocate: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_CompanyInfoCopyWith<$Res>
+    implements $CompanyInfoCopyWith<$Res> {
+  factory _$$_CompanyInfoCopyWith(
+          _$_CompanyInfo value, $Res Function(_$_CompanyInfo) then) =
+      __$$_CompanyInfoCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String companyName,
+      String companyNo,
+      List<String> companyCertificate,
+      List<Locate> locations,
+      Locate? shipLocate,
+      String emailTax,
+      String companyPhone,
+      String? shopLink,
+      String ceoName,
+      String ceoPhone,
+      String managerName,
+      String managerPhone});
+
+  @override
+  $LocateCopyWith<$Res>? get shipLocate;
+}
+
+/// @nodoc
+class __$$_CompanyInfoCopyWithImpl<$Res>
+    extends _$CompanyInfoCopyWithImpl<$Res, _$_CompanyInfo>
+    implements _$$_CompanyInfoCopyWith<$Res> {
+  __$$_CompanyInfoCopyWithImpl(
+      _$_CompanyInfo _value, $Res Function(_$_CompanyInfo) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? companyName = null,
+    Object? companyNo = null,
+    Object? companyCertificate = null,
+    Object? locations = null,
+    Object? shipLocate = freezed,
+    Object? emailTax = null,
+    Object? companyPhone = null,
+    Object? shopLink = freezed,
+    Object? ceoName = null,
+    Object? ceoPhone = null,
+    Object? managerName = null,
+    Object? managerPhone = null,
+  }) {
+    return _then(_$_CompanyInfo(
+      companyName: null == companyName
+          ? _value.companyName
+          : companyName // ignore: cast_nullable_to_non_nullable
+              as String,
+      companyNo: null == companyNo
+          ? _value.companyNo
+          : companyNo // ignore: cast_nullable_to_non_nullable
+              as String,
+      companyCertificate: null == companyCertificate
+          ? _value._companyCertificate
+          : companyCertificate // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      locations: null == locations
+          ? _value._locations
+          : locations // ignore: cast_nullable_to_non_nullable
+              as List<Locate>,
+      shipLocate: freezed == shipLocate
+          ? _value.shipLocate
+          : shipLocate // ignore: cast_nullable_to_non_nullable
+              as Locate?,
+      emailTax: null == emailTax
+          ? _value.emailTax
+          : emailTax // ignore: cast_nullable_to_non_nullable
+              as String,
+      companyPhone: null == companyPhone
+          ? _value.companyPhone
+          : companyPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopLink: freezed == shopLink
+          ? _value.shopLink
+          : shopLink // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ceoName: null == ceoName
+          ? _value.ceoName
+          : ceoName // ignore: cast_nullable_to_non_nullable
+              as String,
+      ceoPhone: null == ceoPhone
+          ? _value.ceoPhone
+          : ceoPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+      managerName: null == managerName
+          ? _value.managerName
+          : managerName // ignore: cast_nullable_to_non_nullable
+              as String,
+      managerPhone: null == managerPhone
+          ? _value.managerPhone
+          : managerPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_CompanyInfo with DiagnosticableTreeMixin implements _CompanyInfo {
+  const _$_CompanyInfo(
+      {required this.companyName,
+      required this.companyNo,
+      final List<String> companyCertificate = const [],
+      final List<Locate> locations = const [],
+      this.shipLocate,
+      required this.emailTax,
+      required this.companyPhone,
+      this.shopLink,
+      required this.ceoName,
+      required this.ceoPhone,
+      required this.managerName,
+      required this.managerPhone})
+      : _companyCertificate = companyCertificate,
+        _locations = locations;
+
+  factory _$_CompanyInfo.fromJson(Map<String, dynamic> json) =>
+      _$$_CompanyInfoFromJson(json);
+
+  @override
+  final String companyName;
+  @override
+  final String companyNo;
+  final List<String> _companyCertificate;
+  @override
+  @JsonKey()
+  List<String> get companyCertificate {
+    if (_companyCertificate is EqualUnmodifiableListView)
+      return _companyCertificate;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_companyCertificate);
+  }
+
+  final List<Locate> _locations;
+  @override
+  @JsonKey()
+  List<Locate> get locations {
+    if (_locations is EqualUnmodifiableListView) return _locations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_locations);
+  }
+
+  @override
+  final Locate? shipLocate;
+  @override
+  final String emailTax;
+  @override
+  final String companyPhone;
+  @override
+  final String? shopLink;
+  @override
+  final String ceoName;
+  @override
+  final String ceoPhone;
+  @override
+  final String managerName;
+  @override
+  final String managerPhone;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CompanyInfo(companyName: $companyName, companyNo: $companyNo, companyCertificate: $companyCertificate, locations: $locations, shipLocate: $shipLocate, emailTax: $emailTax, companyPhone: $companyPhone, shopLink: $shopLink, ceoName: $ceoName, ceoPhone: $ceoPhone, managerName: $managerName, managerPhone: $managerPhone)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CompanyInfo'))
+      ..add(DiagnosticsProperty('companyName', companyName))
+      ..add(DiagnosticsProperty('companyNo', companyNo))
+      ..add(DiagnosticsProperty('companyCertificate', companyCertificate))
+      ..add(DiagnosticsProperty('locations', locations))
+      ..add(DiagnosticsProperty('shipLocate', shipLocate))
+      ..add(DiagnosticsProperty('emailTax', emailTax))
+      ..add(DiagnosticsProperty('companyPhone', companyPhone))
+      ..add(DiagnosticsProperty('shopLink', shopLink))
+      ..add(DiagnosticsProperty('ceoName', ceoName))
+      ..add(DiagnosticsProperty('ceoPhone', ceoPhone))
+      ..add(DiagnosticsProperty('managerName', managerName))
+      ..add(DiagnosticsProperty('managerPhone', managerPhone));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CompanyInfo &&
+            (identical(other.companyName, companyName) ||
+                other.companyName == companyName) &&
+            (identical(other.companyNo, companyNo) ||
+                other.companyNo == companyNo) &&
+            const DeepCollectionEquality()
+                .equals(other._companyCertificate, _companyCertificate) &&
+            const DeepCollectionEquality()
+                .equals(other._locations, _locations) &&
+            (identical(other.shipLocate, shipLocate) ||
+                other.shipLocate == shipLocate) &&
+            (identical(other.emailTax, emailTax) ||
+                other.emailTax == emailTax) &&
+            (identical(other.companyPhone, companyPhone) ||
+                other.companyPhone == companyPhone) &&
+            (identical(other.shopLink, shopLink) ||
+                other.shopLink == shopLink) &&
+            (identical(other.ceoName, ceoName) || other.ceoName == ceoName) &&
+            (identical(other.ceoPhone, ceoPhone) ||
+                other.ceoPhone == ceoPhone) &&
+            (identical(other.managerName, managerName) ||
+                other.managerName == managerName) &&
+            (identical(other.managerPhone, managerPhone) ||
+                other.managerPhone == managerPhone));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      companyName,
+      companyNo,
+      const DeepCollectionEquality().hash(_companyCertificate),
+      const DeepCollectionEquality().hash(_locations),
+      shipLocate,
+      emailTax,
+      companyPhone,
+      shopLink,
+      ceoName,
+      ceoPhone,
+      managerName,
+      managerPhone);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CompanyInfoCopyWith<_$_CompanyInfo> get copyWith =>
+      __$$_CompanyInfoCopyWithImpl<_$_CompanyInfo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CompanyInfoToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CompanyInfo implements CompanyInfo {
+  const factory _CompanyInfo(
+      {required final String companyName,
+      required final String companyNo,
+      final List<String> companyCertificate,
+      final List<Locate> locations,
+      final Locate? shipLocate,
+      required final String emailTax,
+      required final String companyPhone,
+      final String? shopLink,
+      required final String ceoName,
+      required final String ceoPhone,
+      required final String managerName,
+      required final String managerPhone}) = _$_CompanyInfo;
+
+  factory _CompanyInfo.fromJson(Map<String, dynamic> json) =
+      _$_CompanyInfo.fromJson;
+
+  @override
+  String get companyName;
+  @override
+  String get companyNo;
+  @override
+  List<String> get companyCertificate;
+  @override
+  List<Locate> get locations;
+  @override
+  Locate? get shipLocate;
+  @override
+  String get emailTax;
+  @override
+  String get companyPhone;
+  @override
+  String? get shopLink;
+  @override
+  String get ceoName;
+  @override
+  String get ceoPhone;
+  @override
+  String get managerName;
+  @override
+  String get managerPhone;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CompanyInfoCopyWith<_$_CompanyInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -639,6 +1114,7 @@ class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
   @override
   @JsonKey()
   List<FcmToken> get fcmTokens {
+    if (_fcmTokens is EqualUnmodifiableListView) return _fcmTokens;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_fcmTokens);
   }
@@ -654,6 +1130,7 @@ class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
   List<String>? get workerIds {
     final value = _workerIds;
     if (value == null) return null;
+    if (_workerIds is EqualUnmodifiableListView) return _workerIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -1019,6 +1496,7 @@ mixin _$UncleInfo {
   List<LocateAmount> get shipLocates => throw _privateConstructorUsedError;
   Map<String, int> get amountBySize => throw _privateConstructorUsedError;
   Map<String, int> get amountByWeight => throw _privateConstructorUsedError;
+  int get shipPendingAmount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1035,7 +1513,8 @@ abstract class $UncleInfoCopyWith<$Res> {
       {List<LocateAmount> pickupLocates,
       List<LocateAmount> shipLocates,
       Map<String, int> amountBySize,
-      Map<String, int> amountByWeight});
+      Map<String, int> amountByWeight,
+      int shipPendingAmount});
 }
 
 /// @nodoc
@@ -1055,6 +1534,7 @@ class _$UncleInfoCopyWithImpl<$Res, $Val extends UncleInfo>
     Object? shipLocates = null,
     Object? amountBySize = null,
     Object? amountByWeight = null,
+    Object? shipPendingAmount = null,
   }) {
     return _then(_value.copyWith(
       pickupLocates: null == pickupLocates
@@ -1073,6 +1553,10 @@ class _$UncleInfoCopyWithImpl<$Res, $Val extends UncleInfo>
           ? _value.amountByWeight
           : amountByWeight // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
+      shipPendingAmount: null == shipPendingAmount
+          ? _value.shipPendingAmount
+          : shipPendingAmount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -1088,7 +1572,8 @@ abstract class _$$_UncleInfoCopyWith<$Res> implements $UncleInfoCopyWith<$Res> {
       {List<LocateAmount> pickupLocates,
       List<LocateAmount> shipLocates,
       Map<String, int> amountBySize,
-      Map<String, int> amountByWeight});
+      Map<String, int> amountByWeight,
+      int shipPendingAmount});
 }
 
 /// @nodoc
@@ -1106,6 +1591,7 @@ class __$$_UncleInfoCopyWithImpl<$Res>
     Object? shipLocates = null,
     Object? amountBySize = null,
     Object? amountByWeight = null,
+    Object? shipPendingAmount = null,
   }) {
     return _then(_$_UncleInfo(
       pickupLocates: null == pickupLocates
@@ -1124,6 +1610,10 @@ class __$$_UncleInfoCopyWithImpl<$Res>
           ? _value._amountByWeight
           : amountByWeight // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
+      shipPendingAmount: null == shipPendingAmount
+          ? _value.shipPendingAmount
+          : shipPendingAmount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -1136,7 +1626,8 @@ class _$_UncleInfo with DiagnosticableTreeMixin implements _UncleInfo {
       {required final List<LocateAmount> pickupLocates,
       required final List<LocateAmount> shipLocates,
       required final Map<String, int> amountBySize,
-      required final Map<String, int> amountByWeight})
+      required final Map<String, int> amountByWeight,
+      required this.shipPendingAmount})
       : _pickupLocates = pickupLocates,
         _shipLocates = shipLocates,
         _amountBySize = amountBySize,
@@ -1148,6 +1639,7 @@ class _$_UncleInfo with DiagnosticableTreeMixin implements _UncleInfo {
   final List<LocateAmount> _pickupLocates;
   @override
   List<LocateAmount> get pickupLocates {
+    if (_pickupLocates is EqualUnmodifiableListView) return _pickupLocates;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pickupLocates);
   }
@@ -1155,6 +1647,7 @@ class _$_UncleInfo with DiagnosticableTreeMixin implements _UncleInfo {
   final List<LocateAmount> _shipLocates;
   @override
   List<LocateAmount> get shipLocates {
+    if (_shipLocates is EqualUnmodifiableListView) return _shipLocates;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_shipLocates);
   }
@@ -1162,6 +1655,7 @@ class _$_UncleInfo with DiagnosticableTreeMixin implements _UncleInfo {
   final Map<String, int> _amountBySize;
   @override
   Map<String, int> get amountBySize {
+    if (_amountBySize is EqualUnmodifiableMapView) return _amountBySize;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_amountBySize);
   }
@@ -1169,13 +1663,17 @@ class _$_UncleInfo with DiagnosticableTreeMixin implements _UncleInfo {
   final Map<String, int> _amountByWeight;
   @override
   Map<String, int> get amountByWeight {
+    if (_amountByWeight is EqualUnmodifiableMapView) return _amountByWeight;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_amountByWeight);
   }
 
   @override
+  final int shipPendingAmount;
+
+  @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UncleInfo(pickupLocates: $pickupLocates, shipLocates: $shipLocates, amountBySize: $amountBySize, amountByWeight: $amountByWeight)';
+    return 'UncleInfo(pickupLocates: $pickupLocates, shipLocates: $shipLocates, amountBySize: $amountBySize, amountByWeight: $amountByWeight, shipPendingAmount: $shipPendingAmount)';
   }
 
   @override
@@ -1186,7 +1684,8 @@ class _$_UncleInfo with DiagnosticableTreeMixin implements _UncleInfo {
       ..add(DiagnosticsProperty('pickupLocates', pickupLocates))
       ..add(DiagnosticsProperty('shipLocates', shipLocates))
       ..add(DiagnosticsProperty('amountBySize', amountBySize))
-      ..add(DiagnosticsProperty('amountByWeight', amountByWeight));
+      ..add(DiagnosticsProperty('amountByWeight', amountByWeight))
+      ..add(DiagnosticsProperty('shipPendingAmount', shipPendingAmount));
   }
 
   @override
@@ -1201,7 +1700,9 @@ class _$_UncleInfo with DiagnosticableTreeMixin implements _UncleInfo {
             const DeepCollectionEquality()
                 .equals(other._amountBySize, _amountBySize) &&
             const DeepCollectionEquality()
-                .equals(other._amountByWeight, _amountByWeight));
+                .equals(other._amountByWeight, _amountByWeight) &&
+            (identical(other.shipPendingAmount, shipPendingAmount) ||
+                other.shipPendingAmount == shipPendingAmount));
   }
 
   @JsonKey(ignore: true)
@@ -1211,7 +1712,8 @@ class _$_UncleInfo with DiagnosticableTreeMixin implements _UncleInfo {
       const DeepCollectionEquality().hash(_pickupLocates),
       const DeepCollectionEquality().hash(_shipLocates),
       const DeepCollectionEquality().hash(_amountBySize),
-      const DeepCollectionEquality().hash(_amountByWeight));
+      const DeepCollectionEquality().hash(_amountByWeight),
+      shipPendingAmount);
 
   @JsonKey(ignore: true)
   @override
@@ -1232,7 +1734,8 @@ abstract class _UncleInfo implements UncleInfo {
       {required final List<LocateAmount> pickupLocates,
       required final List<LocateAmount> shipLocates,
       required final Map<String, int> amountBySize,
-      required final Map<String, int> amountByWeight}) = _$_UncleInfo;
+      required final Map<String, int> amountByWeight,
+      required final int shipPendingAmount}) = _$_UncleInfo;
 
   factory _UncleInfo.fromJson(Map<String, dynamic> json) =
       _$_UncleInfo.fromJson;
@@ -1245,6 +1748,8 @@ abstract class _UncleInfo implements UncleInfo {
   Map<String, int> get amountBySize;
   @override
   Map<String, int> get amountByWeight;
+  @override
+  int get shipPendingAmount;
   @override
   @JsonKey(ignore: true)
   _$$_UncleInfoCopyWith<_$_UncleInfo> get copyWith =>

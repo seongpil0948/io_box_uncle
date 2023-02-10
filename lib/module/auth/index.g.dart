@@ -8,6 +8,9 @@ part of 'index.dart';
 
 _$_IoUser _$$_IoUserFromJson(Map<String, dynamic> json) => _$_IoUser(
       userInfo: IoUserInfo.fromJson(json['userInfo'] as Map<String, dynamic>),
+      companyInfo: json['companyInfo'] == null
+          ? null
+          : CompanyInfo.fromJson(json['companyInfo'] as Map<String, dynamic>),
       preferDark: json['preferDark'] as bool? ?? false,
       connectState: json['connectState'] as String?,
       workState: json['workState'] as String?,
@@ -18,10 +21,51 @@ _$_IoUser _$$_IoUserFromJson(Map<String, dynamic> json) => _$_IoUser(
 
 Map<String, dynamic> _$$_IoUserToJson(_$_IoUser instance) => <String, dynamic>{
       'userInfo': instance.userInfo.toJson(),
+      'companyInfo': instance.companyInfo?.toJson(),
       'preferDark': instance.preferDark,
       'connectState': instance.connectState,
       'workState': instance.workState,
       'uncleInfo': instance.uncleInfo?.toJson(),
+    };
+
+_$_CompanyInfo _$$_CompanyInfoFromJson(Map<String, dynamic> json) =>
+    _$_CompanyInfo(
+      companyName: json['companyName'] as String,
+      companyNo: json['companyNo'] as String,
+      companyCertificate: (json['companyCertificate'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      locations: (json['locations'] as List<dynamic>?)
+              ?.map((e) => Locate.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      shipLocate: json['shipLocate'] == null
+          ? null
+          : Locate.fromJson(json['shipLocate'] as Map<String, dynamic>),
+      emailTax: json['emailTax'] as String,
+      companyPhone: json['companyPhone'] as String,
+      shopLink: json['shopLink'] as String?,
+      ceoName: json['ceoName'] as String,
+      ceoPhone: json['ceoPhone'] as String,
+      managerName: json['managerName'] as String,
+      managerPhone: json['managerPhone'] as String,
+    );
+
+Map<String, dynamic> _$$_CompanyInfoToJson(_$_CompanyInfo instance) =>
+    <String, dynamic>{
+      'companyName': instance.companyName,
+      'companyNo': instance.companyNo,
+      'companyCertificate': instance.companyCertificate,
+      'locations': instance.locations.map((e) => e.toJson()).toList(),
+      'shipLocate': instance.shipLocate?.toJson(),
+      'emailTax': instance.emailTax,
+      'companyPhone': instance.companyPhone,
+      'shopLink': instance.shopLink,
+      'ceoName': instance.ceoName,
+      'ceoPhone': instance.ceoPhone,
+      'managerName': instance.managerName,
+      'managerPhone': instance.managerPhone,
     };
 
 _$_IoUserInfo _$$_IoUserInfoFromJson(Map<String, dynamic> json) =>
@@ -106,6 +150,7 @@ _$_UncleInfo _$$_UncleInfoFromJson(Map<String, dynamic> json) => _$_UncleInfo(
           .toList(),
       amountBySize: Map<String, int>.from(json['amountBySize'] as Map),
       amountByWeight: Map<String, int>.from(json['amountByWeight'] as Map),
+      shipPendingAmount: json['shipPendingAmount'] as int,
     );
 
 Map<String, dynamic> _$$_UncleInfoToJson(_$_UncleInfo instance) =>
@@ -114,6 +159,7 @@ Map<String, dynamic> _$$_UncleInfoToJson(_$_UncleInfo instance) =>
       'shipLocates': instance.shipLocates.map((e) => e.toJson()).toList(),
       'amountBySize': instance.amountBySize,
       'amountByWeight': instance.amountByWeight,
+      'shipPendingAmount': instance.shipPendingAmount,
     };
 
 _$_LocateAmount _$$_LocateAmountFromJson(Map<String, dynamic> json) =>

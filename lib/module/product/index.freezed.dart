@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'index.dart';
 
@@ -38,7 +38,8 @@ mixin _$VendorGarment {
   List<String> get titleImgs => throw _privateConstructorUsedError;
   List<String> get bodyImgs => throw _privateConstructorUsedError;
   dynamic get info => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String get description =>
+      throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
   Map<String, dynamic> get TBD => throw _privateConstructorUsedError;
   ProdType get prodType => throw _privateConstructorUsedError;
 
@@ -108,7 +109,7 @@ class _$VendorGarmentCopyWithImpl<$Res, $Val extends VendorGarment>
     Object? vendorProdName = null,
     Object? titleImgs = null,
     Object? bodyImgs = null,
-    Object? info = null,
+    Object? info = freezed,
     Object? description = null,
     Object? TBD = null,
     Object? prodType = null,
@@ -182,7 +183,7 @@ class _$VendorGarmentCopyWithImpl<$Res, $Val extends VendorGarment>
           ? _value.bodyImgs
           : bodyImgs // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      info: null == info
+      info: freezed == info
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -262,7 +263,7 @@ class __$$_VendorGarmentCopyWithImpl<$Res>
     Object? vendorProdName = null,
     Object? titleImgs = null,
     Object? bodyImgs = null,
-    Object? info = null,
+    Object? info = freezed,
     Object? description = null,
     Object? TBD = null,
     Object? prodType = null,
@@ -336,7 +337,7 @@ class __$$_VendorGarmentCopyWithImpl<$Res>
           ? _value._bodyImgs
           : bodyImgs // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      info: null == info
+      info: freezed == info
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -422,6 +423,7 @@ class _$_VendorGarment implements _VendorGarment {
   final List<String> _titleImgs;
   @override
   List<String> get titleImgs {
+    if (_titleImgs is EqualUnmodifiableListView) return _titleImgs;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_titleImgs);
   }
@@ -429,6 +431,7 @@ class _$_VendorGarment implements _VendorGarment {
   final List<String> _bodyImgs;
   @override
   List<String> get bodyImgs {
+    if (_bodyImgs is EqualUnmodifiableListView) return _bodyImgs;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_bodyImgs);
   }
@@ -437,9 +440,12 @@ class _$_VendorGarment implements _VendorGarment {
   final dynamic info;
   @override
   final String description;
+// ignore: non_constant_identifier_names
   final Map<String, dynamic> _TBD;
+// ignore: non_constant_identifier_names
   @override
   Map<String, dynamic> get TBD {
+    if (_TBD is EqualUnmodifiableMapView) return _TBD;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_TBD);
   }
@@ -598,7 +604,7 @@ abstract class _VendorGarment implements VendorGarment {
   dynamic get info;
   @override
   String get description;
-  @override
+  @override // ignore: non_constant_identifier_names
   Map<String, dynamic> get TBD;
   @override
   ProdType get prodType;
@@ -684,7 +690,7 @@ class _$ShopGarmentCopyWithImpl<$Res, $Val extends ShopGarment>
     Object? shopId = null,
     Object? prodPrice = null,
     Object? prodName = null,
-    Object? info = null,
+    Object? info = freezed,
     Object? description = null,
     Object? cafeProdId = freezed,
     Object? zigzagProdId = freezed,
@@ -726,7 +732,7 @@ class _$ShopGarmentCopyWithImpl<$Res, $Val extends ShopGarment>
           ? _value.prodName
           : prodName // ignore: cast_nullable_to_non_nullable
               as String,
-      info: null == info
+      info: freezed == info
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -808,7 +814,7 @@ class __$$_ShopGarmentCopyWithImpl<$Res>
     Object? shopId = null,
     Object? prodPrice = null,
     Object? prodName = null,
-    Object? info = null,
+    Object? info = freezed,
     Object? description = null,
     Object? cafeProdId = freezed,
     Object? zigzagProdId = freezed,
@@ -850,7 +856,7 @@ class __$$_ShopGarmentCopyWithImpl<$Res>
           ? _value.prodName
           : prodName // ignore: cast_nullable_to_non_nullable
               as String,
-      info: null == info
+      info: freezed == info
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -942,6 +948,7 @@ class _$_ShopGarment implements _ShopGarment {
   @override
   @JsonKey()
   Map<String, dynamic> get TBD {
+    if (_TBD is EqualUnmodifiableMapView) return _TBD;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_TBD);
   }

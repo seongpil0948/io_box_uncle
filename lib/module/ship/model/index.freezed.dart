@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'index.dart';
 
@@ -343,6 +343,8 @@ mixin _$IoOrder {
   DateTime? get paidAt => throw _privateConstructorUsedError;
   DateTime? get doneAt => throw _privateConstructorUsedError;
   DateTime? get tossAt => throw _privateConstructorUsedError;
+  bool? get isDone => throw _privateConstructorUsedError;
+  bool? get isDirectToShip => throw _privateConstructorUsedError;
   String get dbId => throw _privateConstructorUsedError;
   String get shopId => throw _privateConstructorUsedError;
   int get orderCnts => throw _privateConstructorUsedError;
@@ -360,7 +362,9 @@ mixin _$IoOrder {
   List<ProdType> get prodTypes => throw _privateConstructorUsedError;
   List<PaidInfo> get paids => throw _privateConstructorUsedError;
   List<OrderType> get orderTypes => throw _privateConstructorUsedError;
-  OrderAmount get amount => throw _privateConstructorUsedError;
+  PayAmount get prodAmount => throw _privateConstructorUsedError;
+  PayAmount get shipAmount => throw _privateConstructorUsedError;
+  PayAmount get pickAmount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -379,6 +383,8 @@ abstract class $IoOrderCopyWith<$Res> {
       DateTime? paidAt,
       DateTime? doneAt,
       DateTime? tossAt,
+      bool? isDone,
+      bool? isDirectToShip,
       String dbId,
       String shopId,
       int orderCnts,
@@ -395,9 +401,13 @@ abstract class $IoOrderCopyWith<$Res> {
       List<ProdType> prodTypes,
       List<PaidInfo> paids,
       List<OrderType> orderTypes,
-      OrderAmount amount});
+      PayAmount prodAmount,
+      PayAmount shipAmount,
+      PayAmount pickAmount});
 
-  $OrderAmountCopyWith<$Res> get amount;
+  $PayAmountCopyWith<$Res> get prodAmount;
+  $PayAmountCopyWith<$Res> get shipAmount;
+  $PayAmountCopyWith<$Res> get pickAmount;
 }
 
 /// @nodoc
@@ -419,6 +429,8 @@ class _$IoOrderCopyWithImpl<$Res, $Val extends IoOrder>
     Object? paidAt = freezed,
     Object? doneAt = freezed,
     Object? tossAt = freezed,
+    Object? isDone = freezed,
+    Object? isDirectToShip = freezed,
     Object? dbId = null,
     Object? shopId = null,
     Object? orderCnts = null,
@@ -435,7 +447,9 @@ class _$IoOrderCopyWithImpl<$Res, $Val extends IoOrder>
     Object? prodTypes = null,
     Object? paids = null,
     Object? orderTypes = null,
-    Object? amount = null,
+    Object? prodAmount = null,
+    Object? shipAmount = null,
+    Object? pickAmount = null,
   }) {
     return _then(_value.copyWith(
       createdAt: freezed == createdAt
@@ -462,6 +476,14 @@ class _$IoOrderCopyWithImpl<$Res, $Val extends IoOrder>
           ? _value.tossAt
           : tossAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      isDone: freezed == isDone
+          ? _value.isDone
+          : isDone // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isDirectToShip: freezed == isDirectToShip
+          ? _value.isDirectToShip
+          : isDirectToShip // ignore: cast_nullable_to_non_nullable
+              as bool?,
       dbId: null == dbId
           ? _value.dbId
           : dbId // ignore: cast_nullable_to_non_nullable
@@ -526,18 +548,42 @@ class _$IoOrderCopyWithImpl<$Res, $Val extends IoOrder>
           ? _value.orderTypes
           : orderTypes // ignore: cast_nullable_to_non_nullable
               as List<OrderType>,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as OrderAmount,
+      prodAmount: null == prodAmount
+          ? _value.prodAmount
+          : prodAmount // ignore: cast_nullable_to_non_nullable
+              as PayAmount,
+      shipAmount: null == shipAmount
+          ? _value.shipAmount
+          : shipAmount // ignore: cast_nullable_to_non_nullable
+              as PayAmount,
+      pickAmount: null == pickAmount
+          ? _value.pickAmount
+          : pickAmount // ignore: cast_nullable_to_non_nullable
+              as PayAmount,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $OrderAmountCopyWith<$Res> get amount {
-    return $OrderAmountCopyWith<$Res>(_value.amount, (value) {
-      return _then(_value.copyWith(amount: value) as $Val);
+  $PayAmountCopyWith<$Res> get prodAmount {
+    return $PayAmountCopyWith<$Res>(_value.prodAmount, (value) {
+      return _then(_value.copyWith(prodAmount: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PayAmountCopyWith<$Res> get shipAmount {
+    return $PayAmountCopyWith<$Res>(_value.shipAmount, (value) {
+      return _then(_value.copyWith(shipAmount: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PayAmountCopyWith<$Res> get pickAmount {
+    return $PayAmountCopyWith<$Res>(_value.pickAmount, (value) {
+      return _then(_value.copyWith(pickAmount: value) as $Val);
     });
   }
 }
@@ -557,6 +603,8 @@ abstract class _$$_GarmentOrderCopyWith<$Res>
       DateTime? paidAt,
       DateTime? doneAt,
       DateTime? tossAt,
+      bool? isDone,
+      bool? isDirectToShip,
       String dbId,
       String shopId,
       int orderCnts,
@@ -573,10 +621,16 @@ abstract class _$$_GarmentOrderCopyWith<$Res>
       List<ProdType> prodTypes,
       List<PaidInfo> paids,
       List<OrderType> orderTypes,
-      OrderAmount amount});
+      PayAmount prodAmount,
+      PayAmount shipAmount,
+      PayAmount pickAmount});
 
   @override
-  $OrderAmountCopyWith<$Res> get amount;
+  $PayAmountCopyWith<$Res> get prodAmount;
+  @override
+  $PayAmountCopyWith<$Res> get shipAmount;
+  @override
+  $PayAmountCopyWith<$Res> get pickAmount;
 }
 
 /// @nodoc
@@ -596,6 +650,8 @@ class __$$_GarmentOrderCopyWithImpl<$Res>
     Object? paidAt = freezed,
     Object? doneAt = freezed,
     Object? tossAt = freezed,
+    Object? isDone = freezed,
+    Object? isDirectToShip = freezed,
     Object? dbId = null,
     Object? shopId = null,
     Object? orderCnts = null,
@@ -612,7 +668,9 @@ class __$$_GarmentOrderCopyWithImpl<$Res>
     Object? prodTypes = null,
     Object? paids = null,
     Object? orderTypes = null,
-    Object? amount = null,
+    Object? prodAmount = null,
+    Object? shipAmount = null,
+    Object? pickAmount = null,
   }) {
     return _then(_$_GarmentOrder(
       createdAt: freezed == createdAt
@@ -639,6 +697,14 @@ class __$$_GarmentOrderCopyWithImpl<$Res>
           ? _value.tossAt
           : tossAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      isDone: freezed == isDone
+          ? _value.isDone
+          : isDone // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isDirectToShip: freezed == isDirectToShip
+          ? _value.isDirectToShip
+          : isDirectToShip // ignore: cast_nullable_to_non_nullable
+              as bool?,
       dbId: null == dbId
           ? _value.dbId
           : dbId // ignore: cast_nullable_to_non_nullable
@@ -703,10 +769,18 @@ class __$$_GarmentOrderCopyWithImpl<$Res>
           ? _value._orderTypes
           : orderTypes // ignore: cast_nullable_to_non_nullable
               as List<OrderType>,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as OrderAmount,
+      prodAmount: null == prodAmount
+          ? _value.prodAmount
+          : prodAmount // ignore: cast_nullable_to_non_nullable
+              as PayAmount,
+      shipAmount: null == shipAmount
+          ? _value.shipAmount
+          : shipAmount // ignore: cast_nullable_to_non_nullable
+              as PayAmount,
+      pickAmount: null == pickAmount
+          ? _value.pickAmount
+          : pickAmount // ignore: cast_nullable_to_non_nullable
+              as PayAmount,
     ));
   }
 }
@@ -722,6 +796,8 @@ class _$_GarmentOrder extends _GarmentOrder {
       this.paidAt,
       this.doneAt,
       this.tossAt,
+      this.isDone,
+      this.isDirectToShip,
       required this.dbId,
       required this.shopId,
       required this.orderCnts,
@@ -738,7 +814,9 @@ class _$_GarmentOrder extends _GarmentOrder {
       required final List<ProdType> prodTypes,
       required final List<PaidInfo> paids,
       required final List<OrderType> orderTypes,
-      required this.amount})
+      required this.prodAmount,
+      required this.shipAmount,
+      required this.pickAmount})
       : _orderIds = orderIds,
         _shipmentIds = shipmentIds,
         _vendorIds = vendorIds,
@@ -767,6 +845,10 @@ class _$_GarmentOrder extends _GarmentOrder {
   @override
   final DateTime? tossAt;
   @override
+  final bool? isDone;
+  @override
+  final bool? isDirectToShip;
+  @override
   final String dbId;
   @override
   final String shopId;
@@ -779,6 +861,7 @@ class _$_GarmentOrder extends _GarmentOrder {
   final List<String> _orderIds;
   @override
   List<String> get orderIds {
+    if (_orderIds is EqualUnmodifiableListView) return _orderIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_orderIds);
   }
@@ -786,6 +869,7 @@ class _$_GarmentOrder extends _GarmentOrder {
   final List<String> _shipmentIds;
   @override
   List<String> get shipmentIds {
+    if (_shipmentIds is EqualUnmodifiableListView) return _shipmentIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_shipmentIds);
   }
@@ -793,6 +877,7 @@ class _$_GarmentOrder extends _GarmentOrder {
   final List<String> _vendorIds;
   @override
   List<String> get vendorIds {
+    if (_vendorIds is EqualUnmodifiableListView) return _vendorIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_vendorIds);
   }
@@ -800,6 +885,7 @@ class _$_GarmentOrder extends _GarmentOrder {
   final List<String> _itemIds;
   @override
   List<String> get itemIds {
+    if (_itemIds is EqualUnmodifiableListView) return _itemIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_itemIds);
   }
@@ -809,6 +895,7 @@ class _$_GarmentOrder extends _GarmentOrder {
   final List<OrderItem> _items;
   @override
   List<OrderItem> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -816,6 +903,7 @@ class _$_GarmentOrder extends _GarmentOrder {
   final List<OrderState> _states;
   @override
   List<OrderState> get states {
+    if (_states is EqualUnmodifiableListView) return _states;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_states);
   }
@@ -823,6 +911,7 @@ class _$_GarmentOrder extends _GarmentOrder {
   final List<Map<String, dynamic>> _cancellations;
   @override
   List<Map<String, dynamic>> get cancellations {
+    if (_cancellations is EqualUnmodifiableListView) return _cancellations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_cancellations);
   }
@@ -830,6 +919,7 @@ class _$_GarmentOrder extends _GarmentOrder {
   final List<ProdType> _prodTypes;
   @override
   List<ProdType> get prodTypes {
+    if (_prodTypes is EqualUnmodifiableListView) return _prodTypes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_prodTypes);
   }
@@ -837,6 +927,7 @@ class _$_GarmentOrder extends _GarmentOrder {
   final List<PaidInfo> _paids;
   @override
   List<PaidInfo> get paids {
+    if (_paids is EqualUnmodifiableListView) return _paids;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_paids);
   }
@@ -844,12 +935,17 @@ class _$_GarmentOrder extends _GarmentOrder {
   final List<OrderType> _orderTypes;
   @override
   List<OrderType> get orderTypes {
+    if (_orderTypes is EqualUnmodifiableListView) return _orderTypes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_orderTypes);
   }
 
   @override
-  final OrderAmount amount;
+  final PayAmount prodAmount;
+  @override
+  final PayAmount shipAmount;
+  @override
+  final PayAmount pickAmount;
 
   @JsonKey(ignore: true)
   @override
@@ -873,6 +969,8 @@ abstract class _GarmentOrder extends IoOrder {
       final DateTime? paidAt,
       final DateTime? doneAt,
       final DateTime? tossAt,
+      final bool? isDone,
+      final bool? isDirectToShip,
       required final String dbId,
       required final String shopId,
       required final int orderCnts,
@@ -889,7 +987,9 @@ abstract class _GarmentOrder extends IoOrder {
       required final List<ProdType> prodTypes,
       required final List<PaidInfo> paids,
       required final List<OrderType> orderTypes,
-      required final OrderAmount amount}) = _$_GarmentOrder;
+      required final PayAmount prodAmount,
+      required final PayAmount shipAmount,
+      required final PayAmount pickAmount}) = _$_GarmentOrder;
   const _GarmentOrder._() : super._();
 
   factory _GarmentOrder.fromJson(Map<String, dynamic> json) =
@@ -907,6 +1007,10 @@ abstract class _GarmentOrder extends IoOrder {
   DateTime? get doneAt;
   @override
   DateTime? get tossAt;
+  @override
+  bool? get isDone;
+  @override
+  bool? get isDirectToShip;
   @override
   String get dbId;
   @override
@@ -940,19 +1044,23 @@ abstract class _GarmentOrder extends IoOrder {
   @override
   List<OrderType> get orderTypes;
   @override
-  OrderAmount get amount;
+  PayAmount get prodAmount;
+  @override
+  PayAmount get shipAmount;
+  @override
+  PayAmount get pickAmount;
   @override
   @JsonKey(ignore: true)
   _$$_GarmentOrderCopyWith<_$_GarmentOrder> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-OrderAmount _$OrderAmountFromJson(Map<String, dynamic> json) {
-  return _OrderAmount.fromJson(json);
+PayAmount _$PayAmountFromJson(Map<String, dynamic> json) {
+  return _PayAmount.fromJson(json);
 }
 
 /// @nodoc
-mixin _$OrderAmount {
+mixin _$PayAmount {
   int get shipFeeAmount => throw _privateConstructorUsedError;
   int get shipFeeDiscountAmount => throw _privateConstructorUsedError;
   int get tax => throw _privateConstructorUsedError;
@@ -968,15 +1076,14 @@ mixin _$OrderAmount {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $OrderAmountCopyWith<OrderAmount> get copyWith =>
+  $PayAmountCopyWith<PayAmount> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderAmountCopyWith<$Res> {
-  factory $OrderAmountCopyWith(
-          OrderAmount value, $Res Function(OrderAmount) then) =
-      _$OrderAmountCopyWithImpl<$Res, OrderAmount>;
+abstract class $PayAmountCopyWith<$Res> {
+  factory $PayAmountCopyWith(PayAmount value, $Res Function(PayAmount) then) =
+      _$PayAmountCopyWithImpl<$Res, PayAmount>;
   @useResult
   $Res call(
       {int shipFeeAmount,
@@ -994,9 +1101,9 @@ abstract class $OrderAmountCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OrderAmountCopyWithImpl<$Res, $Val extends OrderAmount>
-    implements $OrderAmountCopyWith<$Res> {
-  _$OrderAmountCopyWithImpl(this._value, this._then);
+class _$PayAmountCopyWithImpl<$Res, $Val extends PayAmount>
+    implements $PayAmountCopyWith<$Res> {
+  _$PayAmountCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1073,11 +1180,10 @@ class _$OrderAmountCopyWithImpl<$Res, $Val extends OrderAmount>
 }
 
 /// @nodoc
-abstract class _$$_OrderAmountCopyWith<$Res>
-    implements $OrderAmountCopyWith<$Res> {
-  factory _$$_OrderAmountCopyWith(
-          _$_OrderAmount value, $Res Function(_$_OrderAmount) then) =
-      __$$_OrderAmountCopyWithImpl<$Res>;
+abstract class _$$_PayAmountCopyWith<$Res> implements $PayAmountCopyWith<$Res> {
+  factory _$$_PayAmountCopyWith(
+          _$_PayAmount value, $Res Function(_$_PayAmount) then) =
+      __$$_PayAmountCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1096,11 +1202,11 @@ abstract class _$$_OrderAmountCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_OrderAmountCopyWithImpl<$Res>
-    extends _$OrderAmountCopyWithImpl<$Res, _$_OrderAmount>
-    implements _$$_OrderAmountCopyWith<$Res> {
-  __$$_OrderAmountCopyWithImpl(
-      _$_OrderAmount _value, $Res Function(_$_OrderAmount) _then)
+class __$$_PayAmountCopyWithImpl<$Res>
+    extends _$PayAmountCopyWithImpl<$Res, _$_PayAmount>
+    implements _$$_PayAmountCopyWith<$Res> {
+  __$$_PayAmountCopyWithImpl(
+      _$_PayAmount _value, $Res Function(_$_PayAmount) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1119,7 +1225,7 @@ class __$$_OrderAmountCopyWithImpl<$Res>
     Object? paymentMethod = freezed,
     Object? paidAt = freezed,
   }) {
-    return _then(_$_OrderAmount(
+    return _then(_$_PayAmount(
       shipFeeAmount: null == shipFeeAmount
           ? _value.shipFeeAmount
           : shipFeeAmount // ignore: cast_nullable_to_non_nullable
@@ -1175,8 +1281,8 @@ class __$$_OrderAmountCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_OrderAmount extends _OrderAmount {
-  const _$_OrderAmount(
+class _$_PayAmount extends _PayAmount {
+  const _$_PayAmount(
       {required this.shipFeeAmount,
       required this.shipFeeDiscountAmount,
       required this.tax,
@@ -1191,8 +1297,8 @@ class _$_OrderAmount extends _OrderAmount {
       this.paidAt})
       : super._();
 
-  factory _$_OrderAmount.fromJson(Map<String, dynamic> json) =>
-      _$$_OrderAmountFromJson(json);
+  factory _$_PayAmount.fromJson(Map<String, dynamic> json) =>
+      _$$_PayAmountFromJson(json);
 
   @override
   final int shipFeeAmount;
@@ -1222,14 +1328,14 @@ class _$_OrderAmount extends _OrderAmount {
 
   @override
   String toString() {
-    return 'OrderAmount(shipFeeAmount: $shipFeeAmount, shipFeeDiscountAmount: $shipFeeDiscountAmount, tax: $tax, paidAmount: $paidAmount, paid: $paid, pureAmount: $pureAmount, orderAmount: $orderAmount, pickFeeAmount: $pickFeeAmount, pickFeeDiscountAmount: $pickFeeDiscountAmount, paymentConfirm: $paymentConfirm, paymentMethod: $paymentMethod, paidAt: $paidAt)';
+    return 'PayAmount(shipFeeAmount: $shipFeeAmount, shipFeeDiscountAmount: $shipFeeDiscountAmount, tax: $tax, paidAmount: $paidAmount, paid: $paid, pureAmount: $pureAmount, orderAmount: $orderAmount, pickFeeAmount: $pickFeeAmount, pickFeeDiscountAmount: $pickFeeDiscountAmount, paymentConfirm: $paymentConfirm, paymentMethod: $paymentMethod, paidAt: $paidAt)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OrderAmount &&
+            other is _$_PayAmount &&
             (identical(other.shipFeeAmount, shipFeeAmount) ||
                 other.shipFeeAmount == shipFeeAmount) &&
             (identical(other.shipFeeDiscountAmount, shipFeeDiscountAmount) ||
@@ -1273,19 +1379,19 @@ class _$_OrderAmount extends _OrderAmount {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OrderAmountCopyWith<_$_OrderAmount> get copyWith =>
-      __$$_OrderAmountCopyWithImpl<_$_OrderAmount>(this, _$identity);
+  _$$_PayAmountCopyWith<_$_PayAmount> get copyWith =>
+      __$$_PayAmountCopyWithImpl<_$_PayAmount>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrderAmountToJson(
+    return _$$_PayAmountToJson(
       this,
     );
   }
 }
 
-abstract class _OrderAmount extends OrderAmount {
-  const factory _OrderAmount(
+abstract class _PayAmount extends PayAmount {
+  const factory _PayAmount(
       {required final int shipFeeAmount,
       required final int shipFeeDiscountAmount,
       required final int tax,
@@ -1297,11 +1403,11 @@ abstract class _OrderAmount extends OrderAmount {
       required final int? pickFeeDiscountAmount,
       required final bool paymentConfirm,
       final PayMethod? paymentMethod,
-      final DateTime? paidAt}) = _$_OrderAmount;
-  const _OrderAmount._() : super._();
+      final DateTime? paidAt}) = _$_PayAmount;
+  const _PayAmount._() : super._();
 
-  factory _OrderAmount.fromJson(Map<String, dynamic> json) =
-      _$_OrderAmount.fromJson;
+  factory _PayAmount.fromJson(Map<String, dynamic> json) =
+      _$_PayAmount.fromJson;
 
   @override
   int get shipFeeAmount;
@@ -1329,7 +1435,7 @@ abstract class _OrderAmount extends OrderAmount {
   DateTime? get paidAt;
   @override
   @JsonKey(ignore: true)
-  _$$_OrderAmountCopyWith<_$_OrderAmount> get copyWith =>
+  _$$_PayAmountCopyWith<_$_PayAmount> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1341,8 +1447,8 @@ OrderItem _$OrderItemFromJson(Map<String, dynamic> json) {
 mixin _$OrderItem {
   String get id => throw _privateConstructorUsedError;
   List<String> get orderIds => throw _privateConstructorUsedError;
-  String get shopId => throw _privateConstructorUsedError;
   String get vendorId => throw _privateConstructorUsedError;
+  String get shopId => throw _privateConstructorUsedError;
   VendorGarment get vendorProd => throw _privateConstructorUsedError;
   ShopGarment get shopProd => throw _privateConstructorUsedError;
   int get orderCnt => throw _privateConstructorUsedError;
@@ -1354,13 +1460,9 @@ mixin _$OrderItem {
   String get orderDbId => throw _privateConstructorUsedError;
   OrderType? get orderType => throw _privateConstructorUsedError;
   ProdType? get prodType => throw _privateConstructorUsedError;
-  OrderAmount get amount => throw _privateConstructorUsedError;
+  PayAmount get prodAmount => throw _privateConstructorUsedError;
   Map<String, dynamic>? get cancellation => throw _privateConstructorUsedError;
   String? get shipManagerId => throw _privateConstructorUsedError;
-  String? get sizeUnit => throw _privateConstructorUsedError;
-  String? get weightUnit => throw _privateConstructorUsedError;
-  int? get size => throw _privateConstructorUsedError;
-  int? get weight => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1376,8 +1478,8 @@ abstract class $OrderItemCopyWith<$Res> {
   $Res call(
       {String id,
       List<String> orderIds,
-      String shopId,
       String vendorId,
+      String shopId,
       VendorGarment vendorProd,
       ShopGarment shopProd,
       int orderCnt,
@@ -1389,17 +1491,13 @@ abstract class $OrderItemCopyWith<$Res> {
       String orderDbId,
       OrderType? orderType,
       ProdType? prodType,
-      OrderAmount amount,
+      PayAmount prodAmount,
       Map<String, dynamic>? cancellation,
-      String? shipManagerId,
-      String? sizeUnit,
-      String? weightUnit,
-      int? size,
-      int? weight});
+      String? shipManagerId});
 
   $VendorGarmentCopyWith<$Res> get vendorProd;
   $ShopGarmentCopyWith<$Res> get shopProd;
-  $OrderAmountCopyWith<$Res> get amount;
+  $PayAmountCopyWith<$Res> get prodAmount;
 }
 
 /// @nodoc
@@ -1417,8 +1515,8 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
   $Res call({
     Object? id = null,
     Object? orderIds = null,
-    Object? shopId = null,
     Object? vendorId = null,
+    Object? shopId = null,
     Object? vendorProd = null,
     Object? shopProd = null,
     Object? orderCnt = null,
@@ -1430,13 +1528,9 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
     Object? orderDbId = null,
     Object? orderType = freezed,
     Object? prodType = freezed,
-    Object? amount = null,
+    Object? prodAmount = null,
     Object? cancellation = freezed,
     Object? shipManagerId = freezed,
-    Object? sizeUnit = freezed,
-    Object? weightUnit = freezed,
-    Object? size = freezed,
-    Object? weight = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1447,13 +1541,13 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
           ? _value.orderIds
           : orderIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      shopId: null == shopId
-          ? _value.shopId
-          : shopId // ignore: cast_nullable_to_non_nullable
-              as String,
       vendorId: null == vendorId
           ? _value.vendorId
           : vendorId // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
               as String,
       vendorProd: null == vendorProd
           ? _value.vendorProd
@@ -1499,10 +1593,10 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
           ? _value.prodType
           : prodType // ignore: cast_nullable_to_non_nullable
               as ProdType?,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as OrderAmount,
+      prodAmount: null == prodAmount
+          ? _value.prodAmount
+          : prodAmount // ignore: cast_nullable_to_non_nullable
+              as PayAmount,
       cancellation: freezed == cancellation
           ? _value.cancellation
           : cancellation // ignore: cast_nullable_to_non_nullable
@@ -1511,22 +1605,6 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
           ? _value.shipManagerId
           : shipManagerId // ignore: cast_nullable_to_non_nullable
               as String?,
-      sizeUnit: freezed == sizeUnit
-          ? _value.sizeUnit
-          : sizeUnit // ignore: cast_nullable_to_non_nullable
-              as String?,
-      weightUnit: freezed == weightUnit
-          ? _value.weightUnit
-          : weightUnit // ignore: cast_nullable_to_non_nullable
-              as String?,
-      size: freezed == size
-          ? _value.size
-          : size // ignore: cast_nullable_to_non_nullable
-              as int?,
-      weight: freezed == weight
-          ? _value.weight
-          : weight // ignore: cast_nullable_to_non_nullable
-              as int?,
     ) as $Val);
   }
 
@@ -1548,9 +1626,9 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
 
   @override
   @pragma('vm:prefer-inline')
-  $OrderAmountCopyWith<$Res> get amount {
-    return $OrderAmountCopyWith<$Res>(_value.amount, (value) {
-      return _then(_value.copyWith(amount: value) as $Val);
+  $PayAmountCopyWith<$Res> get prodAmount {
+    return $PayAmountCopyWith<$Res>(_value.prodAmount, (value) {
+      return _then(_value.copyWith(prodAmount: value) as $Val);
     });
   }
 }
@@ -1565,8 +1643,8 @@ abstract class _$$_OrderItemCopyWith<$Res> implements $OrderItemCopyWith<$Res> {
   $Res call(
       {String id,
       List<String> orderIds,
-      String shopId,
       String vendorId,
+      String shopId,
       VendorGarment vendorProd,
       ShopGarment shopProd,
       int orderCnt,
@@ -1578,20 +1656,16 @@ abstract class _$$_OrderItemCopyWith<$Res> implements $OrderItemCopyWith<$Res> {
       String orderDbId,
       OrderType? orderType,
       ProdType? prodType,
-      OrderAmount amount,
+      PayAmount prodAmount,
       Map<String, dynamic>? cancellation,
-      String? shipManagerId,
-      String? sizeUnit,
-      String? weightUnit,
-      int? size,
-      int? weight});
+      String? shipManagerId});
 
   @override
   $VendorGarmentCopyWith<$Res> get vendorProd;
   @override
   $ShopGarmentCopyWith<$Res> get shopProd;
   @override
-  $OrderAmountCopyWith<$Res> get amount;
+  $PayAmountCopyWith<$Res> get prodAmount;
 }
 
 /// @nodoc
@@ -1607,8 +1681,8 @@ class __$$_OrderItemCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? orderIds = null,
-    Object? shopId = null,
     Object? vendorId = null,
+    Object? shopId = null,
     Object? vendorProd = null,
     Object? shopProd = null,
     Object? orderCnt = null,
@@ -1620,13 +1694,9 @@ class __$$_OrderItemCopyWithImpl<$Res>
     Object? orderDbId = null,
     Object? orderType = freezed,
     Object? prodType = freezed,
-    Object? amount = null,
+    Object? prodAmount = null,
     Object? cancellation = freezed,
     Object? shipManagerId = freezed,
-    Object? sizeUnit = freezed,
-    Object? weightUnit = freezed,
-    Object? size = freezed,
-    Object? weight = freezed,
   }) {
     return _then(_$_OrderItem(
       id: null == id
@@ -1637,13 +1707,13 @@ class __$$_OrderItemCopyWithImpl<$Res>
           ? _value._orderIds
           : orderIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      shopId: null == shopId
-          ? _value.shopId
-          : shopId // ignore: cast_nullable_to_non_nullable
-              as String,
       vendorId: null == vendorId
           ? _value.vendorId
           : vendorId // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
               as String,
       vendorProd: null == vendorProd
           ? _value.vendorProd
@@ -1689,10 +1759,10 @@ class __$$_OrderItemCopyWithImpl<$Res>
           ? _value.prodType
           : prodType // ignore: cast_nullable_to_non_nullable
               as ProdType?,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as OrderAmount,
+      prodAmount: null == prodAmount
+          ? _value.prodAmount
+          : prodAmount // ignore: cast_nullable_to_non_nullable
+              as PayAmount,
       cancellation: freezed == cancellation
           ? _value._cancellation
           : cancellation // ignore: cast_nullable_to_non_nullable
@@ -1701,22 +1771,6 @@ class __$$_OrderItemCopyWithImpl<$Res>
           ? _value.shipManagerId
           : shipManagerId // ignore: cast_nullable_to_non_nullable
               as String?,
-      sizeUnit: freezed == sizeUnit
-          ? _value.sizeUnit
-          : sizeUnit // ignore: cast_nullable_to_non_nullable
-              as String?,
-      weightUnit: freezed == weightUnit
-          ? _value.weightUnit
-          : weightUnit // ignore: cast_nullable_to_non_nullable
-              as String?,
-      size: freezed == size
-          ? _value.size
-          : size // ignore: cast_nullable_to_non_nullable
-              as int?,
-      weight: freezed == weight
-          ? _value.weight
-          : weight // ignore: cast_nullable_to_non_nullable
-              as int?,
     ));
   }
 }
@@ -1728,8 +1782,8 @@ class _$_OrderItem extends _OrderItem {
   const _$_OrderItem(
       {required this.id,
       required final List<String> orderIds,
-      required this.shopId,
       required this.vendorId,
+      required this.shopId,
       required this.vendorProd,
       required this.shopProd,
       required this.orderCnt,
@@ -1741,13 +1795,9 @@ class _$_OrderItem extends _OrderItem {
       required this.orderDbId,
       this.orderType = OrderType.standard,
       required this.prodType,
-      required this.amount,
+      required this.prodAmount,
       final Map<String, dynamic>? cancellation,
-      required this.shipManagerId,
-      this.sizeUnit,
-      this.weightUnit,
-      this.size,
-      this.weight})
+      required this.shipManagerId})
       : _orderIds = orderIds,
         _cancellation = cancellation,
         super._();
@@ -1760,14 +1810,15 @@ class _$_OrderItem extends _OrderItem {
   final List<String> _orderIds;
   @override
   List<String> get orderIds {
+    if (_orderIds is EqualUnmodifiableListView) return _orderIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_orderIds);
   }
 
   @override
-  final String shopId;
-  @override
   final String vendorId;
+  @override
+  final String shopId;
   @override
   final VendorGarment vendorProd;
   @override
@@ -1792,26 +1843,19 @@ class _$_OrderItem extends _OrderItem {
   @override
   final ProdType? prodType;
   @override
-  final OrderAmount amount;
+  final PayAmount prodAmount;
   final Map<String, dynamic>? _cancellation;
   @override
   Map<String, dynamic>? get cancellation {
     final value = _cancellation;
     if (value == null) return null;
+    if (_cancellation is EqualUnmodifiableMapView) return _cancellation;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(value);
   }
 
   @override
   final String? shipManagerId;
-  @override
-  final String? sizeUnit;
-  @override
-  final String? weightUnit;
-  @override
-  final int? size;
-  @override
-  final int? weight;
 
   @JsonKey(ignore: true)
   @override
@@ -1831,8 +1875,8 @@ abstract class _OrderItem extends OrderItem {
   const factory _OrderItem(
       {required final String id,
       required final List<String> orderIds,
-      required final String shopId,
       required final String vendorId,
+      required final String shopId,
       required final VendorGarment vendorProd,
       required final ShopGarment shopProd,
       required final int orderCnt,
@@ -1844,13 +1888,9 @@ abstract class _OrderItem extends OrderItem {
       required final String orderDbId,
       final OrderType? orderType,
       required final ProdType? prodType,
-      required final OrderAmount amount,
+      required final PayAmount prodAmount,
       final Map<String, dynamic>? cancellation,
-      required final String? shipManagerId,
-      final String? sizeUnit,
-      final String? weightUnit,
-      final int? size,
-      final int? weight}) = _$_OrderItem;
+      required final String? shipManagerId}) = _$_OrderItem;
   const _OrderItem._() : super._();
 
   factory _OrderItem.fromJson(Map<String, dynamic> json) =
@@ -1861,9 +1901,9 @@ abstract class _OrderItem extends OrderItem {
   @override
   List<String> get orderIds;
   @override
-  String get shopId;
-  @override
   String get vendorId;
+  @override
+  String get shopId;
   @override
   VendorGarment get vendorProd;
   @override
@@ -1887,19 +1927,11 @@ abstract class _OrderItem extends OrderItem {
   @override
   ProdType? get prodType;
   @override
-  OrderAmount get amount;
+  PayAmount get prodAmount;
   @override
   Map<String, dynamic>? get cancellation;
   @override
   String? get shipManagerId;
-  @override
-  String? get sizeUnit;
-  @override
-  String? get weightUnit;
-  @override
-  int? get size;
-  @override
-  int? get weight;
   @override
   @JsonKey(ignore: true)
   _$$_OrderItemCopyWith<_$_OrderItem> get copyWith =>
