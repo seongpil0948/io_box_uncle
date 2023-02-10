@@ -15,7 +15,7 @@ class ShipThumb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final T = Theme.of(context).textTheme;
-    txt(String? t) => Text(t ?? "", style: T.subtitle1);
+    txt(String? t) => Text(t ?? "", style: T.titleMedium);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child:
@@ -77,7 +77,7 @@ class ShipAmountCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final T = Theme.of(context).textTheme;
-    txt(String? t) => Text(t ?? "", style: T.subtitle1);
+    txt(String? t) => Text(t ?? "", style: T.titleMedium);
     row(Widget label, Widget content) => Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [label, content],

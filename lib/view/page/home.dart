@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
           child: Container(
             height: 48.0,
             alignment: Alignment.centerRight,
-            child: ShipLocateFilter(),
+            child: const ShipLocateFilter(),
           ),
         ),
         actions: <Widget>[
@@ -64,12 +64,12 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('픽업목록',
-                            style: textTheme.headline5
+                            style: textTheme.headlineSmall
                                 ?.copyWith(color: Colors.grey.shade500)),
                         Align(
                           alignment: Alignment.centerRight,
                           child: Text('$pickCnt 건',
-                              style: textTheme.headline5?.copyWith(
+                              style: textTheme.headlineSmall?.copyWith(
                                   color: Theme.of(context).primaryColor)),
                         )
                       ],
@@ -86,12 +86,12 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('배송목록',
-                            style: textTheme.headline5
+                            style: textTheme.headlineSmall
                                 ?.copyWith(color: Colors.grey.shade500)),
                         Align(
                           alignment: Alignment.centerRight,
                           child: Text('$shipCnt 건',
-                              style: textTheme.headline5?.copyWith(
+                              style: textTheme.headlineSmall?.copyWith(
                                   color: Theme.of(context).primaryColor)),
                         )
                       ],
@@ -109,12 +109,12 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('미배정 배송목록',
-                            style: textTheme.headline5
+                            style: textTheme.headlineSmall
                                 ?.copyWith(color: Colors.grey.shade500)),
                         Align(
                           alignment: Alignment.centerRight,
                           child: Text('$tossCnt 건',
-                              style: textTheme.headline5?.copyWith(
+                              style: textTheme.headlineSmall?.copyWith(
                                   color: Theme.of(context).primaryColor)),
                         )
                       ],
@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                 //         crossAxisAlignment: CrossAxisAlignment.start,
                 //         children: [
                 //           Text('정산 예정액',
-                //               style: textTheme.headline5
+                //               style: textTheme.headlineSmall
                 //                   ?.copyWith(color: Colors.grey.shade500)),
                 //           Text('카카오뱅크 3333-17-170009',
                 //               style: textTheme.caption?.copyWith(
@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                 //       Align(
                 //         alignment: Alignment.centerRight,
                 //         child: Text('999,999원',
-                //             style: textTheme.headline5?.copyWith(
+                //             style: textTheme.headlineSmall?.copyWith(
                 //                 color: Theme.of(context).primaryColor)),
                 //       )
                 //     ])),
@@ -229,9 +229,9 @@ class UserProfile extends StatelessWidget {
       if (user.userInfo.phone != null)
         Text(user.userInfo.phone ?? "", style: textTheme.titleLarge),
       const SizedBox(height: 4),
-      Text(user.userInfo.email ?? '', style: textTheme.caption),
+      Text(user.userInfo.email ?? '', style: textTheme.bodySmall),
       const SizedBox(height: 4),
-      Text("활동상태: ${user.inWork ? '업무중' : '퇴근'}", style: textTheme.overline),
+      Text("활동상태: ${user.inWork ? '업무중' : '퇴근'}", style: textTheme.labelSmall),
     ];
     return DashBoardCard(
         child: Column(

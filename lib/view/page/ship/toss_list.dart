@@ -68,7 +68,7 @@ class _TossListPageState extends State<TossListPage> {
                   return Center(
                       child: Text(
                     "데이터가 없습니다.",
-                    style: T.headline5,
+                    style: T.headlineSmall,
                   ));
                 }
               },

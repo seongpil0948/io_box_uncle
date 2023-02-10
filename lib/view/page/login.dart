@@ -18,46 +18,37 @@ class LoginPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: size.height * 0.1),
               Text("엉클 관리자로부터 등록된 근로자 계정만",
-                  style: Theme.of(context).textTheme.subtitle1),
+                  style: Theme.of(context).textTheme.titleSmall),
               Text("해당 어플리케이션을 사용 할 수 있습니다!",
-                  style: Theme.of(context).textTheme.subtitle1),
-              Container(
-                  margin: EdgeInsets.symmetric(
-                      vertical: 10, horizontal: size.width * 0.1),
-                  child: const _EmailForm()),
-              Container(
-                width: btnWidth,
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                child: ElevatedButton(
-                    onPressed: (() async {
-                      await context.read<AuthRepo>().kakaoLogin();
-                    }),
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      side: const BorderSide(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                    child: Image.asset('assets/images/kakao_login_ko.png')),
+                  style: Theme.of(context).textTheme.titleSmall),
+              SizedBox(
+                width: size.width * 0.9,
+                child: const _EmailForm(),
               ),
-              Container(
-                width: btnWidth,
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                child: ElevatedButton(
-                    onPressed: (() async {
-                      await context.read<AuthRepo>().signInWithGoogle();
-                    }),
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      side: const BorderSide(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                    child: Image.asset('assets/images/google_login.png')),
+              InkWell(
+                onTap: (() async {
+                  await context.read<AuthRepo>().kakaoLogin();
+                }),
+                child: Container(
+                  width: btnWidth,
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  child: Image.asset('assets/images/kakao_login_ko.png'),
+                ),
+              ),
+              InkWell(
+                onTap: (() async {
+                  await context.read<AuthRepo>().signInWithGoogle();
+                }),
+                child: Container(
+                  width: btnWidth,
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  child: Image.asset('assets/images/google_login.png'),
+                ),
               ),
               Container(
                 width: btnWidth,
@@ -116,6 +107,7 @@ class _EmailFormState extends State<_EmailForm> {
   String _errorMessage = '';
   @override
   Widget build(BuildContext context) {
+    final T = Theme.of(context).textTheme;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -133,25 +125,30 @@ class _EmailFormState extends State<_EmailForm> {
           decoration: const InputDecoration(labelText: '비밀번호'),
           obscureText: true,
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
-            onPressed: () async {
-              try {
-                await context
-                    .read<AuthRepo>()
-                    .signInWithPw(emailController.text, pwController.text);
-              } on FirebaseAuthException catch (e) {
-                if (e.code == 'user-not-found') {
-                  showSnack('존재하지 않는 이메일입니다.');
-                } else if (e.code == 'wrong-password') {
-                  showSnack('비번이 틀렸습니다.');
-                }
-              } catch (e) {
-                showSnack("로그인 실패.. $e");
+        const SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: () async {
+            try {
+              await context
+                  .read<AuthRepo>()
+                  .signInWithPw(emailController.text, pwController.text);
+            } on FirebaseAuthException catch (e) {
+              if (e.code == 'user-not-found') {
+                showSnack('존재하지 않는 이메일입니다.');
+              } else if (e.code == 'wrong-password') {
+                showSnack('비번이 틀렸습니다.');
               }
-            },
-            child: const Text('로그인'),
+            } catch (e) {
+              showSnack("로그인 실패.. $e");
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Center(
+                child: Text(
+              "이메일 로그인",
+              style: T.headlineSmall,
+            )),
           ),
         ),
         Padding(
