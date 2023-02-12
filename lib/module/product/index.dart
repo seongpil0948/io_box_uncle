@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:io_box_uncle/util/common/index.dart';
 import 'package:io_box_uncle/util/fb/index.dart';
 
 part "./model/vendor_garment.dart";

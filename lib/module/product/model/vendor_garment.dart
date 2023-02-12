@@ -12,8 +12,10 @@ part of "../index.dart";
 class VendorGarment with _$VendorGarment {
   @JsonSerializable(explicitToJson: true)
   const factory VendorGarment({
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? createdAt,
+    @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? updatedAt,
     required Gender gender,
     required Part part,
     required String ctgr,

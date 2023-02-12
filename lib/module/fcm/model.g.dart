@@ -55,12 +55,12 @@ Map<String, dynamic> _$$_PushSourceToJson(_$_PushSource instance) =>
     };
 
 _$_FcmToken _$$_FcmTokenFromJson(Map<String, dynamic> json) => _$_FcmToken(
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdAt: toDateTimeDefault(json['createdAt']),
       token: json['token'] as String,
     );
 
 Map<String, dynamic> _$$_FcmTokenToJson(_$_FcmToken instance) =>
     <String, dynamic>{
-      'createdAt': instance.createdAt.toIso8601String(),
+      'createdAt': toTimeStamp(instance.createdAt),
       'token': instance.token,
     };

@@ -8,12 +8,8 @@ part of 'index.dart';
 
 _$_VendorGarment _$$_VendorGarmentFromJson(Map<String, dynamic> json) =>
     _$_VendorGarment(
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : DateTime.parse(json['updatedAt'] as String),
+      createdAt: toDateTime(json['createdAt']),
+      updatedAt: toDateTime(json['updatedAt']),
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       part: $enumDecode(_$PartEnumMap, json['part']),
       ctgr: json['ctgr'] as String,
@@ -39,8 +35,8 @@ _$_VendorGarment _$$_VendorGarmentFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_VendorGarmentToJson(_$_VendorGarment instance) =>
     <String, dynamic>{
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'createdAt': toTimeStamp(instance.createdAt),
+      'updatedAt': toTimeStamp(instance.updatedAt),
       'gender': _$GenderEnumMap[instance.gender]!,
       'part': _$PartEnumMap[instance.part]!,
       'ctgr': instance.ctgr,
@@ -101,12 +97,8 @@ _$_ShopGarment _$$_ShopGarmentFromJson(Map<String, dynamic> json) =>
       TBD: json['TBD'] as Map<String, dynamic>? ?? const {},
       prodType: $enumDecodeNullable(_$ProdTypeEnumMap, json['prodType']) ??
           ProdType.garment,
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : DateTime.parse(json['updatedAt'] as String),
+      createdAt: toDateTime(json['createdAt']),
+      updatedAt: toDateTime(json['updatedAt']),
     );
 
 Map<String, dynamic> _$$_ShopGarmentToJson(_$_ShopGarment instance) =>
@@ -125,6 +117,6 @@ Map<String, dynamic> _$$_ShopGarmentToJson(_$_ShopGarment instance) =>
       'zigzagProdId': instance.zigzagProdId,
       'TBD': instance.TBD,
       'prodType': _$ProdTypeEnumMap[instance.prodType]!,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'createdAt': toTimeStamp(instance.createdAt),
+      'updatedAt': toTimeStamp(instance.updatedAt),
     };

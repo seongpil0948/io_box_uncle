@@ -4,12 +4,18 @@ part of "./index.dart";
 class IoOrder extends Equatable with _$IoOrder {
   @JsonSerializable(explicitToJson: true)
   const factory IoOrder({
-    DateTime? createdAt,
-    DateTime? updatedAt,
-    DateTime? approvedAt,
-    DateTime? paidAt,
-    DateTime? doneAt,
-    DateTime? tossAt,
+    @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? createdAt,
+    @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? updatedAt,
+    @JsonKey(name: 'approvedAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? approvedAt,
+    @JsonKey(name: 'paidAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? paidAt,
+    @JsonKey(name: 'doneAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? doneAt,
+    @JsonKey(name: 'tossAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? tossAt,
     bool? isDone,
     bool? isDirectToShip,
     required String dbId,
@@ -28,10 +34,10 @@ class IoOrder extends Equatable with _$IoOrder {
     required List<ProdType> prodTypes,
     required List<PaidInfo> paids,
     required List<OrderType> orderTypes,
-    required PayAmount prodAmount,
-    required PayAmount shipAmount,
-    required PayAmount pickAmount,
-  }) = _GarmentOrder;
+    required PayAmount? prodAmount,
+    required PayAmount? shipAmount,
+    required PayAmount? pickAmount,
+  }) = _IoOrder;
 
   const IoOrder._();
 
@@ -193,26 +199,21 @@ extension OrderExtension on OrderState {
 class PayAmount with _$PayAmount {
   @JsonSerializable(explicitToJson: true)
   const factory PayAmount({
-    required int shipFeeAmount,
-    required int shipFeeDiscountAmount,
     required int tax,
     required int paidAmount,
     required PaidInfo paid,
     required int pureAmount, // 순수 상품금액
-    required int orderAmount,
-    required int? pickFeeAmount,
-    required int? pickFeeDiscountAmount,
+    required int amount,
     required bool paymentConfirm,
     PayMethod? paymentMethod,
-    DateTime? paidAt,
+    @JsonKey(name: 'paidAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? paidAt,
+    required int discountAmount,
+    required int pendingAmount,
+    required bool isPending,
   }) = _PayAmount;
 
   const PayAmount._();
-  int get amount =>
-      pureAmount +
-      (shipFeeAmount - shipFeeDiscountAmount) +
-      (pickFeeAmount ?? 0 - (pickFeeDiscountAmount ?? 0)) +
-      tax;
 
   factory PayAmount.fromJson(Map<String, Object?> json) =>
       _$PayAmountFromJson(json);
@@ -244,7 +245,7 @@ class OrderItem extends Equatable with _$OrderItem {
     required String orderDbId,
     @Default(OrderType.standard) OrderType? orderType,
     required ProdType? prodType,
-    required PayAmount prodAmount,
+    required PayAmount? prodAmount,
     Map<String, dynamic>? cancellation,
     required String? shipManagerId,
     // # DEPRECATED

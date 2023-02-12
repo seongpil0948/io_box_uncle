@@ -15,7 +15,11 @@ class ShipThumb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final T = Theme.of(context).textTheme;
-    txt(String? t) => Text(t ?? "", style: T.titleMedium);
+    txt(String? t) => Text(
+          t ?? "",
+          overflow: TextOverflow.ellipsis,
+          style: T.titleMedium,
+        );
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child:
@@ -54,7 +58,8 @@ class ShipThumb extends StatelessWidget {
           children: [
             // txt(order.isPickup ? "픽업주소" : "배송주소"),
             txt("상세주소"),
-            txt(dest.detailLocate),
+            const SizedBox(width: 10),
+            Expanded(child: txt("${dest.alias} | ${dest.detailLocate}")),
           ],
         ),
         Row(
@@ -83,7 +88,7 @@ class ShipAmountCard extends StatelessWidget {
           children: [label, content],
         );
     return IoCard(
-      height: p.shipment.amountMeasurable ? size.height / 5.5 : size.height / 8,
+      height: p.shipment.amountMeasurable ? size.height / 4.2 : size.height / 6,
       title: Text("픽업료 및 배송비 설정", style: T.titleMedium),
       content: p.shipment.amountMeasurable
           ? Column(

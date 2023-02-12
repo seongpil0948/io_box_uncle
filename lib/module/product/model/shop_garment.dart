@@ -19,8 +19,10 @@ class ShopGarment with _$ShopGarment {
     // ignore: non_constant_identifier_names
     @Default({}) Map<String, dynamic> TBD,
     @Default(ProdType.garment) ProdType prodType,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? createdAt,
+    @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? updatedAt,
   }) = _ShopGarment;
 
   factory ShopGarment.fromJson(Map<String, Object?> json) =>

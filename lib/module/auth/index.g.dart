@@ -70,12 +70,8 @@ Map<String, dynamic> _$$_CompanyInfoToJson(_$_CompanyInfo instance) =>
 
 _$_IoUserInfo _$$_IoUserInfoFromJson(Map<String, dynamic> json) =>
     _$_IoUserInfo(
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : DateTime.parse(json['updatedAt'] as String),
+      createdAt: toDateTime(json['createdAt']),
+      updatedAt: toDateTime(json['updatedAt']),
       userId: json['userId'] as String,
       userName: json['userName'] as String,
       displayName: json['displayName'] as String?,
@@ -102,8 +98,8 @@ _$_IoUserInfo _$$_IoUserInfoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_IoUserInfoToJson(_$_IoUserInfo instance) =>
     <String, dynamic>{
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'createdAt': toTimeStamp(instance.createdAt),
+      'updatedAt': toTimeStamp(instance.updatedAt),
       'userId': instance.userId,
       'userName': instance.userName,
       'displayName': instance.displayName,

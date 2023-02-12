@@ -20,7 +20,9 @@ VendorGarment _$VendorGarmentFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VendorGarment {
+  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   Part get part => throw _privateConstructorUsedError;
@@ -56,8 +58,10 @@ abstract class $VendorGarmentCopyWith<$Res> {
       _$VendorGarmentCopyWithImpl<$Res, VendorGarment>;
   @useResult
   $Res call(
-      {DateTime? createdAt,
-      DateTime? updatedAt,
+      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? updatedAt,
       Gender gender,
       Part part,
       String ctgr,
@@ -212,8 +216,10 @@ abstract class _$$_VendorGarmentCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DateTime? createdAt,
-      DateTime? updatedAt,
+      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? updatedAt,
       Gender gender,
       Part part,
       String ctgr,
@@ -362,8 +368,10 @@ class __$$_VendorGarmentCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_VendorGarment implements _VendorGarment {
   const _$_VendorGarment(
-      {this.createdAt,
-      this.updatedAt,
+      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          this.createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          this.updatedAt,
       required this.gender,
       required this.part,
       required this.ctgr,
@@ -391,8 +399,10 @@ class _$_VendorGarment implements _VendorGarment {
       _$$_VendorGarmentFromJson(json);
 
   @override
+  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
   final DateTime? createdAt;
   @override
+  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
   final DateTime? updatedAt;
   @override
   final Gender gender;
@@ -541,8 +551,10 @@ class _$_VendorGarment implements _VendorGarment {
 
 abstract class _VendorGarment implements VendorGarment {
   const factory _VendorGarment(
-      {final DateTime? createdAt,
-      final DateTime? updatedAt,
+      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          final DateTime? createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          final DateTime? updatedAt,
       required final Gender gender,
       required final Part part,
       required final String ctgr,
@@ -567,8 +579,10 @@ abstract class _VendorGarment implements VendorGarment {
       _$_VendorGarment.fromJson;
 
   @override
+  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get createdAt;
   @override
+  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get updatedAt;
   @override
   Gender get gender;
@@ -635,7 +649,9 @@ mixin _$ShopGarment {
       throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
   Map<String, dynamic> get TBD => throw _privateConstructorUsedError;
   ProdType get prodType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -665,8 +681,10 @@ abstract class $ShopGarmentCopyWith<$Res> {
       String? zigzagProdId,
       Map<String, dynamic> TBD,
       ProdType prodType,
-      DateTime? createdAt,
-      DateTime? updatedAt});
+      @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -791,8 +809,10 @@ abstract class _$$_ShopGarmentCopyWith<$Res>
       String? zigzagProdId,
       Map<String, dynamic> TBD,
       ProdType prodType,
-      DateTime? createdAt,
-      DateTime? updatedAt});
+      @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -911,8 +931,10 @@ class _$_ShopGarment implements _ShopGarment {
       this.zigzagProdId,
       final Map<String, dynamic> TBD = const {},
       this.prodType = ProdType.garment,
-      this.createdAt,
-      this.updatedAt})
+      @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          this.createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          this.updatedAt})
       : _TBD = TBD;
 
   factory _$_ShopGarment.fromJson(Map<String, dynamic> json) =>
@@ -957,8 +979,10 @@ class _$_ShopGarment implements _ShopGarment {
   @JsonKey()
   final ProdType prodType;
   @override
+  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
   final DateTime? createdAt;
   @override
+  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
   final DateTime? updatedAt;
 
   @override
@@ -1051,8 +1075,10 @@ abstract class _ShopGarment implements ShopGarment {
       final String? zigzagProdId,
       final Map<String, dynamic> TBD,
       final ProdType prodType,
-      final DateTime? createdAt,
-      final DateTime? updatedAt}) = _$_ShopGarment;
+      @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          final DateTime? createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          final DateTime? updatedAt}) = _$_ShopGarment;
 
   factory _ShopGarment.fromJson(Map<String, dynamic> json) =
       _$_ShopGarment.fromJson;
@@ -1086,8 +1112,10 @@ abstract class _ShopGarment implements ShopGarment {
   @override
   ProdType get prodType;
   @override
+  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get createdAt;
   @override
+  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)

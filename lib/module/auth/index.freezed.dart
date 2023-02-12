@@ -759,7 +759,9 @@ IoUserInfo _$IoUserInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$IoUserInfo {
+  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
@@ -790,8 +792,10 @@ abstract class $IoUserInfoCopyWith<$Res> {
       _$IoUserInfoCopyWithImpl<$Res, IoUserInfo>;
   @useResult
   $Res call(
-      {DateTime? createdAt,
-      DateTime? updatedAt,
+      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? updatedAt,
       String userId,
       String userName,
       String? displayName,
@@ -936,8 +940,10 @@ abstract class _$$_IoUserInfoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DateTime? createdAt,
-      DateTime? updatedAt,
+      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          DateTime? updatedAt,
       String userId,
       String userName,
       String? displayName,
@@ -1065,8 +1071,10 @@ class __$$_IoUserInfoCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
   const _$_IoUserInfo(
-      {this.createdAt,
-      this.updatedAt,
+      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          this.createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          this.updatedAt,
       required this.userId,
       required this.userName,
       this.displayName,
@@ -1089,8 +1097,10 @@ class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
       _$$_IoUserInfoFromJson(json);
 
   @override
+  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
   final DateTime? createdAt;
   @override
+  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
   final DateTime? updatedAt;
   @override
   final String userId;
@@ -1239,8 +1249,10 @@ class _$_IoUserInfo with DiagnosticableTreeMixin implements _IoUserInfo {
 
 abstract class _IoUserInfo implements IoUserInfo {
   const factory _IoUserInfo(
-      {final DateTime? createdAt,
-      final DateTime? updatedAt,
+      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+          final DateTime? createdAt,
+      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+          final DateTime? updatedAt,
       required final String userId,
       required final String userName,
       final String? displayName,
@@ -1261,8 +1273,10 @@ abstract class _IoUserInfo implements IoUserInfo {
       _$_IoUserInfo.fromJson;
 
   @override
+  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get createdAt;
   @override
+  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
   DateTime? get updatedAt;
   @override
   String get userId;

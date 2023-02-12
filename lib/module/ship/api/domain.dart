@@ -14,7 +14,7 @@ abstract class ShipmentApi {
   /// {@macro todos_api}
   const ShipmentApi();
   Stream<QuerySnapshot> getShipmentStream(String userId);
-  Stream<QuerySnapshot> getOrderStream(String userId, shipManagerId);
+  Stream<QuerySnapshot<IoOrder>> getOrderStream(String userId, shipManagerId);
 
   Future<void> updateOrder(IoOrder o);
   Future<void> updateShipment(Shipment s);

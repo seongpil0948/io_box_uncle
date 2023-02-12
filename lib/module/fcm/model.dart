@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:io_box_uncle/config/index.dart';
+import 'package:io_box_uncle/util/common/index.dart';
 import 'package:io_box_uncle/util/logger.dart';
 
 part "repo.dart";
@@ -66,7 +67,8 @@ class PushSource with _$PushSource {
 class FcmToken extends Equatable with _$FcmToken {
   @JsonSerializable(explicitToJson: true)
   factory FcmToken({
-    required DateTime createdAt,
+    @JsonKey(name: 'createdAt', fromJson: toDateTimeDefault, toJson: toTimeStamp)
+        required DateTime createdAt,
     required String token,
   }) = _FcmToken;
   factory FcmToken.fromJson(Map<String, Object?> json) =>

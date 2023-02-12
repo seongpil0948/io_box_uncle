@@ -4,8 +4,10 @@ part of "./index.dart";
 class Shipment extends Equatable with _$Shipment {
   @JsonSerializable(explicitToJson: true)
   const factory Shipment({
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @JsonKey(name: 'createdAt', fromJson: toDateTimeDefault, toJson: toTimeStamp)
+        required DateTime createdAt,
+    @JsonKey(name: 'updatedAt', fromJson: toDateTimeDefault, toJson: toTimeStamp)
+        required DateTime updatedAt,
     required String shippingId,
     required String orderDbId,
     String? uncleId,
@@ -25,18 +27,22 @@ class Shipment extends Equatable with _$Shipment {
     required Locate returnAddress,
     required Locate startAddress,
     required Locate receiveAddress,
-    DateTime? wishedDeliveryTime,
+    ShipDoneInfo? doneInfo,
+    @JsonKey(name: 'wishedDeliveryTime', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? wishedDeliveryTime,
     required String managerId,
   }) = _Shipment;
 
   bool get amountMeasurable =>
       sizeUnit != null && weightUnit != null && size != null && weight != null;
 
+  // pickupFeeBasic 지역별 픽업비는 픽업요청시 이미 지불되었다.
   int get pickAmount => amountMeasurable
-      ? pickupFeeBasic + (size! * amountBySize!) + (weight! + amountByWeight!)
+      ? (size! * amountBySize!) + (weight! + amountByWeight!)
       : throw Exception("pickup amount not measurable");
-
   int get amount => pickAmount + shipFeeBasic;
+  bool get shipDoneAble =>
+      doneInfo != null && doneInfo!.photos.isNotEmpty && amountMeasurable;
 
   const Shipment._();
   factory Shipment.fromJson(Map<String, Object?> json) =>
@@ -47,41 +53,14 @@ class Shipment extends Equatable with _$Shipment {
 }
 
 @freezed //  all of this class's properties are immutable.
-class Locate extends Equatable with _$Locate {
+class ShipDoneInfo extends Equatable with _$ShipDoneInfo {
   @JsonSerializable(explicitToJson: true)
-  const factory Locate({
-    String? code,
-    required String alias,
-    int? latitude,
-    int? longitude,
-    String? detailLocate,
-    String? firstName,
-    String? lastName,
-    String? phone,
-    String? postalCode,
-    required String country,
-    String? city,
-    String? county,
-    String? town,
-    LocateType? locateType,
-  }) = _Locate;
-
-  const Locate._();
-  factory Locate.fromJson(Map<String, Object?> json) => _$LocateFromJson(json);
-
-  String get adminArea {
-    return "$city $county $town";
-  }
+  const factory ShipDoneInfo(
+      {required String memo, required List<String> photos}) = _ShipDoneInfo;
+  const ShipDoneInfo._();
+  factory ShipDoneInfo.fromJson(Map<String, Object?> json) =>
+      _$ShipDoneInfoFromJson(json);
 
   @override
-  List<Object?> get props => [code, alias];
-}
-
-enum LocateType {
-  @JsonValue('SHOP')
-  shop,
-  @JsonValue('STORAGE')
-  storage,
-  @JsonValue('ETC')
-  etc,
+  List<Object?> get props => [photos];
 }

@@ -67,8 +67,7 @@ class AuthRepo with WidgetsBindingObserver {
         return null;
       }
       // final j = user.toJsonCache();
-      final j = user.toJson();
-      pref.setString(userCacheKey, jsonEncode(j));
+      pref.setString(userCacheKey, user.encodeString());
       return user;
     });
   }
@@ -100,14 +99,28 @@ class AuthRepo with WidgetsBindingObserver {
   }
 
   static Future<List<IoUser>> getUserByIds(List<String> userIds) async {
-    assert(userIds.length < 11);
-    final snapshot = await getCollection(c: IoCollection.users)
-        .where("userInfo.userId", whereIn: userIds)
-        .get();
-    assert(snapshot.size == userIds.length);
-    return snapshot.docs
-        .map((e) => IoUser.fromJson(e.data() as Map<String, dynamic>))
-        .toList();
+    var userSnaps = await batchInQuery<IoUser>(
+        userIds,
+        getCollection(c: IoCollection.users).withConverter(
+            fromFirestore: (snapshot, _) => IoUser.fromJson(snapshot.data()!),
+            toFirestore: (model, _) => model.toJson()),
+        "userInfo.userId");
+    var users = userSnaps.expand((snap) => snap.docs.map((e) => e.data()));
+    if (users.length == userIds.length) {
+      return users.toList();
+    }
+    var noUids =
+        userIds.where((el) => users.any((u) => u.userInfo.userId != el));
+    var noUSnaps = await batchInQuery<IoUser>(
+        noUids.toList(),
+        getCollectionGroup(c: IoCollectionGroup.virtualUser)
+            .withConverter<IoUser>(
+                fromFirestore: (snapshot, _) =>
+                    IoUser.fromJson(snapshot.data()!),
+                toFirestore: (model, _) => model.toJson()),
+        "userInfo.userId");
+    final us = noUSnaps.expand((snap) => snap.docs.map((e) => e.data()));
+    return [...us, ...users];
   }
 
   Future<UserCredential> signInWithPw(String email, String pw) async {

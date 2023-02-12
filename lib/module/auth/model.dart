@@ -22,9 +22,38 @@ class IoUser with _$IoUser {
             .toJson()
         : toJson();
     final pref = await SharedPreferences.getInstance();
-    pref.setString(AuthRepo.userCacheKey, jsonEncode(json));
+    pref.setString(AuthRepo.userCacheKey, IoUser.userEncodeString(json));
     await doc.update(json);
     return true;
+  }
+
+  static String userEncodeString(Map<String, dynamic> j) {
+    if (j.containsKey("userInfo")) {
+      if ((j["userInfo"] as Map<String, dynamic>).containsKey("createdAt")) {
+        j["userInfo"]["createdAt"] =
+            (j["userInfo"]["createdAt"] as Timestamp).millisecondsSinceEpoch;
+      }
+      if ((j["userInfo"] as Map<String, dynamic>).containsKey("updatedAt")) {
+        j["userInfo"]["updatedAt"] =
+            (j["userInfo"]["updatedAt"] as Timestamp).millisecondsSinceEpoch;
+      }
+      if ((j["userInfo"] as Map<String, dynamic>).containsKey("fcmTokens")) {
+        List<Map<String, dynamic>> tokens = j["userInfo"]["fcmTokens"];
+        for (var tk in tokens) {
+          if (tk.containsKey("createdAt") && tk["createdAt"] is Timestamp) {
+            tk["createdAt"] =
+                (tk["createdAt"] as Timestamp).millisecondsSinceEpoch;
+          }
+        }
+      }
+    }
+
+    return jsonEncode(j);
+  }
+
+  String encodeString() {
+    var j = toJson();
+    return IoUser.userEncodeString(j);
   }
 }
 
@@ -54,8 +83,10 @@ class CompanyInfo with _$CompanyInfo {
 class IoUserInfo with _$IoUserInfo {
   @JsonSerializable(explicitToJson: true)
   const factory IoUserInfo({
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? createdAt,
+    @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
+        DateTime? updatedAt,
     required String userId,
     required String userName,
     String? displayName,

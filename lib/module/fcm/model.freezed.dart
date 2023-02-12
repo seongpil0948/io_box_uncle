@@ -664,6 +664,7 @@ FcmToken _$FcmTokenFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FcmToken {
+  @JsonKey(name: 'createdAt', fromJson: toDateTimeDefault, toJson: toTimeStamp)
   DateTime get createdAt => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
 
@@ -678,7 +679,10 @@ abstract class $FcmTokenCopyWith<$Res> {
   factory $FcmTokenCopyWith(FcmToken value, $Res Function(FcmToken) then) =
       _$FcmTokenCopyWithImpl<$Res, FcmToken>;
   @useResult
-  $Res call({DateTime createdAt, String token});
+  $Res call(
+      {@JsonKey(name: 'createdAt', fromJson: toDateTimeDefault, toJson: toTimeStamp)
+          DateTime createdAt,
+      String token});
 }
 
 /// @nodoc
@@ -717,7 +721,10 @@ abstract class _$$_FcmTokenCopyWith<$Res> implements $FcmTokenCopyWith<$Res> {
       __$$_FcmTokenCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime createdAt, String token});
+  $Res call(
+      {@JsonKey(name: 'createdAt', fromJson: toDateTimeDefault, toJson: toTimeStamp)
+          DateTime createdAt,
+      String token});
 }
 
 /// @nodoc
@@ -751,12 +758,17 @@ class __$$_FcmTokenCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_FcmToken extends _FcmToken {
-  _$_FcmToken({required this.createdAt, required this.token}) : super._();
+  _$_FcmToken(
+      {@JsonKey(name: 'createdAt', fromJson: toDateTimeDefault, toJson: toTimeStamp)
+          required this.createdAt,
+      required this.token})
+      : super._();
 
   factory _$_FcmToken.fromJson(Map<String, dynamic> json) =>
       _$$_FcmTokenFromJson(json);
 
   @override
+  @JsonKey(name: 'createdAt', fromJson: toDateTimeDefault, toJson: toTimeStamp)
   final DateTime createdAt;
   @override
   final String token;
@@ -777,13 +789,15 @@ class _$_FcmToken extends _FcmToken {
 
 abstract class _FcmToken extends FcmToken {
   factory _FcmToken(
-      {required final DateTime createdAt,
+      {@JsonKey(name: 'createdAt', fromJson: toDateTimeDefault, toJson: toTimeStamp)
+          required final DateTime createdAt,
       required final String token}) = _$_FcmToken;
   _FcmToken._() : super._();
 
   factory _FcmToken.fromJson(Map<String, dynamic> json) = _$_FcmToken.fromJson;
 
   @override
+  @JsonKey(name: 'createdAt', fromJson: toDateTimeDefault, toJson: toTimeStamp)
   DateTime get createdAt;
   @override
   String get token;

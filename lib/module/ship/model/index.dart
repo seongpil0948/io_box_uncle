@@ -2,19 +2,21 @@ import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
 import 'package:io_box_uncle/module/product/index.dart';
+import 'package:io_box_uncle/util/common/index.dart';
 
 part 'index.freezed.dart';
 part 'index.g.dart';
 
 part "./order.dart";
 part "./shipment.dart";
+part "./locate.dart";
 
 @freezed //  all of this class's properties are immutable.
 class ShipOrder extends Equatable with _$ShipOrder {
   @JsonSerializable(explicitToJson: true)
   const factory ShipOrder(
       {required Shipment shipment,
-      required IoOrder garmentOrder,
+      required IoOrder ioOrder,
       required OrderItem order,
       required IoUser shopUser,
       required IoUser vendorUser,

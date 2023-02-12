@@ -9,7 +9,7 @@ class ShipmentFB extends ShipmentApi {
   }
 
   @override
-  Stream<QuerySnapshot> getOrderStream(String userId, shipManagerId) {
+  Stream<QuerySnapshot<IoOrder>> getOrderStream(String userId, shipManagerId) {
     const targetState = [
       "BEFORE_ASSIGN_PICKUP",
       "BEFORE_PICKUP",
@@ -20,6 +20,9 @@ class ShipmentFB extends ShipmentApi {
       "SHIPPING_COMPLETE"
     ];
     return getCollectionGroup(c: IoCollectionGroup.order)
+        .withConverter<IoOrder>(
+            fromFirestore: (snapshot, _) => IoOrder.fromJson(snapshot.data()!),
+            toFirestore: (model, _) => model.toJson())
         .where("shipManagerId", isEqualTo: shipManagerId)
         .where("states", arrayContainsAny: targetState)
         .snapshots();
@@ -51,35 +54,35 @@ class ShipmentFB extends ShipmentApi {
     //   onError: (e) async =>  await IoLogger.log(IoSeverity.info, "Error updating document $e");,
     // );
 
-    final newOrd = s.garmentOrder.setState(
+    final newOrd = s.ioOrder.setState(
         s.order.id, OrderState.beforePickup, OrderState.ongoingPickup);
     await updateOrder(newOrd);
   }
 
   @override
   Future<void> donePickup(ShipOrder s) async {
-    final newOrd = s.garmentOrder.setState(
+    final newOrd = s.ioOrder.setState(
         s.order.id, OrderState.ongoingPickup, OrderState.pickupComplete);
     await updateOrder(newOrd);
   }
 
   @override
   Future<void> toBeforeShip(ShipOrder s) async {
-    final newOrd = s.garmentOrder
+    final newOrd = s.ioOrder
         .setState(s.order.id, OrderState.pickupComplete, OrderState.beforeShip);
     await updateOrder(newOrd);
   }
 
   @override
   Future<void> startShip(ShipOrder s) async {
-    final newOrd = s.garmentOrder
+    final newOrd = s.ioOrder
         .setState(s.order.id, OrderState.beforeShip, OrderState.shipping);
     await updateOrder(newOrd);
   }
 
   @override
   Future<void> doneShip(ShipOrder s) async {
-    final newOrd = s.garmentOrder
+    final newOrd = s.ioOrder
         .setState(s.order.id, OrderState.shipping, OrderState.shippingComplete);
     await updateOrder(newOrd);
   }
@@ -87,7 +90,7 @@ class ShipmentFB extends ShipmentApi {
   @override
   Future<void> reqToss(ShipOrder s) async {
     final newShip = s.shipment.copyWith(uncleId: null);
-    final newOrd = s.garmentOrder.copyWith(tossAt: DateTime.now()).setState(
+    final newOrd = s.ioOrder.copyWith(tossAt: DateTime.now()).setState(
         s.order.id, OrderState.beforePickup, OrderState.beforeAssignPickup);
 
     await updateShipment(newShip);
@@ -97,7 +100,7 @@ class ShipmentFB extends ShipmentApi {
   @override
   Future<void> receiveToss(ShipOrder s, String newUncle) async {
     final newShip = s.shipment.copyWith(uncleId: newUncle);
-    final newOrd = s.garmentOrder.setState(
+    final newOrd = s.ioOrder.setState(
         s.order.id, OrderState.beforeAssignPickup, OrderState.beforePickup);
     await updateShipment(newShip);
     await updateOrder(newOrd);

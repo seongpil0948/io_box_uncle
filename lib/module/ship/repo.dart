@@ -44,6 +44,7 @@ class ShipmentRepo {
     List<Shipment> tossShips = [];
     List<IoOrder> orders = [];
     Map<String, IoUser> users = {};
+    Set<String> userIds = {};
     final shipStream = api.getShipmentStream(shipManagerId);
     final orderStream = api.getOrderStream(userId, shipManagerId);
 
@@ -65,7 +66,7 @@ class ShipmentRepo {
               final d = ShipOrder(
                   order: item,
                   shipment: ships.first,
-                  garmentOrder: order,
+                  ioOrder: order,
                   vendorGarment: item.vendorProd,
                   shopUser: users[item.shopId]!,
                   vendorUser: users[item.vendorId]!,
@@ -82,7 +83,7 @@ class ShipmentRepo {
               final d = ShipOrder(
                   order: item,
                   shipment: toss.first,
-                  garmentOrder: order,
+                  ioOrder: order,
                   vendorGarment: item.vendorProd,
                   shopUser: users[item.shopId]!,
                   vendorUser: users[item.vendorId]!,
@@ -120,33 +121,22 @@ class ShipmentRepo {
 
     final orderSubscribe = orderStream.listen((event) async {
       orders = [];
-      if (event.docs.isEmpty) return;
       for (var element in event.docs) {
         if (element.exists) {
-          final ord = IoOrder.fromJson(element.data() as Map<String, Object?>);
+          final ord = element.data();
           orders.add(ord);
-          if (!users.containsKey(ord.shopId)) {
-            final u = await AuthRepo.getUserById(ord.shopId);
-            if (u != null) {
-              users[ord.shopId] = u;
-            }
+          var ids = [ord.shopId, ...ord.vendorIds];
+          if (ord.shipManagerId != null) {
+            ids.add(ord.shipManagerId!);
           }
-          final shipManagerId = ord.shipManagerId;
-          if (shipManagerId != null && !users.containsKey(shipManagerId)) {
-            final u = await AuthRepo.getUserById(shipManagerId);
-            if (u != null) {
-              users[shipManagerId] = u;
-            }
-          }
-
-          for (var vendorId in ord.vendorIds) {
-            if (!users.containsKey(vendorId)) {
-              final u = await AuthRepo.getUserById(vendorId);
-              if (u != null) {
-                users[vendorId] = u;
-              }
-            }
-          }
+          userIds.addAll(ids);
+        }
+      }
+      var newUids = userIds.where((uid) => !users.containsKey(uid));
+      if (newUids.isNotEmpty) {
+        var newUsers = await AuthRepo.getUserByIds(newUids.toList());
+        for (var u in newUsers) {
+          users[u.userInfo.userId] = u;
         }
       }
       if (shipments.isNotEmpty || tossShips.isNotEmpty) {
