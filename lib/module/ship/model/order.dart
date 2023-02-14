@@ -44,7 +44,7 @@ class IoOrder extends Equatable with _$IoOrder {
   IoOrder setState(String orderItemId, OrderState before, OrderState after) {
     var item = items.firstWhere((element) => element.id == orderItemId);
     assert(item.state == before && states.contains(before));
-    final newItem = item.copyWith(state: after);
+    final newItem = item.copyWith(state: after, beforeState: before);
     final newItems = [newItem, ...items.where((e) => e != newItem)];
     return copyWith(
         states: newItems.map((e) => e.state).toSet().toList(), items: newItems);
@@ -212,6 +212,13 @@ class PayAmount with _$PayAmount {
     required int pendingAmount,
     required bool isPending,
   }) = _PayAmount;
+
+  PayAmount defrayPending(int amount) {
+    // pure amount 는 채워져 있어야 한다.
+    final remain = pendingAmount - amount;
+    assert(isPending && pendingAmount > 0 && remain >= 0);
+    return copyWith(pendingAmount: remain, isPending: remain > 0);
+  }
 
   const PayAmount._();
 

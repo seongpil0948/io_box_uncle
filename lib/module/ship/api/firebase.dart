@@ -63,6 +63,7 @@ class ShipmentFB extends ShipmentApi {
   Future<void> donePickup(ShipOrder s) async {
     final newOrd = s.ioOrder.setState(
         s.order.id, OrderState.ongoingPickup, OrderState.pickupComplete);
+    await updateShipment(s.shipment);
     await updateOrder(newOrd);
   }
 
@@ -84,6 +85,7 @@ class ShipmentFB extends ShipmentApi {
   Future<void> doneShip(ShipOrder s) async {
     final newOrd = s.ioOrder
         .setState(s.order.id, OrderState.shipping, OrderState.shippingComplete);
+    await updateShipment(s.shipment);
     await updateOrder(newOrd);
   }
 

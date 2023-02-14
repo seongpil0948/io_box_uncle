@@ -11,8 +11,8 @@ abstract class ShipmentState extends Equatable {
       ? shipOrders.where((e) => e.dest.adminArea == dest!.adminArea).toList()
       : shipOrders;
   List<ShipOrder> get filteredTossOrders => dest != null
-      ? shipOrders.where((e) => e.dest.adminArea == dest!.adminArea).toList()
-      : shipOrders;
+      ? tossData.where((e) => e.dest.adminArea == dest!.adminArea).toList()
+      : tossData;
 
   @override
   List<Object?> get props => [dest, shipOrders, tossData];

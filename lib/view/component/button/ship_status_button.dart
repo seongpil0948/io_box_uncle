@@ -2,6 +2,7 @@ part of "./index.dart";
 
 List<Widget> shipStatusBtns(BuildContext context, ShipOrder p) {
   final shipBloc = context.read<ShipmentBloc>();
+  final appBloc = context.read<AppBloc>();
   return [
     if (p.order.state == OrderState.beforePickup)
       OutlinedButton(
@@ -28,12 +29,16 @@ List<Widget> shipStatusBtns(BuildContext context, ShipOrder p) {
               if (!p.shipment.amountMeasurable) {
                 showErrorSnack(context, '배송 제원정보가 누락 되었습니다.');
               } else if (p.ioOrder.shipAmount != null &&
-                  p.ioOrder.shipAmount!.amount < p.shipment.amount) {
+                  p.ioOrder.shipAmount!.pendingAmount < p.shipment.amount) {
                 showErrorSnack(context,
                     '산정된 배송비(${p.shipment.amount})원은 배송 보류금액(${p.ioOrder.shipAmount!.amount})보다 높습니다.');
               } else {
-                // shipBloc.add(DonePickup(shipOrder: p));
-                // context.read<AppBloc>().add(DisSelectPickup());
+                p = p.copyWith.ioOrder(
+                    shipAmount:
+                        p.ioOrder.shipAmount!.defrayPending(p.shipment.amount));
+
+                appBloc.add(DisSelectPickup());
+                shipBloc.add(DonePickup(shipOrder: p));
                 showSuccessSnack(context, "픽업 완료~!");
               }
             }, "픽업완료 처리 하시겠습니까?");
@@ -44,7 +49,7 @@ List<Widget> shipStatusBtns(BuildContext context, ShipOrder p) {
           onPressed: () {
             showConfirmClose(context, () {
               shipBloc.add(ToBeforeShip(shipOrder: p));
-              context.read<AppBloc>().add(DisSelectPickup());
+              appBloc.add(DisSelectPickup());
             }, "배송전 처리 하시겠습니까?");
           },
           child: const Text("배송전")),
@@ -53,7 +58,7 @@ List<Widget> shipStatusBtns(BuildContext context, ShipOrder p) {
           onPressed: () {
             showConfirmClose(context, () {
               shipBloc.add(StartShip(shipOrder: p));
-              context.read<AppBloc>().add(DisSelectPickup());
+              appBloc.add(DisSelectPickup());
             }, "배송시작 처리 하시겠습니까?");
           },
           child: const Text("배송시작")),
@@ -101,33 +106,22 @@ class _ShipDoneBtnState extends State<ShipDoneBtn> {
   @override
   void initState() {
     super.initState();
-    // _controller.addListener(() {
-    //   final String text = _controller.text.toLowerCase();
-    //   _controller.value = _controller.value.copyWith(
-    //     text: text,
-    //     selection:
-    //         TextSelection(baseOffset: text.length, extentOffset: text.length),
-    //     composing: TextRange.empty,
-    //   );
-    // });
   }
 
   Future<List<String>> uploadFiles(Reference baseRef) async {
-    // List<String> urls = [];
-    // for (var file in files) {
-    //   final fileName = p.basename(file.path);
-    //   try {
-    //     final ref = baseRef.child(fileName);
-    //     await ref.putFile(file);
-    //     urls.add(await ref.getDownloadURL());
-    //     debugPrint("$fileName: ${ref.fullPath}, ${ref.storage.app.toString()}");
-    //   } catch (e) {
-    //     showErrorSnack(context, '파일 업로드 실패.($fileName)');
-    //   }
-    // }
-    // return urls;
-    print("files in uploadFiles: $files");
-    return ["a", "b", "c"];
+    List<String> urls = [];
+    for (var file in files) {
+      final fileName = p.basename(file.path);
+      try {
+        final ref = baseRef.child(fileName);
+        await ref.putFile(file);
+        urls.add(await ref.getDownloadURL());
+        debugPrint("$fileName: ${ref.fullPath}, ${ref.storage.app.toString()}");
+      } catch (e) {
+        showErrorSnack(context, '파일 업로드 실패.($fileName)');
+      }
+    }
+    return urls;
   }
 
   @override
@@ -222,9 +216,10 @@ class _ShipDoneBtnState extends State<ShipDoneBtn> {
                                               memo: memo, photos: urls));
                                       if (widget.p.shipment.shipDoneAble) {
                                         debugPrint("===> ship done!!!!!!");
-                                        // shipBloc
-                                        //     .add(DoneShip(shipOrder: widget.p));
-                                        // appBloc.add(DisSelectPickup());
+                                        shipBloc
+                                            .add(DoneShip(shipOrder: widget.p));
+                                        Navigator.of(context).pop();
+                                        appBloc.add(DisSelectPickup());
                                       } else {
                                         scaffold.showSnackBar(const SnackBar(
                                             content: Text('누락된 데이터가 있습니다.')));

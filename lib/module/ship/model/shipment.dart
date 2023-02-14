@@ -34,13 +34,18 @@ class Shipment extends Equatable with _$Shipment {
   }) = _Shipment;
 
   bool get amountMeasurable =>
-      sizeUnit != null && weightUnit != null && size != null && weight != null;
+      sizeUnit != null &&
+      weightUnit != null &&
+      size != null &&
+      weight != null &&
+      amountBySize != null &&
+      amountByWeight != null;
 
   // pickupFeeBasic 지역별 픽업비는 픽업요청시 이미 지불되었다.
   int get pickAmount => amountMeasurable
-      ? (size! * amountBySize!) + (weight! + amountByWeight!)
+      ? (size! * amountBySize!) + (weight! * amountByWeight!)
       : throw Exception("pickup amount not measurable");
-  int get amount => pickAmount + shipFeeBasic;
+  int get amount => pickAmount;
   bool get shipDoneAble =>
       doneInfo != null && doneInfo!.photos.isNotEmpty && amountMeasurable;
 

@@ -74,10 +74,15 @@ class ShipThumb extends StatelessWidget {
   }
 }
 
-class ShipAmountCard extends StatelessWidget {
-  final ShipOrder p;
-  const ShipAmountCard({super.key, required this.p});
+class ShipAmountCard extends StatefulWidget {
+  ShipOrder p;
+  ShipAmountCard({super.key, required this.p});
 
+  @override
+  State<ShipAmountCard> createState() => _ShipAmountCardState();
+}
+
+class _ShipAmountCardState extends State<ShipAmountCard> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -88,29 +93,50 @@ class ShipAmountCard extends StatelessWidget {
           children: [label, content],
         );
     return IoCard(
-      height: p.shipment.amountMeasurable ? size.height / 4.2 : size.height / 6,
+      height: widget.p.shipment.amountMeasurable
+          ? size.height / 4.2
+          : size.height / 6,
       title: Text("픽업료 및 배송비 설정", style: T.titleMedium),
-      content: p.shipment.amountMeasurable
+      content: widget.p.shipment.amountMeasurable
           ? Column(
               children: [
-                row(txt("부피"), txt("${p.shipment.sizeUnit}")),
+                row(txt("부피"), txt("${widget.p.shipment.sizeUnit}")),
                 const SizedBox(height: 10),
-                row(txt("무게"), txt("${p.shipment.weightUnit}")),
+                row(txt("무게"), txt("${widget.p.shipment.weightUnit}")),
               ],
             )
           : Container(),
       footer: [
-        ElevatedButton(
-            onPressed: () {
-              showDialog(
-                      context: context,
-                      barrierDismissible: false, // close when click outside
-                      builder: ((context) {
-                        return ShipSpecifySelect(p: p);
-                      }))
-                  .then((_) => context.read<AppBloc>().add(DisSelectPickup()));
-            },
-            child: txt("설정"))
+        if (widget.p.order.state == OrderState.ongoingPickup)
+          ElevatedButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    barrierDismissible: false, // close when click outside
+                    builder: ((context) {
+                      return ShipSpecifySelect(
+                        p: widget.p,
+                        onNewShip: (ship) {
+                          try {
+                            context.read<AppBloc>().add(DisSelectPickup());
+                          } on ProviderNotFoundException catch (e) {
+                            debugPrint(e.toString());
+                          }
+                          shipRepo.api.updateShipment(ship).then((value) {
+                            setState(() {
+                              widget.p = widget.p.copyWith(shipment: ship);
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text('저장완료 ${ship.shippingId}')),
+                            );
+                            Navigator.of(context).pop();
+                          });
+                        },
+                      );
+                    }));
+              },
+              child: txt("설정"))
       ],
     );
   }

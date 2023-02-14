@@ -2,7 +2,9 @@ part of "./index.dart";
 
 class ShipSpecifySelect extends StatefulWidget {
   final ShipOrder p;
-  const ShipSpecifySelect({super.key, required this.p});
+  final void Function(Shipment ship) onNewShip;
+  const ShipSpecifySelect(
+      {super.key, required this.p, required this.onNewShip});
 
   @override
   State<ShipSpecifySelect> createState() => _ShipSpecifySelectState();
@@ -147,21 +149,14 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
                     // size: shipSize,
                     size: 1,
                     sizeUnit: shipSizeUnit,
+                    amountBySize: widget
+                        .p.managerUser.uncleInfo?.amountBySize[shipSizeUnit],
                     // weight: shipWeight,
                     weight: 1,
-                    weightUnit: shipWeightUnit);
-                try {
-                  context.read<AppBloc>().add(DisSelectPickup());
-                } on ProviderNotFoundException catch (e) {
-                  debugPrint(e.toString());
-                }
-
-                shipRepo.api.updateShipment(shipment).then((value) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('저장완료 ${shipment.shippingId}')),
-                  );
-                  Navigator.of(context).pop();
-                });
+                    weightUnit: shipWeightUnit,
+                    amountByWeight: widget.p.managerUser.uncleInfo
+                        ?.amountByWeight[shipWeightUnit]);
+                widget.onNewShip(shipment);
               }
             },
             child: const Text('적용'),

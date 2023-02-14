@@ -2,7 +2,10 @@ part of "./index.dart";
 
 void showErrorSnack(BuildContext context, String text) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Row(
+    content: Wrap(
+      spacing: 5,
+      runSpacing: 5,
+      alignment: WrapAlignment.spaceAround,
       children: [
         const Icon(
           Icons.error,
@@ -16,7 +19,7 @@ void showErrorSnack(BuildContext context, String text) {
 
 void showSuccessSnack(BuildContext context, String text) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Row(
+    content: Wrap(
       children: [
         const Icon(
           Icons.add_reaction_outlined,
