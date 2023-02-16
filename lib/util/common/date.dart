@@ -41,3 +41,33 @@ Timestamp? toTimeStamp(dynamic d) {
 
   throw ArgumentError("toTimeStamp: $d");
 }
+
+Map<String, DateTime?> dateMapFromJson(dynamic d) {
+  var now = DateTime.now();
+  if (d == null || d is! Map) {
+    return {
+      "createdAt": now,
+      "updatedAt": now,
+    };
+  }
+  Map<String, DateTime?> result = {};
+  for (var element in d.entries) {
+    result[element.key] = toDateTime(element.value);
+  }
+  return result;
+}
+
+Map<String, Timestamp?> dateMapToJson(dynamic d) {
+  var now = Timestamp.now();
+  if (d == null || d is! Map) {
+    return {
+      "createdAt": now,
+      "updatedAt": now,
+    };
+  }
+  Map<String, Timestamp?> result = {};
+  for (var element in d.entries) {
+    result[element.key] = toTimeStamp(element.value);
+  }
+  return result;
+}

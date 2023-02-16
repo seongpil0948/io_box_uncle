@@ -4,18 +4,9 @@ part of "./index.dart";
 class IoOrder extends Equatable with _$IoOrder {
   @JsonSerializable(explicitToJson: true)
   const factory IoOrder({
-    @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
-        DateTime? createdAt,
-    @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
-        DateTime? updatedAt,
-    @JsonKey(name: 'approvedAt', fromJson: toDateTime, toJson: toTimeStamp)
-        DateTime? approvedAt,
-    @JsonKey(name: 'paidAt', fromJson: toDateTime, toJson: toTimeStamp)
-        DateTime? paidAt,
-    @JsonKey(name: 'doneAt', fromJson: toDateTime, toJson: toTimeStamp)
-        DateTime? doneAt,
-    @JsonKey(name: 'tossAt', fromJson: toDateTime, toJson: toTimeStamp)
-        DateTime? tossAt,
+    @JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+    @Default({})
+        Map<String, DateTime?> od, // order date, dart not support key of type
     bool? isDone,
     bool? isDirectToShip,
     required String dbId,
@@ -44,10 +35,19 @@ class IoOrder extends Equatable with _$IoOrder {
   IoOrder setState(String orderItemId, OrderState before, OrderState after) {
     var item = items.firstWhere((element) => element.id == orderItemId);
     assert(item.state == before && states.contains(before));
-    final newItem = item.copyWith(state: after, beforeState: before);
+
+    var state = _$OrderStateEnumMap[after]!;
+    Map<String, DateTime?> orderOd = Map.from(od);
+    orderOd[state] = DateTime.now();
+    Map<String, DateTime?> itemOd = Map.from(item.od);
+    itemOd[state] = DateTime.now();
+
+    final newItem = item.copyWith(state: after, beforeState: before, od: od);
     final newItems = [newItem, ...items.where((e) => e != newItem)];
     return copyWith(
-        states: newItems.map((e) => e.state).toSet().toList(), items: newItems);
+        states: newItems.map((e) => e.state).toSet().toList(),
+        items: newItems,
+        od: orderOd);
   }
 
   factory IoOrder.fromJson(Map<String, Object?> json) =>
@@ -237,6 +237,9 @@ enum OrderType {
 class OrderItem extends Equatable with _$OrderItem {
   @JsonSerializable(explicitToJson: true)
   const factory OrderItem({
+    @JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+    @Default({})
+        Map<String, DateTime?> od, // order date, dart not support key of type
     required String id,
     required List<String> orderIds,
     required String vendorId,

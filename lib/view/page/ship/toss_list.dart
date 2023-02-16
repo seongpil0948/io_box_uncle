@@ -41,12 +41,12 @@ class _TossListPageState extends State<TossListPage> {
                         DataColumn(label: Text('토스받기')),
                       ],
                       rows: state.map((e) {
-                        final td = e.ioOrder.tossAt;
+                        final td = e.ioOrder.od["tossAt"];
                         return DataRow(cells: [
                           DataCell(
                               Text(e.shipment.startAddress.detailLocate ?? "")),
                           DataCell(Text(td != null
-                              ? "${td.month}월${td.day}일 ${td.hour}:${td.minute}"
+                              ? "${td.month}.${td.day} ${td.hour}:${td.minute}"
                               : "-")),
                           DataCell(ElevatedButton(
                               onPressed: () {

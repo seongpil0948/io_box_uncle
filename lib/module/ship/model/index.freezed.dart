@@ -337,18 +337,9 @@ IoOrder _$IoOrderFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$IoOrder {
-  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'approvedAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get approvedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'paidAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get paidAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'doneAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get doneAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'tossAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get tossAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+  Map<String, DateTime?> get od =>
+      throw _privateConstructorUsedError; // order date, dart not support key of type
   bool? get isDone => throw _privateConstructorUsedError;
   bool? get isDirectToShip => throw _privateConstructorUsedError;
   String get dbId => throw _privateConstructorUsedError;
@@ -383,18 +374,8 @@ abstract class $IoOrderCopyWith<$Res> {
       _$IoOrderCopyWithImpl<$Res, IoOrder>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? createdAt,
-      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? updatedAt,
-      @JsonKey(name: 'approvedAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? approvedAt,
-      @JsonKey(name: 'paidAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? paidAt,
-      @JsonKey(name: 'doneAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? doneAt,
-      @JsonKey(name: 'tossAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? tossAt,
+      {@JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+          Map<String, DateTime?> od,
       bool? isDone,
       bool? isDirectToShip,
       String dbId,
@@ -435,12 +416,7 @@ class _$IoOrderCopyWithImpl<$Res, $Val extends IoOrder>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? approvedAt = freezed,
-    Object? paidAt = freezed,
-    Object? doneAt = freezed,
-    Object? tossAt = freezed,
+    Object? od = null,
     Object? isDone = freezed,
     Object? isDirectToShip = freezed,
     Object? dbId = null,
@@ -464,30 +440,10 @@ class _$IoOrderCopyWithImpl<$Res, $Val extends IoOrder>
     Object? pickAmount = freezed,
   }) {
     return _then(_value.copyWith(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      approvedAt: freezed == approvedAt
-          ? _value.approvedAt
-          : approvedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      paidAt: freezed == paidAt
-          ? _value.paidAt
-          : paidAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      doneAt: freezed == doneAt
-          ? _value.doneAt
-          : doneAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      tossAt: freezed == tossAt
-          ? _value.tossAt
-          : tossAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      od: null == od
+          ? _value.od
+          : od // ignore: cast_nullable_to_non_nullable
+              as Map<String, DateTime?>,
       isDone: freezed == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
@@ -620,18 +576,8 @@ abstract class _$$_IoOrderCopyWith<$Res> implements $IoOrderCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? createdAt,
-      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? updatedAt,
-      @JsonKey(name: 'approvedAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? approvedAt,
-      @JsonKey(name: 'paidAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? paidAt,
-      @JsonKey(name: 'doneAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? doneAt,
-      @JsonKey(name: 'tossAt', fromJson: toDateTime, toJson: toTimeStamp)
-          DateTime? tossAt,
+      {@JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+          Map<String, DateTime?> od,
       bool? isDone,
       bool? isDirectToShip,
       String dbId,
@@ -672,12 +618,7 @@ class __$$_IoOrderCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? approvedAt = freezed,
-    Object? paidAt = freezed,
-    Object? doneAt = freezed,
-    Object? tossAt = freezed,
+    Object? od = null,
     Object? isDone = freezed,
     Object? isDirectToShip = freezed,
     Object? dbId = null,
@@ -701,30 +642,10 @@ class __$$_IoOrderCopyWithImpl<$Res>
     Object? pickAmount = freezed,
   }) {
     return _then(_$_IoOrder(
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      approvedAt: freezed == approvedAt
-          ? _value.approvedAt
-          : approvedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      paidAt: freezed == paidAt
-          ? _value.paidAt
-          : paidAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      doneAt: freezed == doneAt
-          ? _value.doneAt
-          : doneAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      tossAt: freezed == tossAt
-          ? _value.tossAt
-          : tossAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      od: null == od
+          ? _value._od
+          : od // ignore: cast_nullable_to_non_nullable
+              as Map<String, DateTime?>,
       isDone: freezed == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
@@ -818,18 +739,8 @@ class __$$_IoOrderCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_IoOrder extends _IoOrder {
   const _$_IoOrder(
-      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
-          this.createdAt,
-      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
-          this.updatedAt,
-      @JsonKey(name: 'approvedAt', fromJson: toDateTime, toJson: toTimeStamp)
-          this.approvedAt,
-      @JsonKey(name: 'paidAt', fromJson: toDateTime, toJson: toTimeStamp)
-          this.paidAt,
-      @JsonKey(name: 'doneAt', fromJson: toDateTime, toJson: toTimeStamp)
-          this.doneAt,
-      @JsonKey(name: 'tossAt', fromJson: toDateTime, toJson: toTimeStamp)
-          this.tossAt,
+      {@JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+          final Map<String, DateTime?> od = const {},
       this.isDone,
       this.isDirectToShip,
       required this.dbId,
@@ -851,7 +762,8 @@ class _$_IoOrder extends _IoOrder {
       required this.prodAmount,
       required this.shipAmount,
       required this.pickAmount})
-      : _orderIds = orderIds,
+      : _od = od,
+        _orderIds = orderIds,
         _shipmentIds = shipmentIds,
         _vendorIds = vendorIds,
         _itemIds = itemIds,
@@ -866,24 +778,16 @@ class _$_IoOrder extends _IoOrder {
   factory _$_IoOrder.fromJson(Map<String, dynamic> json) =>
       _$$_IoOrderFromJson(json);
 
+  final Map<String, DateTime?> _od;
   @override
-  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
-  final DateTime? createdAt;
-  @override
-  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
-  final DateTime? updatedAt;
-  @override
-  @JsonKey(name: 'approvedAt', fromJson: toDateTime, toJson: toTimeStamp)
-  final DateTime? approvedAt;
-  @override
-  @JsonKey(name: 'paidAt', fromJson: toDateTime, toJson: toTimeStamp)
-  final DateTime? paidAt;
-  @override
-  @JsonKey(name: 'doneAt', fromJson: toDateTime, toJson: toTimeStamp)
-  final DateTime? doneAt;
-  @override
-  @JsonKey(name: 'tossAt', fromJson: toDateTime, toJson: toTimeStamp)
-  final DateTime? tossAt;
+  @JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+  Map<String, DateTime?> get od {
+    if (_od is EqualUnmodifiableMapView) return _od;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_od);
+  }
+
+// order date, dart not support key of type
   @override
   final bool? isDone;
   @override
@@ -1003,18 +907,8 @@ class _$_IoOrder extends _IoOrder {
 
 abstract class _IoOrder extends IoOrder {
   const factory _IoOrder(
-      {@JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
-          final DateTime? createdAt,
-      @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
-          final DateTime? updatedAt,
-      @JsonKey(name: 'approvedAt', fromJson: toDateTime, toJson: toTimeStamp)
-          final DateTime? approvedAt,
-      @JsonKey(name: 'paidAt', fromJson: toDateTime, toJson: toTimeStamp)
-          final DateTime? paidAt,
-      @JsonKey(name: 'doneAt', fromJson: toDateTime, toJson: toTimeStamp)
-          final DateTime? doneAt,
-      @JsonKey(name: 'tossAt', fromJson: toDateTime, toJson: toTimeStamp)
-          final DateTime? tossAt,
+      {@JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+          final Map<String, DateTime?> od,
       final bool? isDone,
       final bool? isDirectToShip,
       required final String dbId,
@@ -1041,24 +935,9 @@ abstract class _IoOrder extends IoOrder {
   factory _IoOrder.fromJson(Map<String, dynamic> json) = _$_IoOrder.fromJson;
 
   @override
-  @JsonKey(name: 'createdAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get createdAt;
-  @override
-  @JsonKey(name: 'updatedAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get updatedAt;
-  @override
-  @JsonKey(name: 'approvedAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get approvedAt;
-  @override
-  @JsonKey(name: 'paidAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get paidAt;
-  @override
-  @JsonKey(name: 'doneAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get doneAt;
-  @override
-  @JsonKey(name: 'tossAt', fromJson: toDateTime, toJson: toTimeStamp)
-  DateTime? get tossAt;
-  @override
+  @JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+  Map<String, DateTime?> get od;
+  @override // order date, dart not support key of type
   bool? get isDone;
   @override
   bool? get isDirectToShip;
@@ -1480,6 +1359,9 @@ OrderItem _$OrderItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OrderItem {
+  @JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+  Map<String, DateTime?> get od =>
+      throw _privateConstructorUsedError; // order date, dart not support key of type
   String get id => throw _privateConstructorUsedError;
   List<String> get orderIds => throw _privateConstructorUsedError;
   String get vendorId => throw _privateConstructorUsedError;
@@ -1511,7 +1393,9 @@ abstract class $OrderItemCopyWith<$Res> {
       _$OrderItemCopyWithImpl<$Res, OrderItem>;
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+          Map<String, DateTime?> od,
+      String id,
       List<String> orderIds,
       String vendorId,
       String shopId,
@@ -1548,6 +1432,7 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? od = null,
     Object? id = null,
     Object? orderIds = null,
     Object? vendorId = null,
@@ -1568,6 +1453,10 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
     Object? shipManagerId = freezed,
   }) {
     return _then(_value.copyWith(
+      od: null == od
+          ? _value.od
+          : od // ignore: cast_nullable_to_non_nullable
+              as Map<String, DateTime?>,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1680,7 +1569,9 @@ abstract class _$$_OrderItemCopyWith<$Res> implements $OrderItemCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
+      {@JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+          Map<String, DateTime?> od,
+      String id,
       List<String> orderIds,
       String vendorId,
       String shopId,
@@ -1718,6 +1609,7 @@ class __$$_OrderItemCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? od = null,
     Object? id = null,
     Object? orderIds = null,
     Object? vendorId = null,
@@ -1738,6 +1630,10 @@ class __$$_OrderItemCopyWithImpl<$Res>
     Object? shipManagerId = freezed,
   }) {
     return _then(_$_OrderItem(
+      od: null == od
+          ? _value._od
+          : od // ignore: cast_nullable_to_non_nullable
+              as Map<String, DateTime?>,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1819,7 +1715,9 @@ class __$$_OrderItemCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_OrderItem extends _OrderItem {
   const _$_OrderItem(
-      {required this.id,
+      {@JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+          final Map<String, DateTime?> od = const {},
+      required this.id,
       required final List<String> orderIds,
       required this.vendorId,
       required this.shopId,
@@ -1837,13 +1735,24 @@ class _$_OrderItem extends _OrderItem {
       required this.prodAmount,
       final Map<String, dynamic>? cancellation,
       required this.shipManagerId})
-      : _orderIds = orderIds,
+      : _od = od,
+        _orderIds = orderIds,
         _cancellation = cancellation,
         super._();
 
   factory _$_OrderItem.fromJson(Map<String, dynamic> json) =>
       _$$_OrderItemFromJson(json);
 
+  final Map<String, DateTime?> _od;
+  @override
+  @JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+  Map<String, DateTime?> get od {
+    if (_od is EqualUnmodifiableMapView) return _od;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_od);
+  }
+
+// order date, dart not support key of type
   @override
   final String id;
   final List<String> _orderIds;
@@ -1912,7 +1821,9 @@ class _$_OrderItem extends _OrderItem {
 
 abstract class _OrderItem extends OrderItem {
   const factory _OrderItem(
-      {required final String id,
+      {@JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+          final Map<String, DateTime?> od,
+      required final String id,
       required final List<String> orderIds,
       required final String vendorId,
       required final String shopId,
@@ -1936,6 +1847,9 @@ abstract class _OrderItem extends OrderItem {
       _$_OrderItem.fromJson;
 
   @override
+  @JsonKey(name: 'od', fromJson: dateMapFromJson, toJson: dateMapToJson)
+  Map<String, DateTime?> get od;
+  @override // order date, dart not support key of type
   String get id;
   @override
   List<String> get orderIds;

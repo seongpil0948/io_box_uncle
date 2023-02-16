@@ -29,12 +29,7 @@ Map<String, dynamic> _$$_ShipOrderToJson(_$_ShipOrder instance) =>
     };
 
 _$_IoOrder _$$_IoOrderFromJson(Map<String, dynamic> json) => _$_IoOrder(
-      createdAt: toDateTime(json['createdAt']),
-      updatedAt: toDateTime(json['updatedAt']),
-      approvedAt: toDateTime(json['approvedAt']),
-      paidAt: toDateTime(json['paidAt']),
-      doneAt: toDateTime(json['doneAt']),
-      tossAt: toDateTime(json['tossAt']),
+      od: json['od'] == null ? const {} : dateMapFromJson(json['od']),
       isDone: json['isDone'] as bool?,
       isDirectToShip: json['isDirectToShip'] as bool?,
       dbId: json['dbId'] as String,
@@ -83,12 +78,7 @@ _$_IoOrder _$$_IoOrderFromJson(Map<String, dynamic> json) => _$_IoOrder(
 
 Map<String, dynamic> _$$_IoOrderToJson(_$_IoOrder instance) =>
     <String, dynamic>{
-      'createdAt': toTimeStamp(instance.createdAt),
-      'updatedAt': toTimeStamp(instance.updatedAt),
-      'approvedAt': toTimeStamp(instance.approvedAt),
-      'paidAt': toTimeStamp(instance.paidAt),
-      'doneAt': toTimeStamp(instance.doneAt),
-      'tossAt': toTimeStamp(instance.tossAt),
+      'od': dateMapToJson(instance.od),
       'isDone': instance.isDone,
       'isDirectToShip': instance.isDirectToShip,
       'dbId': instance.dbId,
@@ -194,6 +184,7 @@ const _$PayMethodEnumMap = {
 };
 
 _$_OrderItem _$$_OrderItemFromJson(Map<String, dynamic> json) => _$_OrderItem(
+      od: json['od'] == null ? const {} : dateMapFromJson(json['od']),
       id: json['id'] as String,
       orderIds:
           (json['orderIds'] as List<dynamic>).map((e) => e as String).toList(),
@@ -222,6 +213,7 @@ _$_OrderItem _$$_OrderItemFromJson(Map<String, dynamic> json) => _$_OrderItem(
 
 Map<String, dynamic> _$$_OrderItemToJson(_$_OrderItem instance) =>
     <String, dynamic>{
+      'od': dateMapToJson(instance.od),
       'id': instance.id,
       'orderIds': instance.orderIds,
       'vendorId': instance.vendorId,
