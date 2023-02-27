@@ -40,6 +40,7 @@ class AuthRepo with WidgetsBindingObserver {
       final context = App.navigatorKey.currentContext;
       if (user == null) {
         if (context != null) {
+          // ignore: use_build_context_synchronously
           showDialog(
               context: context,
               builder: (_) => const AlertDialog(
@@ -52,6 +53,7 @@ class AuthRepo with WidgetsBindingObserver {
         return null;
       } else if (user.userInfo.role != UserRole.uncleWorker) {
         if (context != null) {
+          // ignore: use_build_context_synchronously
           showDialog(
               context: context,
               builder: (_) => const AlertDialog(

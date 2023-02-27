@@ -33,12 +33,7 @@ List<Widget> shipStatusBtns(BuildContext context, ShipOrder p) {
                 showErrorSnack(context,
                     '산정된 배송비(${p.shipment.amount})원은 배송 보류금액(${p.ioOrder.shipAmount!.amount})보다 높습니다.');
               } else {
-                p = p.copyWith.ioOrder(
-                    shipAmount:
-                        p.ioOrder.shipAmount!.defrayPending(p.shipment.amount));
-
-                appBloc.add(DisSelectPickup());
-                shipBloc.add(DonePickup(shipOrder: p));
+                pickComplete(p, context);
                 showSuccessSnack(context, "픽업 완료~!");
               }
             }, "픽업완료 처리 하시겠습니까?");
@@ -239,3 +234,132 @@ class _ShipDoneBtnState extends State<ShipDoneBtn> {
         child: const Text("배송완료"));
   }
 }
+
+Future<void> pickComplete(ShipOrder p, BuildContext context) {
+  return showCupertinoDialog(
+      context: context,
+      builder: (context) =>
+          PickCompleteForm(key: const ValueKey("pickComplete"), p: p));
+}
+
+class PickCompleteForm extends StatefulWidget {
+  final ShipOrder p;
+  const PickCompleteForm({super.key, required this.p});
+
+  @override
+  State<PickCompleteForm> createState() => _PickCompleteFormState();
+}
+
+class _PickCompleteFormState extends State<PickCompleteForm> {
+  // none || partial || complete
+  PickState pickState = PickState.complete;
+  int pickCnt = 0;
+  @override
+  void initState() {
+    pickCnt = widget.p.ioOrder.orderCnts;
+    super.initState();
+  }
+
+  final _formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoAlertDialog(
+      title: const Text("픽업 완료 처리"),
+      content: Form(
+        key: _formKey,
+        autovalidateMode: AutovalidateMode.always,
+        child: Column(children: [
+          // CupertinoTextFormFieldRow(),
+          DropdownButtonFormField<PickState>(
+              value: pickState,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.blue, width: 2),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.blue, width: 2),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                filled: true,
+                fillColor: Colors.blueAccent,
+              ),
+              dropdownColor: Colors.amberAccent,
+              icon: const Icon(Icons.playlist_add_check_outlined),
+              style: const TextStyle(color: Colors.amber, fontSize: 25),
+              onChanged: (PickState? newValue) {
+                setState(() {
+                  if (newValue != null) {
+                    pickState = newValue;
+                  }
+                });
+              },
+              items: const [
+                DropdownMenuItem(value: PickState.none, child: Text("전체미송")),
+                DropdownMenuItem(value: PickState.partial, child: Text("부분미송")),
+                DropdownMenuItem(
+                    value: PickState.complete, child: Text("전체완료")),
+              ]),
+          if (pickState == PickState.partial)
+            TextFormField(
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(labelText: "픽업 개수 입력"),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              validator: (value) =>
+                  value == null || value.isEmpty || int.parse(value) < 1
+                      ? "0 이상 입력 해주세요"
+                      : null,
+              initialValue: pickCnt.toString(),
+              onChanged: (value) {
+                final cnt = int.tryParse(value);
+                if (cnt != null) {
+                  pickCnt = cnt;
+                }
+              },
+            ),
+        ]),
+      ),
+      actions: [
+        CupertinoDialogAction(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("취소")),
+        CupertinoDialogAction(
+            onPressed: () async {
+              if (_formKey.currentState == null ||
+                  !_formKey.currentState!.validate()) {
+                return showErrorSnack(context, "다시 시도해주세요.");
+              }
+              _formKey.currentState!.save();
+
+              // switch (pickState) {
+              //   case PickState.partial:
+              //     final returnCnt = widget.p.ioOrder.orderCnts - pickCnt;
+              //     final returnPrice =
+              //         widget.p.vendorGarment.vendorPrice * returnCnt;
+              //     final shopPay =
+              //         await getIoPay(widget.p.shopUser.userInfo.userId);
+              //     final unclePay =
+              //         await getIoPay(widget.p.managerUser.userInfo.userId);
+              //     if (shopPay != null && unclePay != null) {
+              //       await shopPay.updateIoPay(
+              //           PayHistState.returnPickupAmount, returnPrice, 0, null);
+              //       await unclePay.updateIoPay(
+              //           PayHistState.returnPickupAmount, 0, -returnPrice, null);
+              //     }
+              //   case PickState.none
+              context.read<AppBloc>().add(DisSelectPickup());
+              context.read<ShipmentBloc>().add(DonePickup(
+                  shipOrder: widget.p.copyWith.ioOrder(
+                      shipAmount: widget.p.ioOrder.shipAmount!
+                          .defrayPending(widget.p.shipment.amount))));
+              Navigator.of(context).pop();
+            },
+            child: const Text("승인")),
+      ],
+    );
+  }
+}
+
+enum PickState { none, partial, complete }

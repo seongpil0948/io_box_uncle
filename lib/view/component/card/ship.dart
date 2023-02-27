@@ -19,6 +19,7 @@ class ShipThumb extends StatelessWidget {
           t ?? "",
           overflow: TextOverflow.ellipsis,
           style: T.titleMedium,
+          textAlign: TextAlign.end,
         );
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -45,14 +46,6 @@ class ShipThumb extends StatelessWidget {
               txt(dest.phone),
             ],
           ),
-        if (isBig)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              txt("주소지"),
-              txt(dest.adminArea),
-            ],
-          ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -74,6 +67,7 @@ class ShipThumb extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ShipAmountCard extends StatefulWidget {
   ShipOrder p;
   ShipAmountCard({super.key, required this.p});

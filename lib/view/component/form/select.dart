@@ -139,6 +139,12 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
         ),
         footer: [
           ElevatedButton(
+              onPressed: () {
+                // context.read<AppBloc>().add(DisSelectPickup());
+                Navigator.of(context).pop();
+              },
+              child: txt("닫기")),
+          ElevatedButton(
             onPressed: () async {
               // Validate returns true if the form is valid, or false otherwise.
               if (_formKey.currentState!.validate()) {
@@ -160,13 +166,7 @@ class _ShipSpecifySelectState extends State<ShipSpecifySelect> {
               }
             },
             child: const Text('적용'),
-          ),
-          ElevatedButton(
-              onPressed: () {
-                // context.read<AppBloc>().add(DisSelectPickup());
-                Navigator.of(context).pop();
-              },
-              child: txt("닫기"))
+          )
         ],
       ),
     );

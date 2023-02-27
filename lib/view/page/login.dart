@@ -37,7 +37,8 @@ class LoginPage extends StatelessWidget {
                 child: Container(
                   width: btnWidth,
                   margin: const EdgeInsets.symmetric(vertical: 10),
-                  child: Image.asset('assets/images/kakao_login_ko.png'),
+                  child: Image.asset('assets/images/kakao_login_ko.png',
+                      width: btnWidth),
                 ),
               ),
               InkWell(
