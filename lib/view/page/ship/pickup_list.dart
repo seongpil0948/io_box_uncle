@@ -130,7 +130,13 @@ class _ShipCard extends StatelessWidget {
                     borderRadius: cardRadius,
                   )
                 : null,
-            child: ShipThumb(isBig: false, dest: s.dest, order: s.order),
+            child: ShipThumb(
+              isBig: false,
+              dest: s.dest,
+              order: s.order,
+              shopUser: s.shopUser,
+              vendorUser: s.vendorUser,
+            ),
           ),
         ),
       ),

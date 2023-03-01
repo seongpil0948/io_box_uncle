@@ -31,7 +31,7 @@ List<Widget> shipStatusBtns(BuildContext context, ShipOrder p) {
               } else if (p.ioOrder.shipAmount != null &&
                   p.ioOrder.shipAmount!.pendingAmount < p.shipment.amount) {
                 showErrorSnack(context,
-                    '산정된 배송비(${p.shipment.amount})원은 배송 보류금액(${p.ioOrder.shipAmount!.amount})보다 높습니다.');
+                    '산정된 배송비(${p.shipment.amount})원은 배송 보류금액(${p.ioOrder.shipAmount!.pendingAmount})보다 높습니다.');
               } else {
                 // pickComplete(p, context);
                 p = p.copyWith.ioOrder(
@@ -101,12 +101,13 @@ class ShipDoneBtn extends StatefulWidget {
 }
 
 class _ShipDoneBtnState extends State<ShipDoneBtn> {
-  final TextEditingController _controller = TextEditingController();
+  late TextEditingController _controller;
   List<File> files = [];
   FirebaseStorage storage = FirebaseStorage.instance;
   @override
   void initState() {
     super.initState();
+    _controller = TextEditingController();
   }
 
   Future<List<String>> uploadFiles(Reference baseRef) async {

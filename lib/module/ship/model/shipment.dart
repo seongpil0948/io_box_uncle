@@ -54,7 +54,18 @@ class Shipment extends Equatable with _$Shipment {
       _$ShipmentFromJson(json);
 
   @override
-  List<Object?> get props => [shippingId];
+  List<Object?> get props => [
+        shippingId,
+        orderDbId,
+        uncleId,
+        paid,
+        weight,
+        weightUnit,
+        sizeUnit,
+        size,
+        amountBySize,
+        amountByWeight
+      ];
 }
 
 @freezed //  all of this class's properties are immutable.

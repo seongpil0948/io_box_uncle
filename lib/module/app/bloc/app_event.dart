@@ -37,4 +37,12 @@ class SelectShip extends AppEvent {
   List<Object> get props => [shipOrder.shipment.shippingId, shipOrder.order.id];
 }
 
+class UpdateShip extends AppEvent {
+  final Shipment ship;
+  const UpdateShip({required this.ship});
+
+  @override
+  List<Object> get props => [ship.shippingId, ship.amount];
+}
+
 class DisSelectPickup extends AppEvent {}

@@ -3,6 +3,7 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:io_box_uncle/config/index.dart';
 import 'package:io_box_uncle/module/app/bloc/app_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
@@ -88,7 +89,7 @@ List<Page<dynamic>> _onGenerateAppViewPages(
     pages.add(TossListPage.page());
   }
   if (state.selectedShip != null) {
-    pages.add(PickupDetailPage.page(p: state.selectedShip!));
+    pages.add(PickupDetailPage.page());
   }
 
   if (kDebugMode) {
