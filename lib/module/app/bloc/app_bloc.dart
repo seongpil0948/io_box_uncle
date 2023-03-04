@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_box_uncle/module/auth/index.dart';
 import 'package:io_box_uncle/module/fcm/model.dart';
@@ -32,6 +33,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<DisSelectPickup>(_onDisSelectPickup);
 
     _userSubscription = authRepo.user.listen((user) async {
+      debugPrint("user from authRepo: $user");
       user.then((value) => add(AppUserChanged(value)));
     });
   }

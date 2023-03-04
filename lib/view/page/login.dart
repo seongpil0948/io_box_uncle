@@ -107,6 +107,7 @@ class _EmailFormState extends State<_EmailForm> {
   }
 
   void showSnack(String content) {
+    debugPrint("in showSnack: $content");
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(
@@ -176,10 +177,12 @@ class _EmailFormState extends State<_EmailForm> {
               ),
             ),
             onPressed: () async {
+              debugPrint("try email login");
               try {
-                await context
+                final result = await context
                     .read<AuthRepo>()
                     .signInWithPw(emailController.text, pwController.text);
+                debugPrint("UserCredential of signInWithPw: $result");
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'user-not-found') {
                   showSnack('존재하지 않는 이메일입니다.');

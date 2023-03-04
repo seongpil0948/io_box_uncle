@@ -213,7 +213,7 @@ class UserProfile extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Avatar(photo: user.userInfo.profileImg),
+          IoEditAvatar(radius: 40, user: user),
           const SizedBox(width: 10),
           Expanded(
             child: Text(
