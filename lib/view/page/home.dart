@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                 //       )
                 //     ])),
                 SizedBox(
-                  height: size.height / 4.5,
+                  height: size.height / 4,
                   child: Row(
                     children: [
                       Expanded(child: UserProfile(user: user)),

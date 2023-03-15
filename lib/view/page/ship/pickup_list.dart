@@ -1,9 +1,8 @@
 part of '../index.dart';
 
 class PickupListPage extends StatefulWidget {
-  PickupListPage({super.key});
-  static Page<void> page() => MaterialPage<void>(child: PickupListPage());
-  final scrollController = FixedExtentScrollController();
+  const PickupListPage({super.key});
+  static Page<void> page() => const MaterialPage<void>(child: PickupListPage());
 
   @override
   State<PickupListPage> createState() => _PickupListPageState();
@@ -81,14 +80,15 @@ class _ShipListView extends StatelessWidget {
   Widget build(BuildContext context) {
     final T = Theme.of(context).textTheme;
     return BlocSelector<ShipmentBloc, ShipmentState, List<ShipOrder>>(
+      key: ValueKey("ShipmentState $ordState"),
       selector: (state) => state.filteredShipOrders,
       builder: (context, state) {
         if (state.isNotEmpty) {
-          return ListView(
-            children: state
-                .where((element) => element.order.state == ordState)
-                .map((e) => _ShipCard(s: e))
-                .toList(),
+          return SingleChildScrollView(
+            child: ShipListExpand(
+                key: ValueKey("ShipListExpand $ordState ${state.length}"),
+                orders:
+                    state.where((element) => element.order.state == ordState)),
           );
         } else {
           return Center(
@@ -98,48 +98,6 @@ class _ShipListView extends StatelessWidget {
           ));
         }
       },
-    );
-  }
-}
-
-class _ShipCard extends StatelessWidget {
-  final ShipOrder s;
-  const _ShipCard({required this.s});
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final itemHeight = size.height / 6;
-    final customColors = Theme.of(context).extension<CustomColors>()!;
-    return Center(
-      child: InkWell(
-        onTap: () {
-          context.read<AppBloc>().add(SelectShip(shipOrder: s));
-        },
-        child: Container(
-          margin: const EdgeInsets.all(8.0),
-          width: size.width / 1.2,
-          height: itemHeight,
-          child: Card(
-            shape: s.order.isReturn
-                ? RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: customColors.info ?? Colors.blueAccent,
-                      width: cardBorderWidth,
-                    ),
-                    borderRadius: cardRadius,
-                  )
-                : null,
-            child: ShipThumb(
-              isBig: false,
-              dest: s.dest,
-              order: s.order,
-              shopUser: s.shopUser,
-              vendorUser: s.vendorUser,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

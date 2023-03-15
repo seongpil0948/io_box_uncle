@@ -15,7 +15,7 @@ abstract class ShipmentState extends Equatable {
       : tossData;
 
   @override
-  List<Object?> get props => [dest, shipOrders, tossData];
+  List<Object?> get props => [shipOrders.length, dest, shipOrders, tossData];
 }
 
 class ShipmentInitial extends ShipmentState {

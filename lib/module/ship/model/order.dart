@@ -216,7 +216,7 @@ class PayAmount with _$PayAmount {
   PayAmount defrayPending(int amount) {
     // pure amount 는 채워져 있어야 한다.
     final remain = pendingAmount - amount;
-    assert(isPending && pendingAmount > 0 && remain >= 0);
+    assert(pendingAmount == 0 || isPending && remain >= 0);
     return copyWith(pendingAmount: remain, isPending: remain > 0);
   }
 

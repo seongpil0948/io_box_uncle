@@ -10,6 +10,7 @@ import 'package:io_box_uncle/module/auth/index.dart';
 import 'package:io_box_uncle/module/fcm/model.dart';
 import 'package:io_box_uncle/view/component/button/index.dart';
 import 'package:io_box_uncle/view/component/card/common.dart';
+import 'package:io_box_uncle/view/component/list/pick_list.dart';
 import 'package:io_box_uncle/view/component/table/index.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 

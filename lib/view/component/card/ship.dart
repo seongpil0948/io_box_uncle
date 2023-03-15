@@ -40,7 +40,6 @@ class ShipThumb extends StatelessWidget {
       return result;
     }
 
-    debugPrint("hihihih");
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child:
